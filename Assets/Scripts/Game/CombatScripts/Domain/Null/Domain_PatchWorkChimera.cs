@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Domain_PatchWorkChimera : Domain
 {
+    public enum DomainType
+    {
+        OneTime,
+        EndOfTurn
+    }
     // Start is called before the first frame update
     public override void Start()
     {
