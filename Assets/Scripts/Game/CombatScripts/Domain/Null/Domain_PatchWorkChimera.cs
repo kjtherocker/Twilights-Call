@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Domain_PatchWorkChimera : Domain
 {
-    public enum DomainType
-    {
-        OneTime,
-        EndOfTurn
-    }
-    // Start is called before the first frame update
+   
     public override void Start()
     {
         m_ElementalType = Skills.ElementalType.Null;
         DomainName = "Patchwork Chimera";
         DomainDescription = "Steal the effect of another Domain";
         DomainUser = "";
-        
+        Domaintype = DomainType.OneTime;
         m_CostToUse = 5;
         
     }
 
     public override void DomainEffect(ref Creatures m_CreatureOnDomain)
     {
-        m_CreatureOnDomain.CurrentHealth = m_CreatureOnDomain.CurrentHealth / 2;
+     //   m_CreatureOnDomain.MaxHealth = m_CreatureOnDomain.MaxHealth / 2;
+          m_CreatureOnDomain.CurrentHealth = m_CreatureOnDomain.CurrentHealth / 2;
+    }
+    
+    public override void UndoDomainEffect(ref Creatures m_CreatureOnDomain)
+    {
+       // m_CreatureOnDomain.MaxHealth = m_CreatureOnDomain.MaxHealth * 2;
     }
 }

@@ -118,7 +118,7 @@ public class EnemyAiController : AiController
             CombatNode NodeNeightboringAlly = 
                 GameManager.Instance.m_Grid.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
 
-            StartCoroutine(SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid));
+            SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid);
 
         }
 

@@ -69,6 +69,14 @@ MonoBehaviour:
   m_HeuristicCalculated: 0
   m_IsSelector: 0
   m_IsWalkable: 0
+  m_DomainCombatNode: 0
+  DomainOnNode:
+    m_ElementalType: 0
+    DomainName: 
+    Domaintype: 0
+    DomainUser: 
+    DomainDescription: 
+    m_CostToUse: 0
   m_NodeReplacement: {fileID: 0}
   m_NodeYouCameFrom: {fileID: 0}
   m_CreatureOnGridPoint: {fileID: 0}
@@ -79,6 +87,7 @@ MonoBehaviour:
   m_Prop: {fileID: 0}
   m_PropList: {fileID: 0}
   m_Renderer: {fileID: 0}
+  m_WhiteNode: {fileID: 2100000, guid: f448ebf1ca498154195c02a8f2e560a1, type: 2}
   m_InitalNode: {fileID: 8360046917521507808}
   m_NodesInitalVector3Coordinates: {x: 3.12, y: 1.38, z: -3.66}
   m_Grid: {fileID: 0}
@@ -313,6 +322,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3721082239912409295}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 9cfe6774027c1ba45ad41eb70174d456,
+        type: 3}
+      propertyPath: m_Name
+      value: 3D_Ground_Cube
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9cfe6774027c1ba45ad41eb70174d456,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -367,11 +381,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 9cfe6774027c1ba45ad41eb70174d456,
-        type: 3}
-      propertyPath: m_Name
-      value: 3D_Ground_Cube
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 9cfe6774027c1ba45ad41eb70174d456,
         type: 3}

@@ -7,11 +7,19 @@ using UnityEngine;
 [System.Serializable]
 public class Domain
 {
+    public enum DomainType
+    {
+        OneTime,
+        EndOfTurn
+    }
+    // Start is called before the first frame update
+
 
     // Use this for initialization
 
     [SerializeField] public Skills.ElementalType m_ElementalType;
     [SerializeField] public string DomainName;
+    [SerializeField] public DomainType Domaintype;
     [SerializeField] public string DomainUser;
     [SerializeField] public string DomainDescription;
     [SerializeField] public int m_CostToUse;
@@ -29,7 +37,10 @@ public class Domain
 
     public virtual void DomainEffect(ref Creatures m_CreatureOnDomain)
     {
-        
+    }
+    
+    public virtual void UndoDomainEffect(ref Creatures m_CreatureOnDomain)
+    {
     }
     
     public virtual bool CheckifNodeCanBeDomained(CombatNode aNode)

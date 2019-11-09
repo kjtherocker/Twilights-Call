@@ -63,6 +63,7 @@ public class CombatNode : Cell
 
     public Renderer m_Renderer;
 
+    public Material m_WhiteNode;
 
     public GameObject m_InitalNode;
 
@@ -279,6 +280,18 @@ public class CombatNode : Cell
         }
     }
 
+
+    public void DomainTransfer()
+    {
+        StartCoroutine(DomainMaterialChange());
+    }
+
+    public IEnumerator DomainMaterialChange()
+    {
+        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
+        meshRenderer.material.Lerp(meshRenderer.materials[0] ,m_WhiteNode , Time.deltaTime);
+        yield return new WaitForSeconds(.60f);
+    }
 
     public void CreateWalkableArea()
     {

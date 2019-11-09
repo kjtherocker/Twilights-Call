@@ -156,7 +156,7 @@ public class AiController : MonoBehaviour
     }
 
 
-    public virtual IEnumerator SetGoalPosition(Vector2Int m_Goal)
+    public virtual void SetGoalPosition(Vector2Int m_Goal)
     {
         SetGoal(m_Goal);
         m_Grid.m_Movement = m_Movement;
@@ -169,7 +169,7 @@ public class AiController : MonoBehaviour
             node.m_IsWalkable = true;
         }
 
-        yield return new WaitForSeconds(.5f);
+
 
         List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid);
 
@@ -193,8 +193,7 @@ public class AiController : MonoBehaviour
             }
 
 
-            MeshRenderer meshRenderer = node.m_Cube.GetComponent<MeshRenderer>();
-            meshRenderer.material = meshRenderer.materials[0];
+            node.DomainTransfer();
         }
 
     }
@@ -262,7 +261,7 @@ public class AiController : MonoBehaviour
 
                     CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
                     i++;
-                    yield return new WaitForSeconds(0.4f);
+                    yield return new WaitUntil(() => Node_MovingTo == Node_ObjectIsOn);
                 }
             
 

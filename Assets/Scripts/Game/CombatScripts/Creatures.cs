@@ -113,27 +113,7 @@ public class Creatures : MonoBehaviour
        
         //m_Attack = gameObject.AddComponent<Attack>();
     }
-    public virtual void Update()
-    {
 
-        if (CurrentHealth <= 0)
-        {
-            m_IsAlive = false;
-            Death();
-        }
-        else if (CurrentHealth >= 0)
-        {
-            m_IsAlive = true;
-        }
-
-        if (CurrentHealth >= MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
-
-
-
-    }
 
     public virtual void EndTurn()
     {
@@ -211,7 +191,21 @@ public class Creatures : MonoBehaviour
         FloatingUiElementsController.CreateFloatingText(Decrementby.ToString(), ModelInGame.gameObject.transform, FloatingUiElementsController.UiElementType.Text);
 
 
+        if (CurrentHealth <= 0)
+        {
+            m_IsAlive = false;
+            Death();
+        }
+        else if (CurrentHealth >= 0)
+        {
+            m_IsAlive = true;
+        }
 
+        if (CurrentHealth >= MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+        
         CurrentHealth -= Decrementby;
 
 
