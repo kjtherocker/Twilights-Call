@@ -5,7 +5,7 @@ using UnityEngine;
 public class UiScreen : MonoBehaviour
 {
     public bool m_InputActive;
-
+    public PlayerInput m_MenuControls;
     // Use this for initialization
     void Start()
     {

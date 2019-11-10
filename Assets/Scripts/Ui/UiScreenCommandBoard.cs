@@ -15,9 +15,10 @@ public class UiScreenCommandBoard : UiScreen
     
     // Use this for initialization
 	void Start ()
-    {
-        m_CommandBoardPointerPosition = 0;
-        GameManager.Instance.m_InputManager.m_MenuControls.Player.XButton.performed += XButton => PlayerMovement();
+    { 
+        
+        m_CommandBoardPointerPosition = 0; 
+       
     }
 	
 	// Update is called once per frame
@@ -44,13 +45,18 @@ public class UiScreenCommandBoard : UiScreen
     public override void OnPush()
     {
         gameObject.SetActive(true);
-        GameManager.Instance.m_InputManager.m_MenuControls.Enable();
+        GameManager.Instance.m_InputManager.m_MovementControls.Disable();
+        m_MenuControls = new PlayerInput();
+        m_MenuControls.Enable();
+        m_MenuControls.Player.XButton.performed += XButton => PlayerMovement();
+        m_MenuControls.Player.SquareButton.performed += SquareButton => SpawnSkillBoard();
+        
         m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
 
     public void TurnCommandBoardOff()
     {
-        GameManager.Instance.m_InputManager.m_MenuControls.Disable();
+       m_MenuControls.Disable();
         gameObject.SetActive(false);
         m_CommandBoardPointerPosition = 0;
 
@@ -85,36 +91,14 @@ public class UiScreenCommandBoard : UiScreen
 
     public void SpawnSkillBoard()
     {
+
         GameManager.Instance.UiManager.PushScreen(UiManager.Screen.SkillBoard);
 
         UiSkillBoard ScreenTemp =
             GameManager.Instance.UiManager.GetScreen(UiManager.Screen.SkillBoard) as UiSkillBoard;
 
         ScreenTemp.SpawnSkills(m_CommandboardCreature);
-    }
-
-    public void MoveCommandBoardPositionUp(int a_PointerPosition)
-    {
-        m_CommandBoardPointerPosition = a_PointerPosition;
-
-        if (m_CommandBoardPointerPosition == 0)
-        {
-            PlayerMovement();
-        }
-        if (m_CommandBoardPointerPosition == 1)
-        {
-
-            GameManager.Instance.UiManager.PopScreen();
-            GameManager.Instance.BattleCamera.SetAttackPhase(m_CommandboardCreature.m_Attack);
-        }
-        if (m_CommandBoardPointerPosition == 2)
-        {
-            SpawnSkillBoard();
-        }
-        if (m_CommandBoardPointerPosition == 3)
-        {
-
-        }
+       
     }
 
 

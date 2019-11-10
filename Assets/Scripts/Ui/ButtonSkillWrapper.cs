@@ -19,6 +19,7 @@ public class ButtonSkillWrapper : MonoBehaviour
     public Skills.SkillType m_SkillType;
 
     public Skills m_ButtonSkill;
+    public Domain m_Domain;
     public UiSkillBoard m_SkillBoard;
     public Button m_Button;
     public TextMeshProUGUI m_CostToUseText;
@@ -86,6 +87,17 @@ public class ButtonSkillWrapper : MonoBehaviour
         SetElementalIcon(a_Skill.GetElementalType());
         m_Text_NameOfSkill.text = a_Skill.SkillName;
         m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
+    }
+    
+    public void SetupDomain(Creatures a_TurnHolder, Domain aDomain, UiSkillBoard aSkillBoard)
+    {
+        m_ButtonTurnHolder = a_TurnHolder;
+        m_Domain = aDomain;
+        SetCardDesign(Skills.SkillType.Domain);
+        m_SkillBoard = aSkillBoard;
+        SetElementalIcon(aDomain.m_ElementalType);
+        m_Text_NameOfSkill.text = aDomain.DomainName;
+        m_CostToUseText.text = aDomain.m_CostToUse.ToString();
     }
 
     public void SetAsNotInteractable()

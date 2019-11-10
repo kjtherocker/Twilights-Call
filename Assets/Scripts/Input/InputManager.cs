@@ -6,7 +6,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public PlayerInput m_MovementControls;
-    public PlayerInput m_MenuControls;
+
 
     // Use this for initialization
     void Awake()
@@ -14,9 +14,7 @@ public class InputManager : MonoBehaviour
         m_MovementControls = new PlayerInput();
         m_MovementControls.Enable();
 
-        m_MenuControls = new PlayerInput();
-        m_MenuControls.Disable();
-
+      
     }
 
 

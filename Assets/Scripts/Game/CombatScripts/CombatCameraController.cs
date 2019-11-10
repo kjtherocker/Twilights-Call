@@ -66,7 +66,7 @@ public class CombatCameraController : MonoBehaviour
     {
         GameManager.Instance.m_InputManager.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => CreateCommandBoard();
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
+    //    GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
 
         m_CameraPositionInGrid = new Vector2Int(5, 5);
         GameManager.Instance.m_BattleCamera = this;

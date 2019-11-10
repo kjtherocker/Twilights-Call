@@ -6,14 +6,14 @@ public class UiManager : MonoBehaviour
 {
     public enum Screen
     {
+        CommandBoard,
+        SkillBoard,
         PartyMenu,
         TurnIndicator,
         EndCombatMenu,
         Notifcation,
-        CommandBoard,
         PartyStats,
         Dialogue,
-        SkillBoard,
 
 
         _NumberOfScreens
