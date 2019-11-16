@@ -7,13 +7,7 @@ public class UiScreen : MonoBehaviour
     public bool m_InputActive;
     public PlayerInput m_MenuControls;
     // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
+    public virtual void Initialize()
     {
 
     }
@@ -28,5 +22,10 @@ public class UiScreen : MonoBehaviour
     {
         m_InputActive = true;
         gameObject.SetActive(true);
+    }
+
+    public virtual void ReturnToLastScreen()
+    {
+        GameManager.Instance.m_UiManager.ReturnToLastScreen();
     }
 }

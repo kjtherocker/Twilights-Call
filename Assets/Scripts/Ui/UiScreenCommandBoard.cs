@@ -12,53 +12,36 @@ public class UiScreenCommandBoard : UiScreen
     public TextMeshProUGUI m_Attack;
     public TextMeshProUGUI m_Skill;
     public int m_CommandBoardPointerPosition;
-    
-    // Use this for initialization
-	void Start ()
-    { 
-        
-        m_CommandBoardPointerPosition = 0; 
-       
-    }
-	
-	// Update is called once per frame
-	void Update ()
+
+
+    public override void Initialize()
     {
-        if (m_CommandBoardPointerPosition < 0)
-        {
-            m_CommandBoardPointerPosition = 0;
-        }
-        else if (m_CommandBoardPointerPosition > 2)
-        {
-            m_CommandBoardPointerPosition = 2;
-        }
+        m_MenuControls = new PlayerInput();
+       
+        m_MenuControls.Player.XButton.performed += XButton => PlayerMovement();
+        m_MenuControls.Player.SquareButton.performed += SquareButton => SpawnSkillBoard();
+        m_MenuControls.Disable();
     }
 
     public override void OnPop()
     {
         //m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossOut");
         TurnCommandBoardOff();
-        
-
     }
 
     public override void OnPush()
     {
         gameObject.SetActive(true);
         GameManager.Instance.m_InputManager.m_MovementControls.Disable();
-        m_MenuControls = new PlayerInput();
         m_MenuControls.Enable();
-        m_MenuControls.Player.XButton.performed += XButton => PlayerMovement();
-        m_MenuControls.Player.SquareButton.performed += SquareButton => SpawnSkillBoard();
-        
         m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
 
     public void TurnCommandBoardOff()
     {
        m_MenuControls.Disable();
-        gameObject.SetActive(false);
-        m_CommandBoardPointerPosition = 0;
+       gameObject.SetActive(false);
+       m_CommandBoardPointerPosition = 0;
 
 
     }
@@ -80,18 +63,28 @@ public class UiScreenCommandBoard : UiScreen
 
     public void PlayerMovement()
     {
-        if (m_CommandboardCreature.m_CreatureAi.m_HasMovedForThisTurn == false)
+        if (m_CommandboardCreature.m_CreatureAi.m_HasMovedForThisTurn)
         {
-            m_CommandboardCreature.m_CreatureAi.FindAllPaths();
-            GameManager.Instance.BattleCamera.m_MovementHasBeenCalculated = true;
-            GameManager.Instance.UiManager.PopScreen();
+            return;
         }
+        GameManager.Instance.m_InputManager.m_MovementControls.Enable();
+        m_CommandboardCreature.m_CreatureAi.FindAllPaths();
+        GameManager.Instance.BattleCamera.m_MovementHasBeenCalculated = true;
+        GameManager.Instance.UiManager.PopScreen();
+        
     }
 
 
     public void SpawnSkillBoard()
     {
+        if (m_CommandboardCreature.m_CreatureAi.m_HasAttackedForThisTurn)
+        {
+            return;
+        }
 
+        m_MenuControls.Disable();
+        
+        GameManager.Instance.UiManager.PopScreen();
         GameManager.Instance.UiManager.PushScreen(UiManager.Screen.SkillBoard);
 
         UiSkillBoard ScreenTemp =
@@ -99,6 +92,7 @@ public class UiScreenCommandBoard : UiScreen
 
         ScreenTemp.SpawnSkills(m_CommandboardCreature);
        
+        
     }
 
 

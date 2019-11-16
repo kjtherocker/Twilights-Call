@@ -283,15 +283,14 @@ public class CombatNode : Cell
 
     public void DomainTransfer()
     {
-        StartCoroutine(DomainMaterialChange());
+        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
+        meshRenderer.material = meshRenderer.materials[0];
     }
 
-    public IEnumerator DomainMaterialChange()
-    {
-        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
-        meshRenderer.material.Lerp(meshRenderer.materials[0] ,m_WhiteNode , Time.deltaTime);
-        yield return new WaitForSeconds(.60f);
-    }
+   // public IEnumerator DomainMaterialChange()
+   // {
+   //     
+   // }
 
     public void CreateWalkableArea()
     {

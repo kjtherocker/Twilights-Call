@@ -190,10 +190,12 @@ public class Creatures : MonoBehaviour
         yield return new WaitForSeconds(TimeTillDamage);
         FloatingUiElementsController.CreateFloatingText(Decrementby.ToString(), ModelInGame.gameObject.transform, FloatingUiElementsController.UiElementType.Text);
 
+        CurrentHealth -= Decrementby;
 
         if (CurrentHealth <= 0)
         {
             m_IsAlive = false;
+
             Death();
         }
         else if (CurrentHealth >= 0)
@@ -206,7 +208,7 @@ public class Creatures : MonoBehaviour
             CurrentHealth = MaxHealth;
         }
         
-        CurrentHealth -= Decrementby;
+   
 
 
     }
@@ -237,11 +239,27 @@ public class Creatures : MonoBehaviour
         BuffandDebuff = 0;
         if (charactertype == Charactertype.Enemy)
         {
+            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
+                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
+            {
+                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
+                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+            }
+
             Destroy(ModelInGame.gameObject);
         }
         if (charactertype == Charactertype.Ally)
         {
-            ModelInGame.gameObject.SetActive(false);
+            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
+                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
+            {
+                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
+                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+            }
+
+            Destroy(ModelInGame.gameObject);
         }
 
 

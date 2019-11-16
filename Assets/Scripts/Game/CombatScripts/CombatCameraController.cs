@@ -66,7 +66,8 @@ public class CombatCameraController : MonoBehaviour
     {
         GameManager.Instance.m_InputManager.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => CreateCommandBoard();
-    //    GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
+        GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
+        GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => AttackingIndividual();
 
         m_CameraPositionInGrid = new Vector2Int(5, 5);
         GameManager.Instance.m_BattleCamera = this;
@@ -127,20 +128,13 @@ public class CombatCameraController : MonoBehaviour
                         m_NodeTheCameraIsOn.transform.position.y + 18.9f,
                         m_NodeTheCameraIsOn.transform.position.z - 18.5f), Time.deltaTime * 2);
                 }
-
-                if (GameManager.Instance.UiManager.GetScreen(UiManager.Screen.CommandBoard) == null)
-                {
-                   // GameManager.Instance.m_Controls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>()); 
-                }
-             
-
-
-                PlayerUiSelection();
+                
+                
 
                 break;
 
             case CameraState.PlayerMovement:
-                //isPlayersDoneMoving();
+
                if (m_Grid.m_GridPathArray != null)
                {
                    m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_CameraPositionInGrid.x, m_CameraPositionInGrid.y];
@@ -164,13 +158,7 @@ public class CombatCameraController : MonoBehaviour
                         m_NodeTheCameraIsOn.transform.position.y + 13.9f,
                         m_NodeTheCameraIsOn.transform.position.z - 13.5f), Time.deltaTime * 2);
 
-                
-
-                if (Input.GetButtonDown("Ps4_Cross"))
-                {
-                    AttackingIndividual();
-                }
-
+               
 
                 break;
 
@@ -272,6 +260,24 @@ public class CombatCameraController : MonoBehaviour
         m_CreatureAttackingSkill = aSkill;
         m_SpellAttackFormations = GameManager.Instance.m_NodeFormation.NodeFormation();
         m_cameraState = CameraState.PlayerAttack;
+        
+        for (int i = 0; i < m_SpellAttackFormations.Count; i++)
+        {
+            Vector2Int TempSpellPosition = new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
+                m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y);
+
+            if (CheckingGridDimensionBoundrys(TempSpellPosition))
+            {
+                m_Grid.SetAttackingTileInGrid(new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
+                    m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y));
+            }
+        }
+    }
+    
+    public void SetDomainPhase(Domain aDomain)
+    {
+        m_Creature.m_CreatureAi.Domain();
+        m_cameraState = CameraState.PlayerAttack;
     }
 
     public void MoveCamera(CameraMovementDirections cameraMovementDirections )
@@ -363,30 +369,62 @@ public class CombatCameraController : MonoBehaviour
 
     public void AttackingIndividual()
     {
-        m_Creature.m_CreatureAi.m_CreaturesAnimator.SetTrigger("t_IsAttack");
-        if (m_SpellAttackFormations != null)
+        if (m_cameraState == CameraState.PlayerAttack)
         {
-            for (int i = 0; i < m_SpellAttackFormations.Count; i++)
+            //m_Creature.m_CreatureAi.m_CreaturesAnimator.SetTrigger("t_IsAttack");
+            if (m_SpellAttackFormations != null)
             {
-                Vector2Int TempSpellNodePosition = new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
-                    m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y);
-
-                if (CheckingGridDimensionBoundrys(TempSpellNodePosition))
+                for (int i = 0; i < m_SpellAttackFormations.Count; i++)
                 {
-                    if (m_Grid.m_GridPathArray[TempSpellNodePosition.x, TempSpellNodePosition.y].m_CreatureOnGridPoint != null)
+                    Vector2Int TempSpellNodePosition = new Vector2Int(
+                        m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
+                        m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y);
+
+                    if (CheckingGridDimensionBoundrys(TempSpellNodePosition))
                     {
-                        StartCoroutine(m_Grid.m_GridPathArray[TempSpellNodePosition.x, TempSpellNodePosition.y].m_CreatureOnGridPoint.DecrementHealth
-                           (m_CreatureAttackingSkill.GetSkillDamage() + m_Creature.GetAllStrength(), m_CreatureAttackingSkill.GetElementalType(), 0.1f, 0.1f, 1));
+                        if (m_Grid.m_GridPathArray[TempSpellNodePosition.x, TempSpellNodePosition.y]
+                                .m_CreatureOnGridPoint != null)
+                        {
+                            if (m_CreatureAttackingSkill.GetSkillType() == Skills.SkillType.Attack)
+                            {
+                                if (m_Grid.m_GridPathArray[TempSpellNodePosition.x, TempSpellNodePosition.y]
+                                    .m_CreatureOnGridPoint != m_Creature)
+                                {
+                                    StartCoroutine(m_Grid
+                                        .m_GridPathArray[TempSpellNodePosition.x, TempSpellNodePosition.y]
+                                        .m_CreatureOnGridPoint.DecrementHealth
+                                        (m_CreatureAttackingSkill.GetSkillDamage() + m_Creature.GetAllStrength(),
+                                            m_CreatureAttackingSkill.GetElementalType(), 0.1f, 0.1f, 1));
+                                }
+                            }
+                            else if (m_CreatureAttackingSkill.GetSkillType() == Skills.SkillType.Heal)
+                            {
+                                StartCoroutine(m_Grid.m_GridPathArray[TempSpellNodePosition.x, TempSpellNodePosition.y]
+                                    .m_CreatureOnGridPoint.IncrementHealth(m_CreatureAttackingSkill.GetSkillDamage()));
+                            }
+                        }
                     }
                 }
             }
-        }
-        m_PlayerIsAttacking = false;
-        GameManager.Instance.UiManager.PopAllScreens();
-    }
 
-    public void PlayerUiSelection()
-    {
+            
+            for (int i = 0; i < m_SpellAttackFormations.Count; i++)
+            {
+                Vector2Int TempSpellPosition = new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
+                    m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y);
+
+                if (CheckingGridDimensionBoundrys(TempSpellPosition))
+                {
+                    m_Grid.DeselectAttackingTileingrid(new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
+                        m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y));
+                }
+            }
+
+            m_SpellAttackFormations = null;
+            m_Creature.m_CreatureAi.m_HasAttackedForThisTurn = true;
+            m_PlayerIsAttacking = false;
+            m_cameraState = CameraState.Normal;
+        }
     }
 
     public void PlayerWalk()
@@ -422,28 +460,44 @@ public class CombatCameraController : MonoBehaviour
 
     public void CreateCommandBoard()
     {
-
-        if (m_MovementHasBeenCalculated == false)
+        if (m_cameraState != CameraState.Normal)
         {
-            if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint != null)
-            {
-
-                //Get creature on that point on the grid
-                m_Creature =
-                    m_NodeTheCameraIsOn.m_CreatureOnGridPoint;
-
-                //Push Screen
-                GameManager.Instance.UiManager.PushScreen(UiManager.Screen.CommandBoard);
-
-                //Get Screen
-                UiScreenCommandBoard ScreenTemp =
-                    GameManager.Instance.UiManager.GetScreen(UiManager.Screen.CommandBoard) as UiScreenCommandBoard;
-
-                //Set Screen Variables
-                ScreenTemp.SetCreatureReference(m_Creature);
-                m_CommandBoardExists = true;
-            }
+            return;
         }
+
+        if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint == null)
+        {
+            return;
+        }
+        
+        if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.m_CreatureAi.m_HasAttackedForThisTurn == true 
+            && m_NodeTheCameraIsOn.m_CreatureOnGridPoint.m_CreatureAi.m_HasMovedForThisTurn == true)
+        {
+            return;
+        }
+
+        if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Enemy)
+        {
+            return;
+        }
+        //Get creature on that point on the grid
+        
+        
+        m_Creature =
+             m_NodeTheCameraIsOn.m_CreatureOnGridPoint;
+         
+         
+
+         //Push Screen
+         GameManager.Instance.UiManager.PushScreen(UiManager.Screen.CommandBoard);
+
+         //Get Screen
+         UiScreenCommandBoard ScreenTemp = GameManager.Instance.UiManager.GetScreen(UiManager.Screen.CommandBoard) 
+             as UiScreenCommandBoard;
+
+         //Set Screen Variables
+         ScreenTemp.SetCreatureReference(m_Creature);
+         m_CommandBoardExists = true;
     }
     
 }

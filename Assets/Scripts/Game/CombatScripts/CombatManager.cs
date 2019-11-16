@@ -98,7 +98,7 @@ public class CombatManager : MonoBehaviour
 
 
             //Setting up the Enemy
-            AddCreatureToCombat(EncounterManager.EnemySlot4, new Vector2Int(9, 13), TurnOrderEnemy);
+            AddCreatureToCombat(EncounterManager.EnemySlot4, new Vector2Int(3, 4), TurnOrderEnemy);
 
 
 

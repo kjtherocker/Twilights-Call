@@ -233,7 +233,7 @@ public class AiController : MonoBehaviour
     public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
-        //m_Grid.RemoveWalkableArea();
+        m_Grid.RemoveWalkableArea();
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
@@ -267,6 +267,7 @@ public class AiController : MonoBehaviour
 
         }
 
+        m_Grid.RemoveWalkableArea();
         //Camera no longer following the player;
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.Normal;
 
@@ -276,7 +277,7 @@ public class AiController : MonoBehaviour
         //The walk has been finished
        m_HasMovedForThisTurn = true;
 
-        m_MovementHasStarted = false;
+       m_MovementHasStarted = false;
         //Changing the position from where the Creature was before
       
 

@@ -22,6 +22,8 @@ public class UiManager : MonoBehaviour
     public UiScreen[] m_UiScreens;
 
     public List<KeyValuePair<Screen, UiScreen>> m_ScreenStack = new List<KeyValuePair<Screen, UiScreen>>();
+    
+    public List<Screen> m_LastScreen = new List<Screen>();
 
     void OnValidate()
     {
@@ -29,8 +31,16 @@ public class UiManager : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
+        for (int i = 0; i < m_UiScreens.Length - 1; i++)
+        {
+            if (m_UiScreens[i] != null)
+            {
+                m_UiScreens[i].Initialize();
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -72,16 +82,34 @@ public class UiManager : MonoBehaviour
         UiScreen screenToAdd = m_UiScreens[(int)aScreen];
         screenToAdd.OnPush();
 
+        Debug.Log(screenToAdd.ToString());
         m_ScreenStack.Add(new KeyValuePair<Screen, UiScreen>(aScreen, screenToAdd));
         m_ScreenStack[m_ScreenStack.Count - 1].Value.m_InputActive = true;
     }
 
     public void PopScreen()
     {
-        m_ScreenStack[m_ScreenStack.Count - 1].Value.m_InputActive = false;
+        if (m_LastScreen.Count > 5)
+        {
+            m_LastScreen.RemoveAt(0);
+        }
+        m_LastScreen.Add(m_ScreenStack[m_ScreenStack.Count - 1].Key);
         m_ScreenStack[m_ScreenStack.Count - 1].Value.OnPop();
         m_ScreenStack.RemoveAt(m_ScreenStack.Count - 1);
        
+    }
+
+    public void PopScreenNoLastScreen()
+    {
+        m_ScreenStack[m_ScreenStack.Count - 1].Value.OnPop();
+        m_ScreenStack.RemoveAt(m_ScreenStack.Count - 1);
+    }
+
+    public void ReturnToLastScreen()
+    {
+        PopScreenNoLastScreen();
+        PushScreen(m_LastScreen[m_LastScreen.Count - 1]);
+        m_LastScreen.RemoveAt(m_LastScreen.Count - 1);
     }
 
     public void PopInvisivble()

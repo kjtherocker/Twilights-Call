@@ -14,17 +14,22 @@ public class UiSkillBoard : UiScreen
 
     public TextMeshProUGUI m_DescriptionText;
     public int m_SkillBoardPointerPosition;
-
+    
+    public bool m_SwapBetweenSkillDomain;
+    
     public Vector3 m_CenterCardPosition;
     // Use this for initialization
-    void Start ()
+    public override void Initialize()
     {
         m_SkillBoardPointerPosition = 0;
         m_CenterCardPosition = new Vector3(-38, -211, 0);
-        
-
+        m_MenuControls = new PlayerInput();
+       
+        m_MenuControls.Player.Movement.performed += movement => MoveCommandBoardPosition(movement.ReadValue<Vector2>());
+        m_MenuControls.Player.XButton.performed += XButton => SetSkill();
+        m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
+        m_MenuControls.Disable();
     }
-	
 	// Update is called once per frame
 	void Update ()
     {
@@ -32,40 +37,34 @@ public class UiSkillBoard : UiScreen
 
     public void SetSkill()
     {
-        GameManager.Instance.BattleCamera.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
-        GameManager.Instance.UiManager.PopAllInvisivble();
+        if(m_SwapBetweenSkillDomain == false)
+        {
+            GameManager.Instance.BattleCamera.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
+        }
+        else
+        {
+            GameManager.Instance.BattleCamera.SetDomainPhase(m_SkillBoardCreature.m_Domain);
+        }
+        GameManager.Instance.m_InputManager.m_MovementControls.Enable();
+        GameManager.Instance.UiManager.PopScreen();
     }
 
     public override void OnPop()
     {
-
-     //   m_MenuControls.Disable();
-
+        DeleteSkills();
+        gameObject.SetActive((false));
+        m_MenuControls.Disable();
     }
 
     public override void OnPush()
     {
         gameObject.SetActive((true));
         GameManager.Instance.m_InputManager.m_MovementControls.Disable();
-        m_MenuControls = new PlayerInput();
         m_MenuControls.Enable();
-        m_MenuControls.Player.Movement.performed += movement => MoveCommandBoardPosition(movement.ReadValue<Vector2>());
-        m_MenuControls.Player.XButton.performed += XButton => SetSkill();
-        //GameManager.Instance.m_InputManager.m_MenuControls.
-
     }
 
     public void SpawnSkills(Creatures aCreatures)
     {
-        if (m_CurrentSkillMenuButtonsMenu.Count > 0)
-        {
-            for (int i = 0; i < m_SkillBoardCreature.m_Skills.Count; i++)
-            {
-
-                Destroy(m_CurrentSkillMenuButtonsMenu[i].gameObject);
-                m_CurrentSkillMenuButtonsMenu.RemoveAt(i);
-            }
-        }
 
         m_SkillBoardCreature = aCreatures;
 
@@ -84,6 +83,17 @@ public class UiSkillBoard : UiScreen
         m_DomainButton.gameObject.transform.position = new Vector3(850 , 300, 0);
 
         AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[0]);
+    }
+
+    public void DeleteSkills()
+    {
+        for (int i = m_SkillBoardCreature.m_Skills.Count - 1; i > -1; i--)
+        {
+            Destroy(m_CurrentSkillMenuButtonsMenu[i].gameObject);
+            m_CurrentSkillMenuButtonsMenu.RemoveAt(i);
+        }
+        
+        Destroy(m_DomainButton.gameObject);
     }
 
     public void AnimatedCardMovementToCenter(ButtonSkillWrapper a_SkillWrapper)
@@ -127,9 +137,13 @@ public class UiSkillBoard : UiScreen
         
         AnimatedCardMovementDown(m_CurrentSkillMenuButtonsMenu[OriginalPointerPosition]);
 
-        if (aMovement.y > 0 && aMovement.y < 0 )
+        if (aMovement.y > 0 )
         {
-        
+            m_SwapBetweenSkillDomain = true;
+        }
+        else if(aMovement.y < 0 )
+        {
+            m_SwapBetweenSkillDomain = false;
         }
         else
         {
