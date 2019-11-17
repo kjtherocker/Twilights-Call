@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CombatNodeMainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
 
     // Use this for initialization
 
     public void Playgame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void ExitGame()
     {

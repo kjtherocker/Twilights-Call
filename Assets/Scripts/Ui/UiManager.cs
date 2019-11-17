@@ -101,6 +101,11 @@ public class UiManager : MonoBehaviour
 
     public void PopScreenNoLastScreen()
     {
+        if (m_ScreenStack.Count <= 0)
+        {
+            return;
+        }
+
         m_ScreenStack[m_ScreenStack.Count - 1].Value.OnPop();
         m_ScreenStack.RemoveAt(m_ScreenStack.Count - 1);
     }

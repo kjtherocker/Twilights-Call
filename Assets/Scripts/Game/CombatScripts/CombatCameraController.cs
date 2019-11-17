@@ -68,6 +68,7 @@ public class CombatCameraController : MonoBehaviour
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => CreateCommandBoard();
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => AttackingIndividual();
+        GameManager.Instance.m_InputManager.m_MovementControls.Player.SquareButton.performed += SquareButton => ReturnToCommandboard();
 
         m_CameraPositionInGrid = new Vector2Int(5, 5);
         GameManager.Instance.m_BattleCamera = this;
@@ -104,7 +105,17 @@ public class CombatCameraController : MonoBehaviour
     }
 
 
+    public void ReturnToCommandboard()
+    {
+        if (m_cameraState != CameraState.PlayerAttack)
+        {
+            return;
+        }
+        
+        GameManager.Instance.m_UiManager.ReturnToLastScreen();
+        
 
+    }
 
     public void CameraMovement()
     {
@@ -184,8 +195,8 @@ public class CombatCameraController : MonoBehaviour
         }
 
 
-      
-      
+
+
 
         if (m_NodeTheCameraIsOn != null)
         {
@@ -212,18 +223,13 @@ public class CombatCameraController : MonoBehaviour
             }
             else
             {
-             
+
                 m_PartyStatus.gameObject.SetActive(false);
                 m_StatusSheet.gameObject.SetActive(false);
                 m_EnemyStatus.gameObject.SetActive(false);
 
             }
         }
-
-
-       
-
-        
     }
 
     public void DPadGridControls(Vector2 aMovement)
