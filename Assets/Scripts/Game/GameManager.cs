@@ -15,10 +15,6 @@ public class GameManager : Singleton<GameManager>
     public CombatCameraController m_BattleCamera;
     public CombatCameraController BattleCamera { get { return m_BattleCamera; } }
 
-    public EditorCamera m_EditorCamera;
-    public EditorCamera EditorCamera { get { return m_EditorCamera; } }
-
-
     public UiManager m_UiManager;
     public UiManager UiManager { get { return m_UiManager; } }
 

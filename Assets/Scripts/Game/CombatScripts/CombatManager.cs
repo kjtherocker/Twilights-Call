@@ -98,7 +98,13 @@ public class CombatManager : MonoBehaviour
 
 
             //Setting up the Enemy
-            AddCreatureToCombat(EncounterManager.EnemySlot4, new Vector2Int(3, 4), TurnOrderEnemy);
+            AddCreatureToCombat(EncounterManager.EnemySlot1, new Vector2Int(1, 8), TurnOrderEnemy);
+            
+            AddCreatureToCombat(EncounterManager.EnemySlot2, new Vector2Int(5, 6), TurnOrderEnemy);
+            
+           // AddCreatureToCombat(EncounterManager.EnemySlot3, new Vector2Int(3, 1), TurnOrderEnemy);
+           // 
+           // AddCreatureToCombat(EncounterManager.EnemySlot4, new Vector2Int(3, 10), TurnOrderEnemy);
 
 
 
@@ -216,6 +222,10 @@ public class CombatManager : MonoBehaviour
 
 
 
+    public void PlayerIsDoneAttackingAndMoving()
+    {
+        
+    }
 
     private bool isPlayersDoneMoving()
     {
@@ -276,33 +286,25 @@ public class CombatManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         m_TurnSwitchText.gameObject.SetActive(false);
-
-        foreach (Creatures creature in CurrentTurnOrderSide)
-        {
-
-            EnemyAiController EnemyTemp = creature.m_CreatureAi as EnemyAiController;
-
-            EnemyTemp.EnemyMovement();
-
-            
-        }
-
-       m_EnemyAiCurrentlyInList = 0;
-       EnemyMovement();
+        
+        m_EnemyAiCurrentlyInList = 0;
+        EnemyMovement();
 
     }
 
     public void EnemyMovement()
     {
 
-        if (m_EnemyAiCurrentlyInList == TurnOrderEnemy.Count )
+        if (m_EnemyAiCurrentlyInList >= TurnOrderEnemy.Count - 1)
         {
             StartCoroutine(AllyTurn());
             return ;
         }
-
-        EnemyAiController EnemyTemp = TurnOrderEnemy[m_EnemyAiCurrentlyInList].m_CreatureAi as EnemyAiController;
-       // EnemyTemp.EnemyWalkToTarget();
+        else
+        {
+            EnemyAiController EnemyTemp = TurnOrderEnemy[m_EnemyAiCurrentlyInList].m_CreatureAi as EnemyAiController;
+            EnemyTemp.EnemyMovement();
+        }
 
         m_EnemyAiCurrentlyInList++;
         

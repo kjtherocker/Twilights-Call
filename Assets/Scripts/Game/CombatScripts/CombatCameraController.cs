@@ -69,6 +69,7 @@ public class CombatCameraController : MonoBehaviour
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
         GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => AttackingIndividual();
         GameManager.Instance.m_InputManager.m_MovementControls.Player.SquareButton.performed += SquareButton => ReturnToCommandboard();
+        GameManager.Instance.m_InputManager.m_MovementControls.Player.TriangleButton.performed += TriangleButton => EndTurn();
 
         m_CameraPositionInGrid = new Vector2Int(5, 5);
         GameManager.Instance.m_BattleCamera = this;
@@ -111,11 +112,21 @@ public class CombatCameraController : MonoBehaviour
         {
             return;
         }
-        
+
         GameManager.Instance.m_UiManager.ReturnToLastScreen();
-        
+    }
+
+    public void EndTurn()
+    {
+        if (m_cameraState != CameraState.Normal)
+        {
+            return;
+        }
+
+        StartCoroutine(GameManager.Instance.m_CombatManager.EnemyTurn());
 
     }
+
 
     public void CameraMovement()
     {

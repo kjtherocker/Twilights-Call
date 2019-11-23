@@ -129,6 +129,11 @@ public class CombatNode : Cell
             m_Cube.gameObject.SetActive(false);
         }
 
+        if (m_CombatsNodeType != CombatNodeTypes.Empty)
+        {
+            m_Cube.gameObject.SetActive(true);
+        }
+
         if (m_CreatureOnGridPoint == null || m_Prop == null)
         {
             //SpawnProp();

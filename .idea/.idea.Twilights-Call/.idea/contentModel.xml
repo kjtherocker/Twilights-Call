@@ -103,6 +103,7 @@
             <e p="DialogueManager.cs" t="Include" />
             <e p="DialogueTrigger.cs" t="Include" />
           </e>
+          <e p="EditorTest.cs" t="Include" />
           <e p="FPSDisplay.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="CombatScripts" t="Include">
@@ -194,9 +195,9 @@
             <e p="JsonHelper.cs" t="Include" />
             <e p="MapEditor" t="Include">
               <e p="CameraEditor.cs" t="Include" />
-              <e p="EditorCamera.cs" t="Include" />
               <e p="GridEditor.cs" t="Include" />
               <e p="GridFormations.cs" t="Include" />
+              <e p="MapEditor.cs" t="Include" />
               <e p="PropList.cs" t="Include" />
             </e>
             <e p="OverworldScripts" t="Include">
