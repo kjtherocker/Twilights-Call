@@ -133,6 +133,7 @@
               </e>
               <e p="Enemys" t="Include">
                 <e p="EncounterManager.cs" t="Include" />
+                <e p="EnemyList.cs" t="Include" />
                 <e p="Forest Enemys" t="Include">
                   <e p="RedEyes.cs" t="Include" />
                   <e p="RedKnight" t="Include">
@@ -142,6 +143,7 @@
                     <e p="RedKnightPhase4.cs" t="Include" />
                   </e>
                 </e>
+                <e p="NameGenerator.cs" t="Include" />
               </e>
               <e p="HealthBar.cs" t="Include" />
               <e p="Party Classes" t="Include">

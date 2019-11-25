@@ -16,7 +16,10 @@ public class RedKnightPhase3 : Creatures
         Magic = 350;
         Dexterity = 10;
         Speed = 10;
-        Name = "R3";
+        if (Name == "No Name")
+        {
+            Name = NameGenerator.Instance.GetName();
+        }
 
 
         SetCreature();

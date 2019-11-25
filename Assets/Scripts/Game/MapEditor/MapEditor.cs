@@ -27,29 +27,50 @@ public class MapEditor : Editor
         //Debug.Log("GUI is being hit");
         int controlID = GUIUtility.GetControlID(FocusType.Passive);
 
-        Ray worldRay1 = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-        RaycastHit hitInfo1;
-        if (Physics.Raycast(worldRay1, out hitInfo1, 10000))
-        {
-          //  (hitInfo1.transform.gameObject.GetComponent<CombatNode>());
-        }
-        
+      // Ray worldRay1 = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+      // RaycastHit hitInfo1;
+      // 
+      // if (Physics.Raycast(worldRay1, out hitInfo1, 10000))
+      // {
+      //     Debug.DrawRay(worldRay1.origin,hitInfo1.point);
+      //   //  (hitInfo1.transform.gameObject.GetComponent<CombatNode>());
+      // }
+        var e = Event.current;
         switch (Event.current.GetTypeForControl(controlID))
         {
 
             case EventType.MouseDown:
-                GUIUtility.hotControl = controlID;
-                Debug.Log("MouseDown");
-                Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-                RaycastHit hitInfo;
-                if (Physics.Raycast(worldRay, out hitInfo, 10000))
+                if (e.type == EventType.MouseDown && e.button == 0)
                 {
                     
-                    SwitchNodeReplacement(hitInfo.transform.gameObject.GetComponent<CombatNode>());
-                }
+                    Debug.Log("MouseDown");
+                    Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+                    RaycastHit hitInfo;
+                    
+                    if (Physics.Raycast(worldRay, out hitInfo, 10000))
+                    {
 
+                        SwitchNodeReplacement(hitInfo.transform.gameObject.GetComponent<CombatNode>());
+                    }
+                }
+                if (e.type == EventType.MouseDown && e.button == 1)
+                {
+                    
+                    Debug.Log("MouseDown");
+                    Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+                    RaycastHit hitInfo;
+                    if (Physics.Raycast(worldRay, out hitInfo, 10000))
+                    {
+
+                        SwitchNodeType(hitInfo.transform.gameObject.GetComponent<CombatNode>());
+                    }
+                }
+                GUIUtility.hotControl = controlID;
                 Event.current.Use();
                 break;
+                
+
+                
 
             case EventType.MouseUp:
                 GUIUtility.hotControl = 0;
