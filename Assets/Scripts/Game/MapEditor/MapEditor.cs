@@ -14,27 +14,35 @@ public class MapEditor : Editor
     private SerializedProperty m_NodeType;
     SerializedProperty m_NodeReplacements;
     SerializedProperty m_Prop;
-
+    private CombatNode m_CurrentNode;
+    private int layerMask;
     void OnEnable()
     {
-        // Setup the SerializedProperties.
-        m_NodeType = serializedObject.FindProperty("m_NodeType");
-        
+
+  
     }
     // Update is called once per frame
     void OnSceneGUI()
     {
-        //Debug.Log("GUI is being hit");
         int controlID = GUIUtility.GetControlID(FocusType.Passive);
 
-      // Ray worldRay1 = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-      // RaycastHit hitInfo1;
-      // 
-      // if (Physics.Raycast(worldRay1, out hitInfo1, 10000))
-      // {
-      //     Debug.DrawRay(worldRay1.origin,hitInfo1.point);
-      //   //  (hitInfo1.transform.gameObject.GetComponent<CombatNode>());
-      // }
+        Ray SelectorRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+        RaycastHit RayHitinfo;
+                    
+        layerMask = 1 << 12;
+        layerMask = ~layerMask;
+        if (Physics.Raycast(SelectorRay, out RayHitinfo, 100000,layerMask))
+        {
+            
+            if ( RayHitinfo.transform.gameObject.GetComponent<CombatNode>() != null)
+            {
+                if (m_CurrentNode != RayHitinfo.transform.gameObject.GetComponent<CombatNode>())
+                {
+                    SelectorPosition(RayHitinfo.transform.gameObject.GetComponent<CombatNode>());
+                }
+            }
+        }
+
         var e = Event.current;
         switch (Event.current.GetTypeForControl(controlID))
         {
@@ -42,28 +50,12 @@ public class MapEditor : Editor
             case EventType.MouseDown:
                 if (e.type == EventType.MouseDown && e.button == 0)
                 {
-                    
-                    Debug.Log("MouseDown");
-                    Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-                    RaycastHit hitInfo;
-                    
-                    if (Physics.Raycast(worldRay, out hitInfo, 10000))
-                    {
+                    PlaceEnemy(m_CurrentNode);
 
-                        SwitchNodeReplacement(hitInfo.transform.gameObject.GetComponent<CombatNode>());
-                    }
                 }
                 if (e.type == EventType.MouseDown && e.button == 1)
                 {
-                    
-                    Debug.Log("MouseDown");
-                    Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-                    RaycastHit hitInfo;
-                    if (Physics.Raycast(worldRay, out hitInfo, 10000))
-                    {
-
-                        SwitchNodeType(hitInfo.transform.gameObject.GetComponent<CombatNode>());
-                    }
+                    SwitchNodeType(m_CurrentNode);
                 }
                 GUIUtility.hotControl = controlID;
                 Event.current.Use();
@@ -82,6 +74,11 @@ public class MapEditor : Editor
 
         void SwitchNodeType(CombatNode aCombatnode)
         {
+            if (aCombatnode == null)
+            {
+                return;
+            }
+
             serializedObject.Update();
             m_NodeType = serializedObject.FindProperty("m_NodeType");
             
@@ -90,23 +87,47 @@ public class MapEditor : Editor
             aCombatnode.m_CombatsNodeType = (CombatNode.CombatNodeTypes)m_NodeType.enumValueIndex;
             aCombatnode.SetPropState();
             Debug.Log(aCombatnode.m_CombatsNodeType);
+            serializedObject.Update();
+            serializedObject.ApplyModifiedProperties();
         }
 
         void SelectorPosition(CombatNode aCombatnode)
         {
+            if (aCombatnode == null)
+            {
+                return;
+            }
             serializedObject.Update();
-          // m_Selector = serializedObject.FindProperty("m_Selector");
-          // m_Selector..gameObject.transform.position =
-          //     new Vector3(aCombatnode.transform.position.x, aCombatnode.transform.position.y + Constants.Constants.m_HeightOffTheGrid + 0.8f, aCombatnode.transform.position.z);
+            aCombatnode.EditorSelector();
+
+            m_CurrentNode = aCombatnode;
         }
 
 
-        void SwitchNodeReplacement(CombatNode aCombatnode)
+        void SwitchProp(CombatNode aCombatnode)
         {
+            if (aCombatnode == null)
+            {
+                return;
+            }
             serializedObject.Update();
             m_Prop = serializedObject.FindProperty("m_Props");
             aCombatnode.m_PropOnNode = (PropList.Props)m_Prop.enumValueIndex;;
             aCombatnode.SetPropState();
+            serializedObject.Update();
+            serializedObject.ApplyModifiedProperties();
+        }
+        
+        void PlaceEnemy(CombatNode aCombatnode)
+        {
+            if (aCombatnode == null)
+            {
+                return;
+            }
+           serializedObject.Update();
+           aCombatnode.SpawnEnemy();
+            serializedObject.Update();
+            serializedObject.ApplyModifiedProperties();
         }
 
 }

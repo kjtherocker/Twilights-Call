@@ -247,7 +247,7 @@ public class Creatures : MonoBehaviour
                     .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
             }
 
-            Destroy(ModelInGame.gameObject);
+            Destroy(gameObject);
         }
         if (charactertype == Charactertype.Ally)
         {

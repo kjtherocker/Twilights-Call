@@ -56,7 +56,7 @@ public class CombatNode : Cell
     public GameObject m_CurrentWalkablePlaneBeingUsed;
     public GameObject m_AttackingPlane;
     public GameObject m_Cube;
-
+    public GameObject m_SelectorEditor;
     public GameObject m_Prop;
 
     public PropList m_PropList;
@@ -343,14 +343,28 @@ public class CombatNode : Cell
         return neighbours;
     }
 
-    //
-    // public bool Equals(CombatNode other)
-    // {
-    //     return (m_PositionInGrid.x == other.m_PositionInGrid.x && m_PositionInGrid.y == other.m_PositionInGrid.y);
-    // }
+    public void SpawnEnemy()
+    {
+        Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        GameObject Enemy =  Instantiate(EnemyList.Instance.ReturnEnemyData(EnemyList.EnemyEnum.RedKnight1),transform.parent);
 
+        Enemy.transform.position = gameObject.transform.position + CreatureOffset;
+        Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
+        EnemyAiController m_CreatureAi = Enemy.GetComponent<EnemyAiController>();
+        m_CreatureAi.m_Position = m_PositionInGrid;
 
+        m_CreatureAi.m_Grid = m_Grid;
+        
+       m_CreatureOnGridPoint = Enemy.GetComponent<Creatures>();
+       m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+    }
 
+    public void EditorSelector()
+    {
+        Vector3 NodeTransform = gameObject.transform.position;
+        EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+       // m_SelectorEditor.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+    }
 }
 
 

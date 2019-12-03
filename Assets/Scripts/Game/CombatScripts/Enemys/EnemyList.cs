@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyList : MonoBehaviour
+public class EnemyList : Singleton<EnemyList>
 {
     public enum EnemyEnum
     {
+        None,
         RedKnight1,
         RedKnight2,
         RedKnight3,
@@ -15,11 +16,11 @@ public class EnemyList : MonoBehaviour
 
     //public List<Skills> m_SkillTypes;
 
-    public Dictionary<int, EnemyEnum> m_Enemys = new Dictionary<int, EnemyEnum>();
-    // Use this for initialization
-    void Start ()
+    public List<GameObject> m_Enemys;
+    
+    public GameObject ReturnEnemyData(EnemyEnum aEnemy, string sourceName = "Global")
     {
-
+        return m_Enemys[(int)aEnemy];
     }
 
 }
