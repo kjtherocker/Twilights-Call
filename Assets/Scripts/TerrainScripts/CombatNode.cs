@@ -252,7 +252,7 @@ public class CombatNode : Cell
     public void SpawnProp()
     {
         m_PropOnNodeTemp = m_PropOnNode;
-        m_Prop = Instantiate(m_PropList.ReturnPropData(m_PropOnNode), this.gameObject.transform);
+        m_Prop = Instantiate(PropList.Instance.ReturnPropData(m_PropOnNode), this.gameObject.transform);
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
 
@@ -271,7 +271,7 @@ public class CombatNode : Cell
         if (m_NodeReplacementOnNode != PropList.NodeReplacements.None)
         {
             m_NodeReplacementTemp = m_NodeReplacementOnNode;
-            m_NodeReplacement = Instantiate(m_PropList.NodeReplacementData(m_NodeReplacementOnNode), this.gameObject.transform);
+            m_NodeReplacement = Instantiate(PropList.Instance.NodeReplacementData(m_NodeReplacementOnNode), this.gameObject.transform);
             Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
             m_NodeReplacement.gameObject.transform.position =  gameObject.transform.position + m_NodeReplacement.m_NodeSpawnOffSet + CreatureOffset;
             m_NodeHeightOffset = m_NodeReplacement.m_NodeHeightOffset;
@@ -361,9 +361,9 @@ public class CombatNode : Cell
 
     public void EditorSelector()
     {
+        
         Vector3 NodeTransform = gameObject.transform.position;
         EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
-       // m_SelectorEditor.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
     }
 }
 

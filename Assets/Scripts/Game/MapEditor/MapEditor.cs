@@ -7,15 +7,22 @@ using UnityEngine;
 [CustomEditor( typeof( EditorTest ) )]
 public class MapEditor : Editor
 {
+
+
+
     SerializedProperty m_Selector;
 
     SerializedProperty m_EditorProp;
     SerializedProperty m_EditorNode;
+    SerializedProperty m_LeftClickState;
+    SerializedProperty m_RightClickState;
     private SerializedProperty m_NodeType;
     SerializedProperty m_NodeReplacements;
     SerializedProperty m_Prop;
     private CombatNode m_CurrentNode;
     private int layerMask;
+    
+    
     void OnEnable()
     {
 
@@ -50,12 +57,18 @@ public class MapEditor : Editor
             case EventType.MouseDown:
                 if (e.type == EventType.MouseDown && e.button == 0)
                 {
-                    PlaceEnemy(m_CurrentNode);
+                    serializedObject.Update();
+                    m_LeftClickState = serializedObject.FindProperty("m_LeftClick");
+                    
+                    NodeEditor(m_CurrentNode,(EditorTest.MapEditorMode)m_LeftClickState.enumValueIndex);
 
                 }
                 if (e.type == EventType.MouseDown && e.button == 1)
                 {
-                    SwitchNodeType(m_CurrentNode);
+                    serializedObject.Update();
+                    m_RightClickState = serializedObject.FindProperty("m_RightClick");
+                    
+                    NodeEditor(m_CurrentNode,(EditorTest.MapEditorMode)m_RightClickState.enumValueIndex);
                 }
                 GUIUtility.hotControl = controlID;
                 Event.current.Use();
@@ -72,7 +85,28 @@ public class MapEditor : Editor
     }
 
 
-        void SwitchNodeType(CombatNode aCombatnode)
+    void NodeEditor(CombatNode aCombatnode, EditorTest.MapEditorMode aMapEditorMode)
+    {
+
+        if (aMapEditorMode == EditorTest.MapEditorMode.Enemy)
+        {
+            PlaceEnemy(aCombatnode);
+        }
+        if (aMapEditorMode == EditorTest.MapEditorMode.Node)
+        {
+            SwitchNodeType(aCombatnode);
+        }
+        if (aMapEditorMode == EditorTest.MapEditorMode.Prop)
+        {
+            SwitchProp(aCombatnode);
+        }
+        if (aMapEditorMode == EditorTest.MapEditorMode.NodeReplacement)
+        {
+            SwitchNodeType(aCombatnode);
+        }
+    }
+
+    void SwitchNodeType(CombatNode aCombatnode)
         {
             if (aCombatnode == null)
             {

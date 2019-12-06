@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
 [ExecuteInEditMode]
-public class PropList : MonoBehaviour
+public class PropList : Singleton<PropList>
 {
 
     public enum Props
