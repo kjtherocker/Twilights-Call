@@ -11,7 +11,8 @@ public class EnemyAiController : AiController
     public bool m_AiFinished;
     public bool m_EndMovement;
     public int m_EnemyRange;
-    private Dictionary<CombatNode, List<CombatNode>> cacheRangePath;
+    public Behaviour m_Behaviour;
+    public Dictionary<CombatNode, List<CombatNode>> cacheRangePath;
 
     public override void Start()
     {
@@ -38,59 +39,8 @@ public class EnemyAiController : AiController
         }
         return new HashSet<CombatNode>(cacheRangePath.Keys);
     }
-
-    public  bool CheckIfNodeIsClearForRange(CombatNode aNode)
-    {
-        // if the node is out of bounds, return -1 (an invalid tile index)
-
-        if (aNode == null)
-        {
-            Debug.Log("YOU BROKE " + aNode.m_PositionInGrid.ToString());
-        }
-
-        CombatNode nodeIndex = aNode;
-
-        // if the node is already closed, return -1 (an invalid tile index)
-        if (nodeIndex.m_HeuristicCalculated == true)
-        {
-            return false;
-        }
-        // if the node can't be walked on, return -1 (an invalid tile index)
-
-        if (nodeIndex.m_CombatsNodeType == CombatNode.CombatNodeTypes.Wall)
-        {
-            return false;
-        }
-        if (nodeIndex.m_NodeHeight > 0)
-        {
-            return false;
-        }
-        // return a valid tile index
-        return true;
-    }
-
-    protected virtual Dictionary<CombatNode, Dictionary<CombatNode, int>> GetGraphRangeEdges(List<CombatNode> NodeList)
-    {
-        Dictionary<CombatNode, Dictionary<CombatNode, int>> ret = new Dictionary<CombatNode, Dictionary<CombatNode, int>>();
-
-        foreach (CombatNode Node in NodeList)
-        {
-            if (CheckIfNodeIsClearForRange(Node) == true || Node.Equals(Node_ObjectIsOn))
-            {
-                ret[Node] = new Dictionary<CombatNode, int>();
-                foreach (CombatNode neighbour in Node.GetNeighbours(NodeList))
-                {
-                    if (CheckIfNodeIsClearForRange(neighbour) == true)
-                    {
-                        ret[Node][neighbour] = neighbour.m_MovementCost;
-                    }
-                }
-            }
-        }
-        return ret;
-    }
-
-        public override IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
+    
+    public override IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
         m_Grid.RemoveWalkableArea();
@@ -163,7 +113,7 @@ public class EnemyAiController : AiController
     
     public Dictionary<CombatNode, List<CombatNode>> cacheRangePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn)
     {
-        var edges = GetGraphRangeEdges(cells);
+        var edges = m_Behaviour.GetGraphRangeEdges(cells,Node_ObjectIsOn);
         var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn);
         return paths;
     }
@@ -188,7 +138,7 @@ public class EnemyAiController : AiController
         if (m_AllysInRange.Count > 0)
         {
 
-            Creatures CharacterInRange = CharacterToFollowAndAttack(m_AllysInRange);
+            Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
 
             CombatNode NodeNeightboringAlly = 
                 GameManager.Instance.m_Grid.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
@@ -198,31 +148,4 @@ public class EnemyAiController : AiController
         }
 
     }
-
-    public Creatures CharacterToFollowAndAttack(List<Creatures> aCharacterList)
-    {
-
-//        for (int i = 0; i < aCharacterList.Count; i++)
-//        {
-//            for (int j = 0; j < aCharacterList.Count; j++)
-//            {
-//                if (aCharacterList[j].CurrentHealth < aCharacterList[j + 1].CurrentHealth)
-//                {
-//                    Creatures tempA = aCharacterList[j];
-//                    Creatures tempB = aCharacterList[j + 1];
-//                    swap(ref tempA, ref tempB);
-//                }
-//            }
-//        }
-
-        return aCharacterList[0];
-    }
-
-    void swap(ref Creatures xp, ref Creatures yp)
-    {
-        Creatures temp = xp;
-        xp = yp;
-        yp = temp;
-    }
-
 }

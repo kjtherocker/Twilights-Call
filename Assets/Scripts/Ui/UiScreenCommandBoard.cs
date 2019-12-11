@@ -7,7 +7,6 @@ public class UiScreenCommandBoard : UiScreen
 {
     public Animator m_CommandBoardAnimator;
     public Creatures m_CommandboardCreature;
-    public Button m_MovementButton;
     public TextMeshProUGUI m_MovementText;
     public TextMeshProUGUI m_Attack;
     public TextMeshProUGUI m_Skill;
@@ -34,7 +33,7 @@ public class UiScreenCommandBoard : UiScreen
         gameObject.SetActive(true);
         GameManager.Instance.m_InputManager.m_MovementControls.Disable();
         m_MenuControls.Enable();
-        m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
+       // m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
 
     public void TurnCommandBoardOff()
@@ -49,15 +48,6 @@ public class UiScreenCommandBoard : UiScreen
     public void SetCreatureReference(Creatures aCreature)
     {
         m_CommandboardCreature = aCreature;
-
-        if (m_CommandboardCreature.m_CreatureAi.m_HasMovedForThisTurn == true)
-        {
-            m_MovementButton.interactable = false;
-        }
-        else
-        {
-            m_MovementButton.interactable = true;
-        }
 
     }
 

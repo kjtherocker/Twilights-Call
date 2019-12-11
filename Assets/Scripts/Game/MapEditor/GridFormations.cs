@@ -21,16 +21,16 @@ public class GridFormations : MonoBehaviour
     public int PlayerX;
     public int PlayerY;
 
-    public int m_Movement;
-
     public bool m_GotPathNodes;
 
+    public GameObject Node;
+    public GameObject Enemy;
+    
+    public List<Creatures> m_EnemysInGrid;
 
-
-
-    void Start()
+    public void Start()
     {
-        m_Grid = GameManager.Instance.m_Grid;
+        m_Grid = Grid.Instance;
         //m_EditorCamera = GameManager.Instance.m_EditorCamera;
     }
     
@@ -43,11 +43,19 @@ public class GridFormations : MonoBehaviour
         {
             for (int y = 0; y < grid.y; y++)
             { 
+                
+                
+                GameObject tempCombatnode = PrefabUtility.InstantiatePrefab(m_PrefabNode) as GameObject;
 
-                m_GridPathArray[x, y] = Instantiate<CombatNode>(m_PrefabNode.GetComponent<CombatNode>(), transform);
+                tempCombatnode.gameObject.transform.parent = Node.transform;
+                
+                m_GridPathArray[x, y] = tempCombatnode.GetComponent<CombatNode>();
 
+                m_GridPathArray[x, y].gameObject.name  = x + " " + y;
+                
                 m_ListToConvert.Add(m_GridPathArray[x, y]);
-
+              //  m_ListToConvert[m_ListToConvert.Count - 1].m_PositionInList = m_ListToConvert.Count - 1;
+                m_GridPathArray[x, y].NodesGridFormation = this;
 
                 m_GridPathArray[x, y].transform.position = new Vector3(2 * x, 0.5f, 2 * y);
 
@@ -58,7 +66,31 @@ public class GridFormations : MonoBehaviour
                 m_GridPathArray[x, y].m_Grid = m_Grid;
             }
         }
-        m_Movement = 1;
+    }
+
+    public void RespawnCube(Vector2Int Postion, int aPositionInList)
+    {
+        GameObject tempCombatnode = PrefabUtility.InstantiatePrefab(m_PrefabNode) as GameObject;
+
+        tempCombatnode.gameObject.transform.parent = Node.transform;
+        tempCombatnode.GetComponent<CombatNode>().SetCombatNode(m_ListToConvert[aPositionInList]);
+        PrefabUtility.UnpackPrefabInstance(m_ListToConvert[aPositionInList].gameObject,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
+        DestroyImmediate(m_ListToConvert[aPositionInList].gameObject);
+        
+        m_ListToConvert[aPositionInList] = tempCombatnode.GetComponent<CombatNode>();
+
+        m_ListToConvert[aPositionInList].gameObject.name  = Postion.x + " " + Postion.y;
+                
+        m_ListToConvert[aPositionInList] = tempCombatnode.GetComponent<CombatNode>();
+        m_ListToConvert[aPositionInList].NodesGridFormation = this;
+
+        m_ListToConvert[aPositionInList].transform.position = new Vector3(2 * Postion.x, 0.5f, 2 * Postion.y);
+
+
+
+        m_ListToConvert[aPositionInList].m_PositionInGrid = new Vector2Int(Postion.x, Postion.y);
+
+        m_ListToConvert[aPositionInList].m_Grid = m_Grid;
     }
 
     public void DeleteGrid()

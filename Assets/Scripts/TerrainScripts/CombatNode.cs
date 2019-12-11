@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -83,7 +84,7 @@ public class CombatNode : Cell
     public PropList.NodeReplacements m_NodeReplacementOnNode;
     PropList.NodeReplacements m_NodeReplacementTemp;
 
-
+    public GridFormations NodesGridFormation;
 
 
 
@@ -241,18 +242,33 @@ public class CombatNode : Cell
        // m_CurrentWalkablePlaneBeingUsed = m_WalkablePlane;
     }
 
+    public void SetCombatNode(CombatNode aCombatnode)
+    {
+        m_CombatsNodeType = aCombatnode.m_CombatsNodeType;
+   
+        m_PropOnNode = aCombatnode.m_PropOnNode;
+        m_PropOnNodeTemp = m_PropOnNode;
+   
+        m_NodeReplacementOnNode = aCombatnode.m_NodeReplacementOnNode;
+        m_NodeReplacementTemp = m_NodeReplacementOnNode;
+        SetPropState();
+    }
+
     public void DestroyProp()
     {
 
         DestroyImmediate(m_Prop);
         m_CombatsNodeType = CombatNodeTypes.Normal;
-        
+
+      //  GridFormations.RespawnCube(m_PositionInGrid);
+
     }
 
     public void SpawnProp()
     {
         m_PropOnNodeTemp = m_PropOnNode;
-        m_Prop = Instantiate(PropList.Instance.ReturnPropData(m_PropOnNode), this.gameObject.transform);
+        m_Prop = PrefabUtility.InstantiatePrefab(PropList.Instance.ReturnPropData(m_PropOnNode)) as GameObject;
+        m_Prop.transform.parent = transform;
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
 
@@ -346,8 +362,16 @@ public class CombatNode : Cell
     public void SpawnEnemy()
     {
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
-        GameObject Enemy =  Instantiate(EnemyList.Instance.ReturnEnemyData(EnemyList.EnemyEnum.RedKnight1),transform.parent);
+        
 
+        GameObject Enemy = PrefabUtility.
+            InstantiatePrefab(EnemyList.Instance.ReturnEnemyData(EnemyList.EnemyEnum.RedKnight1)) as GameObject;
+
+
+        NodesGridFormation.m_EnemysInGrid.Add(Enemy.GetComponent<Creatures>());
+
+
+        Enemy.transform.parent = NodesGridFormation.Enemy.transform;
         Enemy.transform.position = gameObject.transform.position + CreatureOffset;
         Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
         EnemyAiController m_CreatureAi = Enemy.GetComponent<EnemyAiController>();

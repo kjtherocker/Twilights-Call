@@ -20,15 +20,11 @@ public class GameManager : Singleton<GameManager>
 
     public InputManager m_InputManager;
     public InputManager InputManager { get { return m_InputManager; } }
-
-    public PropList m_PropList;
-    public PropList PropList { get{ return m_PropList; } }
+    
 
     public Grid m_Grid;
     public Grid Grid { get { return m_Grid; } }
 
-    public SkillList m_SkillList;
-    public SkillList SkillList { get { return m_SkillList; } set {  m_SkillList = value; } }
 
     public NodeFormations m_NodeFormation;
     public NodeFormations NodeFormation { get { return m_NodeFormation; } }
@@ -56,7 +52,7 @@ public class GameManager : Singleton<GameManager>
         m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         m_EncounterManager = GameObject.Find("EncounterManager").GetComponent<EncounterManager>();
         m_NodeFormation = GameObject.Find("NodeFormations").GetComponent<NodeFormations>();
-        //m_BattleCamera = GameObject.Find("BattleCamera").GetComponent<CombatCameraController>();
+
         Physics.autoSimulation = false;
 
     }

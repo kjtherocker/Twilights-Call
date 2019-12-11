@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillList : MonoBehaviour
+public class SkillList : Singleton<SkillList>
 {
     public enum SkillEnum
     {
@@ -29,8 +29,7 @@ public class SkillList : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        GameManager.Instance.SkillList = this;
-        
+
         //AlimentEffects
         m_SkillTypes.Add((int)SkillEnum.Poison, new Poison());
         m_SkillTypes.Add((int)SkillEnum.Rage, new Rage());

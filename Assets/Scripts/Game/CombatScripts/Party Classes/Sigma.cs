@@ -27,17 +27,16 @@ public class Sigma : Creatures {
 
         m_CreatureMovement = 8;
 		
-        m_Attack = GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
         m_Domain = new Domain_PatchWorkChimera();
         m_Domain.Start();
         m_Domain.DomainUser = name;
-        Debug.Log(m_Domain.DomainName);
-        
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.icerain));
+
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma", typeof(GameObject));
         

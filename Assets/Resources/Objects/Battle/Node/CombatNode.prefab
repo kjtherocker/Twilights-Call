@@ -84,6 +84,7 @@ MonoBehaviour:
   m_CurrentWalkablePlaneBeingUsed: {fileID: 1409765530857748}
   m_AttackingPlane: {fileID: 1935922309869406}
   m_Cube: {fileID: 7932855674681131460}
+  m_SelectorEditor: {fileID: 0}
   m_Prop: {fileID: 0}
   m_PropList: {fileID: 0}
   m_Renderer: {fileID: 0}

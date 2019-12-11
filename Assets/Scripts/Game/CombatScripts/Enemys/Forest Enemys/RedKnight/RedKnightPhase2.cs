@@ -24,9 +24,9 @@ public class RedKnightPhase2 : Creatures
 
         SetCreature();
 
-        m_Attack = GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack));
 
 
         AmountOfTurns = 1;

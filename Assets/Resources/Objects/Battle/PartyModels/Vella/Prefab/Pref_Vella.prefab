@@ -2200,8 +2200,9 @@ GameObject:
   - component: {fileID: 7190474766702005341}
   - component: {fileID: 955802665050857767}
   - component: {fileID: 1238689416773485209}
+  - component: {fileID: 8774891668497652824}
   m_Layer: 10
-  m_Name: Vella
+  m_Name: Pref_Vella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2258,6 +2259,7 @@ MonoBehaviour:
   m_Goal: {x: 0, y: 0}
   m_Position: {x: 0, y: 0}
   m_InitalPosition: {x: 0, y: 0}
+  m_Domainstate: 0
   Node_MovingTo: {fileID: 0}
   Node_ObjectIsOn: {fileID: 0}
   m_CreaturesAnimator: {fileID: 955802665050857767}
@@ -2268,6 +2270,19 @@ MonoBehaviour:
   m_MovementHasStarted: 0
   m_HasAttackedForThisTurn: 0
   m_HasMovedForThisTurn: 0
+  m_MovementType: {fileID: 0}
+--- !u!114 &8774891668497652824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166249693009952334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8d3e4f7bdbbc8429d1adde870c5355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6261674050188721749
 GameObject:
   m_ObjectHideFlags: 0

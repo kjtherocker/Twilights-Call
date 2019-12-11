@@ -1124,9 +1124,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2588297683867452931}
   - component: {fileID: 5575870605962931065}
-  - component: {fileID: 3786887465571432200}
+  - component: {fileID: 3978366383880971931}
+  - component: {fileID: 8802486822201222740}
   m_Layer: 10
-  m_Name: Cavia
+  m_Name: Pref_Cavia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1180,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3786887465571432200
+--- !u!114 &3978366383880971931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1188,7 +1189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562787413421732880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b0311c35eaf934cbb40adace71c236, type: 3}
+  m_Script: {fileID: 11500000, guid: 6391309bf43a0a046b785cb1c60b7143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Grid: {fileID: 0}
@@ -1196,6 +1197,7 @@ MonoBehaviour:
   m_Goal: {x: 0, y: 0}
   m_Position: {x: 0, y: 0}
   m_InitalPosition: {x: 0, y: 0}
+  m_Domainstate: 0
   Node_MovingTo: {fileID: 0}
   Node_ObjectIsOn: {fileID: 0}
   m_CreaturesAnimator: {fileID: 0}
@@ -1206,6 +1208,19 @@ MonoBehaviour:
   m_MovementHasStarted: 0
   m_HasAttackedForThisTurn: 0
   m_HasMovedForThisTurn: 0
+  m_MovementType: {fileID: 0}
+--- !u!114 &8802486822201222740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562787413421732880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fbf9f0426cb034fa1845814ed425c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1569012805041221442
 GameObject:
   m_ObjectHideFlags: 0

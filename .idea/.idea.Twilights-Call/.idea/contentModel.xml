@@ -110,12 +110,21 @@
               <e p="Ai" t="Include">
                 <e p="AiController.cs" t="Include" />
                 <e p="AiFlying.cs" t="Include" />
+                <e p="Behaviours" t="Include">
+                  <e p="Behaviour.cs" t="Include" />
+                  <e p="Behaviour_WalkClose.cs" t="Include" />
+                </e>
                 <e p="Core" t="Include">
                   <e p="GraphNode.cs" t="Include" />
                   <e p="Pathfinder.cs" t="Include" />
                 </e>
                 <e p="EnemyAi" t="Include">
                   <e p="EnemyAiController.cs" t="Include" />
+                </e>
+                <e p="MovementTypes" t="Include">
+                  <e p="Movement_Flying.cs" t="Include" />
+                  <e p="Movement_Normal.cs" t="Include" />
+                  <e p="MovementType.cs" t="Include" />
                 </e>
               </e>
               <e p="Chant" t="Include">

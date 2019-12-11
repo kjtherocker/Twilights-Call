@@ -2658,8 +2658,9 @@ GameObject:
   - component: {fileID: 6658357125100122201}
   - component: {fileID: 3669658844266241315}
   - component: {fileID: 433753663001583835}
+  - component: {fileID: 4819545651574862204}
   m_Layer: 10
-  m_Name: Fide
+  m_Name: Pref_Fide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2716,6 +2717,7 @@ MonoBehaviour:
   m_Goal: {x: 0, y: 0}
   m_Position: {x: 0, y: 0}
   m_InitalPosition: {x: 0, y: 0}
+  m_Domainstate: 0
   Node_MovingTo: {fileID: 0}
   Node_ObjectIsOn: {fileID: 0}
   m_CreaturesAnimator: {fileID: 3669658844266241315}
@@ -2726,6 +2728,19 @@ MonoBehaviour:
   m_MovementHasStarted: 0
   m_HasAttackedForThisTurn: 0
   m_HasMovedForThisTurn: 0
+  m_MovementType: {fileID: 0}
+--- !u!114 &4819545651574862204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655104929393951306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8d3e4f7bdbbc8429d1adde870c5355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7736323129331048543
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class Grid : Singleton<Grid>
 {
 
     public Vector2Int m_GridDimensions;

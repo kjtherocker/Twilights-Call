@@ -28,7 +28,7 @@ public class CombatManager : MonoBehaviour
 
     public CombatCameraController m_BattleCamera;
 
-    public GridFormations m_GridFormation;
+    public GameObject m_GridFormation;
 
     public Vector3 CreatureOffset;
 
@@ -83,48 +83,27 @@ public class CombatManager : MonoBehaviour
 
             m_Gridformation = Instantiate<GameObject>(m_GridFormation.gameObject);
 
+            GridFormations tempGridFormations = m_Gridformation.GetComponentInChildren<GridFormations>();
+            m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
 
-            m_Grid.Convert1DArrayto2D(m_Gridformation.GetComponent<GridFormations>().m_ListToConvert,
-                m_Gridformation.GetComponent<GridFormations>().m_GridDimensions);
+            TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
             
-
             AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
           
-           //AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
-           //
-           //AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-           //                                                                     
-           //AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
-
-
-            //Setting up the Enemy
-           //AddCreatureToCombat(EncounterManager.EnemySlot1, new Vector2Int(1, 8), TurnOrderEnemy);
-           //
-           //AddCreatureToCombat(EncounterManager.EnemySlot2, new Vector2Int(5, 6), TurnOrderEnemy);
+            AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
+           
+            AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
+                                                                                
+            AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
             
-           // AddCreatureToCombat(EncounterManager.EnemySlot3, new Vector2Int(3, 1), TurnOrderEnemy);
-           // 
-           // AddCreatureToCombat(EncounterManager.EnemySlot4, new Vector2Int(3, 10), TurnOrderEnemy);
-
-
-
-    
+            
             CombatHasStarted = true;
 
 
-            //AmountofTurns = TurnOrderAlly.Count;
-            //for (int i = 0; i < AmountofTurns; i++)
-            //{
-            //    m_TurnIdenticator.Add(Instantiate<TurnIndicatorWrapper>(m_ImageReference));
-            //    m_TurnIdenticator[i].gameObject.transform.localPosition = new Vector3( -365 + i * 10, 100, 0);
-            //    m_TurnIdenticator[i].gameObject.transform.SetParent(Canvas_TurnMenu.transform, false);
-            //}
             
             m_BattleStates = BattleStates.AllyTurn;
 
             CurrentTurnOrderSide = TurnOrderAlly;
-            //Canvas_CommandBoard.SetActive(false);
-            //Canvas_CombatEndMenu.Reset();
             WhichSidesTurnIsIt = false;
 
 
@@ -186,21 +165,13 @@ public class CombatManager : MonoBehaviour
                break;
 
            case BattleStates.AllyTurn:
-                //isPlayersDoneMoving();
-                if (Input.GetButtonDown("Ps4_Triangle") )
-                {
-                    StartCoroutine(EnemyTurn());
-                }
+
 
 
                 break;
 
             case BattleStates.EnemyTurn:
 
-                if (Input.GetButtonDown("Ps4_Triangle") )
-                {
-                    StartCoroutine(AllyTurn());
-                }
 
 
                 break;

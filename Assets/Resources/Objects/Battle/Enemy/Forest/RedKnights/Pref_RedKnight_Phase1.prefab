@@ -3708,6 +3708,8 @@ GameObject:
   - component: {fileID: 4629026899129034581}
   - component: {fileID: 255800829375401648}
   - component: {fileID: 8365971822420411922}
+  - component: {fileID: 5408825145091500960}
+  - component: {fileID: 6367532170309081701}
   m_Layer: 0
   m_Name: Pref_RedKnight_Phase1
   m_TagString: Untagged
@@ -3748,7 +3750,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8818508457928764161}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c8dc5f51497e40d43a1b0eebdb53aad7, type: 3}
+  m_Avatar: {fileID: 9000000, guid: e95a38c1b6607ad4a9c99ca63930bcf6, type: 3}
   m_Controller: {fileID: 9100000, guid: e37b0affc3a40bb4e897802c63825d2d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -3786,10 +3788,12 @@ MonoBehaviour:
   m_MovementHasStarted: 0
   m_HasAttackedForThisTurn: 0
   m_HasMovedForThisTurn: 0
+  m_MovementType: {fileID: 5408825145091500960}
   m_Target: {fileID: 0}
   m_AiFinished: 0
   m_EndMovement: 0
   m_EnemyRange: 0
+  m_Behaviour: {fileID: 6367532170309081701}
 --- !u!114 &8365971822420411922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,6 +3851,30 @@ MonoBehaviour:
     DomainDescription: 
     m_CostToUse: 0
   ObjectToRotateAround: {fileID: 0}
+--- !u!114 &5408825145091500960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8818508457928764161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8d3e4f7bdbbc8429d1adde870c5355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6367532170309081701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8818508457928764161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d48890e601f1ef4d864d82c035b695a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8953641257668522498
 GameObject:
   m_ObjectHideFlags: 0

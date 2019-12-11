@@ -27,7 +27,7 @@ public class AiController : MonoBehaviour
     public Animator m_CreaturesAnimator;
     public Creatures m_Creature;
 
-    public Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
+    private Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
 
     protected HashSet<CombatNode> _pathsInRange;
 
@@ -40,7 +40,9 @@ public class AiController : MonoBehaviour
     public bool m_HasAttackedForThisTurn;
     public bool m_HasMovedForThisTurn;
 
-    public delegate bool DelegateReturnNodeIndex(CombatNode node);
+    public delegate bool DelegateReturnNodeIndex(CombatNode node, Vector2Int Postion);
+
+    public MovementType m_MovementType;
     // Use this for initialization
     public virtual void Start ()
     {
@@ -59,6 +61,11 @@ public class AiController : MonoBehaviour
         if (m_CreaturesAnimator == null)
         {
             m_CreaturesAnimator = GetComponentInChildren<Animator>();
+        }
+
+        if (m_MovementType == null)
+        {
+            m_MovementType = GetComponent<MovementType>();
         }
 
         m_Grid = GameManager.Instance.m_Grid;
@@ -140,7 +147,7 @@ public class AiController : MonoBehaviour
     {
         cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,CheckIfNodeIsClearAndReturnNodeIndex);
+        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_MovementType.CheckIfNodeIsClearAndReturnNodeIndex);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
@@ -213,20 +220,20 @@ public class AiController : MonoBehaviour
     
     public HashSet<CombatNode> GetNodesInRange(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff, int Range)
     {
-        cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
+     //  cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckifNodeCanBeDomained);
-        foreach (var key in paths.Keys)
-        {
-            var path = paths[key];
-            
-            var pathCost = path.Sum(c => c.m_MovementCost);
-            if (pathCost <= Range)
-            {
-                cachedPaths.Add(key, path);
-            }
-        }
-        return new HashSet<CombatNode>(cachedPaths.Keys);
+     //  var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckifNodeCanBeDomained);
+     //  foreach (var key in paths.Keys)
+     //  {
+     //      var path = paths[key];
+     //      
+     //      var pathCost = path.Sum(c => c.m_MovementCost);
+     //      if (pathCost <= Range)
+     //      {
+     //          cachedPaths.Add(key, path);
+     //      }
+     //  }
+       return new HashSet<CombatNode>(cachedPaths.Keys);
     }
 
 
@@ -306,55 +313,18 @@ public class AiController : MonoBehaviour
         return paths;
     }
 
-    public virtual bool CheckIfNodeIsClearAndReturnNodeIndex(CombatNode aNode)
-    {
-        // if the node is out of bounds, return -1 (an invalid tile index)
-
-        if (aNode == null)
-        {
-            Debug.Log("YOU BROKE " + aNode.m_PositionInGrid.ToString());
-        }
-
-        CombatNode nodeIndex = aNode;
-
-        // if the node is already closed, return -1 (an invalid tile index)
-        if (nodeIndex.m_HeuristicCalculated == true)
-        {
-            return false;
-        }
-        // if the node can't be walked on, return -1 (an invalid tile index)
-        if (nodeIndex.m_CombatsNodeType != CombatNode.CombatNodeTypes.Normal)
-        {
-            return false;
-        }
-
-        if (nodeIndex.m_PositionInGrid == m_Position)
-        {
-            return false;
-        }
-
-
-        if (nodeIndex.m_NodeHeight > 0)
-        {
-            return false;
-        }
-        // return a valid tile index
-        return true;
-    }
-
-    
     protected virtual Dictionary<CombatNode, Dictionary<CombatNode, int>> GetGraphEdges(List<CombatNode> NodeList,DelegateReturnNodeIndex delegateReturnNodeIndex)
     {
         Dictionary<CombatNode, Dictionary<CombatNode, int>> ret = new Dictionary<CombatNode, Dictionary<CombatNode, int>>();
 
         foreach (CombatNode Node in NodeList)
         {
-            if (delegateReturnNodeIndex(Node) == true|| Node.Equals(Node_ObjectIsOn))
+            if (delegateReturnNodeIndex(Node,m_Position) == true|| Node.Equals(Node_ObjectIsOn))
             {
                 ret[Node] = new Dictionary<CombatNode, int>();
                 foreach (CombatNode neighbour in Node.GetNeighbours(NodeList))
                 {
-                    if (delegateReturnNodeIndex(neighbour) == true)
+                    if (delegateReturnNodeIndex(neighbour,m_Position) == true)
                     {
                         ret[Node][neighbour] = neighbour.m_MovementCost;
                     }
@@ -368,8 +338,6 @@ public class AiController : MonoBehaviour
     {
         if (m_MovementHasStarted == false)
         {
-
-
             GameManager.Instance.m_Grid.GetNode(m_Position).m_CreatureOnGridPoint = null;
             GameManager.Instance.m_Grid.GetNode(m_Position).m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
 

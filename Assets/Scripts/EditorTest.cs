@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -21,4 +23,5 @@ public class EditorTest : Singleton<EditorTest>
     public EnemyList.EnemyEnum m_Enemys;
     public MapEditorMode m_LeftClick;
     public MapEditorMode m_RightClick;
+
 }
