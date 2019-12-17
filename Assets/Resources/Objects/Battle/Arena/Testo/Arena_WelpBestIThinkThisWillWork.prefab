@@ -12856,9 +12856,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
         type: 3}
+      propertyPath: m_CombatsNodeType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
+        type: 3}
       propertyPath: NodesGridFormation
       value: 
       objectReference: {fileID: 1213514594225266495}
+    - target: {fileID: 7932855674681131460, guid: fe660e566e314254b88c9c45e5e5a342,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe660e566e314254b88c9c45e5e5a342, type: 3}
 --- !u!114 &1951906373669428701 stripped
@@ -35910,11 +35920,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NodesInitalVector3Coordinates.z
       value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
-        type: 3}
-      propertyPath: m_CombatsNodeType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
         type: 3}

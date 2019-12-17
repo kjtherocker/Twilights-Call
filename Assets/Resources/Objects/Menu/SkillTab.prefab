@@ -83,6 +83,7 @@ MonoBehaviour:
     m_CostToUse: 0
     m_Damage: 0
     m_AnimationName: 
+    m_SkillRange: 0
   m_Domain:
     m_ElementalType: 0
     DomainName: 
@@ -667,13 +668,13 @@ MonoBehaviour:
   m_margin: {x: 418.86334, y: -36.010853, z: -718.6706, w: -19.540394}
   m_textInfo:
     textComponent: {fileID: 166278079530945751}
-    characterCount: 3
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -901,7 +902,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: nepilm
+  m_text: UNREGISTERED CARD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 51b3937217abb9a4f89cdaa837978573, type: 2}
   m_sharedMaterial: {fileID: -7038196448638763172, guid: 51b3937217abb9a4f89cdaa837978573,
@@ -971,13 +972,13 @@ MonoBehaviour:
   m_margin: {x: -19.075056, y: -26.264717, z: -59.43296, w: -55.277184}
   m_textInfo:
     textComponent: {fileID: 166278079929737506}
-    characterCount: 6
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

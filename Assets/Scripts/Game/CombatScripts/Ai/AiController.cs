@@ -83,7 +83,7 @@ public class AiController : MonoBehaviour
 
         if (Node_ObjectIsOn != Node_MovingTo)
         {
-            transform.position = Vector3.MoveTowards
+             transform.position = Vector3.MoveTowards
                     (transform.position, Node_MovingTo.gameObject.transform.position + CreatureOffset,
                     8 * Time.deltaTime);
         }
@@ -155,7 +155,6 @@ public class AiController : MonoBehaviour
     public virtual void SetGoalPosition(Vector2Int m_Goal)
     {
         
-        Debug.Log(m_Goal);
         SetGoal(m_Goal);
         m_Grid.m_Movement = m_Movement;
 
@@ -231,7 +230,7 @@ public class AiController : MonoBehaviour
     public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
-        m_Grid.RemoveWalkableArea();
+      //  m_Grid.RemoveWalkableArea();
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;

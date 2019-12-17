@@ -269,7 +269,7 @@ public class CombatManager : MonoBehaviour
     public void EnemyMovement()
     {
 
-        if (m_EnemyAiCurrentlyInList >= TurnOrderEnemy.Count - 1)
+        if (m_EnemyAiCurrentlyInList > TurnOrderEnemy.Count - 1)
         {
             StartCoroutine(AllyTurn());
             return ;

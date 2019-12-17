@@ -19,7 +19,7 @@ public class Attack : Skills
         SkillName = "Attack";
         SkillDescription = "Attack a single enemy";
         m_AnimationName = "t_IsAttack";
-        m_SkillRange = 2;
+        m_SkillRange = 1;
     }
 
     // Update is called once per frame

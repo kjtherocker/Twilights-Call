@@ -22,16 +22,17 @@ public class Cavia : Creatures
         AmountOfTurns = 1;
 
         m_CreatureMovement = 8;
-
-        // m_Skills = new CombatNodeSkills[2];
-      // m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.HolyWater));
-      // m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
-      // m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
-        //
-        // m_BloodArts = new CombatNodeSkills[1];
-        // m_BloodArts[0] = gameObject.AddComponent<CombatNodeBloodRelief>();
-
+        
         SetCreature();
+        
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
+
+
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Cavia/Prefab/Pref_Cavia", typeof(GameObject));
 

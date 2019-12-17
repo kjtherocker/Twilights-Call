@@ -114,6 +114,14 @@
                   <e p="Behaviour.cs" t="Include" />
                   <e p="Behaviour_WalkClose.cs" t="Include" />
                 </e>
+                <e p="CommandProcessor" t="Include">
+                  <e p="Action" t="Include">
+                    <e p="Action.cs" t="Include" />
+                    <e p="Action_Attack.cs" t="Include" />
+                    <e p="Action_Move.cs" t="Include" />
+                  </e>
+                  <e p="CommandProcessor.cs" t="Include" />
+                </e>
                 <e p="Core" t="Include">
                   <e p="GraphNode.cs" t="Include" />
                   <e p="Pathfinder.cs" t="Include" />

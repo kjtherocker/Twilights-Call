@@ -52,6 +52,12 @@ public class Behaviour : MonoBehaviour
         {
             return false;
         }
+        
+        if (nodeIndex.m_CombatsNodeType == CombatNode.CombatNodeTypes.Empty)
+        {
+            return false;
+        }
+        
         if (nodeIndex.m_NodeHeight > 0)
         {
             return false;
