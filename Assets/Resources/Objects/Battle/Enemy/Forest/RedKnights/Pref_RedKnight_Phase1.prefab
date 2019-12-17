@@ -3783,7 +3783,7 @@ MonoBehaviour:
   m_CreaturesAnimator: {fileID: 4629026899129034581}
   m_Creature: {fileID: 8365971822420411922}
   CreatureOffset: {x: 0, y: 0, z: 0}
-  m_Movement: 0
+  m_Movement: 3
   m_Jump: 0
   m_MovementHasStarted: 0
   m_HasAttackedForThisTurn: 0

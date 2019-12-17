@@ -23,7 +23,7 @@ public class CombatManager : MonoBehaviour
     bool WhichSidesTurnIsIt;
     bool CombatHasStarted;
 
-    int m_EnemyAiCurrentlyInList;
+    public int m_EnemyAiCurrentlyInList;
 
 
     public CombatCameraController m_BattleCamera;
@@ -166,7 +166,10 @@ public class CombatManager : MonoBehaviour
 
            case BattleStates.AllyTurn:
 
-
+               if (Input.GetKeyDown("i"))
+               {
+                   StartCoroutine(EnemyTurn());
+               }
 
                 break;
 
@@ -274,10 +277,11 @@ public class CombatManager : MonoBehaviour
         else
         {
             EnemyAiController EnemyTemp = TurnOrderEnemy[m_EnemyAiCurrentlyInList].m_CreatureAi as EnemyAiController;
+            m_EnemyAiCurrentlyInList++;
             EnemyTemp.EnemyMovement();
         }
 
-        m_EnemyAiCurrentlyInList++;
+     
         
 
     }

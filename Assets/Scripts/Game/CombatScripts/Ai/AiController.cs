@@ -95,17 +95,6 @@ public class AiController : MonoBehaviour
                 Node_ObjectIsOn = Node_MovingTo;
             }
         }
-
-        if (Input.GetKeyDown("i"))
-        {
-            Domain();
-        }
-
-        if (Input.GetKeyDown("o"))
-        {
-            Devour(1);
-        }
-
     }
 
     public void SetGoal(Vector2Int m_Goal)
@@ -165,6 +154,8 @@ public class AiController : MonoBehaviour
 
     public virtual void SetGoalPosition(Vector2Int m_Goal)
     {
+        
+        Debug.Log(m_Goal);
         SetGoal(m_Goal);
         m_Grid.m_Movement = m_Movement;
 
@@ -178,7 +169,7 @@ public class AiController : MonoBehaviour
 
 
 
-        List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid);
+        List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid,m_Movement);
 
 
         StartCoroutine(GetToGoal(TempList));

@@ -159,12 +159,12 @@ public class CombatCameraController : MonoBehaviour
 
                if (m_Grid.m_GridPathArray != null)
                {
-                   m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_CameraPositionInGrid.x, m_CameraPositionInGrid.y];
+               //   m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_CameraPositionInGrid.x, m_CameraPositionInGrid.y];
                
-                   transform.position = Vector3.Lerp(transform.position, new Vector3(
-                       m_Creature.ModelInGame.transform.position.x + 13.5f,
-                       m_Creature.ModelInGame.transform.position.y + 13.9f,
-                       m_Creature.ModelInGame.transform.position.z - 13.5f), Time.deltaTime * 2);
+               //   transform.position = Vector3.Lerp(transform.position, new Vector3(
+               //       m_Creature.ModelInGame.transform.position.x + 13.5f,
+               //       m_Creature.ModelInGame.transform.position.y + 13.9f,
+               //       m_Creature.ModelInGame.transform.position.z - 13.5f), Time.deltaTime * 2);
                }
 
 
@@ -189,12 +189,12 @@ public class CombatCameraController : MonoBehaviour
             case CameraState.EnemyMovement:
                 if (m_Grid.m_GridPathArray != null)
                 {
-                    m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_CameraPositionInGrid.x, m_CameraPositionInGrid.y];
-
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(
-                        m_Creature.ModelInGame.transform.position.x + 13.5f,
-                        m_Creature.ModelInGame.transform.position.y + 13.9f,
-                        m_Creature.ModelInGame.transform.position.z - 13.5f), Time.deltaTime * 2);
+              //      m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_CameraPositionInGrid.x, m_CameraPositionInGrid.y];
+//
+              //      transform.position = Vector3.Lerp(transform.position, new Vector3(
+              //          m_Creature.ModelInGame.transform.position.x + 13.5f,
+              //          m_Creature.ModelInGame.transform.position.y + 13.9f,
+              //          m_Creature.ModelInGame.transform.position.z - 13.5f), Time.deltaTime * 2);
                 }
 
                 break;

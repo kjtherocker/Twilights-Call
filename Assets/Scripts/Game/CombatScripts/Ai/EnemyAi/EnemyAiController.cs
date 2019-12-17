@@ -20,18 +20,18 @@ public class EnemyAiController : AiController
         m_EnemyRange = 6;
     }
 
-    public HashSet<CombatNode> GetAvailableEnemysInRange(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff)
+    public HashSet<CombatNode> GetAvailableEnemysInRange(List<CombatNode> Acells, CombatNode ANodeHeuristicIsBasedOff, int ARange)
     {
         cacheRangePath = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cacheRangePaths(cells, NodeHeuristicIsBasedOff);
+        var paths = cacheRangePaths(Acells, ANodeHeuristicIsBasedOff);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
 
             var pathCost = path.Sum(c => 1);
             key.m_Heuristic = pathCost;
-            if (pathCost <= m_EnemyRange)
+            if (pathCost <= ARange)
             {
                 key.m_IsWalkable = true;
                 cacheRangePath.Add(key, path);
@@ -106,8 +106,7 @@ public class EnemyAiController : AiController
             aListOfNodes.RemoveAt(i);
         }
         
-        GameManager.Instance.m_CombatManager.EnemyMovement();
-        
+        EnemyAttack();
     }
     
     
@@ -120,8 +119,8 @@ public class EnemyAiController : AiController
 
     public void EnemyMovement()
     {
-
-        _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn);
+        m_Grid.RemoveWalkableArea();
+        _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn,m_EnemyRange);
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
         foreach (CombatNode node in _pathsInRange)
@@ -144,8 +143,43 @@ public class EnemyAiController : AiController
                 GameManager.Instance.m_Grid.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
 
             SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid);
+            return;
+        }
+        
 
+    }
+
+    public void EnemyAttack()
+    {
+        _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn,m_Creature.m_Attack.m_SkillRange);
+        
+        List<Creatures> m_AllysInRange = new List<Creatures>();
+        foreach (CombatNode node in _pathsInRange)
+        {
+            if (node.m_CreatureOnGridPoint != null && m_Creature != node.m_CreatureOnGridPoint)
+            {
+                if (node.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
+                {
+                    m_AllysInRange.Add(node.m_CreatureOnGridPoint);
+                }
+            }
         }
 
+        if (m_AllysInRange.Count > 0)
+        {
+            Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
+
+            Skills m_SkillToUse = m_Creature.m_Attack;
+            
+            StartCoroutine(CharacterInRange.DecrementHealth
+                (m_SkillToUse.m_Damage,m_SkillToUse.m_ElementalType,2.0f,2.0f,2.0f));
+        }
+        else
+        {
+            Debug.Log( m_Creature.Name + " waited");
+        }
+
+        GameManager.Instance.m_CombatManager.EnemyMovement();
+        return;
     }
 }

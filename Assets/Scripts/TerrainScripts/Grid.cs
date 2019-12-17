@@ -204,15 +204,21 @@ public class Grid : Singleton<Grid>
 
 
 
-    public List<CombatNode> GetTheLowestH(Vector2Int grid)
+    public List<CombatNode> GetTheLowestH(Vector2Int grid, int aMovement)
     {
        Debug.Log( m_GridPathList[0].m_Heuristic);
 
         m_GridPathToGoal.Add(CheckNeighborsForLowestNumber(grid));
 
-        for (int i = m_Movement; i > 0; i-- )
+        for (int i = aMovement; i > 0; i-- )
          {
-            if (m_GridPathToGoal[m_GridPathToGoal.Count - 1].m_IsGoal == true)
+             if (m_GridPathToGoal[m_GridPathToGoal.Count - 1] == null)
+             {
+                 Debug.Log("IT WAS IMPOSSIBLE FOR THIS CHARACTER TO REACH THE POSITION " + grid);
+                 break;
+             }
+
+             if (m_GridPathToGoal[m_GridPathToGoal.Count - 1].m_IsGoal == true)
             {
                 break;
             }

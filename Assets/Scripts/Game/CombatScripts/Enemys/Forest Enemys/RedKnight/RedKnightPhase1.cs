@@ -20,6 +20,7 @@ public class RedKnightPhase1 : Creatures
         if (Name == "No Name")
         {
             Name = NameGenerator.Instance.GetName();
+            transform.name = Name;
         }
 
         SetCreature();
