@@ -45,11 +45,10 @@ public class EnemyAiController : AiController
     public override IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
-        //  m_Grid.RemoveWalkableArea();
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+        Node_ObjectIsOn.m_NodeIsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
         {
 
@@ -101,13 +100,11 @@ public class EnemyAiController : AiController
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
         Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+        Node_ObjectIsOn.m_NodeIsCovered = true;
 
-        // m_Grid.RemoveWalkableArea();
-
-        Action_Move MoveAction = new Action_Move();
-        MoveAction.SetupAction(m_Creature, Node_ObjectIsOn);
-        CommandProcessor.Instance.m_ActionsStack.Add(MoveAction);
+        //  Action_Move MoveAction = new Action_Move();
+      //  MoveAction.SetupAction(m_Creature, Node_ObjectIsOn);
+      //  CommandProcessor.Instance.m_ActionsStack.Add(MoveAction);
 
         for (int i = aListOfNodes.Count; i < 0; i--)
         {
@@ -126,9 +123,20 @@ public class EnemyAiController : AiController
         return paths;
     }
 
+    public override void FindAllPaths()
+    {
+        _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, Node_ObjectIsOn,m_Movement);
+
+
+        foreach (CombatNode node in _pathsInRange)
+        {
+            node.m_IsWalkable = true;
+        }
+    }
+    
     public void EnemyMovement()
     {
-        //   m_Grid.RemoveWalkableArea();
+        FindAllPaths();
         _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_EnemyRange);
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
@@ -144,20 +152,21 @@ public class EnemyAiController : AiController
         {
 
             Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
-
+                
             CombatNode NodeNeightboringAlly =
                 GameManager.Instance.m_Grid.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
 
-            SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid);
-            return;
+            if(NodeNeightboringAlly != null)
+            {
+                SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid);
+                return;
+            }
         }
-        else
-        {
-            EnemyAttack();
-        }
-
-
+        
+        EnemyAttack();
     }
+    
+    
 
     public void EnemyAttack()
     {
@@ -180,7 +189,8 @@ public class EnemyAiController : AiController
             Skills m_SkillToUse = m_Creature.m_Attack;
 
             StartCoroutine(CharacterInRange.DecrementHealth
-                (m_SkillToUse.m_Damage, m_SkillToUse.m_ElementalType, 2.0f, 2.0f, 2.0f));
+                (m_SkillToUse.UseSkill(m_Creature.GetAllStrength()), m_SkillToUse.m_ElementalType, 0.0f, 0.1f, 2.0f));
+            return;
         }
         else
         {

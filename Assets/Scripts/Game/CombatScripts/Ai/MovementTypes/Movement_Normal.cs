@@ -25,6 +25,12 @@ public class Movement_Normal : MovementType
         {
             return false;
         }
+        
+
+        if (nodeIndex.m_NodeIsCovered == true)
+        {
+            return false;
+        }
 
         if (nodeIndex.m_PositionInGrid == m_Position)
         {

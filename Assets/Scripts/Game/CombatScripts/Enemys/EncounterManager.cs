@@ -28,11 +28,6 @@ public class EncounterManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        EnemySlot1 = gameObject.AddComponent<RedKnightPhase4>();
-        EnemySlot2 = gameObject.AddComponent<RedKnightPhase1>();
-        EnemySlot3 = gameObject.AddComponent<RedKnightPhase2>();
-        EnemySlot4 = gameObject.AddComponent<RedKnightPhase3>();
-        //SetEncounter(EncounterTypes.ForestEncounter);
     }
 	
 	// Update is called once per frame

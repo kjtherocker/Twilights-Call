@@ -203,10 +203,9 @@ public class Grid : Singleton<Grid>
   
 
 
-
     public List<CombatNode> GetTheLowestH(Vector2Int grid, int aMovement)
     {
-       Debug.Log( m_GridPathList[0].m_Heuristic);
+
 
         m_GridPathToGoal.Add(CheckNeighborsForLowestNumber(grid));
 

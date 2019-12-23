@@ -83,9 +83,11 @@ public class AiController : MonoBehaviour
 
         if (Node_ObjectIsOn != Node_MovingTo)
         {
-             transform.position = Vector3.MoveTowards
-                    (transform.position, Node_MovingTo.gameObject.transform.position + CreatureOffset,
+
+                transform.position = Vector3.MoveTowards
+                (transform.position, Node_MovingTo.gameObject.transform.position + CreatureOffset,
                     8 * Time.deltaTime);
+            
         }
 
         if (m_MovementHasStarted == true)
@@ -108,7 +110,7 @@ public class AiController : MonoBehaviour
 
     }
 
-    public void FindAllPaths()
+    public virtual void FindAllPaths()
     {
         _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, Node_ObjectIsOn,m_Movement);
 
@@ -229,12 +231,18 @@ public class AiController : MonoBehaviour
 
     public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
+        if (aListOfNodes == null)
+        {
+            Debug.Log("The List To GetToPosition is Null");
+            yield break;
+        }
+
         m_MovementHasStarted = true;
-      //  m_Grid.RemoveWalkableArea();
+
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+        Node_ObjectIsOn.m_NodeIsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
         {
 
@@ -242,10 +250,7 @@ public class AiController : MonoBehaviour
                 {
 
                     Node_MovingTo = aListOfNodes[i];
-
-                   
-
-
+                    
                     Vector3 relativePos = aListOfNodes[i].gameObject.transform.position - transform.position + CreatureOffset;
 
 
@@ -284,7 +289,7 @@ public class AiController : MonoBehaviour
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
         Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+        Node_ObjectIsOn.m_NodeIsCovered = true;
 
        // m_Grid.RemoveWalkableArea();
 
