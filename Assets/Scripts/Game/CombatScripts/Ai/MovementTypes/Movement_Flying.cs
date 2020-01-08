@@ -26,7 +26,7 @@ public class Movement_Flying : MovementType
             return false;
         }
         
-        if (nodeIndex.m_NodeIsCovered == true)
+        if (nodeIndex.m_CombatsNodeType == CombatNode.CombatNodeTypes.Covered)
         {
             return false;
         }

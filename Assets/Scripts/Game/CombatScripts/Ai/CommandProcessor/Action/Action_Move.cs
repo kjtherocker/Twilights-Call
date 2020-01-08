@@ -32,7 +32,7 @@ public class Action_Move : Action
          m_ActionCreature.m_CreatureAi.m_Position = m_ActionCommandNode.m_PositionInGrid;
 
          m_ActionCreature.m_CreatureAi.m_HasMovedForThisTurn = true;
-         m_ActionCommandNode.m_NodeIsCovered = true;
+         //m_ActionCommandNode.m_NodeIsCovered = true;
          
         CreatureOffset = 
             new Vector3(0, Constants.Constants.m_HeightOffTheGrid + GameManager.Instance.m_Grid.GetNode(m_ActionCommandNode.m_PositionInGrid).m_NodeHeightOffset, 0);

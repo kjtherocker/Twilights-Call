@@ -209,7 +209,7 @@ public class Creatures : MonoBehaviour
         }
         
    
-        GameManager.Instance.m_CombatManager.EnemyMovement();
+
 
     }
 
@@ -244,7 +244,7 @@ public class Creatures : MonoBehaviour
                     .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
             {
                 GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_NodeIsCovered = false;
+                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
             }
 
             Destroy(gameObject);
@@ -252,10 +252,12 @@ public class Creatures : MonoBehaviour
         if (charactertype == Charactertype.Ally)
         {
             GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
-
-            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                .m_NodeIsCovered = false;
-            
+            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
+                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
+            {
+                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
+                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+            }
 
             Destroy(ModelInGame.gameObject);
         }

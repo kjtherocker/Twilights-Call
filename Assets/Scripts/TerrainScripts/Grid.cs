@@ -189,6 +189,11 @@ public class Grid : Singleton<Grid>
                     continue;
                 }
 
+                if (neighbour.m_Heuristic == -1)
+                {
+                    continue;
+                }
+
                 if (neighbour.m_Heuristic < TempHeuristic)
                 {
                     TempHeuristic = neighbour.m_Heuristic;
@@ -197,6 +202,11 @@ public class Grid : Singleton<Grid>
             }
         }
 
+        if(TempNode == null)
+        {
+            Debug.Log("Check Neightbor is null");
+            Debug.Break();
+        }
         return TempNode;
     }
 
@@ -213,6 +223,7 @@ public class Grid : Singleton<Grid>
          {
              if (m_GridPathToGoal[m_GridPathToGoal.Count - 1] == null)
              {
+                 Debug.Break();
                  Debug.Log("IT WAS IMPOSSIBLE FOR THIS CHARACTER TO REACH THE POSITION " + grid);
                  break;
              }

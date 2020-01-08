@@ -279,6 +279,12 @@
           <e p="TestSquareCutout.shader" t="Include" />
           <e p="Triplanar.shader" t="Include" />
           <e p="UnlitTransparentShader.shader" t="Include" />
+          <e p="Water" t="Include">
+            <e p="HiddenNormalsTexture.shader" t="Include" />
+            <e p="ToonLit.shader" t="Include" />
+            <e p="ToonWater.shader" t="Include" />
+            <e p="UnlitShadowCaster.shader" t="Include" />
+          </e>
         </e>
         <e p="Shared" t="Include">
           <e p="Scripts" t="Include">
