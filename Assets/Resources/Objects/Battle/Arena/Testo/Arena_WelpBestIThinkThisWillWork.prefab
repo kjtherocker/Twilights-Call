@@ -6916,6 +6916,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
         type: 3}
+      propertyPath: m_IsCovered
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
+        type: 3}
       propertyPath: m_CreatureOnGridPoint
       value: 
       objectReference: {fileID: 4376786150742981852}
@@ -37143,6 +37148,11 @@ PrefabInstance:
     - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
         type: 3}
       propertyPath: m_PositionInGrid.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
+        type: 3}
+      propertyPath: m_IsCovered
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4185325806667629484, guid: fe660e566e314254b88c9c45e5e5a342,
