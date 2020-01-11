@@ -14,6 +14,8 @@ public class EnemyAiController : AiController
     public Behaviour m_Behaviour;
     public Dictionary<CombatNode, List<CombatNode>> cacheRangePath;
 
+    public bool DoNothing;
+    
     public override void Start()
     {
         base.Start();
@@ -44,13 +46,20 @@ public class EnemyAiController : AiController
 
     public override IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
-        m_MovementHasStarted = true;
-        //  m_Grid.RemoveWalkableArea();
+
+        if (aListOfNodes == null)
+        {
+            Debug.Log("GetToPositionBroke");
+            yield break;
+        }
+
+        m_MovementHasStarted = true; 
+        
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
-        for (int i = 0; i < aListOfNodes.Count - 1;)
+        Node_ObjectIsOn.m_IsCovered = false;
+        for (int i = 0; i < aListOfNodes.Count;)
         {
 
             if (Node_MovingTo == Node_ObjectIsOn)
@@ -80,8 +89,7 @@ public class EnemyAiController : AiController
 
 
         }
-
-       // m_Grid.RemoveWalkableArea();
+        
         //Camera no longer following the player;
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.Normal;
 
@@ -100,14 +108,17 @@ public class EnemyAiController : AiController
         //Setting the node you are on to the new one
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
+
+        Node_ObjectIsOn.m_IsGoal = false;
+        Node_ObjectIsOn.m_IsWalkable = false;
         Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+        Node_ObjectIsOn.m_IsCovered = true;
 
          m_Grid.RemoveWalkableArea();
 
-        Action_Move MoveAction = new Action_Move();
-        MoveAction.SetupAction(m_Creature, Node_ObjectIsOn);
-        CommandProcessor.Instance.m_ActionsStack.Add(MoveAction);
+       //Action_Move MoveAction = new Action_Move();
+       //MoveAction.SetupAction(m_Creature, Node_ObjectIsOn);
+       //CommandProcessor.Instance.m_ActionsStack.Add(MoveAction);
 
         for (int i = aListOfNodes.Count; i < 0; i--)
         {
@@ -169,6 +180,7 @@ public class EnemyAiController : AiController
     {
         _pathsInRange =
             GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_Creature.m_Attack.m_SkillRange);
+        
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
         foreach (CombatNode node in _pathsInRange)

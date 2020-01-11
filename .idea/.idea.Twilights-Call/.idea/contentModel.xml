@@ -97,14 +97,11 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="DestroyParticleSystems.cs" t="Include" />
           <e p="DialogScripts" t="Include">
             <e p="Dialogue.cs" t="Include" />
             <e p="DialogueManager.cs" t="Include" />
             <e p="DialogueTrigger.cs" t="Include" />
           </e>
-          <e p="EditorTest.cs" t="Include" />
-          <e p="FPSDisplay.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="CombatScripts" t="Include">
               <e p="Ai" t="Include">
@@ -149,7 +146,6 @@
                 </e>
               </e>
               <e p="Enemys" t="Include">
-                <e p="EncounterManager.cs" t="Include" />
                 <e p="EnemyList.cs" t="Include" />
                 <e p="Forest Enemys" t="Include">
                   <e p="RedEyes.cs" t="Include" />
@@ -210,6 +206,9 @@
                 <e p="TurnIndicatorWrapper.cs" t="Include" />
               </e>
             </e>
+            <e p="Debug" t="Include">
+              <e p="DebugMenu.cs" t="Include" />
+            </e>
             <e p="GameManager.cs" t="Include" />
             <e p="JsonHelper.cs" t="Include" />
             <e p="MapEditor" t="Include">
@@ -227,35 +226,40 @@
             <e p="Props" t="Include">
               <e p="NodeReplacement.cs" t="Include" />
             </e>
-          </e>
-          <e p="Global" t="Include">
-            <e p="Constants.cs" t="Include" />
+            <e p="TerrainScripts" t="Include">
+              <e p="Cell.cs" t="Include" />
+              <e p="CombatNode.cs" t="Include" />
+              <e p="DomainSphere.cs" t="Include" />
+              <e p="GrassController.cs" t="Include" />
+              <e p="Grid.cs" t="Include" />
+              <e p="NodeFormations.cs" t="Include" />
+              <e p="WaterController.cs" t="Include" />
+            </e>
           </e>
           <e p="Input" t="Include">
             <e p="InputManager.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
           </e>
-          <e p="MenuScripts" t="Include">
-            <e p="MainMenu.cs" t="Include" />
-            <e p="Options.cs" t="Include" />
-            <e p="PartyMenu.cs" t="Include" />
-          </e>
-          <e p="ScreenshotController.cs" t="Include" />
-          <e p="Services" t="Include">
-            <e p="Singleton.cs" t="Include" />
-          </e>
-          <e p="TerrainScripts" t="Include">
-            <e p="Cell.cs" t="Include" />
-            <e p="CombatNode.cs" t="Include" />
-            <e p="DomainSphere.cs" t="Include" />
-            <e p="GrassController.cs" t="Include" />
-            <e p="Grid.cs" t="Include" />
-            <e p="NodeFormations.cs" t="Include" />
-            <e p="WaterController.cs" t="Include" />
+          <e p="Temp" t="Include">
+            <e p="DestroyParticleSystems.cs" t="Include" />
+            <e p="EditorTest.cs" t="Include" />
+            <e p="FPSDisplay.cs" t="Include" />
+            <e p="Global" t="Include">
+              <e p="Constants.cs" t="Include" />
+            </e>
+            <e p="ScreenshotController.cs" t="Include" />
+            <e p="Services" t="Include">
+              <e p="Singleton.cs" t="Include" />
+            </e>
           </e>
           <e p="Ui" t="Include">
             <e p="ButtonSkillWrapper.cs" t="Include" />
             <e p="EndOfCombatMenu.cs" t="Include" />
+            <e p="MenuScripts" t="Include">
+              <e p="MainMenu.cs" t="Include" />
+              <e p="Options.cs" t="Include" />
+              <e p="PartyMenu.cs" t="Include" />
+            </e>
             <e p="UiDomainTab.cs" t="Include" />
             <e p="UiManager.cs" t="Include" />
             <e p="UiScreen.cs" t="Include" />

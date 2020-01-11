@@ -31,7 +31,7 @@ public class Movement_Normal : MovementType
             return false;
         }
         
-        if (nodeIndex.m_CombatsNodeType == CombatNode.CombatNodeTypes.Covered)
+        if (nodeIndex.m_IsCovered == true)
         {
             return false;
         }

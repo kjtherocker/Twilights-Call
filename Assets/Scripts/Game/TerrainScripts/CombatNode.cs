@@ -11,7 +11,7 @@ public class CombatNode : Cell
     public enum CombatNodeTypes
     {
         Normal,
-        Covered,
+        Idontwannaremoveitfonowsochangeitlaterkylealsofuckyou,
         Wall,
         Empty
     }
@@ -37,12 +37,12 @@ public class CombatNode : Cell
     public bool m_HeuristicCalculated;
     public bool m_IsSelector;
     public bool m_IsWalkable;
+    public bool m_IsCovered;
     public DomainCombatNode m_DomainCombatNode;
 
     public Domain DomainOnNode;
     
     public NodeReplacement m_NodeReplacement;
-
 
 
     
@@ -380,7 +380,7 @@ public class CombatNode : Cell
         m_CreatureAi.m_Grid = m_Grid;
         
        m_CreatureOnGridPoint = Enemy.GetComponent<Creatures>();
-       m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+       m_IsCovered = true;
     }
 
     public void EditorSelector()

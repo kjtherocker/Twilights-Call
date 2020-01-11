@@ -45,7 +45,7 @@ public class UiSkillBoard : UiScreen
         {
             GameManager.Instance.BattleCamera.SetDomainPhase(m_SkillBoardCreature.m_Domain);
         }
-        GameManager.Instance.m_InputManager.m_MovementControls.Enable();
+        InputManager.Instance.m_MovementControls.Enable();
         GameManager.Instance.UiManager.PopScreen();
     }
 
@@ -59,7 +59,7 @@ public class UiSkillBoard : UiScreen
     public override void OnPush()
     {
         gameObject.SetActive((true));
-        GameManager.Instance.m_InputManager.m_MovementControls.Disable();
+        InputManager.Instance.m_MovementControls.Disable();
         m_Animator_SkillGroup.SetBool("ZoomIn",true);
         m_MenuControls.Enable();
     }

@@ -31,7 +31,7 @@ public class UiScreenCommandBoard : UiScreen
     public override void OnPush()
     {
         gameObject.SetActive(true);
-        GameManager.Instance.m_InputManager.m_MovementControls.Disable();
+        InputManager.Instance.m_MovementControls.Disable();
         m_MenuControls.Enable();
        // m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
@@ -57,7 +57,7 @@ public class UiScreenCommandBoard : UiScreen
         {
             return;
         }
-        GameManager.Instance.m_InputManager.m_MovementControls.Enable();
+        InputManager.Instance.m_MovementControls.Enable();
         m_CommandboardCreature.m_CreatureAi.FindAllPaths();
         GameManager.Instance.BattleCamera.m_MovementHasBeenCalculated = true;
         GameManager.Instance.UiManager.PopScreen();

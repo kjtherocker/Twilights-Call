@@ -8,8 +8,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject Combat_Objects;
     public PartyManager m_PartyManager;
     public PartyManager PartyManager { get { return m_PartyManager; } }
-    public EncounterManager m_EncounterManager;
-    public EncounterManager EncounterManager { get { return m_EncounterManager; } }
+
     public CombatManager m_CombatManager;
     public CombatManager CombatManager { get { return m_CombatManager; } }
     public CombatCameraController m_BattleCamera;
@@ -18,10 +17,7 @@ public class GameManager : Singleton<GameManager>
     public UiManager m_UiManager;
     public UiManager UiManager { get { return m_UiManager; } }
 
-    public InputManager m_InputManager;
-    public InputManager InputManager { get { return m_InputManager; } }
     
-
     public Grid m_Grid;
     public Grid Grid { get { return m_Grid; } }
 
@@ -50,11 +46,10 @@ public class GameManager : Singleton<GameManager>
         m_GameStates = GameStates.Overworld;
         m_PartyManager = GameObject.Find("PartyManager").GetComponent<PartyManager>();
         m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        m_EncounterManager = GameObject.Find("EncounterManager").GetComponent<EncounterManager>();
         m_NodeFormation = GameObject.Find("NodeFormations").GetComponent<NodeFormations>();
 
         Physics.autoSimulation = false;
-
+        SwitchToOverworld();
     }
 
     public void SwitchToOverworld()

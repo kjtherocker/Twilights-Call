@@ -156,7 +156,6 @@ public class AiController : MonoBehaviour
     {
         
         SetGoal(m_Goal);
-        m_Grid.m_Movement = m_Movement;
 
         _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Goal.x, m_Goal.y],100);
 
@@ -233,7 +232,7 @@ public class AiController : MonoBehaviour
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+        Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
         {
 
@@ -263,7 +262,7 @@ public class AiController : MonoBehaviour
 
         }
 
-       // m_Grid.RemoveWalkableArea();
+        
         //Camera no longer following the player;
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.Normal;
 
@@ -283,7 +282,7 @@ public class AiController : MonoBehaviour
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
         Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+        Node_ObjectIsOn.m_IsCovered = true;
         
         for (int i = aListOfNodes.Count; i < 0; i--)
         {

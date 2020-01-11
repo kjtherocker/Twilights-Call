@@ -16,33 +16,23 @@ public class OverWorldPlayer : MonoBehaviour {
     public Node Node_MovingTo;
     public Node Node_PlayerIsOn;
     public GameManager GameManager;
-    public EncounterManager m_EncounterManager;
-    public GameObject OverworldModel;
-    public GameObject Canvas_PartyMenu;
-    public PartyManager PartyManager;
-    public PartyMenu m_PartyMenu;
+
 
     public DialogueManager m_DialogueManager;
 
-    public Material m_GridMaterial;
-
     public float Player_Speed = 5;
-    public bool Player_Movment = false;
     private bool IsPartyMenuOn;
     private float Player_Speed_Delta;
     public GameObject m_OverworldPlayerModel;
-
-
-
+    public GameObject OverworldModel;
+    private bool Player_Movment;
 
 
     void Start ()
     {
 
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
+        InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
         GameManager = GameManager.Instance;
-        m_EncounterManager = GameManager.Instance.m_EncounterManager;
-        PartyManager = GameManager.Instance.m_PartyManager;
         m_OverworldPlayerModel = Instantiate<GameObject>(OverworldModel, gameObject.transform);
         gameObject.transform.position = Node_PlayerIsOn.transform.position;
         IsPartyMenuOn = false;
@@ -65,17 +55,15 @@ public class OverWorldPlayer : MonoBehaviour {
                 {
                     GameManager.Instance.CombatManager.m_GridFormation = Node_PlayerIsOn.m_GridFormation;
                 }
-                m_EncounterManager.SetEncounter(EncounterManager.EncounterTypes.ForestEncounter);
+
                 GameManager.SwitchToBattle();
 
                 Node_PlayerIsOn.SetNodeType(Node.NodeTypes.BasicNode);
-
-
+                
                 break;
 
             case Node.NodeTypes.EndNode:
-
-                m_EncounterManager.SetEncounter(EncounterManager.EncounterTypes.BossForestEncounter);
+                
                 GameManager.SwitchToBattle();
 
                 Node_PlayerIsOn.SetNodeType(Node.NodeTypes.BasicNode);

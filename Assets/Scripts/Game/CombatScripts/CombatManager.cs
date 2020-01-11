@@ -7,26 +7,19 @@ using UnityEditor;
 using TMPro;
 
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : Singleton<CombatManager>
 {
 
     public PartyManager PartyManager;
-    public EncounterManager EncounterManager;
-    public GameManager GameManager;
 
     public Grid m_Grid;
 
-    //For the skills
-
-    public Creatures CurrentTurnHolder;
 
     bool WhichSidesTurnIsIt;
     bool CombatHasStarted;
 
     public int m_EnemyAiCurrentlyInList;
-
-
-    public CombatCameraController m_BattleCamera;
+    
 
     public GameObject m_GridFormation;
 
@@ -36,8 +29,7 @@ public class CombatManager : MonoBehaviour
 
 
     public TextMeshProUGUI m_TurnSwitchText;
-
-    public List<TurnIndicatorWrapper> m_TurnIdenticator;
+    
 
     public List<Creatures> DeadAllys;
     public List<Creatures> TurnOrderAlly;
@@ -62,15 +54,8 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
-
-
-        GameManager = GameManager.Instance;
-        EncounterManager = GameManager.Instance.EncounterManager;
+        
         PartyManager = GameManager.Instance.PartyManager;
-
-
-
-
     }
 
     public void CombatStart()
@@ -140,10 +125,8 @@ public class CombatManager : MonoBehaviour
 
 
         m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_CreatureOnGridPoint = aList[TopElement];
-        m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
+        m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_IsCovered = true;
 
-
-        //aList[aList.Count - 1].ModelInGame.transform.localScale = new Vector3(0.02448244f, 0.02448244f, 0.02448244f);
 
     }
 
@@ -193,61 +176,7 @@ public class CombatManager : MonoBehaviour
         
 
     }
-
-
-
-    public void PlayerIsDoneAttackingAndMoving()
-    {
-        
-    }
-
-    private bool isPlayersDoneMoving()
-    {
-        for (int i = 0; i < 1; i++)
-        {
-            if (TurnOrderAlly[i].m_CreatureAi.m_HasMovedForThisTurn == true)
-            { 
-                return false;
-            }
-            
-        }
-
-        StartCoroutine(AllyTurn());
-        return true;
-    }
-
-    void RemoveDeadFromList()
-    {
-        if (TurnOrderAlly != null)
-        {
-            for (int i = 0; i < TurnOrderAlly.Count; i++)
-            {
-                if (TurnOrderAlly[i].CurrentHealth <= 0)
-                {
-                    DeadAllys.Add(TurnOrderAlly[i]);
-                    TurnOrderAlly.RemoveAt(i);
-                }
-
-            }
-        }
-
-        
-
-        if (TurnOrderEnemy != null)
-        {
-            for (int i = 0; i < TurnOrderEnemy.Count; i++)
-            {
-                if (TurnOrderEnemy[i].CurrentHealth <= 0)
-                {
-                    TurnOrderEnemy[i].Death();
-                    TurnOrderEnemy.RemoveAt(i);
-                }
-
-            }
-        }
-
-    }
-
+    
     public IEnumerator EnemyTurn()
     {
         CurrentTurnOrderSide = TurnOrderEnemy;
@@ -278,14 +207,13 @@ public class CombatManager : MonoBehaviour
         {
             EnemyAiController EnemyTemp = TurnOrderEnemy[m_EnemyAiCurrentlyInList].m_CreatureAi as EnemyAiController;
             m_EnemyAiCurrentlyInList++;
-            EnemyTemp.EnemyMovement();
+            if (EnemyTemp.DoNothing == false)
+            {
+                m_Grid.RemoveWalkableArea();
+                EnemyTemp.EnemyMovement();
+            }
         }
-
-     
-        
-
     }
-
 
     public IEnumerator AllyTurn()
     {
@@ -307,38 +235,6 @@ public class CombatManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         m_TurnSwitchText.gameObject.SetActive(false);
     }
-
-
-    public void PlayerTurnSkill()
-    {
-
-          //if (CurrentTurnHolder.m_Skills[CurrentTurnHolderSkills].GetSkillType() == Skills.SkillType.Attack)
-          //{
-          //    //Checking the range the skills has single target or fulltarget
-          //    if (CurrentTurnHolder.m_Skills[CurrentTurnHolderSkills].GetSkillRange() == Skills.SkillRange.SingleTarget)
-          //    {
-
-          //    }
-          //}
-    }
-
-    public void PlayerTurnBloodArt()
-    {
-
-    }
-
-    public void PlayerSelecting()
-    {
-
-
-    }
-
-    public bool SwitchTurnSides()
-    {
-        WhichSidesTurnIsIt = !WhichSidesTurnIsIt;
-
-        return WhichSidesTurnIsIt;
-
-    }
+    
 
 }

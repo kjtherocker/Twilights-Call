@@ -64,12 +64,12 @@ public class CombatCameraController : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => CreateCommandBoard();
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.XButton.performed += XButton => AttackingIndividual();
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.SquareButton.performed += SquareButton => ReturnToCommandboard();
-        GameManager.Instance.m_InputManager.m_MovementControls.Player.TriangleButton.performed += TriangleButton => EndTurn();
+        InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
+        InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => CreateCommandBoard();
+        InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
+        InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => AttackingIndividual();
+        InputManager.Instance.m_MovementControls.Player.SquareButton.performed += SquareButton => ReturnToCommandboard();
+        InputManager.Instance.m_MovementControls.Player.TriangleButton.performed += TriangleButton => EndTurn();
 
         m_CameraPositionInGrid = new Vector2Int(5, 5);
         GameManager.Instance.m_BattleCamera = this;
