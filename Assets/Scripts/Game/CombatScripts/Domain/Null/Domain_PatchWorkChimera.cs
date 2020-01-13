@@ -14,6 +14,8 @@ public class Domain_PatchWorkChimera : Domain
         Domaintype = DomainType.OneTime;
         m_CostToUse = 5;
         
+        m_DomainTexture = new Material(Shader.Find("Standard"));
+        
     }
 
     public override void DomainEffect(ref Creatures m_CreatureOnDomain)

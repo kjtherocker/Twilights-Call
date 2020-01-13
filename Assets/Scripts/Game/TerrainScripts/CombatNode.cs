@@ -302,10 +302,12 @@ public class CombatNode : Cell
     }
 
 
-    public void DomainTransfer()
+    public void DomainTransfer(Material aDomainMaterial)
     {
         MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
-        meshRenderer.material = meshRenderer.materials[0];
+        Material[] tempmaterials = meshRenderer.materials;
+        tempmaterials[1] = aDomainMaterial;
+        meshRenderer.materials = tempmaterials;
     }
 
    // public IEnumerator DomainMaterialChange()

@@ -27,6 +27,7 @@ public class GridFormations : MonoBehaviour
     public GameObject Enemy;
     
     public List<Creatures> m_EnemysInGrid;
+    public List<Relic> m_RelicsInGrid;
 
     public void Start()
     {

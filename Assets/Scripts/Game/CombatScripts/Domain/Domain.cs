@@ -23,6 +23,7 @@ public class Domain
     [SerializeField] public string DomainUser;
     [SerializeField] public string DomainDescription;
     [SerializeField] public int m_CostToUse;
+    [SerializeField] public Material m_DomainTexture;
 
     public virtual void Start()
     {
@@ -43,13 +44,13 @@ public class Domain
     {
     }
     
-    public virtual bool CheckifNodeCanBeDomained(CombatNode aNode)
+    public virtual bool CheckIfNodeIsClearAndReturnNodeIndex(CombatNode aNode, Vector2Int m_Position)
     {
         // if the node is out of bounds, return -1 (an invalid tile index)
 
         if (aNode == null)
         {
-            Debug.Log("YOU BROKE in check if node can be domained" );
+            Debug.Log("YOU BROKE " + aNode.m_PositionInGrid.ToString());
         }
 
         CombatNode nodeIndex = aNode;
@@ -64,7 +65,7 @@ public class Domain
         {
             return false;
         }
-        
+
         if (nodeIndex.m_NodeHeight > 0)
         {
             return false;

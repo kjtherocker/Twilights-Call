@@ -202,6 +202,10 @@
                 <e p="FloatingUiElements.cs" t="Include" />
                 <e p="FloatingUiElementsController.cs" t="Include" />
               </e>
+              <e p="Towers" t="Include">
+                <e p="Relic.cs" t="Include" />
+                <e p="RelicTower.cs" t="Include" />
+              </e>
               <e p="Wrappers" t="Include">
                 <e p="TurnIndicatorWrapper.cs" t="Include" />
               </e>

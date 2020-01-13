@@ -34,7 +34,7 @@ public class CombatManager : Singleton<CombatManager>
     public List<Creatures> DeadAllys;
     public List<Creatures> TurnOrderAlly;
     public List<Creatures> TurnOrderEnemy;
-    public List<Creatures> CurrentTurnOrderSide;
+    public List<Relic> Relics;
 
 
     public enum BattleStates
@@ -71,7 +71,10 @@ public class CombatManager : Singleton<CombatManager>
             GridFormations tempGridFormations = m_Gridformation.GetComponentInChildren<GridFormations>();
             m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
 
+            Relics = tempGridFormations.m_RelicsInGrid;
+            
             TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
+            
             
             AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
           
@@ -87,11 +90,8 @@ public class CombatManager : Singleton<CombatManager>
 
             
             m_BattleStates = BattleStates.AllyTurn;
-
-            CurrentTurnOrderSide = TurnOrderAlly;
+            
             WhichSidesTurnIsIt = false;
-
-
         }
 
     }
@@ -126,8 +126,7 @@ public class CombatManager : Singleton<CombatManager>
 
         m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_CreatureOnGridPoint = aList[TopElement];
         m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_IsCovered = true;
-
-
+        
     }
 
 
@@ -173,14 +172,14 @@ public class CombatManager : Singleton<CombatManager>
                break;
        }
 
-        
+
+
+
 
     }
     
     public IEnumerator EnemyTurn()
     {
-        CurrentTurnOrderSide = TurnOrderEnemy;
-
         m_BattleStates = BattleStates.EnemyTurn;
 
         m_TurnSwitchText.gameObject.SetActive(true);
@@ -217,8 +216,6 @@ public class CombatManager : Singleton<CombatManager>
 
     public IEnumerator AllyTurn()
     {
-        CurrentTurnOrderSide = TurnOrderAlly;
-
         m_BattleStates = BattleStates.AllyTurn;
 
         m_TurnSwitchText.gameObject.SetActive(true);
@@ -226,7 +223,7 @@ public class CombatManager : Singleton<CombatManager>
         m_TurnSwitchText.color = Color.blue;
 
 
-        foreach (Creatures creature in CurrentTurnOrderSide)
+        foreach (Creatures creature in TurnOrderAlly)
         {
             creature.m_CreatureAi.m_HasMovedForThisTurn = false;
             creature.m_CreatureAi.m_HasAttackedForThisTurn = false;

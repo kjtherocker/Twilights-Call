@@ -74,7 +74,7 @@ public class AiController : MonoBehaviour
 
 
         _Pathfinder = new Pathfinder();
-
+        
     }
 
     // Update is called once per frame
@@ -93,6 +93,14 @@ public class AiController : MonoBehaviour
             if (transform.position == Node_MovingTo.transform.position + CreatureOffset)
             {
                 Node_ObjectIsOn = Node_MovingTo;
+            }
+        }
+
+        if (Input.GetKeyDown("k"))
+        {
+            if (m_Creature.m_Domain != null && m_Creature.charactertype == Creatures.Charactertype.Ally)
+            {
+                Domain();
             }
         }
     }
@@ -189,7 +197,7 @@ public class AiController : MonoBehaviour
             }
 
 
-            node.DomainTransfer();
+            node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
 
     }
@@ -209,19 +217,19 @@ public class AiController : MonoBehaviour
     
     public HashSet<CombatNode> GetNodesInRange(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff, int Range)
     {
-     //  cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
+      cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-     //  var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckifNodeCanBeDomained);
-     //  foreach (var key in paths.Keys)
-     //  {
-     //      var path = paths[key];
-     //      
-     //      var pathCost = path.Sum(c => c.m_MovementCost);
-     //      if (pathCost <= Range)
-     //      {
-     //          cachedPaths.Add(key, path);
-     //      }
-     //  }
+      var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+      foreach (var key in paths.Keys)
+      {
+          var path = paths[key];
+          
+          var pathCost = path.Sum(c => c.m_MovementCost);
+          if (pathCost <= Range)
+          {
+              cachedPaths.Add(key, path);
+          }
+      }
        return new HashSet<CombatNode>(cachedPaths.Keys);
     }
 

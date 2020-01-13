@@ -29,9 +29,11 @@ public class Sigma : Creatures {
 		
         m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Domain = new Domain_PatchWorkChimera();
+        m_DomainList = DomainList.DomainListEnum.PatchworkChimera;
+        
+        m_Domain = DomainList.Instance.SetDomain(m_DomainList);
         m_Domain.Start();
-        m_Domain.DomainUser = name;
+        m_Domain.DomainUser = Name;
 
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));

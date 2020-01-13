@@ -92,11 +92,13 @@ public class Creatures : MonoBehaviour
 
     public GameObject Model;
     public GameObject ModelInGame;
-    
+
+    public DomainList.DomainListEnum m_DomainList;
     public Domain m_Domain;
     
+    
     public Creatures ObjectToRotateAround;
-
+    
 
     int AlimentCounter;
 
