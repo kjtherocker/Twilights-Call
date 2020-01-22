@@ -13,8 +13,6 @@ public class NameGenerator : Singleton<NameGenerator>
     {
         //Meme names
         m_Names = new List<string>();
-        m_Names.Add("Cullen");
-        m_Names.Add("Nathaniel");
         m_Names.Add("Stefano");
         m_Names.Add("Timothy");
         m_Names.Add("Jack");

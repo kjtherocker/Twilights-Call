@@ -8,7 +8,13 @@ using System;
 [System.Serializable]
 public class GridFormations : MonoBehaviour
 {
-
+    [TextArea]
+    public string m_ArenaName;
+    [TextArea]
+    public string m_MissionTag;
+    [TextArea]
+    public string m_Description;
+    
     public Vector2Int m_GridDimensions;
 
     public GameObject m_PrefabNode;

@@ -257,13 +257,17 @@
             </e>
           </e>
           <e p="Ui" t="Include">
-            <e p="ButtonSkillWrapper.cs" t="Include" />
+            <e p="ButtonWrappers" t="Include">
+              <e p="ArenaButton.cs" t="Include" />
+              <e p="ButtonSkillWrapper.cs" t="Include" />
+            </e>
             <e p="EndOfCombatMenu.cs" t="Include" />
             <e p="MenuScripts" t="Include">
               <e p="MainMenu.cs" t="Include" />
               <e p="Options.cs" t="Include" />
               <e p="PartyMenu.cs" t="Include" />
             </e>
+            <e p="UiArenaList.cs" t="Include" />
             <e p="UiDomainTab.cs" t="Include" />
             <e p="UiManager.cs" t="Include" />
             <e p="UiScreen.cs" t="Include" />
