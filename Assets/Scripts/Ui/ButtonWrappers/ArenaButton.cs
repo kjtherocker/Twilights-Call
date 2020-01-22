@@ -16,10 +16,16 @@ public class ArenaButton : MonoBehaviour
 
     public void Start()
     {
-        m_Gridformation = m_Arena.GetComponentInChildren<GridFormations>();
-        
-        m_TextName.text = m_Gridformation.m_ArenaName;
-        m_TextMission.text = m_Gridformation.m_MissionTag;
-        m_TextDescription.text = m_Gridformation.m_Description;
+
+
+        if (m_Arena != null)
+        {
+            m_Gridformation = m_Arena.GetComponentInChildren<GridFormations>();
+
+            m_TextName.text = m_Gridformation.m_ArenaName;
+            m_TextMission.text = m_Gridformation.m_MissionTag;
+            m_TextDescription.text = m_Gridformation.m_Description;
+        }
+
     }
 }

@@ -1,18 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UiArenaList : MonoBehaviour
+public class UiArenaList : UiScreen
 {
+    public List<ArenaButton> m_ArenaTabs;
     // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void Update()
     {
+        if (Input.GetKeyDown("p"))
+        {
+            SelectArena();
+        }
+    }
+
+    public void SelectArena()
+    {
+        GameManager.Instance.CombatManager.m_GridFormation = m_ArenaTabs[0].m_Arena;
+        GameManager.Instance.SwitchToBattle();
+        OnPop();
         
     }
 }
