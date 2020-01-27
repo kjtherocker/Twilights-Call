@@ -18,7 +18,7 @@ public class CombatNode : Cell
 
     public enum DomainCombatNode
     {
-        Nome,
+        None,
         Domain
     }
 

@@ -19,6 +19,7 @@ public class AiController : MonoBehaviour
     public Vector2Int m_Position;
     public Vector2Int m_InitalPosition;
 
+    public CombatNode m_PreviousNode;
     public DomainState m_Domainstate;
     
     public Pathfinder _Pathfinder;
@@ -193,7 +194,9 @@ public class AiController : MonoBehaviour
             node.DomainOnNode = m_Creature.m_Domain;
             if (node.m_CreatureOnGridPoint != null)
             {
+                node.m_CreatureOnGridPoint.StatsBeforeDomain();
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
+                node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
             }
 
 
@@ -285,12 +288,15 @@ public class AiController : MonoBehaviour
       
 
         m_Position = aListOfNodes[aListOfNodes.Count - 1].m_PositionInGrid;
-
+        m_PreviousNode = Node_ObjectIsOn;
         //Setting the node you are on to the new one
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
         Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
         Node_ObjectIsOn.m_IsCovered = true;
+        
+        m_PreviousNode.DomainOnNode.UndoDomainEffect(ref  Node_ObjectIsOn.m_CreatureOnGridPoint);
+        
         
         for (int i = aListOfNodes.Count; i < 0; i--)
         {

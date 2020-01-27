@@ -173,7 +173,10 @@ public class CombatManager : Singleton<CombatManager>
        }
 
 
-
+       if (Input.GetKeyDown("l"))
+       {
+           Relics[0].m_CreatureAi.Domain();
+       }
 
 
     }

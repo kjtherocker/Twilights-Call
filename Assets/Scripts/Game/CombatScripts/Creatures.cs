@@ -75,6 +75,11 @@ public class Creatures : MonoBehaviour
     public int Dexterity;
     public int Speed;
 
+    public int BeforeDomain_MaxHealth;
+    public int BeforeDomain_MaxMana;
+    public int BeforeDomain_Strength;
+    
+    
     public int m_CreatureMovement = 4;
 
     public int AmountOfTurns;
@@ -86,6 +91,7 @@ public class Creatures : MonoBehaviour
     public bool IsSelected;
     public bool IsCurrentTurnHolder;
 
+    public string DomainAffectingCreature;
     public string Name = "No Name";
 
     public Material m_Texture;
@@ -115,6 +121,24 @@ public class Creatures : MonoBehaviour
        
         //m_Attack = gameObject.AddComponent<Attack>();
     }
+
+
+    public void StatsBeforeDomain()
+    {
+        
+        BeforeDomain_MaxHealth = MaxHealth;
+        BeforeDomain_MaxMana = MaxMana;
+        BeforeDomain_Strength = Strength;
+        
+    }
+
+    public void ReturnStatsToStateAfterDomain()
+    {
+        MaxHealth = BeforeDomain_MaxHealth;
+        MaxMana = BeforeDomain_MaxMana;
+        Strength = BeforeDomain_Strength;
+    }
+
 
 
     public virtual void EndTurn()

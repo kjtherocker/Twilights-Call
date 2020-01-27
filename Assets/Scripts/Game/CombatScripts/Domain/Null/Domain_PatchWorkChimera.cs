@@ -21,11 +21,16 @@ public class Domain_PatchWorkChimera : Domain
     public override void DomainEffect(ref Creatures m_CreatureOnDomain)
     {
      //   m_CreatureOnDomain.MaxHealth = m_CreatureOnDomain.MaxHealth / 2;
-          m_CreatureOnDomain.CurrentHealth = m_CreatureOnDomain.CurrentHealth / 2;
+        m_CreatureOnDomain.MaxHealth = m_CreatureOnDomain.MaxHealth / 2;
+
+          if (m_CreatureOnDomain.CurrentHealth >= m_CreatureOnDomain.MaxHealth)
+          {
+              m_CreatureOnDomain.CurrentHealth = m_CreatureOnDomain.MaxHealth;
+          }
     }
     
     public override void UndoDomainEffect(ref Creatures m_CreatureOnDomain)
     {
-       // m_CreatureOnDomain.MaxHealth = m_CreatureOnDomain.MaxHealth * 2;
+       m_CreatureOnDomain.ReturnStatsToStateAfterDomain();
     }
 }
