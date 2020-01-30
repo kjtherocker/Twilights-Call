@@ -241,6 +241,7 @@
             </e>
           </e>
           <e p="Input" t="Include">
+            <e p="BaseInput.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
           </e>

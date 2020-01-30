@@ -6,7 +6,7 @@ using UnityEngine;
 public class InputManager : Singleton<InputManager>
 {
     public PlayerInput m_MovementControls;
-
+    public BaseInput m_BaseMovementControls;
 
     // Use this for initialization
     void Awake()

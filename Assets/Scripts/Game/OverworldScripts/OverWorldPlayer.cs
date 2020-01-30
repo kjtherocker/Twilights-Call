@@ -11,140 +11,74 @@ public class OverWorldPlayer : MonoBehaviour {
     // Use this for initialization
 
     [SerializeField]
-    public PlayerInput m_Controls;
+    public BaseInput m_BaseMovementControls;
 
-    public Node Node_MovingTo;
-    public Node Node_PlayerIsOn;
-    public GameManager GameManager;
-
-
-    public DialogueManager m_DialogueManager;
+    public Animator m_PlayerAnimatior;
 
     public float Player_Speed = 5;
+    public float m_PlayerRotationSpeed;
     private bool IsPartyMenuOn;
     private float Player_Speed_Delta;
-    public GameObject m_OverworldPlayerModel;
-    public GameObject OverworldModel;
+
+    
     private bool Player_Movment;
+    float m_Gravity;
+    float mass = 3.0f;
+    Vector3 m_Velocity = Vector3.zero;
 
-
+    public Vector2 MoveDirection;
+    
     void Start ()
     {
 
-        InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
-        GameManager = GameManager.Instance;
-        m_OverworldPlayerModel = Instantiate<GameObject>(OverworldModel, gameObject.transform);
-        gameObject.transform.position = Node_PlayerIsOn.transform.position;
-        IsPartyMenuOn = false;
-        //CombineMeshes();
+        m_PlayerAnimatior = GetComponentInChildren<Animator>();
+        
+        m_BaseMovementControls = new BaseInput();
+       m_BaseMovementControls.Enable();
+       m_BaseMovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
+       m_BaseMovementControls.Player.Movement.canceled += movement => PlayerMovement(movement.ReadValue<Vector2>());
+   //    InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
+
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    public void PlayerMovement(Vector2 aDirection)
     {
-
-        switch (Node_PlayerIsOn.Enum_NodeType)
+        if (aDirection == Vector2.zero)
         {
-            case Node.NodeTypes.BasicNode:
-
-                break;
-
-            case Node.NodeTypes.EncounterNode:
-
-                if (Node_PlayerIsOn.m_GridFormation != null)
-                {
-                    GameManager.Instance.CombatManager.m_GridFormation = Node_PlayerIsOn.m_GridFormation;
-                }
-
-                GameManager.SwitchToBattle();
-
-                Node_PlayerIsOn.SetNodeType(Node.NodeTypes.BasicNode);
-                
-                break;
-
-            case Node.NodeTypes.EndNode:
-                
-                GameManager.SwitchToBattle();
-
-                Node_PlayerIsOn.SetNodeType(Node.NodeTypes.BasicNode);
-
-                break;
-
-            case Node.NodeTypes.DialogueNode:
-                m_DialogueManager.gameObject.SetActive(true);
-                Node_PlayerIsOn.StartDialogue();
-                Node_PlayerIsOn.SetNodeType(Node.NodeTypes.BasicNode);
-
-                break;
-
-            case Node.NodeTypes.ShopNode:
-
-                SceneManager.LoadScene(1);
-                break;
+            m_PlayerAnimatior.SetBool("b_IsWalking", false);
+            MoveDirection = aDirection;
+            return;
         }
-
-        if (Node_MovingTo != Node_PlayerIsOn)
+        else
         {
-            StartCoroutine(OverworldMovement());
+            m_PlayerAnimatior.SetBool("b_IsWalking", true); 
         }
+        
+        MoveDirection = aDirection;
+        Vector3 NextRotation = new Vector3(MoveDirection.x, 0, MoveDirection.y);
+        
+        float SpeedUpdate = m_PlayerRotationSpeed * Time.deltaTime;
+
+        transform.rotation =  Quaternion.LookRotation( NextRotation,Vector3.up );
+
         
     }
 
-    public IEnumerator OverworldMovement()
+
+    // Update is called once per frame
+	void FixedUpdate ()
     {
-        Player_Speed_Delta = Player_Speed * Time.deltaTime;
-        Player_Movment = true;
+
+        float SpeedUpdate = Player_Speed * Time.deltaTime;
         
+        m_Velocity = (new Vector3(MoveDirection.x ,0  ,MoveDirection.y )* SpeedUpdate );
 
-        m_OverworldPlayerModel.GetComponent<Animator>().SetBool("b_IsWalking", true);
 
-        transform.position = Vector3.MoveTowards(transform.position, Node_MovingTo.transform.position, Player_Speed_Delta);
 
-        if (transform.position == Node_MovingTo.transform.position)
-        {
-            Player_Movment = false;
-            Node_PlayerIsOn = Node_MovingTo;
-            m_OverworldPlayerModel.GetComponent<Animator>().SetBool("b_IsWalking", false);
-            yield break;
-        }
+        transform.position =  gameObject.transform.position + m_Velocity;
+
+
     }
-
-    public void PlayerMovement(Vector2 aMovement)
-    {
-        //Up
-        if (aMovement == new Vector2(0.0f,1.0f))
-        {
-            PlayerDirection(Node_PlayerIsOn.NodeUp);
-        }
-
-        //Down
-        if (aMovement == new Vector2(0.0f, -1.0f))
-        {
-            PlayerDirection(Node_PlayerIsOn.NodeDown);
-        }
-
-        //Left
-        if (aMovement == new Vector2(-1.0f, 0.0f))
-        {
-            PlayerDirection(Node_PlayerIsOn.NodeLeft);
-        }
-
-        //Right
-        if (aMovement == new Vector2(1.0f, 0.0f))
-        {
-            PlayerDirection(Node_PlayerIsOn.NodeRight);
-        }
-    }
-
-    public void PlayerDirection(Node node)
-    {
-        if (node != null)
-        {
-            transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-            Player_Movment = true;
-            Node_MovingTo = node;
-        }
-    }
-
+    
 }
 

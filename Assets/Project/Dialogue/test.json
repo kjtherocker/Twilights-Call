@@ -2,38 +2,64 @@
 "Items":
 [
 {
-    "m_Name":"Garcher",
-    "m_Sentances": " I am the bone of my sword",
+    "m_Name":"Unknown",
+    "m_Sentances": "The Four pillars connect to an unknown place far beyond the kin of man.",
 	"m_ChatBoxName": "Black"
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": " Steel is my body and fire is my blood ",
+    "m_Name":"Unknown",
+    "m_Sentances": "Before the Throne they come.",
 	"m_ChatBoxName": "Black"
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": "I have created over a thousand blades"
+    "m_Name":"Unknown",
+    "m_Sentances": "Gazing towards a new world."
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": "Unknown to Death,"
+    "m_Name":"Unknown",
+    "m_Sentances": "Painted by the craving etched into they're being."
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": " Nor known to Life."
+    "m_Name":"Unknown",
+    "m_Sentances": "No laws of this world will be able to affect them."
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": "Have withstood pain to create many weapons "
+    "m_Name":"Unknown",
+    "m_Sentances": "After all, if they wish to create a new world then they must reject the current one with mad zeal."
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": " Yet, those hands will never hold anything "
+    "m_Name":"Unknown",
+    "m_Sentances": "But if only the mad can create the new world, then what will they create?"
 },
 {
-    "m_Name":"Garcher",
-    "m_Sentances": " So as I pray, Unlimited Blade Works."
+    "m_Name":"Unknown",
+    "m_Sentances": "A world where only law is true and emotions are removed?"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "A world where everyone but him is dead?"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "A world of undying Immortals?"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "Or even worse a world devoid of anything at all?"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "All of this makes me sick to my stomach."
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "Individuality, life, existance and the soul, is replaced with nothing more then the carving of another"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "What a miserable existance. At that point can anyone truly be living?"
 }
+
+
 ]
 }
