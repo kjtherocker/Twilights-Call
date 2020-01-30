@@ -17,7 +17,7 @@ public class OverWorldPlayer : MonoBehaviour {
 
     public float Player_Speed = 5;
     public float m_PlayerRotationSpeed;
-    private bool IsPartyMenuOn;
+    public bool m_IsInMenu;
     private float Player_Speed_Delta;
 
     
@@ -43,6 +43,8 @@ public class OverWorldPlayer : MonoBehaviour {
 
     public void PlayerMovement(Vector2 aDirection)
     {
+       
+
         if (aDirection == Vector2.zero)
         {
             m_PlayerAnimatior.SetBool("b_IsWalking", false);
@@ -69,6 +71,13 @@ public class OverWorldPlayer : MonoBehaviour {
 	void FixedUpdate ()
     {
 
+        if (m_IsInMenu == true)
+        {
+            m_PlayerAnimatior.SetBool("b_IsWalking", false);
+            MoveDirection = Vector2.zero;
+            return;
+        }
+        
         float SpeedUpdate = Player_Speed * Time.deltaTime;
         
         m_Velocity = (new Vector3(MoveDirection.x ,0  ,MoveDirection.y )* SpeedUpdate );

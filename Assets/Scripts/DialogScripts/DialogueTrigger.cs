@@ -28,6 +28,7 @@ public class DialogueTrigger : MonoBehaviour
     public enum TriggerType
     {
         Default,
+        Menu,
         WaitForObjectToCome
     }
 
@@ -40,6 +41,8 @@ public class DialogueTrigger : MonoBehaviour
     public bool DialogueHasHappend;
 
 
+    public UiManager.Screen m_UiScreen;
+    
     public bool DeleteStartAfterStart;
     public bool DeleteEndOnEnd;
     public bool UseStartObjectFulltime;
@@ -52,6 +55,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool DialogueIsDone;
 
+    public OverWorldPlayer m_BasePlayer;
 
     public void Start()
     {
@@ -63,17 +67,21 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+
+        if (other.CompareTag("Player"))
         {
             if (DialogueHasHappend == false)
             {
                 if (m_TriggerType == TriggerType.Default)
                 {
-                    m_DialogueManager.m_DialogueTrigger = this;
-                    DialogueHasHappend = true;
-                    DialogueIsDone = false;
+                    TriggerDialogue();
                 }
-                else if(m_TriggerType == TriggerType.WaitForObjectToCome)
+                else if (m_TriggerType == TriggerType.Menu)
+                {
+                    UiManager.Instance.PushScreen(m_UiScreen);
+                    m_BasePlayer.m_IsInMenu = true;
+                }
+                else if (m_TriggerType == TriggerType.WaitForObjectToCome)
                 {
                 }
             }
