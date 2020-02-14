@@ -9,17 +9,23 @@ public class UiArenaList : UiScreen
     // Start is called before the first frame update
     public override void Initialize()
     {
+        m_MenuControls = new PlayerInput();
 
+        m_CursorYMax = m_ArenaTabs.Count - 1;
+        m_CursorYCurrent = 0;
+        m_CursorYMin = 0;
+        
+        m_CursorXMax = 0;
+        m_CursorXCurrent = 0;
+        m_CursorXMin = 0;
+        
+        
+        m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
+        m_MenuControls.Player.XButton.performed += XButton => SelectArena();
+        m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
+        m_MenuControls.Disable();
     }
-
-
-    public void Update()
-    {
-        if (Input.GetKeyDown("p"))
-        {
-            SelectArena();
-        }
-    }
+    
 
     public void SelectArena()
     {

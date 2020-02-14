@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 
 [ExecuteInEditMode]
@@ -66,13 +68,25 @@ public class PropList : Singleton<PropList>
 
 
 
-    public List<GameObject> m_PropSet;
+    //public List<GameObject> m_PropSet;
+    public  List<Prop> m_PropSet = new List<Prop>();
     public List<NodeReplacement> m_NodeReplacements;
     // Start is called before the first frame update
     void Start()
     {
-        
+
+       // Addressables.LoadAssetAsync<Prop>("Tree1").Completed += OnLoadDone;
+        StartCoroutine(LoadProps());
+
     }
+
+
+    private void OnLoadDone(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Prop> obj)
+    {
+        m_PropSet.Add(obj.Result);
+
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -80,9 +94,35 @@ public class PropList : Singleton<PropList>
         
     }
 
+   public IEnumerator LoadProps()
+   {
+       m_PropSet = new List<Prop>();
+        yield return Addressables.LoadAssetsAsync<Prop>("default", ob =>
+        {
+            
+            Prop tempProp = ob.GetComponent<Prop>();
+            
+            m_PropSet.Add(tempProp);
+            
+        });
+   }
+
+
     public GameObject ReturnPropData(Props aProp, string sourceName = "Global")
     {
-        return m_PropSet[(int)aProp];
+
+        for (int i = 0; i < m_PropSet.Count() - 1; i++)
+        {
+            if (m_PropSet[i].m_Prop == aProp)
+            {
+                return m_PropSet[i].gameObject;
+            }
+        }
+
+        Debug.Log("Couldnt find " + aProp);
+        
+        return null;
+ 
     }
 
     public NodeReplacement NodeReplacementData(NodeReplacements aProp, string sourceName = "Global")

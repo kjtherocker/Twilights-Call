@@ -8,7 +8,7 @@ public class DebugMenu : MonoBehaviour
     public GameObject m_DebugItems;
     void Update()
     {
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown("q"))
         {
             m_DebugItems.SetActive(true);
         }
