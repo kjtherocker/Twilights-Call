@@ -79,7 +79,7 @@ Material:
     - _OutlineDot: 0
     - _OutlineExistance: 0
     - _OutlineExtrusion: 0.01
-    - _OutlineWidth: 0.9
+    - _OutlineWidth: 0.5
     - _Parallax: 0.02
     - _RimAmount: 1
     - _RimThreshold: 1

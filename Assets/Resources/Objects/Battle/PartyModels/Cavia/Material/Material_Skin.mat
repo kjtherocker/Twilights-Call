@@ -79,10 +79,10 @@ Material:
     - _OutlineDot: 0.25
     - _OutlineExistance: 0
     - _OutlineExtrusion: 0.01
-    - _OutlineWidth: 0.94
+    - _OutlineWidth: 0.5
     - _Parallax: 0.02
-    - _RimAmount: 0.97
-    - _RimThreshold: 0.54
+    - _RimAmount: 0
+    - _RimThreshold: 0
     - _SliceAmount: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -90,7 +90,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0.6509434, g: 0.635591, b: 0.635591, a: 1}
+    - _AmbientColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
     - _Color: {r: 0.9811321, g: 0.9414013, b: 0.6803133, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

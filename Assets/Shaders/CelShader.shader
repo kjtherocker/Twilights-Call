@@ -5,7 +5,7 @@
 		_Color("Color", Color) = (0.8,0.8,0.8,1)
 		_MainTex("Main Texture", 2D) = "white" {}
 
-		_OutlineWidth("Outline Width", float) = 0.94
+		_OutlineWidth("Outline Width", float) = 0.5
 		_OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
 		_OutlineDot("Outline Dot", float) = 0.25
 		
@@ -103,7 +103,7 @@
 
 				float shadow = SHADOW_ATTENUATION(i);
 
-				float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
+				float lightIntensity = smoothstep(0, 0.1, NdotL );
 
 				float4 light = lightIntensity * _LightColor0;
 

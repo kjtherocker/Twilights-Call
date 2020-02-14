@@ -67,7 +67,7 @@ Material:
     - _Mode: 1
     - _OcclusionStrength: 1
     - _OutlineDot: 0.25
-    - _OutlineWidth: 0.94
+    - _OutlineWidth: 0.5
     - _Parallax: 0.02
     - _RimAmount: 0.716
     - _RimThreshold: 0.1
