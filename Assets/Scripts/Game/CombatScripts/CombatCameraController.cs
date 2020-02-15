@@ -150,7 +150,7 @@ public class CombatCameraController : MonoBehaviour
                         m_NodeTheCameraIsOn.transform.position.y + 18.9f,
                         m_NodeTheCameraIsOn.transform.position.z - 18.5f), Time.deltaTime * 2);
                 }
-                
+                //InputManager.Instance.m_MovementControls.Enable();
                 
 
                 break;
@@ -159,12 +159,17 @@ public class CombatCameraController : MonoBehaviour
 
                if (m_Grid.m_GridPathArray != null)
                {
-               //   m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_CameraPositionInGrid.x, m_CameraPositionInGrid.y];
+                   
+                   //InputManager.Instance.m_MovementControls.Disable();
+
+                   Vector3 PlayerPositionToFollow = m_Creature.ModelInGame.transform.position;
+                   
+                   m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_Creature.m_CreatureAi.m_Position.x, m_Creature.m_CreatureAi.m_Position.y];
                
-               //   transform.position = Vector3.Lerp(transform.position, new Vector3(
-               //       m_Creature.ModelInGame.transform.position.x + 13.5f,
-               //       m_Creature.ModelInGame.transform.position.y + 13.9f,
-               //       m_Creature.ModelInGame.transform.position.z - 13.5f), Time.deltaTime * 2);
+                   transform.position = Vector3.Lerp(transform.position, new Vector3(
+                       PlayerPositionToFollow.x + 13.5f,
+                       PlayerPositionToFollow.y + 13.9f,
+                       PlayerPositionToFollow.z - 13.5f), Time.deltaTime * 2);
                }
 
 
@@ -217,6 +222,7 @@ public class CombatCameraController : MonoBehaviour
                 {
                     m_StatusSheet.gameObject.SetActive(true);
                     m_PartyStatus.gameObject.SetActive(true);
+                    m_EnemyStatus.gameObject.SetActive(false);
                     if (m_StatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
                     {
                         m_StatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
@@ -224,6 +230,7 @@ public class CombatCameraController : MonoBehaviour
                 }
                 else if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Enemy)
                 {
+                    m_PartyStatus.gameObject.SetActive(false);
                     m_EnemyStatus.gameObject.SetActive(true);
                     if (m_EnemyStatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
                     {
@@ -446,6 +453,11 @@ public class CombatCameraController : MonoBehaviour
 
     public void PlayerWalk()
     {
+        if (m_Creature.m_CreatureAi.m_HasMovedForThisTurn == true)
+        {
+            return;
+        }
+
         if (m_NodeTheCameraIsOn.m_IsWalkable == true )
         {
 

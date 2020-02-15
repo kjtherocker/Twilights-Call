@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 720401907104847113}
   - component: {fileID: 2186180087223825053}
   m_Layer: 0
-  m_Name: White
+  m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 7795853470490865418}
   - component: {fileID: 5995195183524323502}
   m_Layer: 0
-  m_Name: Black
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3019608, g: 0.29411766, b: 0.24313726, a: 1}
+  m_Color: {r: 0.6226415, g: 0.53962266, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -192,9 +192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b9530427c0c58439bafb81ccafa3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Arena: {fileID: 6733115600233716387, guid: adc3fff6d81f9b040a05217b70ad3023, type: 3}
   m_Gridformation: {fileID: 0}
-  m_Name: 
-  m_Description: 
+  m_Background: {fileID: 5995195183524323502}
+  m_BackgroundColorDefault: {r: 0.3019608, g: 0.29411766, b: 0.24313727, a: 1}
+  m_BackgroundColorSelected: {r: 0.62352943, g: 0.5411765, b: 0, a: 1}
   m_TextName: {fileID: 7030725190227145857}
   m_TextMission: {fileID: 3521697509605379399}
   m_TextDescription: {fileID: 0}
@@ -256,9 +258,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b9530427c0c58439bafb81ccafa3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Arena: {fileID: 0}
   m_Gridformation: {fileID: 0}
-  m_Name: 
-  m_Description: 
+  m_Background: {fileID: 0}
+  m_BackgroundColorDefault: {r: 0, g: 0, b: 0, a: 0}
+  m_BackgroundColorSelected: {r: 0, g: 0, b: 0, a: 0}
   m_TextName: {fileID: 0}
   m_TextMission: {fileID: 0}
   m_TextDescription: {fileID: 0}
@@ -430,9 +434,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b9530427c0c58439bafb81ccafa3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Arena: {fileID: 0}
   m_Gridformation: {fileID: 0}
-  m_Name: 
-  m_Description: 
+  m_Background: {fileID: 0}
+  m_BackgroundColorDefault: {r: 0, g: 0, b: 0, a: 0}
+  m_BackgroundColorSelected: {r: 0, g: 0, b: 0, a: 0}
   m_TextName: {fileID: 0}
   m_TextMission: {fileID: 0}
   m_TextDescription: {fileID: 0}

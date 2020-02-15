@@ -263,32 +263,28 @@ public class Creatures : MonoBehaviour
         CurrentHealth = 0;
         AlimentCounter = 0;
         BuffandDebuff = 0;
+
+        Grid Grid = GameManager.Instance.m_Grid;
+        CombatManager combatManager = GameManager.Instance.CombatManager;
+        
         if (charactertype == Charactertype.Enemy)
         {
-            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
-            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
-            {
-                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
-            }
-
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+            
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_IsCovered = false;
             Destroy(gameObject);
         }
         if (charactertype == Charactertype.Ally)
         {
-            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
-            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
-            {
-                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
-            }
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_IsCovered = false;
+            
 
             Destroy(ModelInGame.gameObject);
         }
-
-
+        
+        combatManager.RemoveDeadFromList(Name,charactertype);
     }
 
 

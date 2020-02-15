@@ -177,10 +177,34 @@ public class CombatManager : Singleton<CombatManager>
        {
            Relics[0].m_CreatureAi.Domain();
        }
+    }
 
+    public void RemoveDeadFromList(string aName, Creatures.Charactertype aCharactertype)
+    {
+        if (aCharactertype == Creatures.Charactertype.Ally)
+        {
+            for (int i = 0; i < TurnOrderAlly.Count - 1; i++)
+            {
+                if (TurnOrderAlly[i].Name == aName)
+                {    
+                    TurnOrderAlly.RemoveAt(i);
+                }
+            }
+        }
+
+        if (aCharactertype == Creatures.Charactertype.Enemy)
+        {
+            for (int i = 0; i < TurnOrderEnemy.Count - 1; i++)
+            {
+                if (TurnOrderEnemy[i].Name == aName)
+                {
+                    TurnOrderEnemy.RemoveAt(i);
+                }
+            }
+        }
 
     }
-    
+
     public IEnumerator EnemyTurn()
     {
         m_BattleStates = BattleStates.EnemyTurn;

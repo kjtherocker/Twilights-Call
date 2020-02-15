@@ -27,7 +27,7 @@ public class UiSkillBoard : UiScreen
        
         m_MenuControls.Player.Movement.performed += movement => MoveCommandBoardPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
-        m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
+        //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
 	// Update is called once per frame
