@@ -14,7 +14,8 @@ public class InputManager : Singleton<InputManager>
         m_MovementControls = new PlayerInput();
         m_MovementControls.Enable();
 
-      
+        m_BaseMovementControls = new BaseInput();
+        m_BaseMovementControls.Enable();
     }
 
 

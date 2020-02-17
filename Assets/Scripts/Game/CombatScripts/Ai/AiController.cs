@@ -30,6 +30,8 @@ public class AiController : MonoBehaviour
 
     private Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
 
+    public HealthBar m_Healthbar;
+    
     protected HashSet<CombatNode> _pathsInRange;
 
     public Vector3 CreatureOffset;
@@ -55,6 +57,10 @@ public class AiController : MonoBehaviour
         m_MovementHasStarted = false;
         m_InitalPosition = m_Position;
 
+        m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
+
+        m_Healthbar.Partymember = m_Creature;
+        
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
         Node_MovingTo = Node_ObjectIsOn;
 

@@ -76,7 +76,7 @@ public class PropList : Singleton<PropList>
     {
 
        // Addressables.LoadAssetAsync<Prop>("Tree1").Completed += OnLoadDone;
-        StartCoroutine(LoadProps());
+      //  StartCoroutine(LoadProps());
 
     }
 

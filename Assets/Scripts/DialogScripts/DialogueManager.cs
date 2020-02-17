@@ -12,7 +12,11 @@ public class DialogueManager : MonoBehaviour
         Black
     }
 
-
+    public enum DialogueType
+    {
+        DialogueBox,
+        DialogueVertical
+    }
 
     public enum FontTypes
     {
@@ -29,8 +33,10 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueTrigger m_DialogueTrigger;
 
-
+    public DialogueType m_CurrentDialogueType;
     
+    public TextMeshProUGUI m_DialogueBoxText;
+    public TextMeshProUGUI m_VerticalText;
     public TextMeshProUGUI m_DisplayText;
     public Text m_DisplayName;
     public Canvas m_DialogueCanvas;
@@ -39,6 +45,9 @@ public class DialogueManager : MonoBehaviour
     public RawImage m_Portrait;
 
     public OverworldCamera m_OverworldCamera;
+
+    public GameObject m_DialogueBox;
+    public GameObject m_DialogueVertical;
 
     public int AnimatedTextiterator;
     public string CurrentText;
@@ -54,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         TextScroll = false;
     }
 
-    public void StartDialogue(List<Dialogue> aDialogue)
+    public void StartDialogue(List<Dialogue> aDialogue, DialogueType aDialogueType)
     {
 
         if (Constants.Constants.TurnDialogueOff == false)
@@ -62,10 +71,29 @@ public class DialogueManager : MonoBehaviour
 
             //m_Sentances.Clear();
 
+            
+            
+            
+          //  m_DisplayText.text = "";
+            m_CurrentDialogueType = aDialogueType;
+            if (m_CurrentDialogueType == DialogueType.DialogueBox)
+            {
+                m_DialogueBox.SetActive(true);
+                m_DialogueBoxText.text = "";
+                m_DisplayText = m_DialogueBoxText;
+                
+            }
+            else if (m_CurrentDialogueType == DialogueType.DialogueVertical)
+            {
+                m_DialogueVertical.SetActive(true);
+                m_VerticalText.text = "";
+                m_DisplayText = m_VerticalText;
+            }
+
             m_OverworldCamera.gameObject.SetActive(false);
             m_DialogueCanvas.gameObject.SetActive(true);
 
-
+            InputManager.Instance.m_BaseMovementControls.Disable();
             DisplayNextSentence();
         }
     }
@@ -108,6 +136,8 @@ public class DialogueManager : MonoBehaviour
         CurrentText = m_DialogueTrigger.m_Dialogue[0].m_Sentances;
      
         AnimateText(CurrentText);
+        
+
         m_DisplayName.text = m_DialogueTrigger.m_Dialogue[0].m_Name;
 
         RemoveGameObject = m_DialogueTrigger.m_Dialogue[0].DestroyGameObjectOnEndOfDialogue;
@@ -137,14 +167,23 @@ public class DialogueManager : MonoBehaviour
     {
 
         AnimatedTextiterator = 0;
-        m_DisplayText.text = "";
+        
         TextScroll = true;
 
 
+        if (m_CurrentDialogueType == DialogueType.DialogueBox)
+        {
+            m_DisplayText.text = "";
+            m_DialogueBox.SetActive(true);
+            m_DisplayText = m_DialogueBoxText;
+                
+        }
+        else if (m_CurrentDialogueType == DialogueType.DialogueVertical)
+        {
+            m_DisplayText.text += ("\n" + strComplete);
+        }
 
-        m_DisplayText.text = strComplete;
-        
-        
+
     }
 
 
@@ -186,7 +225,13 @@ public class DialogueManager : MonoBehaviour
         {
             m_DialogueTrigger.DialogueIsDone = true;
         }
+        m_DisplayText.text = "";
+        
+        m_DialogueBox.SetActive(false);
+        m_DialogueVertical.SetActive(false);
         //Destroy(m_DialogueTrigger.gameObject);
+        AudioManager.Instance.StopSound();
+        InputManager.Instance.m_BaseMovementControls.Enable();
         m_OverworldCamera.gameObject.SetActive(true);
     }
 

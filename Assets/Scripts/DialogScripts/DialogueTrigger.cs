@@ -29,11 +29,14 @@ public class DialogueTrigger : MonoBehaviour
     {
         Default,
         Menu,
-        WaitForObjectToCome
+        WaitForObjectToCome,
+        OnAwake
     }
 
 
-    
+
+
+
     public List<Dialogue> m_Dialogue;
 
     public List<CharacterInCutsceneReferences> m_CharactersInCutscene; 
@@ -42,10 +45,14 @@ public class DialogueTrigger : MonoBehaviour
 
 
     public UiManager.Screen m_UiScreen;
+
+    public DialogueManager.DialogueType m_DialogueType;
     
     public bool DeleteStartAfterStart;
     public bool DeleteEndOnEnd;
     public bool UseStartObjectFulltime;
+    
+    public AudioClip m_Audioclip;
 
     public TextAsset m_JsonFile;
 
@@ -62,7 +69,10 @@ public class DialogueTrigger : MonoBehaviour
         DialogueHasHappend = false;
         //DeSerializeJsonDialogue(m_JsonFile);
 
-
+        if (m_TriggerType == TriggerType.OnAwake)
+        {
+            TriggerDialogue();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -106,9 +116,14 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
 
+        Instantiate(m_CutsceneArea);
         DeSerializeJsonDialogue(m_JsonFile);
+        AudioManager.Instance.PlaySoundRepeating(m_Audioclip);
+        
+        
+        
         m_DialogueManager.m_DialogueTrigger = this;
-        m_DialogueManager.StartDialogue(m_Dialogue);
+        m_DialogueManager.StartDialogue(m_Dialogue,m_DialogueType);
         DialogueHasHappend = true;
         DialogueIsDone = false;
     }

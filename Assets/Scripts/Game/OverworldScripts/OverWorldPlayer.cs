@@ -11,8 +11,7 @@ public class OverWorldPlayer : MonoBehaviour {
     // Use this for initialization
 
     [SerializeField]
-    public BaseInput m_BaseMovementControls;
-
+ 
     public Animator m_PlayerAnimatior;
 
     public float Player_Speed = 5;
@@ -33,10 +32,8 @@ public class OverWorldPlayer : MonoBehaviour {
 
         m_PlayerAnimatior = GetComponentInChildren<Animator>();
         
-        m_BaseMovementControls = new BaseInput();
-       m_BaseMovementControls.Enable();
-       m_BaseMovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
-       m_BaseMovementControls.Player.Movement.canceled += movement => PlayerMovement(movement.ReadValue<Vector2>());
+       InputManager.Instance.m_BaseMovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
+       InputManager.Instance.m_BaseMovementControls.Player.Movement.canceled += movement => PlayerMovement(movement.ReadValue<Vector2>());
    //    InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
 
     }

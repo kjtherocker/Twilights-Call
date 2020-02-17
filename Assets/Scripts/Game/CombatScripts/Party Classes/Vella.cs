@@ -9,8 +9,8 @@ public class Vella : Creatures
     // Use this for initialization
     void Start ()
     {
-        CurrentHealth = 700;
-        MaxHealth = 700;
+        CurrentHealth = 50;
+        MaxHealth = 50;
         CurrentMana = 100;
         MaxMana = 200;
         Strength = 300;

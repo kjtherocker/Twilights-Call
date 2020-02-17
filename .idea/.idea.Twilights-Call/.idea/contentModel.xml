@@ -164,6 +164,9 @@
               <e p="HealthBar.cs" t="Include" />
               <e p="Party Classes" t="Include">
                 <e p="Cavia.cs" t="Include" />
+                <e p="Dolls" t="Include">
+                  <e p="Alpha.cs" t="Include" />
+                </e>
                 <e p="Fide.cs" t="Include" />
                 <e p="Sigma.cs" t="Include" />
                 <e p="Vella.cs" t="Include" />
@@ -233,6 +236,9 @@
               <e p="NodeReplacement.cs" t="Include" />
               <e p="Prop.cs" t="Include" />
             </e>
+            <e p="Sound" t="Include">
+              <e p="AudioManager.cs" t="Include" />
+            </e>
             <e p="TerrainScripts" t="Include">
               <e p="Cell.cs" t="Include" />
               <e p="CombatNode.cs" t="Include" />
@@ -284,16 +290,12 @@
           <e p="CelShader.shader" t="Include" />
           <e p="CutoutRotationsShader.shader" t="Include" />
           <e p="Disappear.shader" t="Include" />
-          <e p="Dissolve.shader" t="Include" />
           <e p="DontBackwardsCull.shader" t="Include" />
           <e p="DoubleTexture.shader" t="Include" />
-          <e p="NewSurfaceShader 1.shader" t="Include" />
-          <e p="NewSurfaceShader.shader" t="Include" />
           <e p="OdellWaterShader.shader" t="Include" />
-          <e p="Outlined-Silhouette Only.shader" t="Include" />
+          <e p="RenderOntop.shader" t="Include" />
           <e p="Shader_WeaponTest.shader" t="Include" />
           <e p="TestCellShading.shader" t="Include" />
-          <e p="TestSquareCutout.shader" t="Include" />
           <e p="Triplanar.shader" t="Include" />
           <e p="UnlitTransparentShader.shader" t="Include" />
           <e p="Water" t="Include">
