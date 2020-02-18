@@ -7,19 +7,22 @@ public class Behaviour_WalkClose : Behaviour
     public override Creatures AllyToAttack(List<Creatures> aCharacterList)
     {
 
-//        for (int i = 0; i < aCharacterList.Count; i++)
-//        {
-//            for (int j = 0; j < aCharacterList.Count; j++)
-//            {
-//                if (aCharacterList[j].CurrentHealth < aCharacterList[j + 1].CurrentHealth)
-//                {
-//                    Creatures tempA = aCharacterList[j];
-//                    Creatures tempB = aCharacterList[j + 1];
-//                    swap(ref tempA, ref tempB);
-//                }
-//            }
-//        }
+        List<Creatures> characterlist = aCharacterList;
+        
+        
+        for (int i = 0; i < characterlist.Count; i++)
+        {
+            for (int j = 0; j < characterlist.Count; j++)
+            {
+                if (characterlist[j].CurrentHealth < characterlist[j + 1].CurrentHealth)
+                {
+                    Creatures tempA = characterlist[j];
+                    Creatures tempB = characterlist[j + 1];
+                    swap(ref tempA, ref tempB);
+                }
+            }
+        }
 
-        return aCharacterList[0];
+        return characterlist[0];
     }
 }

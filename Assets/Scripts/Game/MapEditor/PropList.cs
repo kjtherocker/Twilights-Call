@@ -75,8 +75,23 @@ public class PropList : Singleton<PropList>
     void Start()
     {
 
-       // Addressables.LoadAssetAsync<Prop>("Tree1").Completed += OnLoadDone;
-      //  StartCoroutine(LoadProps());
+    //   Addressables.LoadAssetAsync<Prop>("Tree1").Completed += OnLoadDone;
+    //   Addressables.LoadAssetAsync<Prop>("Tree2").Completed += OnLoadDone;
+    //   Addressables.LoadAssetAsync<Prop>("Tree3").Completed += OnLoadDone;
+       
+       
+       
+       
+    // Addressables.LoadAssetAsync<Prop>("Angled_Top_Broken_Pillar").Completed += OnLoadDone;
+    // Addressables.LoadAssetAsync<Prop>("Fully_Intact_Pillar").Completed += OnLoadDone;
+    // Addressables.LoadAssetAsync<Prop>("Middle_Broken_Pillar_1").Completed += OnLoadDone;
+    // Addressables.LoadAssetAsync<Prop>("Middle_Broken_Pillar_2").Completed += OnLoadDone;
+    // Addressables.LoadAssetAsync<Prop>("Middle_Dented_Pillar").Completed += OnLoadDone;
+    // Addressables.LoadAssetAsync<Prop>("Pillar_Stub").Completed += OnLoadDone;
+    // Addressables.LoadAssetAsync<Prop>("Top_Broken_Pillar").Completed += OnLoadDone;
+       
+       
+     // StartCoroutine(LoadProps());
 
     }
 
@@ -97,7 +112,7 @@ public class PropList : Singleton<PropList>
    public IEnumerator LoadProps()
    {
        m_PropSet = new List<Prop>();
-        yield return Addressables.LoadAssetsAsync<Prop>("default", ob =>
+        yield return Addressables.LoadAssetsAsync<Prop>("prop", ob =>
         {
             
             Prop tempProp = ob.GetComponent<Prop>();

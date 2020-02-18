@@ -23,7 +23,7 @@ public class Behaviour : MonoBehaviour
         return aCharacterList[0];
     }
     
-    void swap(ref Creatures xp, ref Creatures yp)
+    protected void swap(ref Creatures xp, ref Creatures yp)
     {
         Creatures temp = xp;
         xp = yp;
