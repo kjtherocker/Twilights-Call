@@ -12,7 +12,7 @@ public class RedKnightPhase1 : Creatures
         MaxHealth = 200;
         CurrentMana = 10;
         MaxMana = 10;
-        Strength = 350;
+        Strength = 20;
         Magic = 350;
         Dexterity = 10;
         Speed = 10;

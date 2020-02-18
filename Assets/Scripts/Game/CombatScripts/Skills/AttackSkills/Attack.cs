@@ -15,7 +15,7 @@ public class Attack : Skills
         m_SkillFormation = SkillFormation.SingleNode;
         m_Damagetype = DamageType.Strength;
         m_CostToUse = 0;
-        m_Damage = 75;
+        m_Damage = 10;
         SkillName = "Attack";
         SkillDescription = "Attack a single enemy";
         m_AnimationName = "t_IsAttack";

@@ -28,6 +28,9 @@ public class AiController : MonoBehaviour
     public Animator m_CreaturesAnimator;
     public Creatures m_Creature;
 
+    public Transform m_AiModel;
+    
+    
     private Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
 
     public HealthBar m_Healthbar;
@@ -57,12 +60,18 @@ public class AiController : MonoBehaviour
         m_MovementHasStarted = false;
         m_InitalPosition = m_Position;
 
-        m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
-
-        m_Healthbar.Partymember = m_Creature;
+       // m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
+//
+       // m_Healthbar.Partymember = m_Creature;
         
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
         Node_MovingTo = Node_ObjectIsOn;
+
+
+        if (m_AiModel == null)
+        {
+            m_AiModel = transform.GetChild(0);
+        }
 
 
         if (m_CreaturesAnimator == null)
@@ -268,8 +277,7 @@ public class AiController : MonoBehaviour
 
                     GameManager.Instance.m_BattleCamera.m_CameraPositionInGrid = m_Position;
 
-
-                    transform.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+                    m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
                     CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
                     i++;

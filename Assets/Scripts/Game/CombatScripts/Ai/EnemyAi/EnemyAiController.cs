@@ -20,6 +20,23 @@ public class EnemyAiController : AiController
     {
         base.Start();
         m_EnemyRange = 6;
+        
+        if (m_AiModel == null)
+        {
+            m_AiModel = transform.GetChild(0);
+        }
+
+
+        if (m_CreaturesAnimator == null)
+        {
+            m_CreaturesAnimator = GetComponentInChildren<Animator>();
+        }
+
+        if (m_MovementType == null)
+        {
+            m_MovementType = GetComponent<MovementType>();
+        }
+
     }
 
     public HashSet<CombatNode> GetAvailableEnemysInRange(List<CombatNode> Acells, CombatNode ANodeHeuristicIsBasedOff,
@@ -79,7 +96,7 @@ public class EnemyAiController : AiController
                 GameManager.Instance.m_BattleCamera.m_CameraPositionInGrid = m_Position;
 
 
-                transform.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+                m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
                 CreatureOffset = new Vector3(0,
                     Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);

@@ -27,6 +27,8 @@ public class CombatManager : Singleton<CombatManager>
 
     private GameObject m_Gridformation;
 
+    public HealthBar m_Healthbar;
+    
 
     public TextMeshProUGUI m_TurnSwitchText;
     
@@ -74,15 +76,20 @@ public class CombatManager : Singleton<CombatManager>
             Relics = tempGridFormations.m_RelicsInGrid;
             
             TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
+
+            foreach (Creatures aEnemys in TurnOrderEnemy)
+            {
+                AddHealthbar(aEnemys);
+            }
             
             
             AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
            
             AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
            
-           // AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-           //                                                                     
-           // AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+            AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
+                                                                                
+            AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
             
             
             CombatHasStarted = true;
@@ -117,10 +124,13 @@ public class CombatManager : Singleton<CombatManager>
         aList[TopElement].m_CreatureAi.m_Position =
             m_Grid.m_GridPathArray[aPosition.x, aPosition.y].m_PositionInGrid;
 
+
+        aList[TopElement].m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aList[TopElement].m_CreatureAi.transform); 
         aList[TopElement].m_CreatureAi.m_Grid = m_Grid;
 
+        AddHealthbar(aList[TopElement]);
+        
         aList[TopElement].m_CreatureAi.m_Movement = aCreature.m_CreatureMovement;
-
         aList[TopElement].m_CreatureAi.m_Creature = aList[aList.Count - 1];
 
 
@@ -130,6 +140,12 @@ public class CombatManager : Singleton<CombatManager>
     }
 
 
+    public void AddHealthbar(Creatures aCreature)
+    {
+        
+        aCreature.m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aCreature.m_CreatureAi.transform);
+        aCreature.m_CreatureAi.m_Healthbar.Partymember = aCreature;
+    }
 
 
     void Update()
