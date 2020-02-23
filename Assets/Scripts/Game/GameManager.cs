@@ -47,7 +47,7 @@ public class GameManager : Singleton<GameManager>
         m_PartyManager = GameObject.Find("PartyManager").GetComponent<PartyManager>();
         m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         m_NodeFormation = GameObject.Find("NodeFormations").GetComponent<NodeFormations>();
-        
+        QualitySettings.vSyncCount = 1;
         SwitchToOverworld();
     }
 

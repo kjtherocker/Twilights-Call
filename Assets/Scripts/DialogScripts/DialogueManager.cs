@@ -150,16 +150,16 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown("a"))
         {
-            if (m_DialogueTrigger.m_Dialogue.Count > 0)
-            {
+         //  if (m_DialogueTrigger.m_Dialogue.Count > 0)
+         //  {
 
-                DisplayNextSentence();
+         //      DisplayNextSentence();
 
-            }
-            else
-            {
-                EndDialogue();
-            }
+         //  }
+         //  else
+         //  {
+         //      EndDialogue();
+         //  }
         }
     }
 

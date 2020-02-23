@@ -267,7 +267,7 @@ public class CombatNode : Cell
     public void SpawnProp()
     {
         m_PropOnNodeTemp = m_PropOnNode;
-        m_Prop = PrefabUtility.InstantiatePrefab(PropList.Instance.ReturnPropData(m_PropOnNode)) as GameObject;
+        m_Prop = Instantiate<GameObject>(PropList.Instance.ReturnPropData(m_PropOnNode));
         m_Prop.transform.parent = transform;
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
@@ -363,6 +363,7 @@ public class CombatNode : Cell
 
     public void SpawnEnemy()
     {
+        #if UNITY_EDITOR
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         
 
@@ -383,6 +384,7 @@ public class CombatNode : Cell
         
        m_CreatureOnGridPoint = Enemy.GetComponent<Creatures>();
        m_IsCovered = true;
+       #endif
     }
 
     public void EditorSelector()

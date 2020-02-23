@@ -323,7 +323,7 @@ public class AiController : MonoBehaviour
     public virtual Dictionary<CombatNode, List<CombatNode>> cachePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn,DelegateReturnNodeIndex delegateReturnNodeIndex )
     {
         var edges = GetGraphEdges(cells,delegateReturnNodeIndex);
-        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn);
+        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn,m_Movement);
         return paths;
     }
 

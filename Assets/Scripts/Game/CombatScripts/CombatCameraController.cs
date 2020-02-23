@@ -29,6 +29,8 @@ public class CombatCameraController : MonoBehaviour
 
     public Grid m_Grid;
     public Creatures m_Creature;
+    
+    public Creatures m_ToFollowCreature;
 
     public Skills m_CreatureAttackingSkill;
 
@@ -162,14 +164,14 @@ public class CombatCameraController : MonoBehaviour
                    
                    //InputManager.Instance.m_MovementControls.Disable();
 
-                   Vector3 PlayerPositionToFollow = m_Creature.ModelInGame.transform.position;
+                   Vector3 PlayerPositionToFollow = m_ToFollowCreature.ModelInGame.transform.position;
                    
-                   m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_Creature.m_CreatureAi.m_Position.x, m_Creature.m_CreatureAi.m_Position.y];
+                   m_NodeTheCameraIsOn = m_Grid.m_GridPathArray[m_ToFollowCreature.m_CreatureAi.m_Position.x, m_ToFollowCreature.m_CreatureAi.m_Position.y];
                
                    transform.position = Vector3.Lerp(transform.position, new Vector3(
-                       PlayerPositionToFollow.x + 13.5f,
-                       PlayerPositionToFollow.y + 13.9f,
-                       PlayerPositionToFollow.z - 13.5f), Time.deltaTime * 2);
+                           m_NodeTheCameraIsOn.gameObject.transform.position.x + 13.5f,
+                           m_NodeTheCameraIsOn.gameObject.transform.position.y + 13.9f,
+                           m_NodeTheCameraIsOn.gameObject.transform.position.z - 13.5f), Time.deltaTime * 2);
                }
 
 
@@ -214,40 +216,7 @@ public class CombatCameraController : MonoBehaviour
 
 
 
-        if (m_NodeTheCameraIsOn != null)
-        {
-            if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint != null)
-            {
-                if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
-                {
-                    m_StatusSheet.gameObject.SetActive(true);
-                    m_PartyStatus.gameObject.SetActive(true);
-                    m_EnemyStatus.gameObject.SetActive(false);
-                    if (m_StatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
-                    {
-                        m_StatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
-                    }
-                }
-                else if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Enemy)
-                {
-                    m_PartyStatus.gameObject.SetActive(false);
-                    m_EnemyStatus.gameObject.SetActive(true);
-                    if (m_EnemyStatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
-                    {
-                        m_EnemyStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
-                    }
-                }
-
-            }
-            else
-            {
-
-                m_PartyStatus.gameObject.SetActive(false);
-                m_StatusSheet.gameObject.SetActive(false);
-                m_EnemyStatus.gameObject.SetActive(false);
-
-            }
-        }
+       
     }
 
     public void DPadGridControls(Vector2 aMovement)
@@ -375,6 +344,46 @@ public class CombatCameraController : MonoBehaviour
                 }
             }
         }
+        
+        if (m_NodeTheCameraIsOn != null)
+        {
+            if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint != null)
+            {
+                if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
+                {
+
+                    CalculateCreaturesPath(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
+                    m_StatusSheet.gameObject.SetActive(true);
+                    m_PartyStatus.gameObject.SetActive(true);
+                    m_EnemyStatus.gameObject.SetActive(false);
+                    if (m_StatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
+                    {
+                        m_StatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
+                    }
+                }
+                else if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Enemy)
+                {
+                    CalculateCreaturesPath(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
+                    m_PartyStatus.gameObject.SetActive(false);
+                    m_EnemyStatus.gameObject.SetActive(true);
+                    if (m_EnemyStatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
+                    {
+                        m_EnemyStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
+                    }
+                }
+
+            }
+            else
+            {
+                
+                
+                
+                m_PartyStatus.gameObject.SetActive(false);
+                m_StatusSheet.gameObject.SetActive(false);
+                m_EnemyStatus.gameObject.SetActive(false);
+
+            }
+        }
     }
 
 
@@ -453,7 +462,18 @@ public class CombatCameraController : MonoBehaviour
 
     public void PlayerWalk()
     {
+
+        if (m_Creature == null)
+        {
+            return;
+        }
+
         if (m_Creature.m_CreatureAi.m_HasMovedForThisTurn == true)
+        {
+            return;
+        }
+
+        if (m_MovementHasBeenCalculated == false)
         {
             return;
         }
@@ -465,8 +485,29 @@ public class CombatCameraController : MonoBehaviour
             m_Grid.m_GridPathArray[m_Creature.m_CreatureAi.m_InitalPosition.x, m_Creature.m_CreatureAi.m_InitalPosition.y].m_CreatureOnGridPoint = null;
             m_CommandBoardExists = false;
             m_MovementHasBeenCalculated = false;
+            m_ToFollowCreature = m_Creature;
+            m_Creature = null;
         }
        
+    }
+
+    public void CalculateCreaturesPath(Creatures aCreature)
+    {
+        if (aCreature.m_CreatureAi.m_HasMovedForThisTurn == true)
+        {
+            return;
+        }
+
+
+        if (m_CommandBoardExists == false)
+        {
+            
+            
+            m_Grid.SetHeuristicToZero();
+            m_Grid.RemoveWalkableArea();
+            
+            aCreature.m_CreatureAi.FindAllPaths();
+        }
     }
 
     public void ReturnPlayerToInitalPosition()

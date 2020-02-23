@@ -58,7 +58,7 @@ public class UiScreenCommandBoard : UiScreen
             return;
         }
         InputManager.Instance.m_MovementControls.Enable();
-        m_CommandboardCreature.m_CreatureAi.FindAllPaths();
+     //   m_CommandboardCreature.m_CreatureAi.FindAllPaths();
         GameManager.Instance.BattleCamera.m_MovementHasBeenCalculated = true;
         GameManager.Instance.UiManager.PopScreen();
         

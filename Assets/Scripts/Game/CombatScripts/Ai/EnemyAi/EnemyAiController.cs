@@ -150,7 +150,7 @@ public class EnemyAiController : AiController
         CombatNode aNodeHeuristicIsBasedOn)
     {
         var edges = m_Behaviour.GetGraphRangeEdges(cells, Node_ObjectIsOn);
-        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn);
+        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn,m_Movement);
         return paths;
     }
 

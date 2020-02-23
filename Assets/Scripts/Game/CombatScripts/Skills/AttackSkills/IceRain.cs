@@ -30,7 +30,7 @@ public class IceRain : Skills
 
     public override int UseSkill(int BonusDamage)
     {
-        int CulmativeDamage = m_Damage + BonusDamage / 3;
+        int CulmativeDamage = m_Damage + BonusDamage / 4;
 
         return CulmativeDamage;
     }

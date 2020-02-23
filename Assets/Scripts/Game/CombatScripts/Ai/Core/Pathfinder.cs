@@ -6,7 +6,7 @@ using System;
 
 public class Pathfinder : IPathfinding
 {
-    public Dictionary<CombatNode, List<CombatNode>> findAllPaths(Dictionary<CombatNode, Dictionary<CombatNode, int>> edges, CombatNode originNode)
+    public Dictionary<CombatNode, List<CombatNode>> findAllPaths(Dictionary<CombatNode, Dictionary<CombatNode, int>> edges, CombatNode originNode,int m_Range)
     {
         IPriorityQueue<CombatNode> frontier = new HeapPriorityQueue<CombatNode>();
         frontier.Enqueue(originNode, 0);
@@ -25,6 +25,12 @@ public class Pathfinder : IPathfinding
                 int newCost = costSoFar[current] + edges[current][neighbour];
                 if (!costSoFar.ContainsKey(neighbour) || newCost < costSoFar[neighbour])
                 {
+                    if (newCost > m_Range)
+                    {
+                        break;
+                    }
+                    
+
                     costSoFar[neighbour] = newCost;
                     cameFrom[neighbour] = current;
                     frontier.Enqueue(neighbour, newCost);
