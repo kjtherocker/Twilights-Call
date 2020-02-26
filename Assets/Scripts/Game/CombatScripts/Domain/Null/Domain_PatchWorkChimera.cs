@@ -14,7 +14,7 @@ public class Domain_PatchWorkChimera : Domain
         Domaintype = DomainType.OneTime;
         m_CostToUse = 5;
         
-        m_DomainTexture = new Material(Shader.Find("Standard"));
+        m_DomainTexture = (Material)Resources.Load("Objects/Battle/Node/Material/Material_CrystalNode", typeof(Material));
         
     }
 

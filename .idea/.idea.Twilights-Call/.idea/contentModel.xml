@@ -232,6 +232,9 @@
               <e p="OverworldCamera.cs" t="Include" />
               <e p="OverWorldPlayer.cs" t="Include" />
             </e>
+            <e p="Portrait" t="Include">
+              <e p="AnimateGif.cs" t="Include" />
+            </e>
             <e p="Props" t="Include">
               <e p="NodeReplacement.cs" t="Include" />
               <e p="Prop.cs" t="Include" />

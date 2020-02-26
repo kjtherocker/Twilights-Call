@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : Singleton<DialogueManager>
 {
 
     public enum ChatBoxType
@@ -150,16 +150,16 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown("a"))
         {
-         //  if (m_DialogueTrigger.m_Dialogue.Count > 0)
-         //  {
+           if (m_DialogueTrigger.m_Dialogue.Count > 0)
+           {
 
-         //      DisplayNextSentence();
+               DisplayNextSentence();
 
-         //  }
-         //  else
-         //  {
-         //      EndDialogue();
-         //  }
+           }
+           else
+           {
+               EndDialogue();
+           }
         }
     }
 
@@ -173,10 +173,11 @@ public class DialogueManager : MonoBehaviour
 
         if (m_CurrentDialogueType == DialogueType.DialogueBox)
         {
-            m_DisplayText.text = "";
+           // m_DisplayText.text = "";
             m_DialogueBox.SetActive(true);
             m_DisplayText = m_DialogueBoxText;
-                
+            m_DisplayText.text = strComplete;    
+            
         }
         else if (m_CurrentDialogueType == DialogueType.DialogueVertical)
         {

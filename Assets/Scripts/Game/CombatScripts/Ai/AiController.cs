@@ -200,7 +200,7 @@ public class AiController : MonoBehaviour
 
     public void Domain()
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],3);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],4);
 
 
         foreach (CombatNode node in _pathsInRange)
@@ -222,7 +222,7 @@ public class AiController : MonoBehaviour
     
     public void Devour(int DevourRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],DevourRange);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],4);
 
 
         foreach (CombatNode node in _pathsInRange)

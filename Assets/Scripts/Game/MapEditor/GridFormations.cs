@@ -35,10 +35,14 @@ public class GridFormations : MonoBehaviour
     public List<Creatures> m_EnemysInGrid;
     public List<Relic> m_RelicsInGrid;
 
+    public DialogueTrigger m_StartDialogueTrigger;
+
     public void Start()
     {
         m_Grid = Grid.Instance;
         //m_EditorCamera = GameManager.Instance.m_EditorCamera;
+
+        m_StartDialogueTrigger = GetComponent<DialogueTrigger>();
     }
     
     public void CreateGrid(Vector2Int grid)

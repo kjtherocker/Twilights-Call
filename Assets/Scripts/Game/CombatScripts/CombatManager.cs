@@ -87,9 +87,9 @@ public class CombatManager : Singleton<CombatManager>
            
             AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
            
-            AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-                                                                                
-            AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+         //   AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
+         //                                                                       
+         //   AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
             
             
             CombatHasStarted = true;
@@ -99,6 +99,11 @@ public class CombatManager : Singleton<CombatManager>
             m_BattleStates = BattleStates.AllyTurn;
             
             WhichSidesTurnIsIt = false;
+
+            if (tempGridFormations.m_StartDialogueTrigger != null)
+            {
+                tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
+            }
         }
 
     }

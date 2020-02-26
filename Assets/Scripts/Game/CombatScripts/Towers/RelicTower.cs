@@ -27,7 +27,7 @@ public class RelicTower : Relic
         m_Domain = new Domain_PatchWorkChimera();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
-
+        m_CreatureMovement = 8;
 
         charactertype = Charactertype.Undefined;
         elementalStrength = ElementalStrength.Fire;

@@ -30,7 +30,8 @@ public class DialogueTrigger : MonoBehaviour
         Default,
         Menu,
         WaitForObjectToCome,
-        OnAwake
+        OnAwake,
+        Arena
     }
 
 
@@ -116,14 +117,17 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
 
-        Instantiate(m_CutsceneArea);
+
+        if (m_CutsceneArea != null)
+        {
+            Instantiate(m_CutsceneArea);
+        }
+
         DeSerializeJsonDialogue(m_JsonFile);
         AudioManager.Instance.PlaySoundRepeating(m_Audioclip);
         
-        
-        
-        m_DialogueManager.m_DialogueTrigger = this;
-        m_DialogueManager.StartDialogue(m_Dialogue,m_DialogueType);
+        DialogueManager.Instance.m_DialogueTrigger = this;
+        DialogueManager.Instance.StartDialogue(m_Dialogue,m_DialogueType);
         DialogueHasHappend = true;
         DialogueIsDone = false;
     }
