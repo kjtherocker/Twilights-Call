@@ -16,14 +16,17 @@ public class RedKnightPhase3 : Creatures
         Magic = 350;
         Dexterity = 10;
         Speed = 10;
-        Name = "R3";
+        if (Name == "No Name")
+        {
+            Name = NameGenerator.Instance.GetName();
+        }
 
 
         SetCreature();
 
-        m_Attack = GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack));
 
 
         AmountOfTurns = 1;

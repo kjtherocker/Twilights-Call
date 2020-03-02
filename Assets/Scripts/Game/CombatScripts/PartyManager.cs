@@ -12,7 +12,7 @@ public class PartyManager : MonoBehaviour
     void Start()
     {
         m_CurrentParty.Add(gameObject.AddComponent<Sigma>());
-        m_CurrentParty.Add(gameObject.AddComponent<Fide>());
+        m_CurrentParty.Add(gameObject.AddComponent<Alpha>());
         m_CurrentParty.Add(gameObject.AddComponent<Cavia>());
         m_CurrentParty.Add(gameObject.AddComponent<Vella>());
     }

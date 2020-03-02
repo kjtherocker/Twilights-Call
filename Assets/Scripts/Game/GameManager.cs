@@ -8,31 +8,19 @@ public class GameManager : Singleton<GameManager>
     public GameObject Combat_Objects;
     public PartyManager m_PartyManager;
     public PartyManager PartyManager { get { return m_PartyManager; } }
-    public EncounterManager m_EncounterManager;
-    public EncounterManager EncounterManager { get { return m_EncounterManager; } }
+
     public CombatManager m_CombatManager;
     public CombatManager CombatManager { get { return m_CombatManager; } }
     public CombatCameraController m_BattleCamera;
     public CombatCameraController BattleCamera { get { return m_BattleCamera; } }
 
-    public EditorCamera m_EditorCamera;
-    public EditorCamera EditorCamera { get { return m_EditorCamera; } }
-
-
     public UiManager m_UiManager;
     public UiManager UiManager { get { return m_UiManager; } }
 
-    public InputManager m_InputManager;
-    public InputManager InputManager { get { return m_InputManager; } }
-
-    public PropList m_PropList;
-    public PropList PropList { get{ return m_PropList; } }
-
+    
     public Grid m_Grid;
     public Grid Grid { get { return m_Grid; } }
 
-    public SkillList m_SkillList;
-    public SkillList SkillList { get { return m_SkillList; } set {  m_SkillList = value; } }
 
     public NodeFormations m_NodeFormation;
     public NodeFormations NodeFormation { get { return m_NodeFormation; } }
@@ -58,11 +46,9 @@ public class GameManager : Singleton<GameManager>
         m_GameStates = GameStates.Overworld;
         m_PartyManager = GameObject.Find("PartyManager").GetComponent<PartyManager>();
         m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        m_EncounterManager = GameObject.Find("EncounterManager").GetComponent<EncounterManager>();
         m_NodeFormation = GameObject.Find("NodeFormations").GetComponent<NodeFormations>();
-        //m_BattleCamera = GameObject.Find("BattleCamera").GetComponent<CombatCameraController>();
-        Physics.autoSimulation = false;
-
+        QualitySettings.vSyncCount = 1;
+        SwitchToOverworld();
     }
 
     public void SwitchToOverworld()

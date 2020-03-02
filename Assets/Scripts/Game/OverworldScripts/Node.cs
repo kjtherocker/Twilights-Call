@@ -16,7 +16,7 @@ public class Node : MonoBehaviour {
     public GameObject m_EnemyPlaneReference;
     public GameObject m_SpawnedObject;
 
-    public GridFormations m_GridFormation;
+    public GameObject m_GridFormation;
 
     bool RoadsAreSpawned;
 

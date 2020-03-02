@@ -55,6 +55,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SliceGuide:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -66,9 +70,15 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Opacity: 1
+    - _Outline: 0.01
+    - _OutlineDot: 0.25
+    - _OutlineExistance: 0
+    - _OutlineExtrusion: 0.02
     - _Parallax: 0.02
     - _RimAmount: 0.716
     - _RimThreshold: 0.1
+    - _SliceAmount: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -76,7 +86,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-    - _Color: {r: 0.10568708, g: 0.1792453, b: 0.17853907, a: 1}
+    - _Color: {r: 0.11360803, g: 0.21698111, b: 0.21698111, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}

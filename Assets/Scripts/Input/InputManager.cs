@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     public PlayerInput m_MovementControls;
-
+    public BaseInput m_BaseMovementControls;
 
     // Use this for initialization
     void Awake()
@@ -14,7 +14,8 @@ public class InputManager : MonoBehaviour
         m_MovementControls = new PlayerInput();
         m_MovementControls.Enable();
 
-      
+        m_BaseMovementControls = new BaseInput();
+        m_BaseMovementControls.Enable();
     }
 
 

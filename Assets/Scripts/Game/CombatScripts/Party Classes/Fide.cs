@@ -7,8 +7,8 @@ public class Fide : Creatures
     // Use this for initialization
     void Start()
     {
-        CurrentHealth = 700;
-        MaxHealth = 700;
+        CurrentHealth = 50;
+        MaxHealth = 50;
         CurrentMana = 100;
         MaxMana = 200;
         Strength = 200;
@@ -22,15 +22,15 @@ public class Fide : Creatures
 
         SetCreature();
 
-        m_Attack = GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.icerain));
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.FireBall));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.FireBall));
 
-        m_BloodArts.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.BloodRelief));
+        m_BloodArts.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.BloodRelief));
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Fide/Pref_Fide", typeof(GameObject));
 

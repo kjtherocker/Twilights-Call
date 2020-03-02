@@ -83,8 +83,13 @@ public class Skills
     [SerializeField]
     public string m_AnimationName;
 
+    
+    [SerializeField]
+    public int m_SkillRange;
+
     public virtual void Start()
     {
+        m_SkillRange = 2;
     }
     public virtual void Update()
     {

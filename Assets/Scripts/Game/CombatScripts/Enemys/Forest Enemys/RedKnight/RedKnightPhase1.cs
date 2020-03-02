@@ -12,18 +12,22 @@ public class RedKnightPhase1 : Creatures
         MaxHealth = 200;
         CurrentMana = 10;
         MaxMana = 10;
-        Strength = 350;
+        Strength = 20;
         Magic = 350;
         Dexterity = 10;
         Speed = 10;
-        Name = "R1";
 
+        if (Name == "No Name")
+        {
+            Name = NameGenerator.Instance.GetName();
+            transform.name = Name;
+        }
 
         SetCreature();
 
-        m_Attack = GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(GameManager.Instance.SkillList.SetSkills(SkillList.SkillEnum.Attack));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack));
 
 
         AmountOfTurns = 1;

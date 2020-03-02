@@ -7436,8 +7436,9 @@ GameObject:
   - component: {fileID: 2848941678721246736}
   - component: {fileID: 3227826396744742818}
   - component: {fileID: 7077051346994780740}
+  - component: {fileID: 5237679319928930692}
   m_Layer: 0
-  m_Name: Pref_Knight_Phase3
+  m_Name: Pref_RedKnight_Phase3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7506,6 +7507,7 @@ MonoBehaviour:
   m_Goal: {x: 0, y: 0}
   m_Position: {x: 0, y: 0}
   m_InitalPosition: {x: 0, y: 0}
+  m_Domainstate: 0
   Node_MovingTo: {fileID: 0}
   Node_ObjectIsOn: {fileID: 0}
   m_CreaturesAnimator: {fileID: 0}
@@ -7516,10 +7518,23 @@ MonoBehaviour:
   m_MovementHasStarted: 0
   m_HasAttackedForThisTurn: 0
   m_HasMovedForThisTurn: 0
+  m_MovementType: {fileID: 0}
   m_Target: {fileID: 0}
   m_AiFinished: 0
   m_EndMovement: 0
   m_EnemyRange: 0
+--- !u!114 &5237679319928930692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268851891108942131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8d3e4f7bdbbc8429d1adde870c5355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7329771144572077763
 GameObject:
   m_ObjectHideFlags: 0

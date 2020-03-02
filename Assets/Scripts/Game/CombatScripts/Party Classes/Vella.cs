@@ -9,8 +9,8 @@ public class Vella : Creatures
     // Use this for initialization
     void Start ()
     {
-        CurrentHealth = 700;
-        MaxHealth = 700;
+        CurrentHealth = 50;
+        MaxHealth = 50;
         CurrentMana = 100;
         MaxMana = 200;
         Strength = 300;
@@ -21,17 +21,16 @@ public class Vella : Creatures
 
         AmountOfTurns = 1;
 
-       //m_Skills = new Skills[4];
-       //m_Skills[0] = gameObject.AddComponent<HolyWater>();
-       //m_Skills[1] = gameObject.AddComponent<PhoenixSpirit>();
-       //m_Skills[2] = gameObject.AddComponent<IceRain>();
-       //m_Skills[3] = gameObject.AddComponent<Restrict>();
-       //
-       //m_BloodArts = new Skills[1];
-       //m_BloodArts[0] = gameObject.AddComponent<BloodRelief>();
-
-
         SetCreature();
+        
+        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+        
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
+
+
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Vella/Prefab/Pref_Vella", typeof(GameObject));
 

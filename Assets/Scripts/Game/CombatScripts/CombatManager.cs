@@ -7,42 +7,36 @@ using UnityEditor;
 using TMPro;
 
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : Singleton<CombatManager>
 {
 
     public PartyManager PartyManager;
-    public EncounterManager EncounterManager;
-    public GameManager GameManager;
 
     public Grid m_Grid;
 
-    //For the skills
-
-    public Creatures CurrentTurnHolder;
 
     bool WhichSidesTurnIsIt;
     bool CombatHasStarted;
 
-    int m_EnemyAiCurrentlyInList;
+    public int m_EnemyAiCurrentlyInList;
+    
 
-
-    public CombatCameraController m_BattleCamera;
-
-    public GridFormations m_GridFormation;
+    public GameObject m_GridFormation;
 
     public Vector3 CreatureOffset;
 
     private GameObject m_Gridformation;
 
+    public HealthBar m_Healthbar;
+    
 
     public TextMeshProUGUI m_TurnSwitchText;
-
-    public List<TurnIndicatorWrapper> m_TurnIdenticator;
+    
 
     public List<Creatures> DeadAllys;
     public List<Creatures> TurnOrderAlly;
     public List<Creatures> TurnOrderEnemy;
-    public List<Creatures> CurrentTurnOrderSide;
+    public List<Relic> Relics;
 
 
     public enum BattleStates
@@ -62,15 +56,8 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
-
-
-        GameManager = GameManager.Instance;
-        EncounterManager = GameManager.Instance.EncounterManager;
+        
         PartyManager = GameManager.Instance.PartyManager;
-
-
-
-
     }
 
     public void CombatStart()
@@ -83,45 +70,40 @@ public class CombatManager : MonoBehaviour
 
             m_Gridformation = Instantiate<GameObject>(m_GridFormation.gameObject);
 
+            GridFormations tempGridFormations = m_Gridformation.GetComponentInChildren<GridFormations>();
+            m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
 
-            m_Grid.Convert1DArrayto2D(m_Gridformation.GetComponent<GridFormations>().m_ListToConvert,
-                m_Gridformation.GetComponent<GridFormations>().m_GridDimensions);
+            Relics = tempGridFormations.m_RelicsInGrid;
             
+            TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
 
+            foreach (Creatures aEnemys in TurnOrderEnemy)
+            {
+                AddHealthbar(aEnemys);
+            }
+            
+            
             AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
-          
-           //AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
-           //
-           //AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-           //                                                                     
-           //AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
-
-
-            //Setting up the Enemy
-            AddCreatureToCombat(EncounterManager.EnemySlot4, new Vector2Int(3, 4), TurnOrderEnemy);
-
-
-
-    
+           
+            AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
+           
+         //   AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
+         //                                                                       
+         //   AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+            
+            
             CombatHasStarted = true;
 
 
-            //AmountofTurns = TurnOrderAlly.Count;
-            //for (int i = 0; i < AmountofTurns; i++)
-            //{
-            //    m_TurnIdenticator.Add(Instantiate<TurnIndicatorWrapper>(m_ImageReference));
-            //    m_TurnIdenticator[i].gameObject.transform.localPosition = new Vector3( -365 + i * 10, 100, 0);
-            //    m_TurnIdenticator[i].gameObject.transform.SetParent(Canvas_TurnMenu.transform, false);
-            //}
             
             m_BattleStates = BattleStates.AllyTurn;
-
-            CurrentTurnOrderSide = TurnOrderAlly;
-            //Canvas_CommandBoard.SetActive(false);
-            //Canvas_CombatEndMenu.Reset();
+            
             WhichSidesTurnIsIt = false;
 
-
+            if (tempGridFormations.m_StartDialogueTrigger != null)
+            {
+                tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
+            }
         }
 
     }
@@ -147,22 +129,28 @@ public class CombatManager : MonoBehaviour
         aList[TopElement].m_CreatureAi.m_Position =
             m_Grid.m_GridPathArray[aPosition.x, aPosition.y].m_PositionInGrid;
 
+
+        aList[TopElement].m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aList[TopElement].m_CreatureAi.transform); 
         aList[TopElement].m_CreatureAi.m_Grid = m_Grid;
 
+        AddHealthbar(aList[TopElement]);
+        
         aList[TopElement].m_CreatureAi.m_Movement = aCreature.m_CreatureMovement;
-
         aList[TopElement].m_CreatureAi.m_Creature = aList[aList.Count - 1];
 
 
         m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_CreatureOnGridPoint = aList[TopElement];
-        m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
-
-
-        //aList[aList.Count - 1].ModelInGame.transform.localScale = new Vector3(0.02448244f, 0.02448244f, 0.02448244f);
-
+        m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_IsCovered = true;
+        
     }
 
 
+    public void AddHealthbar(Creatures aCreature)
+    {
+        
+        aCreature.m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aCreature.m_CreatureAi.transform);
+        aCreature.m_CreatureAi.m_Healthbar.Partymember = aCreature;
+    }
 
 
     void Update()
@@ -180,21 +168,16 @@ public class CombatManager : MonoBehaviour
                break;
 
            case BattleStates.AllyTurn:
-                //isPlayersDoneMoving();
-                if (Input.GetButtonDown("Ps4_Triangle") )
-                {
-                    StartCoroutine(EnemyTurn());
-                }
 
+               if (Input.GetKeyDown("i"))
+               {
+                   StartCoroutine(EnemyTurn());
+               }
 
                 break;
 
             case BattleStates.EnemyTurn:
 
-                if (Input.GetButtonDown("Ps4_Triangle") )
-                {
-                    StartCoroutine(AllyTurn());
-                }
 
 
                 break;
@@ -210,55 +193,34 @@ public class CombatManager : MonoBehaviour
                break;
        }
 
-        
 
+       if (Input.GetKeyDown("l"))
+       {
+           Relics[0].m_CreatureAi.Domain();
+       }
     }
 
-
-
-
-    private bool isPlayersDoneMoving()
+    public void RemoveDeadFromList(string aName, Creatures.Charactertype aCharactertype)
     {
-        for (int i = 0; i < 1; i++)
+        if (aCharactertype == Creatures.Charactertype.Ally)
         {
-            if (TurnOrderAlly[i].m_CreatureAi.m_HasMovedForThisTurn == true)
-            { 
-                return false;
-            }
-            
-        }
-
-        StartCoroutine(AllyTurn());
-        return true;
-    }
-
-    void RemoveDeadFromList()
-    {
-        if (TurnOrderAlly != null)
-        {
-            for (int i = 0; i < TurnOrderAlly.Count; i++)
+            for (int i = 0; i < TurnOrderAlly.Count - 1; i++)
             {
-                if (TurnOrderAlly[i].CurrentHealth <= 0)
-                {
-                    DeadAllys.Add(TurnOrderAlly[i]);
+                if (TurnOrderAlly[i].Name == aName)
+                {    
                     TurnOrderAlly.RemoveAt(i);
                 }
-
             }
         }
 
-        
-
-        if (TurnOrderEnemy != null)
+        if (aCharactertype == Creatures.Charactertype.Enemy)
         {
-            for (int i = 0; i < TurnOrderEnemy.Count; i++)
+            for (int i = 0; i < TurnOrderEnemy.Count - 1; i++)
             {
-                if (TurnOrderEnemy[i].CurrentHealth <= 0)
+                if (TurnOrderEnemy[i].Name == aName)
                 {
-                    TurnOrderEnemy[i].Death();
                     TurnOrderEnemy.RemoveAt(i);
                 }
-
             }
         }
 
@@ -266,8 +228,6 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator EnemyTurn()
     {
-        CurrentTurnOrderSide = TurnOrderEnemy;
-
         m_BattleStates = BattleStates.EnemyTurn;
 
         m_TurnSwitchText.gameObject.SetActive(true);
@@ -276,44 +236,34 @@ public class CombatManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         m_TurnSwitchText.gameObject.SetActive(false);
-
-        foreach (Creatures creature in CurrentTurnOrderSide)
-        {
-
-            EnemyAiController EnemyTemp = creature.m_CreatureAi as EnemyAiController;
-
-            EnemyTemp.EnemyMovement();
-
-            
-        }
-
-       m_EnemyAiCurrentlyInList = 0;
-       EnemyMovement();
+        
+        m_EnemyAiCurrentlyInList = 0;
+        EnemyMovement();
 
     }
 
     public void EnemyMovement()
     {
 
-        if (m_EnemyAiCurrentlyInList == TurnOrderEnemy.Count )
+        if (m_EnemyAiCurrentlyInList > TurnOrderEnemy.Count - 1)
         {
             StartCoroutine(AllyTurn());
             return ;
         }
-
-        EnemyAiController EnemyTemp = TurnOrderEnemy[m_EnemyAiCurrentlyInList].m_CreatureAi as EnemyAiController;
-       // EnemyTemp.EnemyWalkToTarget();
-
-        m_EnemyAiCurrentlyInList++;
-        
-
+        else
+        {
+            EnemyAiController EnemyTemp = TurnOrderEnemy[m_EnemyAiCurrentlyInList].m_CreatureAi as EnemyAiController;
+            m_EnemyAiCurrentlyInList++;
+            if (EnemyTemp.DoNothing == false)
+            {
+                m_Grid.RemoveWalkableArea();
+                EnemyTemp.EnemyMovement();
+            }
+        }
     }
-
 
     public IEnumerator AllyTurn()
     {
-        CurrentTurnOrderSide = TurnOrderAlly;
-
         m_BattleStates = BattleStates.AllyTurn;
 
         m_TurnSwitchText.gameObject.SetActive(true);
@@ -321,7 +271,7 @@ public class CombatManager : MonoBehaviour
         m_TurnSwitchText.color = Color.blue;
 
 
-        foreach (Creatures creature in CurrentTurnOrderSide)
+        foreach (Creatures creature in TurnOrderAlly)
         {
             creature.m_CreatureAi.m_HasMovedForThisTurn = false;
             creature.m_CreatureAi.m_HasAttackedForThisTurn = false;
@@ -330,38 +280,6 @@ public class CombatManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         m_TurnSwitchText.gameObject.SetActive(false);
     }
-
-
-    public void PlayerTurnSkill()
-    {
-
-          //if (CurrentTurnHolder.m_Skills[CurrentTurnHolderSkills].GetSkillType() == Skills.SkillType.Attack)
-          //{
-          //    //Checking the range the skills has single target or fulltarget
-          //    if (CurrentTurnHolder.m_Skills[CurrentTurnHolderSkills].GetSkillRange() == Skills.SkillRange.SingleTarget)
-          //    {
-
-          //    }
-          //}
-    }
-
-    public void PlayerTurnBloodArt()
-    {
-
-    }
-
-    public void PlayerSelecting()
-    {
-
-
-    }
-
-    public bool SwitchTurnSides()
-    {
-        WhichSidesTurnIsIt = !WhichSidesTurnIsIt;
-
-        return WhichSidesTurnIsIt;
-
-    }
+    
 
 }

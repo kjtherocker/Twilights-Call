@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sigma_AniOverride
+  m_Controller: {fileID: 9100000, guid: 5ab252c27918942479913f71a503f8b7, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7489159399950633158, guid: 472a32f85ef34cf488823edeba70f784,
+      type: 3}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: ae3c5c546f7568848a299572cc69aa6e,
+      type: 3}
+  - m_OriginalClip: {fileID: 1827226128182048838, guid: 472a32f85ef34cf488823edeba70f784,
+      type: 3}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 66dfcdef7495d144c85a18d78299298c,
+      type: 3}
+  - m_OriginalClip: {fileID: 1827226128182048838, guid: 8252b003addedba4d951ff5b8c1df814,
+      type: 3}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 8252b003addedba4d951ff5b8c1df814,
+      type: 3}

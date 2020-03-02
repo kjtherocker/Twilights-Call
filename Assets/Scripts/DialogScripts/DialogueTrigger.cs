@@ -28,11 +28,16 @@ public class DialogueTrigger : MonoBehaviour
     public enum TriggerType
     {
         Default,
-        WaitForObjectToCome
+        Menu,
+        WaitForObjectToCome,
+        OnAwake,
+        Arena
     }
 
 
-    
+
+
+
     public List<Dialogue> m_Dialogue;
 
     public List<CharacterInCutsceneReferences> m_CharactersInCutscene; 
@@ -40,9 +45,15 @@ public class DialogueTrigger : MonoBehaviour
     public bool DialogueHasHappend;
 
 
+    public UiManager.Screen m_UiScreen;
+
+    public DialogueManager.DialogueType m_DialogueType;
+    
     public bool DeleteStartAfterStart;
     public bool DeleteEndOnEnd;
     public bool UseStartObjectFulltime;
+    
+    public AudioClip m_Audioclip;
 
     public TextAsset m_JsonFile;
 
@@ -52,28 +63,36 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool DialogueIsDone;
 
+    public OverWorldPlayer m_BasePlayer;
 
     public void Start()
     {
         DialogueHasHappend = false;
         //DeSerializeJsonDialogue(m_JsonFile);
 
-
+        if (m_TriggerType == TriggerType.OnAwake)
+        {
+            TriggerDialogue();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+
+        if (other.CompareTag("Player"))
         {
             if (DialogueHasHappend == false)
             {
                 if (m_TriggerType == TriggerType.Default)
                 {
-                    m_DialogueManager.m_DialogueTrigger = this;
-                    DialogueHasHappend = true;
-                    DialogueIsDone = false;
+                    TriggerDialogue();
                 }
-                else if(m_TriggerType == TriggerType.WaitForObjectToCome)
+                else if (m_TriggerType == TriggerType.Menu)
+                {
+                    UiManager.Instance.PushScreen(m_UiScreen);
+                    m_BasePlayer.m_IsInMenu = true;
+                }
+                else if (m_TriggerType == TriggerType.WaitForObjectToCome)
                 {
                 }
             }
@@ -98,9 +117,17 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
 
+
+        if (m_CutsceneArea != null)
+        {
+            Instantiate(m_CutsceneArea);
+        }
+
         DeSerializeJsonDialogue(m_JsonFile);
-        m_DialogueManager.m_DialogueTrigger = this;
-        m_DialogueManager.StartDialogue(m_Dialogue);
+        AudioManager.Instance.PlaySoundRepeating(m_Audioclip);
+        
+        DialogueManager.Instance.m_DialogueTrigger = this;
+        DialogueManager.Instance.StartDialogue(m_Dialogue,m_DialogueType);
         DialogueHasHappend = true;
         DialogueIsDone = false;
     }

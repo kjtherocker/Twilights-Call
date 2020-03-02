@@ -11,100 +11,159 @@ public class EnemyAiController : AiController
     public bool m_AiFinished;
     public bool m_EndMovement;
     public int m_EnemyRange;
-    private Dictionary<CombatNode, List<CombatNode>> cacheRangePath;
+    public Behaviour m_Behaviour;
+    public Dictionary<CombatNode, List<CombatNode>> cacheRangePath;
 
+    public bool DoNothing;
+    
     public override void Start()
     {
         base.Start();
         m_EnemyRange = 6;
+        
+        if (m_AiModel == null)
+        {
+            m_AiModel = transform.GetChild(0);
+        }
+
+
+        if (m_CreaturesAnimator == null)
+        {
+            m_CreaturesAnimator = GetComponentInChildren<Animator>();
+        }
+
+        if (m_MovementType == null)
+        {
+            m_MovementType = GetComponent<MovementType>();
+        }
+
     }
 
-    public HashSet<CombatNode> GetAvailableEnemysInRange(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff)
+    public HashSet<CombatNode> GetAvailableEnemysInRange(List<CombatNode> Acells, CombatNode ANodeHeuristicIsBasedOff,
+        int ARange)
     {
         cacheRangePath = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cacheRangePaths(cells, NodeHeuristicIsBasedOff);
+        var paths = cacheRangePaths(Acells, ANodeHeuristicIsBasedOff);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
 
             var pathCost = path.Sum(c => 1);
             key.m_Heuristic = pathCost;
-            if (pathCost <= m_EnemyRange)
+            if (pathCost <= ARange)
             {
+                key.m_IsWalkable = true;
                 cacheRangePath.Add(key, path);
             }
         }
+
         return new HashSet<CombatNode>(cacheRangePath.Keys);
     }
 
-    public  bool CheckIfNodeIsClearForRange(CombatNode aNode)
+    public override IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
-        // if the node is out of bounds, return -1 (an invalid tile index)
 
-        if (aNode == null)
+        if (aListOfNodes == null)
         {
-            Debug.Log("YOU BROKE " + aNode.m_PositionInGrid.ToString());
+            Debug.Log("GetToPositionBroke");
+            yield break;
         }
 
-        CombatNode nodeIndex = aNode;
-
-        // if the node is already closed, return -1 (an invalid tile index)
-        if (nodeIndex.m_HeuristicCalculated == true)
+        m_MovementHasStarted = true; 
+        
+        m_CreaturesAnimator.SetBool("b_IsWalking", true);
+        GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
+        Node_ObjectIsOn.m_CreatureOnGridPoint = null;
+        Node_ObjectIsOn.m_IsCovered = false;
+        for (int i = 0; i < aListOfNodes.Count;)
         {
-            return false;
-        }
-        // if the node can't be walked on, return -1 (an invalid tile index)
 
-        if (nodeIndex.m_CombatsNodeType == CombatNode.CombatNodeTypes.Wall)
-        {
-            return false;
-        }
-        if (nodeIndex.m_NodeHeight > 0)
-        {
-            return false;
-        }
-        // return a valid tile index
-        return true;
-    }
-
-    protected virtual Dictionary<CombatNode, Dictionary<CombatNode, int>> GetGraphRangeEdges(List<CombatNode> NodeList)
-    {
-        Dictionary<CombatNode, Dictionary<CombatNode, int>> ret = new Dictionary<CombatNode, Dictionary<CombatNode, int>>();
-
-        foreach (CombatNode Node in NodeList)
-        {
-            if (CheckIfNodeIsClearForRange(Node) == true || Node.Equals(Node_ObjectIsOn))
+            if (Node_MovingTo == Node_ObjectIsOn)
             {
-                ret[Node] = new Dictionary<CombatNode, int>();
-                foreach (CombatNode neighbour in Node.GetNeighbours(NodeList))
-                {
-                    if (CheckIfNodeIsClearForRange(neighbour) == true)
-                    {
-                        ret[Node][neighbour] = neighbour.m_MovementCost;
-                    }
-                }
+
+                Node_MovingTo = aListOfNodes[i];
+
+
+
+
+                Vector3 relativePos =
+                    aListOfNodes[i].gameObject.transform.position - transform.position + CreatureOffset;
+
+
+                m_Position = Node_MovingTo.m_PositionInGrid;
+
+                GameManager.Instance.m_BattleCamera.m_CameraPositionInGrid = m_Position;
+
+
+                m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+
+                CreatureOffset = new Vector3(0,
+                    Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
+                i++;
+                yield return new WaitUntil(() => Node_MovingTo == Node_ObjectIsOn);
             }
+
+
         }
-        return ret;
+        
+        //Camera no longer following the player;
+        GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.Normal;
+
+        //Setting the Walk Animation
+        m_CreaturesAnimator.SetBool("b_IsWalking", false);
+
+        //The walk has been finished
+        m_HasMovedForThisTurn = true;
+
+        m_MovementHasStarted = false;
+        //Changing the position from where the Creature was before
+
+
+        m_Position = aListOfNodes[aListOfNodes.Count - 1].m_PositionInGrid;
+
+        //Setting the node you are on to the new one
+        Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
+
+
+        Node_ObjectIsOn.m_IsGoal = false;
+        Node_ObjectIsOn.m_IsWalkable = false;
+        Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
+        Node_ObjectIsOn.m_IsCovered = true;
+
+         m_Grid.RemoveWalkableArea();
+
+       //Action_Move MoveAction = new Action_Move();
+       //MoveAction.SetupAction(m_Creature, Node_ObjectIsOn);
+       //CommandProcessor.Instance.m_ActionsStack.Add(MoveAction);
+
+        for (int i = aListOfNodes.Count; i < 0; i--)
+        {
+            aListOfNodes.RemoveAt(i);
+        }
+
+        EnemyAttack();
     }
 
-    public Dictionary<CombatNode, List<CombatNode>> cacheRangePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn)
+
+    public Dictionary<CombatNode, List<CombatNode>> cacheRangePaths(List<CombatNode> cells,
+        CombatNode aNodeHeuristicIsBasedOn)
     {
-        var edges = GetGraphRangeEdges(cells);
-        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn);
+        var edges = m_Behaviour.GetGraphRangeEdges(cells, Node_ObjectIsOn);
+        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn,m_Movement);
         return paths;
     }
 
     public void EnemyMovement()
     {
-
-        _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn);
+        m_Grid.RemoveWalkableArea();
+        FindAllPaths();
+        _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_EnemyRange);
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
         foreach (CombatNode node in _pathsInRange)
         {
-            if (node.m_CreatureOnGridPoint != null && m_Creature != node.m_CreatureOnGridPoint)
+            if (CheckIfAllyIsOnNode(node))
             {
                 m_AllysInRange.Add(node.m_CreatureOnGridPoint);
             }
@@ -113,41 +172,70 @@ public class EnemyAiController : AiController
         if (m_AllysInRange.Count > 0)
         {
 
-            Creatures CharacterInRange = CharacterToFollowAndAttack(m_AllysInRange);
+            Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
 
-            CombatNode NodeNeightboringAlly = 
+            CombatNode NodeNeightboringAlly =
                 GameManager.Instance.m_Grid.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
 
-            SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid);
 
-        }
-
-    }
-
-    public Creatures CharacterToFollowAndAttack(List<Creatures> aCharacterList)
-    {
-
-        for (int i = 0; i < aCharacterList.Count; i++)
-        {
-            for (int j = 0; j < aCharacterList.Count; j++)
+            if (NodeNeightboringAlly != null)
             {
-                if (aCharacterList[j].CurrentHealth < aCharacterList[j + 1].CurrentHealth)
-                {
-                    Creatures tempA = aCharacterList[j];
-                    Creatures tempB = aCharacterList[j + 1];
-                    swap(ref tempA, ref tempB);
-                }
+                SetGoalPosition(NodeNeightboringAlly.m_PositionInGrid);
+                return;
+            }
+            else
+            {
+                Debug.Log(gameObject.name +" Failed to be able to get to node ");
+                return;
             }
         }
 
-        return aCharacterList[0];
+            EnemyAttack();
     }
 
-    void swap(ref Creatures xp, ref Creatures yp)
+    public void EnemyAttack()
     {
-        Creatures temp = xp;
-        xp = yp;
-        yp = temp;
+        _pathsInRange =
+            GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_Creature.m_Attack.m_SkillRange);
+        
+
+        List<Creatures> m_AllysInRange = new List<Creatures>();
+        foreach (CombatNode node in _pathsInRange)
+        {
+            if (CheckIfAllyIsOnNode(node))
+            {
+                m_AllysInRange.Add(node.m_CreatureOnGridPoint);
+            }
+        }
+
+        if (m_AllysInRange.Count > 0)
+        {
+            Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
+
+            Skills m_SkillToUse = m_Creature.m_Attack;
+
+            StartCoroutine(CharacterInRange.DecrementHealth
+                (m_SkillToUse.m_Damage, m_SkillToUse.m_ElementalType, 2.0f, 2.0f, 2.0f));
+        }
+        else
+        {
+            Debug.Log(m_Creature.Name + " waited");
+        }
+
+        GameManager.Instance.m_CombatManager.EnemyMovement();
+        return;
     }
 
+    public bool CheckIfAllyIsOnNode(CombatNode aNode)
+    {
+        if (aNode.m_CreatureOnGridPoint != null && m_Creature != aNode.m_CreatureOnGridPoint)
+        {
+            if (aNode.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

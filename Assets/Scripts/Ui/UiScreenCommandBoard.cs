@@ -7,7 +7,6 @@ public class UiScreenCommandBoard : UiScreen
 {
     public Animator m_CommandBoardAnimator;
     public Creatures m_CommandboardCreature;
-    public Button m_MovementButton;
     public TextMeshProUGUI m_MovementText;
     public TextMeshProUGUI m_Attack;
     public TextMeshProUGUI m_Skill;
@@ -32,9 +31,9 @@ public class UiScreenCommandBoard : UiScreen
     public override void OnPush()
     {
         gameObject.SetActive(true);
-        GameManager.Instance.m_InputManager.m_MovementControls.Disable();
+        InputManager.Instance.m_MovementControls.Disable();
         m_MenuControls.Enable();
-        m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
+       // m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
 
     public void TurnCommandBoardOff()
@@ -50,15 +49,6 @@ public class UiScreenCommandBoard : UiScreen
     {
         m_CommandboardCreature = aCreature;
 
-        if (m_CommandboardCreature.m_CreatureAi.m_HasMovedForThisTurn == true)
-        {
-            m_MovementButton.interactable = false;
-        }
-        else
-        {
-            m_MovementButton.interactable = true;
-        }
-
     }
 
     public void PlayerMovement()
@@ -67,8 +57,8 @@ public class UiScreenCommandBoard : UiScreen
         {
             return;
         }
-        GameManager.Instance.m_InputManager.m_MovementControls.Enable();
-        m_CommandboardCreature.m_CreatureAi.FindAllPaths();
+        InputManager.Instance.m_MovementControls.Enable();
+     //   m_CommandboardCreature.m_CreatureAi.FindAllPaths();
         GameManager.Instance.BattleCamera.m_MovementHasBeenCalculated = true;
         GameManager.Instance.UiManager.PopScreen();
         

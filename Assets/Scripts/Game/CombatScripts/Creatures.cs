@@ -75,6 +75,11 @@ public class Creatures : MonoBehaviour
     public int Dexterity;
     public int Speed;
 
+    public int BeforeDomain_MaxHealth;
+    public int BeforeDomain_MaxMana;
+    public int BeforeDomain_Strength;
+    
+    
     public int m_CreatureMovement = 4;
 
     public int AmountOfTurns;
@@ -86,17 +91,20 @@ public class Creatures : MonoBehaviour
     public bool IsSelected;
     public bool IsCurrentTurnHolder;
 
+    public string DomainAffectingCreature;
     public string Name = "No Name";
 
     public Material m_Texture;
 
     public GameObject Model;
     public GameObject ModelInGame;
-    
+
+    public DomainList.DomainListEnum m_DomainList;
     public Domain m_Domain;
     
+    
     public Creatures ObjectToRotateAround;
-
+    
 
     int AlimentCounter;
 
@@ -113,6 +121,24 @@ public class Creatures : MonoBehaviour
        
         //m_Attack = gameObject.AddComponent<Attack>();
     }
+
+
+    public void StatsBeforeDomain()
+    {
+        
+        BeforeDomain_MaxHealth = MaxHealth;
+        BeforeDomain_MaxMana = MaxMana;
+        BeforeDomain_Strength = Strength;
+        
+    }
+
+    public void ReturnStatsToStateAfterDomain()
+    {
+        MaxHealth = BeforeDomain_MaxHealth;
+        MaxMana = BeforeDomain_MaxMana;
+        Strength = BeforeDomain_Strength;
+    }
+
 
 
     public virtual void EndTurn()
@@ -237,32 +263,28 @@ public class Creatures : MonoBehaviour
         CurrentHealth = 0;
         AlimentCounter = 0;
         BuffandDebuff = 0;
+
+        Grid Grid = GameManager.Instance.m_Grid;
+        CombatManager combatManager = GameManager.Instance.CombatManager;
+        
         if (charactertype == Charactertype.Enemy)
         {
-            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
-            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
-            {
-                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
-            }
-
-            Destroy(ModelInGame.gameObject);
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+            
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_IsCovered = false;
+            Destroy(gameObject);
         }
         if (charactertype == Charactertype.Ally)
         {
-            GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
-            if (GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType != CombatNode.CombatNodeTypes.Wall)
-            {
-                GameManager.Instance.m_Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y]
-                    .m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
-            }
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+
+            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_IsCovered = false;
+            
 
             Destroy(ModelInGame.gameObject);
         }
-
-
+        
+        combatManager.RemoveDeadFromList(Name,charactertype);
     }
 
 

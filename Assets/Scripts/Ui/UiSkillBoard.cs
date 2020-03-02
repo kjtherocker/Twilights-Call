@@ -9,7 +9,7 @@ public class UiSkillBoard : UiScreen
     public Creatures m_SkillBoardCreature;
     public ButtonSkillWrapper m_ButtonReference;
     public List<ButtonSkillWrapper> m_CurrentSkillMenuButtonsMenu;
-    
+    public Animator m_Animator_SkillGroup;
     public ButtonSkillWrapper m_DomainButton;
 
     public TextMeshProUGUI m_DescriptionText;
@@ -27,7 +27,7 @@ public class UiSkillBoard : UiScreen
        
         m_MenuControls.Player.Movement.performed += movement => MoveCommandBoardPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
-        m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
+        //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
 	// Update is called once per frame
@@ -45,21 +45,22 @@ public class UiSkillBoard : UiScreen
         {
             GameManager.Instance.BattleCamera.SetDomainPhase(m_SkillBoardCreature.m_Domain);
         }
-        GameManager.Instance.m_InputManager.m_MovementControls.Enable();
+        InputManager.Instance.m_MovementControls.Enable();
         GameManager.Instance.UiManager.PopScreen();
     }
 
     public override void OnPop()
     {
-        DeleteSkills();
         gameObject.SetActive((false));
         m_MenuControls.Disable();
+        m_Animator_SkillGroup.SetBool("ZoomIn",false);
     }
 
     public override void OnPush()
     {
         gameObject.SetActive((true));
-        GameManager.Instance.m_InputManager.m_MovementControls.Disable();
+        InputManager.Instance.m_MovementControls.Disable();
+        m_Animator_SkillGroup.SetBool("ZoomIn",true);
         m_MenuControls.Enable();
     }
 
@@ -70,31 +71,24 @@ public class UiSkillBoard : UiScreen
 
         for (int i = 0; i < m_SkillBoardCreature.m_Skills.Count; i++)
         {
-            m_CurrentSkillMenuButtonsMenu.Add(Instantiate<ButtonSkillWrapper>(m_ButtonReference, gameObject.transform));
-            m_CurrentSkillMenuButtonsMenu[i].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Skills[i], this);
-            m_CurrentSkillMenuButtonsMenu[i].gameObject.transform.SetParent(this.transform, false);
-
-            m_CurrentSkillMenuButtonsMenu[i].gameObject.transform.position = new Vector3(200 + i * 150, 125, 0);
+            m_CurrentSkillMenuButtonsMenu[i].gameObject.SetActive(false);
 
         }
         
-        m_DomainButton = Instantiate<ButtonSkillWrapper>(m_ButtonReference, gameObject.transform);
-        m_DomainButton.SetupDomain(m_SkillBoardCreature, m_SkillBoardCreature.m_Domain, this);
-        m_DomainButton.gameObject.transform.position = new Vector3(850 , 300, 0);
+        for (int i = 0; i < m_SkillBoardCreature.m_Skills.Count; i++)
+        {
+            m_CurrentSkillMenuButtonsMenu[i].gameObject.SetActive(true);
+            m_CurrentSkillMenuButtonsMenu[i].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Skills[i], this);
+        }
+        
+       // m_DomainButton = Instantiate<ButtonSkillWrapper>(m_ButtonReference, gameObject.transform);
+       // m_DomainButton.SetupDomain(m_SkillBoardCreature, m_SkillBoardCreature.m_Domain, this);
+       // m_DomainButton.gameObject.transform.position = new Vector3(850 , 300, 0);
 
         AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[0]);
     }
 
-    public void DeleteSkills()
-    {
-        for (int i = m_SkillBoardCreature.m_Skills.Count - 1; i > -1; i--)
-        {
-            Destroy(m_CurrentSkillMenuButtonsMenu[i].gameObject);
-            m_CurrentSkillMenuButtonsMenu.RemoveAt(i);
-        }
-        
-        Destroy(m_DomainButton.gameObject);
-    }
+
 
     public void AnimatedCardMovementToCenter(ButtonSkillWrapper a_SkillWrapper)
     {

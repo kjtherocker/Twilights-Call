@@ -19,6 +19,7 @@ public class AiController : MonoBehaviour
     public Vector2Int m_Position;
     public Vector2Int m_InitalPosition;
 
+    public CombatNode m_PreviousNode;
     public DomainState m_Domainstate;
     
     public Pathfinder _Pathfinder;
@@ -27,8 +28,13 @@ public class AiController : MonoBehaviour
     public Animator m_CreaturesAnimator;
     public Creatures m_Creature;
 
-    public Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
+    public Transform m_AiModel;
+    
+    
+    private Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
 
+    public HealthBar m_Healthbar;
+    
     protected HashSet<CombatNode> _pathsInRange;
 
     public Vector3 CreatureOffset;
@@ -40,7 +46,9 @@ public class AiController : MonoBehaviour
     public bool m_HasAttackedForThisTurn;
     public bool m_HasMovedForThisTurn;
 
-    public delegate bool DelegateReturnNodeIndex(CombatNode node);
+    public delegate bool DelegateReturnNodeIndex(CombatNode node, Vector2Int Postion);
+
+    public MovementType m_MovementType;
     // Use this for initialization
     public virtual void Start ()
     {
@@ -52,13 +60,28 @@ public class AiController : MonoBehaviour
         m_MovementHasStarted = false;
         m_InitalPosition = m_Position;
 
+       // m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
+//
+       // m_Healthbar.Partymember = m_Creature;
+        
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
         Node_MovingTo = Node_ObjectIsOn;
+
+
+        if (m_AiModel == null)
+        {
+            m_AiModel = transform.GetChild(0);
+        }
 
 
         if (m_CreaturesAnimator == null)
         {
             m_CreaturesAnimator = GetComponentInChildren<Animator>();
+        }
+
+        if (m_MovementType == null)
+        {
+            m_MovementType = GetComponent<MovementType>();
         }
 
         m_Grid = GameManager.Instance.m_Grid;
@@ -67,7 +90,7 @@ public class AiController : MonoBehaviour
 
 
         _Pathfinder = new Pathfinder();
-
+        
     }
 
     // Update is called once per frame
@@ -76,7 +99,7 @@ public class AiController : MonoBehaviour
 
         if (Node_ObjectIsOn != Node_MovingTo)
         {
-            transform.position = Vector3.MoveTowards
+             transform.position = Vector3.MoveTowards
                     (transform.position, Node_MovingTo.gameObject.transform.position + CreatureOffset,
                     8 * Time.deltaTime);
         }
@@ -89,16 +112,13 @@ public class AiController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("i"))
+        if (Input.GetKeyDown("k"))
         {
-            Domain();
+            if (m_Creature.m_Domain != null && m_Creature.charactertype == Creatures.Charactertype.Ally)
+            {
+                Domain();
+            }
         }
-
-        if (Input.GetKeyDown("o"))
-        {
-            Devour(1);
-        }
-
     }
 
     public void SetGoal(Vector2Int m_Goal)
@@ -140,7 +160,7 @@ public class AiController : MonoBehaviour
     {
         cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,CheckIfNodeIsClearAndReturnNodeIndex);
+        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_MovementType.CheckIfNodeIsClearAndReturnNodeIndex);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
@@ -158,8 +178,8 @@ public class AiController : MonoBehaviour
 
     public virtual void SetGoalPosition(Vector2Int m_Goal)
     {
+        
         SetGoal(m_Goal);
-        m_Grid.m_Movement = m_Movement;
 
         _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Goal.x, m_Goal.y],100);
 
@@ -171,7 +191,7 @@ public class AiController : MonoBehaviour
 
 
 
-        List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid);
+        List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid,m_Movement);
 
 
         StartCoroutine(GetToGoal(TempList));
@@ -180,7 +200,7 @@ public class AiController : MonoBehaviour
 
     public void Domain()
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],3);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],4);
 
 
         foreach (CombatNode node in _pathsInRange)
@@ -189,18 +209,20 @@ public class AiController : MonoBehaviour
             node.DomainOnNode = m_Creature.m_Domain;
             if (node.m_CreatureOnGridPoint != null)
             {
+                node.m_CreatureOnGridPoint.StatsBeforeDomain();
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
+                node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
             }
 
 
-            node.DomainTransfer();
+            node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
 
     }
     
     public void Devour(int DevourRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],DevourRange);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],4);
 
 
         foreach (CombatNode node in _pathsInRange)
@@ -213,31 +235,30 @@ public class AiController : MonoBehaviour
     
     public HashSet<CombatNode> GetNodesInRange(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff, int Range)
     {
-        cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
+      cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckifNodeCanBeDomained);
-        foreach (var key in paths.Keys)
-        {
-            var path = paths[key];
-            
-            var pathCost = path.Sum(c => c.m_MovementCost);
-            if (pathCost <= Range)
-            {
-                cachedPaths.Add(key, path);
-            }
-        }
-        return new HashSet<CombatNode>(cachedPaths.Keys);
+      var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+      foreach (var key in paths.Keys)
+      {
+          var path = paths[key];
+          
+          var pathCost = path.Sum(c => c.m_MovementCost);
+          if (pathCost <= Range)
+          {
+              cachedPaths.Add(key, path);
+          }
+      }
+       return new HashSet<CombatNode>(cachedPaths.Keys);
     }
 
 
     public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
-        m_Grid.RemoveWalkableArea();
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+        Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
         {
 
@@ -256,8 +277,7 @@ public class AiController : MonoBehaviour
 
                     GameManager.Instance.m_BattleCamera.m_CameraPositionInGrid = m_Position;
 
-
-                    transform.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+                    m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
                     CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
                     i++;
@@ -267,7 +287,7 @@ public class AiController : MonoBehaviour
 
         }
 
-        m_Grid.RemoveWalkableArea();
+        
         //Camera no longer following the player;
         GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.Normal;
 
@@ -282,15 +302,16 @@ public class AiController : MonoBehaviour
       
 
         m_Position = aListOfNodes[aListOfNodes.Count - 1].m_PositionInGrid;
-
+        m_PreviousNode = Node_ObjectIsOn;
         //Setting the node you are on to the new one
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
         Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
-        Node_ObjectIsOn.m_CombatsNodeType = CombatNode.CombatNodeTypes.Covered;
-
-       // m_Grid.RemoveWalkableArea();
-
+        Node_ObjectIsOn.m_IsCovered = true;
+        
+        m_PreviousNode.DomainOnNode.UndoDomainEffect(ref  Node_ObjectIsOn.m_CreatureOnGridPoint);
+        
+        
         for (int i = aListOfNodes.Count; i < 0; i--)
         {
             aListOfNodes.RemoveAt(i);
@@ -302,59 +323,22 @@ public class AiController : MonoBehaviour
     public virtual Dictionary<CombatNode, List<CombatNode>> cachePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn,DelegateReturnNodeIndex delegateReturnNodeIndex )
     {
         var edges = GetGraphEdges(cells,delegateReturnNodeIndex);
-        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn);
+        var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn,m_Movement);
         return paths;
     }
 
-    public virtual bool CheckIfNodeIsClearAndReturnNodeIndex(CombatNode aNode)
-    {
-        // if the node is out of bounds, return -1 (an invalid tile index)
-
-        if (aNode == null)
-        {
-            Debug.Log("YOU BROKE " + aNode.m_PositionInGrid.ToString());
-        }
-
-        CombatNode nodeIndex = aNode;
-
-        // if the node is already closed, return -1 (an invalid tile index)
-        if (nodeIndex.m_HeuristicCalculated == true)
-        {
-            return false;
-        }
-        // if the node can't be walked on, return -1 (an invalid tile index)
-        if (nodeIndex.m_CombatsNodeType != CombatNode.CombatNodeTypes.Normal)
-        {
-            return false;
-        }
-
-        if (nodeIndex.m_PositionInGrid == m_Position)
-        {
-            return false;
-        }
-
-
-        if (nodeIndex.m_NodeHeight > 0)
-        {
-            return false;
-        }
-        // return a valid tile index
-        return true;
-    }
-
-    
     protected virtual Dictionary<CombatNode, Dictionary<CombatNode, int>> GetGraphEdges(List<CombatNode> NodeList,DelegateReturnNodeIndex delegateReturnNodeIndex)
     {
         Dictionary<CombatNode, Dictionary<CombatNode, int>> ret = new Dictionary<CombatNode, Dictionary<CombatNode, int>>();
 
         foreach (CombatNode Node in NodeList)
         {
-            if (delegateReturnNodeIndex(Node) == true|| Node.Equals(Node_ObjectIsOn))
+            if (delegateReturnNodeIndex(Node,m_Position) == true|| Node.Equals(Node_ObjectIsOn))
             {
                 ret[Node] = new Dictionary<CombatNode, int>();
                 foreach (CombatNode neighbour in Node.GetNeighbours(NodeList))
                 {
-                    if (delegateReturnNodeIndex(neighbour) == true)
+                    if (delegateReturnNodeIndex(neighbour,m_Position) == true)
                     {
                         ret[Node][neighbour] = neighbour.m_MovementCost;
                     }
@@ -368,8 +352,6 @@ public class AiController : MonoBehaviour
     {
         if (m_MovementHasStarted == false)
         {
-
-
             GameManager.Instance.m_Grid.GetNode(m_Position).m_CreatureOnGridPoint = null;
             GameManager.Instance.m_Grid.GetNode(m_Position).m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
 

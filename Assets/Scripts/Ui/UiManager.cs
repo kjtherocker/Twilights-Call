@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UiManager : MonoBehaviour
+public class UiManager : Singleton<UiManager>
 {
     public enum Screen
     {
         CommandBoard,
         SkillBoard,
+        ArenaMenu,
         PartyMenu,
         TurnIndicator,
         EndCombatMenu,
@@ -101,6 +102,11 @@ public class UiManager : MonoBehaviour
 
     public void PopScreenNoLastScreen()
     {
+        if (m_ScreenStack.Count <= 0)
+        {
+            return;
+        }
+
         m_ScreenStack[m_ScreenStack.Count - 1].Value.OnPop();
         m_ScreenStack.RemoveAt(m_ScreenStack.Count - 1);
     }
