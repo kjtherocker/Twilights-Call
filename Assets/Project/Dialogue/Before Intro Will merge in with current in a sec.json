@@ -1,0 +1,81 @@
+{
+"Items":
+[
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Resonance Rate at</color><color=#FFFFFF> 1.235%</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Resonance Rate at</color><color=#FFFFFF> 21.123%</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Resonance Rate at</color><color=#FFFFFF> 65.22990%</color>"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Resonance Rate at</color><color=#FFFFFF> 99.999999999999999999%</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Activating Nephelims heart............</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Failure...</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Essence is too large, vessel will break</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Fall back method reingauge Patchwork Chimera</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Sample Domain ******** *********** is not in acceptable format</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Erosion Rate</color><color=#FFFFFF> 43.218%</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Erosion Rate</color><color=#FFFFFF> 78.218%</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>Erosion Rate</color><color=#FFFFFF> 100%</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>I FOUND YOU</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>YOU HAVE NO IDEA HOW I FELT WHEN I HEARD THAT YOU WERE KILLED BY THE AZURE WOLF</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>AFTER ALL THE ONLY ONE WHO IS ALLOWED TO KILL YOU IS ME</color>",
+	"m_ChatBoxName": "Black"
+}
+
+
+]
+}

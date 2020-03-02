@@ -12,6 +12,20 @@
             <e p="AutoSaveExtension.cs" t="Include" />
           </e>
         </e>
+        <e p="Kino" t="Include">
+          <e p="Glitch" t="Include">
+            <e p="AnalogGlitch.cs" t="Include" />
+            <e p="DigitalGlitch.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="AnalogGlitchEditor.cs" t="Include" />
+              <e p="DigitalGlitchEditor.cs" t="Include" />
+            </e>
+            <e p="Shader" t="Include">
+              <e p="AnalogGlitch.shader" t="Include" />
+              <e p="DigitalGlitch.shader" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="NotResources" t="Include">
           <e p="TextMesh Pro" t="Include">
             <e p="Resources" t="Include">
@@ -87,6 +101,10 @@
               <e p="ToonMetalMask.shader" t="Include" />
             </e>
           </e>
+          <e p="UiBuilderTest" t="Include">
+            <e p="NewUI.uss" t="Include" />
+            <e p="NewUI.uxml" t="Include" />
+          </e>
           <e p="WorldSpaceDissolve" t="Include">
             <e p="Scripts" t="Include">
               <e p="ShaderPosition.cs" t="Include" />
@@ -101,6 +119,20 @@
             <e p="Dialogue.cs" t="Include" />
             <e p="DialogueManager.cs" t="Include" />
             <e p="DialogueTrigger.cs" t="Include" />
+            <e p="Light" t="Include">
+              <e p="Editor" t="Include">
+                <e p="LightDrawer.cs" t="Include" />
+              </e>
+              <e p="LightBehaviour.cs" t="Include" />
+              <e p="LightClip.cs" t="Include" />
+              <e p="LightMixerBehaviour.cs" t="Include" />
+              <e p="LightTrack.cs" t="Include" />
+            </e>
+            <e p="Tracks" t="Include">
+              <e p="DialogueBehaviour.cs" t="Include" />
+              <e p="DialogueClip.cs" t="Include" />
+              <e p="DialogueTrack.cs" t="Include" />
+            </e>
           </e>
           <e p="Editor" t="Include">
             <e p="MapEditor.cs" t="Include" />
@@ -231,9 +263,6 @@
               <e p="Node.cs" t="Include" />
               <e p="OverworldCamera.cs" t="Include" />
               <e p="OverWorldPlayer.cs" t="Include" />
-            </e>
-            <e p="Portrait" t="Include">
-              <e p="AnimateGif.cs" t="Include" />
             </e>
             <e p="Props" t="Include">
               <e p="NodeReplacement.cs" t="Include" />
