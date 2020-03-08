@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Playables;
+
 public class DialogueManager : Singleton<DialogueManager>
 {
 
@@ -28,6 +30,7 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] Texture[] m_TypesPortraits;
     [SerializeField] Font[] m_TypesOfFonts;
 
+    public List<Dialogue> m_Dialogue;
    // public List<Dialogue> m_DialogueTrigger.m_Dialogue;
     public List<GameObject> m_DialogueObjects;
 
@@ -52,30 +55,45 @@ public class DialogueManager : Singleton<DialogueManager>
     public int AnimatedTextiterator;
     public string CurrentText;
 
+    public PlayableBehaviour m_Timeline;
+    public PlayableDirector m_ActivePlayableDirector;
+    private int m_LastDialoguesMaxCharacterCount;
+    private int m_MaxVerticalDialogueCharacters;
+    public TextAsset m_DialogueJson;
+    
     int ObjectToDestroy;
     public bool RemoveGameObject;
     public bool TextScroll;
+    
+    public PlayerInput m_DialogueControls;
     // Use this for initialization
     void Start()
     {
         //m_DialogueTrigger.m_Dialogue = new List<Dialogue>();
         //m_DialogueCanvas.gameObject.SetActive(false);
         TextScroll = false;
+
+        m_DialogueControls = new PlayerInput();
+
+        m_MaxVerticalDialogueCharacters = 200;
+        m_DialogueControls.Player.XButton.performed += XButton => ContinueDialogue();
     }
 
-    public void StartDialogue(List<Dialogue> aDialogue, DialogueType aDialogueType)
+    public void StartDialogue(TextAsset aTextAsset, DialogueType aDialogueType)
     {
 
         if (Constants.Constants.TurnDialogueOff == false)
         {
 
-            //m_Sentances.Clear();
+            m_DialogueJson = aTextAsset;
+            DeSerializeJsonDialogue(m_DialogueJson);
 
+            m_DialogueControls.Enable();
             
-            
-            
-          //  m_DisplayText.text = "";
+
             m_CurrentDialogueType = aDialogueType;
+            
+            
             if (m_CurrentDialogueType == DialogueType.DialogueBox)
             {
                 m_DialogueBox.SetActive(true);
@@ -94,15 +112,19 @@ public class DialogueManager : Singleton<DialogueManager>
             m_DialogueCanvas.gameObject.SetActive(true);
 
             InputManager.Instance.m_BaseMovementControls.Disable();
-            DisplayNextSentence();
+           // DisplayNextSentence();
         }
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextSentence(bool aClearScreen)
     {
-        if (m_DialogueTrigger.m_Dialogue.Count == 0)
+        
+
+        if (m_Dialogue.Count == 0)
         {
-            EndDialogue();
+
+            EndDialogue();                
+            
             return;
         }
 
@@ -113,57 +135,62 @@ public class DialogueManager : Singleton<DialogueManager>
             m_DialogueObjects.RemoveAt(0);
 
         }
-     
 
-        if (m_DialogueTrigger.m_Dialogue[0].m_ChatBoxType == ChatBoxType.White)
+
+
+
+        if (m_Dialogue[0].m_ChatBoxType == ChatBoxType.White)
         {
           //  m_DisplayText.color = Color.white;
         }
 
 
        // SetPortrait(m_DialogueTrigger.m_Dialogue[0].m_PortraitType);
-        SetFont(m_DialogueTrigger.m_Dialogue[0].m_FontTypes);
+        SetFont(m_Dialogue[0].m_FontTypes);
 
 
-        if (m_DialogueTrigger.m_Dialogue[0].m_GameObjectToAppearInCutscene != null)
+        if (m_Dialogue[0].m_GameObjectToAppearInCutscene != null)
         {
             GameObject temp;
-            temp = Instantiate<GameObject>(m_DialogueTrigger.m_Dialogue[0].m_GameObjectToAppearInCutscene, m_DialogueTrigger.m_Dialogue[0].m_GameobjectSpawnPoint.gameObject.transform);
+            temp = Instantiate<GameObject>(m_Dialogue[0].m_GameObjectToAppearInCutscene, m_Dialogue[0].m_GameobjectSpawnPoint.gameObject.transform);
 
 
             m_DialogueObjects.Add(temp);
         }
-        CurrentText = m_DialogueTrigger.m_Dialogue[0].m_Sentances;
      
-        AnimateText(CurrentText);
+        if (aClearScreen == true)
+        {
+            m_DisplayText.text = "";
+        }
+        CurrentText = m_Dialogue[0].m_Sentances;
+     
+        SetText(CurrentText);
         
 
-        m_DisplayName.text = m_DialogueTrigger.m_Dialogue[0].m_Name;
+        m_DisplayName.text = m_Dialogue[0].m_Name;
 
-        RemoveGameObject = m_DialogueTrigger.m_Dialogue[0].DestroyGameObjectOnEndOfDialogue;
-        ObjectToDestroy = m_DialogueTrigger.m_Dialogue.Count;
+        RemoveGameObject = m_Dialogue[0].DestroyGameObjectOnEndOfDialogue;
+        ObjectToDestroy = m_Dialogue.Count;
 
-        m_DialogueTrigger.m_Dialogue.RemoveAt(0);
+        m_Dialogue.RemoveAt(0);
     }
 
-    public void Update()
+
+    public void ContinueDialogue()
     {
-        if (Input.GetKeyDown("a"))
-        {
-           if (m_DialogueTrigger.m_Dialogue.Count > 0)
-           {
 
-               DisplayNextSentence();
-
-           }
-           else
-           {
-               EndDialogue();
-           }
-        }
+       if (m_Dialogue.Count > 0)
+       {
+           ResumeTimeline();
+       }
+       else
+       {
+           EndDialogue();
+       }
+        
     }
 
-    public void AnimateText(string strComplete)
+    public void SetText(string strComplete)
     {
 
         AnimatedTextiterator = 0;
@@ -175,15 +202,85 @@ public class DialogueManager : Singleton<DialogueManager>
         {
            // m_DisplayText.text = "";
             m_DialogueBox.SetActive(true);
-            m_DisplayText = m_DialogueBoxText;
-            m_DisplayText.text = strComplete;    
-            
+
+            StartCoroutine(AnimateText(strComplete));
+
         }
         else if (m_CurrentDialogueType == DialogueType.DialogueVertical)
         {
-            m_DisplayText.text += ("\n" + strComplete);
+            
+            StartCoroutine(AnimateText("\n" + strComplete));
         }
 
+
+    }
+
+
+    public IEnumerator AnimateText(string aText)
+    {
+        
+        if (m_CurrentDialogueType == DialogueType.DialogueBox)
+        {
+            m_DisplayText.text = aText;
+            m_LastDialoguesMaxCharacterCount = 0;
+        }
+        else if (m_CurrentDialogueType == DialogueType.DialogueVertical)
+        {
+            m_DisplayText.text += aText;
+        }
+
+        
+        
+        int TotalVisibleCharacters = m_DisplayText.textInfo.characterCount;
+        int counter = m_LastDialoguesMaxCharacterCount;
+
+
+        while (true)
+        {
+            int visibleCount = counter % (TotalVisibleCharacters + 1);
+            m_DisplayText.maxVisibleCharacters = visibleCount;
+
+            if (visibleCount >= TotalVisibleCharacters)
+            {
+                if (m_CurrentDialogueType == DialogueType.DialogueVertical)
+                {
+                    m_LastDialoguesMaxCharacterCount = TotalVisibleCharacters;
+                }
+
+                break;
+            }
+
+            counter += 1;
+            yield return  new WaitForSeconds(0.03f);
+        }
+
+    }
+
+    public void DeSerializeJsonDialogue(TextAsset a_JsonFile)
+    {
+        m_Dialogue.Clear();
+
+        Dialogue[] m_DialogueFromJson = JsonHelper.FromJson<Dialogue>(a_JsonFile.text);
+
+        for (int i = 0; i < m_DialogueFromJson.Length; i++)
+        {
+            m_Dialogue.Add(m_DialogueFromJson[i]);
+            m_Dialogue[i].Initalize();
+        }
+
+    }
+
+    public void PauseTimeline(PlayableDirector whichOne)
+    {
+        m_ActivePlayableDirector = whichOne;
+        m_ActivePlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(0d);
+      // gameMode = GameMode.DialogueMoment; //InputManager will be waiting for a spacebar to resume
+      // UIManager.Instance.TogglePressSpacebarMessage(true);
+    }
+
+    public void ResumeTimeline()
+    {
+        m_ActivePlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1d);
 
     }
 
@@ -212,7 +309,7 @@ public class DialogueManager : Singleton<DialogueManager>
     public void EndDialogue()
     {
 
-    
+        m_DialogueControls.Disable();
         if (m_DialogueObjects != null)
         {
             for (int i = 0; i < m_DialogueObjects.Count; i++)

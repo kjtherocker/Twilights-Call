@@ -118,6 +118,7 @@
           <e p="DialogScripts" t="Include">
             <e p="Dialogue.cs" t="Include" />
             <e p="DialogueManager.cs" t="Include" />
+            <e p="DialogueTimelineHandler.cs" t="Include" />
             <e p="DialogueTrigger.cs" t="Include" />
             <e p="Light" t="Include">
               <e p="Editor" t="Include">

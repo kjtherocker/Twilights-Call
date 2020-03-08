@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
@@ -17,6 +18,8 @@ public class GameManager : Singleton<GameManager>
     public UiManager m_UiManager;
     public UiManager UiManager { get { return m_UiManager; } }
 
+
+    
     
     public Grid m_Grid;
     public Grid Grid { get { return m_Grid; } }

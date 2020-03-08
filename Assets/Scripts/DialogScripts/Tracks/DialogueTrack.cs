@@ -9,7 +9,8 @@ public class DialogueTrack : TrackAsset
 {
 
 
-    public bool HasToPause;
+    public bool HasToPause = true;
+    public bool ClearDialogue = false;
     // Start is called before the first frame update
     void Start()
     {

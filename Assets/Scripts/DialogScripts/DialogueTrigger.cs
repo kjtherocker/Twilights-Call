@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Playables;
 
 [System.Serializable]
 public class CharacterInCutsceneReferences
@@ -38,10 +39,6 @@ public class DialogueTrigger : MonoBehaviour
 
 
 
-    public List<Dialogue> m_Dialogue;
-
-    public List<CharacterInCutsceneReferences> m_CharactersInCutscene; 
-    public DialogueManager m_DialogueManager;
     public bool DialogueHasHappend;
 
 
@@ -49,22 +46,19 @@ public class DialogueTrigger : MonoBehaviour
 
     public DialogueManager.DialogueType m_DialogueType;
     
-    public bool DeleteStartAfterStart;
-    public bool DeleteEndOnEnd;
-    public bool UseStartObjectFulltime;
     
     public AudioClip m_Audioclip;
 
     public TextAsset m_JsonFile;
 
-    public GameObject m_CutsceneArea;
-
     public TriggerType m_TriggerType;
 
     public bool DialogueIsDone;
-
+    
     public OverWorldPlayer m_BasePlayer;
 
+    public DialogueTimelineHandler m_DialogueTimeLineHandler;
+    
     public void Start()
     {
         DialogueHasHappend = false;
@@ -99,35 +93,19 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    public void DeSerializeJsonDialogue(TextAsset a_JsonFile)
-    {
-        m_Dialogue.Clear();
 
-        Dialogue[] m_DialogueFromJson = JsonHelper.FromJson<Dialogue>(a_JsonFile.text);
-
-        for (int i = 0; i < m_DialogueFromJson.Length; i++)
-        {
-            m_Dialogue.Add(m_DialogueFromJson[i]);
-            m_Dialogue[i].Initalize();
-        }
-
-    }
 
 
     public void TriggerDialogue()
     {
-
-
-        if (m_CutsceneArea != null)
+        if (m_DialogueTimeLineHandler.gameObject != null)
         {
-            Instantiate(m_CutsceneArea);
+            Instantiate(m_DialogueTimeLineHandler,gameObject.transform);
         }
 
-        DeSerializeJsonDialogue(m_JsonFile);
-        AudioManager.Instance.PlaySoundRepeating(m_Audioclip);
         
         DialogueManager.Instance.m_DialogueTrigger = this;
-        DialogueManager.Instance.StartDialogue(m_Dialogue,m_DialogueType);
+        DialogueManager.Instance.StartDialogue(m_JsonFile,m_DialogueType);
         DialogueHasHappend = true;
         DialogueIsDone = false;
     }

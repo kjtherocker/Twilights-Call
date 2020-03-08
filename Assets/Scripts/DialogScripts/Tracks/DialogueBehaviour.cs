@@ -11,6 +11,7 @@ public class DialogueBehaviour : PlayableBehaviour
     public int dialogueSize;
 
 	public bool hasToPause = false;
+	public bool ClearDialogue = false;
 
 	private bool clipPlayed = false;
 	private bool pauseScheduled = false;
@@ -26,7 +27,7 @@ public class DialogueBehaviour : PlayableBehaviour
 		if(!clipPlayed
 			&& info.weight > 0f)
 		{
-	//		UIManager.Instance.SetDialogue(characterName, dialogueLine, dialogueSize);
+			DialogueManager.Instance.DisplayNextSentence(ClearDialogue);
 
 			if(Application.isPlaying)
 			{
@@ -45,7 +46,9 @@ public class DialogueBehaviour : PlayableBehaviour
 		if(pauseScheduled)
 		{
 			pauseScheduled = false;
-		//	GameManager.Instance.PauseTimeline(director);
+			playable.Pause();
+			DialogueManager.Instance.PauseTimeline(director);
+			
 		}
 		else
 		{
