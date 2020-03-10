@@ -27,8 +27,11 @@ public class Invigorate : Skills
 
     }
 
-    public override int UseSkill(int BonusDamage)
+    public override IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
     {
-        return m_Damage;
+        
+        return aVictum.DecrementHealth(m_Damage + aAttacker.GetAllStrength(), GetElementalType(),
+            0.1f, 0.1f, 1);
+        
     }
 }

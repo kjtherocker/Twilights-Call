@@ -11,7 +11,7 @@ public class CombatManager : Singleton<CombatManager>
 {
 
     public PartyManager PartyManager;
-
+    public CombatCameraController m_BattleCamera;
     public Grid m_Grid;
 
 
@@ -72,7 +72,9 @@ public class CombatManager : Singleton<CombatManager>
 
             GridFormations tempGridFormations = m_Gridformation.GetComponentInChildren<GridFormations>();
             m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
-
+            
+            Debug.Log("Initalized camera inside combatmanager");
+            m_BattleCamera.InitalizeCamera();
             Relics = tempGridFormations.m_RelicsInGrid;
             
             TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
@@ -104,6 +106,8 @@ public class CombatManager : Singleton<CombatManager>
             {
                 tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
             }
+
+
         }
 
     }

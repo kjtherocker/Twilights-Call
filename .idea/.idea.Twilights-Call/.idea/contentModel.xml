@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\kylejohnson\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\kylejohnson\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Twilights-Call.-438222665.00" t="ExcludeRecursive" />
-    <e p="C:\Users\kylejohnson\Desktop\Personal Repo\Twilights-Call" t="IncludeRecursive">
+    <e p="C:\Users\kylej\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\kylej\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Twilights-Call.-97823857.00" t="ExcludeRecursive" />
+    <e p="E:\Twilights-Call" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -246,6 +246,7 @@
                 <e p="RelicTower.cs" t="Include" />
               </e>
               <e p="Wrappers" t="Include">
+                <e p="CombatCameraWrapper.cs" t="Include" />
                 <e p="TurnIndicatorWrapper.cs" t="Include" />
               </e>
             </e>
@@ -290,8 +291,14 @@
             <e p="InputManager.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
           </e>
-          <e p="Services" t="Include">
-            <e p="Singleton.cs" t="Include" />
+          <e p="Temp" t="Include">
+            <e p="DestroyParticleSystems.cs" t="Include" />
+            <e p="EditorTest.cs" t="Include" />
+            <e p="FPSDisplay.cs" t="Include" />
+            <e p="ScreenshotController.cs" t="Include" />
+            <e p="Services" t="Include">
+              <e p="Singleton.cs" t="Include" />
+            </e>
           </e>
           <e p="Ui" t="Include">
             <e p="ButtonWrappers" t="Include">

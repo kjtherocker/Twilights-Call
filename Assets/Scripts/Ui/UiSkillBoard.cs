@@ -39,11 +39,11 @@ public class UiSkillBoard : UiScreen
     {
         if(m_SwapBetweenSkillDomain == false)
         {
-            GameManager.Instance.BattleCamera.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
+            GameManager.Instance.BattleCamera.m_CombatCameraWrapper.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
         }
         else
         {
-            GameManager.Instance.BattleCamera.SetDomainPhase(m_SkillBoardCreature.m_Domain);
+            GameManager.Instance.BattleCamera.m_CombatCameraWrapper.SetDomainPhase(m_SkillBoardCreature.m_Domain);
         }
         InputManager.Instance.m_MovementControls.Enable();
         GameManager.Instance.UiManager.PopScreen();

@@ -26,10 +26,11 @@ public class HolyWater : Skills
     {
     }
 
-    public override int UseSkill(int BonusDamage)
+    public override IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
     {
-        int temporaryheal = m_Damage + BonusDamage / 4;
-
-        return temporaryheal;
+        
+        return aVictum.DecrementHealth(m_Damage + aAttacker.GetAllStrength(), GetElementalType(),
+            0.1f, 0.1f, 1);
+        
     }
 }

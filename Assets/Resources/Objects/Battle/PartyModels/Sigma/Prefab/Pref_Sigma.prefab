@@ -104,6 +104,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 196392511244943365}
     m_Modifications:
+    - target: {fileID: -8908454807769032275, guid: de22bf84e27a153459d4745a47e4a82c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8cdd70870d14e5d4196327472d926511, type: 2}
+    - target: {fileID: -7347637980330053987, guid: de22bf84e27a153459d4745a47e4a82c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 45ab079e9240bb9498e05a090755491c, type: 2}
     - target: {fileID: -4216859302048453862, guid: de22bf84e27a153459d4745a47e4a82c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -164,6 +174,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: reskinned_doll_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 1117626104490222107, guid: de22bf84e27a153459d4745a47e4a82c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ee1a307046bd3245995619a9c84071a, type: 2}
+    - target: {fileID: 1504728050502173160, guid: de22bf84e27a153459d4745a47e4a82c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1da9866a510f436448ecdca594f2fe41, type: 2}
+    - target: {fileID: 6638197946614120472, guid: de22bf84e27a153459d4745a47e4a82c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbe31814492770c4f8cb7a2dba10e7da, type: 2}
+    - target: {fileID: 8340115774741408297, guid: de22bf84e27a153459d4745a47e4a82c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79ce9f03409ad1f4f9c3dc89a8496199, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de22bf84e27a153459d4745a47e4a82c, type: 3}
 --- !u!4 &2707173228028290620 stripped

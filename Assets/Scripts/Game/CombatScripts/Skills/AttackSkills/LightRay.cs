@@ -28,10 +28,11 @@ public class LightRay : Skills
 
     }
 
-    public override int UseSkill(int BonusDamage)
+    public override IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
     {
-        int CulmativeDamage = m_Damage + BonusDamage / 3;
-
-        return CulmativeDamage;
+        
+        return aVictum.DecrementHealth(m_Damage + aAttacker.GetAllStrength(), GetElementalType(),
+            0.1f, 0.1f, 1);
+        
     }
 }
