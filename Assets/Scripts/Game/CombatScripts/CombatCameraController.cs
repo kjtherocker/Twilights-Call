@@ -397,10 +397,6 @@ public class CombatCameraController : MonoBehaviour
     {
         if (m_cameraState == CameraState.PlayerAttack)
         {
-            //m_Creature.m_CreatureAi.m_CreaturesAnimator.SetTrigger("t_IsAttack");
-            
-
-            
             if (m_SpellAttackFormations != null)
             {
                 for (int i = 0; i < m_SpellAttackFormations.Count; i++)
@@ -421,44 +417,14 @@ public class CombatCameraController : MonoBehaviour
 
                     SkillUsed(TempSpellNodePosition.x, TempSpellNodePosition.y);
                 }
-                    
-                
             }
-
-            
-
         }
     }
 
 
     public void SkillUsed(int ASpellNodePositionX, int ASpellNodePositiony)
     {
-        if (m_CreatureAttackingSkill.GetSkillType() == Skills.SkillType.Attack)
-        {
-            if (m_Grid.GetNode(ASpellNodePositionX, ASpellNodePositiony).m_CreatureOnGridPoint != m_Creature)
-            {
-                StartCoroutine(m_Grid.GetNode(ASpellNodePositionX,ASpellNodePositiony).m_CreatureOnGridPoint.DecrementHealth
-                (m_CreatureAttackingSkill.GetSkillDamage() + m_Creature.GetAllStrength(), m_CreatureAttackingSkill.GetElementalType(),
-                    0.1f, 0.1f, 1));
-            }
-        }
-        else if (m_CreatureAttackingSkill.GetSkillType() == Skills.SkillType.Heal)
-        {
-            StartCoroutine(m_Grid.GetNode(ASpellNodePositionX, ASpellNodePositiony)
-                .m_CreatureOnGridPoint.IncrementHealth(m_CreatureAttackingSkill.GetSkillDamage()));
-        }
-        
-        for (int i = 0; i < m_SpellAttackFormations.Count; i++)
-        {
-            Vector2Int TempSpellPosition = new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
-                m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y);
-
-            if (CheckingGridDimensionBoundrys(TempSpellPosition))
-            {
-                m_Grid.DeselectAttackingTileingrid(new Vector2Int(m_CameraPositionInGrid.x + m_SpellAttackFormations[i].x,
-                    m_CameraPositionInGrid.y + m_SpellAttackFormations[i].y));
-            }
-        }
+       CombatManager.Instance.InvokeSkill(m_CreatureAttackingSkill.UseSkill(m_Grid.GetNode(ASpellNodePositionX,ASpellNodePositiony).m_CreatureOnGridPoint ,m_Creature));
 
         m_SpellAttackFormations = null;
         m_Creature.m_CreatureAi.m_HasAttackedForThisTurn = true;

@@ -140,9 +140,9 @@ public class Skills
         return m_SkillFormation;
     }
 
-    virtual public int UseSkill(int BonusDamage)
+    public virtual IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
     {
-        return m_Damage;
+        return null;
     }
 
     public int GetSkillDamage()

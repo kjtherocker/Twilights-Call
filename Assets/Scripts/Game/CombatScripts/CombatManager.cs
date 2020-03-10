@@ -108,6 +108,11 @@ public class CombatManager : Singleton<CombatManager>
 
     }
 
+    public void InvokeSkill(IEnumerator aSkill)
+    {
+        StartCoroutine(aSkill);
+    }
+
     public void AddCreatureToCombat(Creatures aCreature, Vector2Int aPosition, List<Creatures> aList)
     {
         if (aCreature == null)
