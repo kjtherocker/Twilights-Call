@@ -43,11 +43,7 @@ public class CombatNode : Cell
     public Domain DomainOnNode;
     
     public NodeReplacement m_NodeReplacement;
-
-
     
-
-    public CombatNode m_NodeYouCameFrom;
 
     public Creatures m_CreatureOnGridPoint;
 
@@ -57,10 +53,8 @@ public class CombatNode : Cell
     public GameObject m_CurrentWalkablePlaneBeingUsed;
     public GameObject m_AttackingPlane;
     public GameObject m_Cube;
-    public GameObject m_SelectorEditor;
     public GameObject m_Prop;
-
-    public PropList m_PropList;
+    
 
     public Renderer m_Renderer;
 
@@ -72,8 +66,6 @@ public class CombatNode : Cell
 
 
     public Grid m_Grid;
-    public CombatNode[,] m_GridPathArray;
-    public List<CombatNode> m_OpenList;
 
 
     public CombatNodeTypes m_CombatsNodeType;
@@ -93,8 +85,6 @@ public class CombatNode : Cell
     void Start()
     {
         m_MovementCost = 1;
-        //m_HeuristicCalculated = false;
-
 
         if (m_NodeReplacement == null)
         {
@@ -107,10 +97,6 @@ public class CombatNode : Cell
         m_IsSelector = false;
 
 
-        if (m_Grid != null)
-        {
-            m_GridPathArray = m_Grid.m_GridPathArray;
-        }
 
         m_PropOnNodeTemp = m_PropOnNode;
 
@@ -391,7 +377,7 @@ public class CombatNode : Cell
     {
         
         Vector3 NodeTransform = gameObject.transform.position;
-        EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+      //  EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
     }
 }
 

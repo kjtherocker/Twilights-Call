@@ -112,7 +112,7 @@ public class CombatManager : Singleton<CombatManager>
     {
         if (aCreature == null)
         {
-            Debug.Log("Creature does not exist Position" + aPosition.ToString());
+            Debug.Log("Creature does not exist Position at " + aPosition.ToString());
             return;
 
         }
@@ -122,25 +122,28 @@ public class CombatManager : Singleton<CombatManager>
         int TopElement = aList.Count - 1;
 
 
-        aList[TopElement].ModelInGame = Instantiate<GameObject>(aList[TopElement].Model);
-        aList[TopElement].ModelInGame.transform.position = m_Grid.m_GridPathArray[aPosition.x, aPosition.y].gameObject.transform.position + CreatureOffset;
-        aList[TopElement].ModelInGame.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
-        aList[TopElement].m_CreatureAi = aList[aList.Count - 1].ModelInGame.GetComponent<AiController>();
-        aList[TopElement].m_CreatureAi.m_Position =
-            m_Grid.m_GridPathArray[aPosition.x, aPosition.y].m_PositionInGrid;
-
-
-        aList[TopElement].m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aList[TopElement].m_CreatureAi.transform); 
-        aList[TopElement].m_CreatureAi.m_Grid = m_Grid;
-
-        AddHealthbar(aList[TopElement]);
         
+        //Model
+        
+        aList[TopElement].ModelInGame = Instantiate<GameObject>(aList[TopElement].Model);
+        aList[TopElement].ModelInGame.transform.position = m_Grid.GetNode(aPosition.x, aPosition.y).gameObject.transform.position + CreatureOffset;
+        aList[TopElement].ModelInGame.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
+        
+        
+        //Ai
+        aList[TopElement].m_CreatureAi = aList[aList.Count - 1].ModelInGame.GetComponent<AiController>();
+        aList[TopElement].m_CreatureAi.m_Position = m_Grid.GetNode(aPosition.x, aPosition.y).m_PositionInGrid;
+        aList[TopElement].m_CreatureAi.m_Grid = m_Grid;
         aList[TopElement].m_CreatureAi.m_Movement = aCreature.m_CreatureMovement;
         aList[TopElement].m_CreatureAi.m_Creature = aList[aList.Count - 1];
+        
+        //Healthbar
+        aList[TopElement].m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aList[TopElement].m_CreatureAi.transform); 
+        AddHealthbar(aList[TopElement]);
 
-
-        m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_CreatureOnGridPoint = aList[TopElement];
-        m_Grid.m_GridPathArray[aPosition.x, aPosition.y].GetComponent<CombatNode>().m_IsCovered = true;
+        //Node
+        m_Grid.GetNode(aPosition.x, aPosition.y).m_CreatureOnGridPoint = aList[TopElement];
+        m_Grid.GetNode(aPosition.x, aPosition.y).m_IsCovered = true;
         
     }
 

@@ -269,16 +269,17 @@ public class Creatures : MonoBehaviour
         
         if (charactertype == Charactertype.Enemy)
         {
-            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
-            
-            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_IsCovered = false;
+
+            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_CreatureOnGridPoint = null;
+
+            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_IsCovered = false;
             Destroy(gameObject);
         }
         if (charactertype == Charactertype.Ally)
         {
-            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_CreatureOnGridPoint = null;
+            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_CreatureOnGridPoint = null;
 
-            Grid.m_GridPathArray[m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y].m_IsCovered = false;
+            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_IsCovered = false;
             
 
             Destroy(ModelInGame.gameObject);

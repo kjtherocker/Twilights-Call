@@ -35,12 +35,43 @@ public class Grid : Singleton<Grid>
         }
         m_GridPathList = aNodeGroup;
     }
-    
+
+    public Transform[,] ConvertCombatnodesToTransforms()
+    {
+        
+        Transform[,]  m_TransformArray = new Transform[m_GridDimensions.x, m_GridDimensions.y];
+        
+        for (int i = 0; i < m_GridDimensions.x * m_GridDimensions.y; i++)
+        {
+
+            m_TransformArray[m_GridPathArray[i, i].m_PositionInGrid.x, m_GridPathArray[i, i].m_PositionInGrid.y]
+                = m_GridPathArray[i, i].gameObject.transform;
+
+          
+        }
+
+        return m_TransformArray;
+
+    }
+
     public CombatNode GetNode(Vector2Int grid)
     {
         if (m_GridPathArray != null)
         {
             return m_GridPathArray[grid.x, grid.y];
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
+    
+    public CombatNode GetNode(int gridX, int gridY)
+    {
+        if (m_GridPathArray != null)
+        {
+            return m_GridPathArray[gridX, gridY];
         }
         else
         {

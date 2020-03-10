@@ -13,9 +13,7 @@ public enum DomainState
 public class AiController : MonoBehaviour
 {
     public Grid m_Grid;
-    public CombatNode[,] m_GridPathArray;
-    public List<CombatNode> m_GridPath;
-    public Vector2Int m_Goal;
+
     public Vector2Int m_Position;
     public Vector2Int m_InitalPosition;
 
@@ -86,12 +84,15 @@ public class AiController : MonoBehaviour
 
         m_Grid = GameManager.Instance.m_Grid;
 
-        m_GridPathArray = m_Grid.m_GridPathArray;
+
 
 
         _Pathfinder = new Pathfinder();
         
     }
+    
+    
+    
 
     // Update is called once per frame
     public virtual void Update ()
@@ -126,7 +127,7 @@ public class AiController : MonoBehaviour
       m_Grid.SetHeuristicToZero();
       m_Grid.m_GridPathToGoal.Clear();
       m_Grid.RemoveWalkableArea();
-      m_Grid.m_GridPathArray[m_Goal.x, m_Goal.y].m_IsGoal = true;
+      m_Grid.GetNode(m_Goal.x, m_Goal.y).m_IsGoal = true;
       
 
 
@@ -181,7 +182,7 @@ public class AiController : MonoBehaviour
         
         SetGoal(m_Goal);
 
-        _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Goal.x, m_Goal.y],100);
+        _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, m_Grid.GetNode(m_Goal.x, m_Goal.y),100);
 
 
         foreach (CombatNode node in _pathsInRange)
@@ -200,7 +201,7 @@ public class AiController : MonoBehaviour
 
     public void Domain()
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],4);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),4);
 
 
         foreach (CombatNode node in _pathsInRange)
@@ -222,7 +223,7 @@ public class AiController : MonoBehaviour
     
     public void Devour(int DevourRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.m_GridPathArray[m_Position.x, m_Position.y],4);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),4);
 
 
         foreach (CombatNode node in _pathsInRange)
