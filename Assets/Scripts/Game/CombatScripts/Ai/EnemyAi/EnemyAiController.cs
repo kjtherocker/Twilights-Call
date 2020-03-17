@@ -128,7 +128,7 @@ public class EnemyAiController : AiController
 
         Node_ObjectIsOn.m_IsGoal = false;
         Node_ObjectIsOn.m_IsWalkable = false;
-        Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
+        Node_ObjectIsOn.SetCreatureOnTopOfNode(m_Creature);
         Node_ObjectIsOn.m_IsCovered = true;
 
          m_Grid.RemoveWalkableArea();

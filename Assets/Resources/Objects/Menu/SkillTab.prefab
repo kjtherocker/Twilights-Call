@@ -26,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 166278078509934090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.42097527, y: 0.42097527, z: 0.42097527}
+  m_LocalScale: {x: 0.43374598, y: 0.43374598, z: 0.43374598}
   m_Children:
   - {fileID: 166278080382364164}
   - {fileID: 166278079759042299}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Button: {fileID: 0}
   m_CostToUseText: {fileID: 166278079530945751}
   m_Text_NameOfSkill: {fileID: 166278079929737506}
-  m_Image_CardDesign: {fileID: 166278080382364167}
+  m_Image_CardDesign: {fileID: 5265154758517509418}
   m_Image_ElementalIcon: {fileID: 166278080387013190}
   m_NameOfSkill: 
 --- !u!1 &166278078544304766
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166278078544304761}
   - component: {fileID: 166278078544304763}
-  - component: {fileID: 166278078544304760}
+  - component: {fileID: 6361425856265474901}
   m_Layer: 0
   m_Name: OutlineElemental
   m_TagString: Untagged
@@ -145,7 +145,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166278078544304766}
   m_CullTransparentMesh: 0
---- !u!114 &166278078544304760
+--- !u!114 &6361425856265474901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 166278078544304766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 02cc6a8f940dd73439874fe064c22e15, type: 2}
@@ -163,13 +163,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &166278078749766949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,7 +1270,7 @@ GameObject:
   - component: {fileID: 166278080382364164}
   - component: {fileID: 166278080382364160}
   - component: {fileID: 166278080382364166}
-  - component: {fileID: 166278080382364167}
+  - component: {fileID: 5265154758517509418}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1330,7 +1333,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &166278080382364167
+--- !u!114 &5265154758517509418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1339,7 +1342,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 166278080382364165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 28f4c0bed84628f478cb467198d0ab38, type: 2}
@@ -1348,13 +1351,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &166278080387013188
 GameObject:
   m_ObjectHideFlags: 0

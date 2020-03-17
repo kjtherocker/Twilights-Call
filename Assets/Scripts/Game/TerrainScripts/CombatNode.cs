@@ -16,6 +16,15 @@ public class CombatNode : Cell
         Empty
     }
 
+    public enum WalkOntopTriggerTypes
+    {
+        None,
+        RelicTower,
+        DialoguePrompt,
+        Items,
+        
+    }
+    
     public enum DomainCombatNode
     {
         None,
@@ -39,7 +48,7 @@ public class CombatNode : Cell
     public bool m_IsWalkable;
     public bool m_IsCovered;
     public DomainCombatNode m_DomainCombatNode;
-
+    public WalkOntopTriggerTypes m_WalkOnTopTriggerTypes;
     public Domain DomainOnNode;
     
     public NodeReplacement m_NodeReplacement;
@@ -70,6 +79,8 @@ public class CombatNode : Cell
 
     public CombatNodeTypes m_CombatsNodeType;
 
+    public RelicTower m_RelicTower;
+    
     public PropList.Props m_PropOnNode;
     PropList.Props m_PropOnNodeTemp;
 
@@ -78,7 +89,7 @@ public class CombatNode : Cell
 
     public GridFormations NodesGridFormation;
 
-
+    public Material m_IniitalMaterial;
 
 
     // Use this for initialization
@@ -95,8 +106,8 @@ public class CombatNode : Cell
         m_AttackingPlane.gameObject.SetActive(false);
         m_Cube.gameObject.SetActive(true);
         m_IsSelector = false;
-
-
+        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
+        m_IniitalMaterial = meshRenderer.materials[1];
 
         m_PropOnNodeTemp = m_PropOnNode;
 
@@ -295,13 +306,51 @@ public class CombatNode : Cell
         tempmaterials[1] = aDomainMaterial;
         meshRenderer.materials = tempmaterials;
     }
+    
+    public void DomainRevert()
+    {
+        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
+        Material[] tempmaterials = meshRenderer.materials;
+        tempmaterials[1] = m_IniitalMaterial;
+        meshRenderer.materials = tempmaterials;
+    }
 
    // public IEnumerator DomainMaterialChange()
    // {
    //     
    // }
 
-    public void CreateWalkableArea()
+   public void SetCreatureOnTopOfNode(Creatures aCreatures)
+   {
+       m_CreatureOnGridPoint = aCreatures;
+
+       ActivateWalkOnTopTrigger();
+
+   }
+
+
+   public void ActivateWalkOnTopTrigger()
+   {
+       switch (m_WalkOnTopTriggerTypes)
+       {
+           case WalkOntopTriggerTypes.None:
+
+               break;
+           case WalkOntopTriggerTypes.RelicTower:
+               m_RelicTower.ActivateRelicTower(m_CreatureOnGridPoint.m_Domain);
+               break ;
+           case WalkOntopTriggerTypes.Items:
+               
+               break ;
+           case WalkOntopTriggerTypes.DialoguePrompt:
+               
+               break ;
+               
+       }
+   }
+   
+
+   public void CreateWalkableArea()
     {
 
          m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(true);
@@ -377,7 +426,9 @@ public class CombatNode : Cell
     {
         
         Vector3 NodeTransform = gameObject.transform.position;
-      //  EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+#if UNITY_EDITOR
+        EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+#endif
     }
 }
 

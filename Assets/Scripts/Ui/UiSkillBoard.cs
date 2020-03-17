@@ -39,11 +39,11 @@ public class UiSkillBoard : UiScreen
     {
         if(m_SwapBetweenSkillDomain == false)
         {
-            GameManager.Instance.BattleCamera.m_CombatCameraWrapper.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
+            GameManager.Instance.BattleCamera.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
         }
         else
         {
-            GameManager.Instance.BattleCamera.m_CombatCameraWrapper.SetDomainPhase(m_SkillBoardCreature.m_Domain);
+            GameManager.Instance.BattleCamera.m_CombatInputLayer.SetDomainPhase(m_SkillBoardCreature.m_Domain);
         }
         InputManager.Instance.m_MovementControls.Enable();
         GameManager.Instance.UiManager.PopScreen();
@@ -53,14 +53,16 @@ public class UiSkillBoard : UiScreen
     {
         gameObject.SetActive((false));
         m_MenuControls.Disable();
-        m_Animator_SkillGroup.SetBool("ZoomIn",false);
+     //   m_Animator_SkillGroup.gameObject.SetActive(false);
+       // m_Animator_SkillGroup.SetBool("ZoomIn",false);
     }
 
     public override void OnPush()
     {
         gameObject.SetActive((true));
         InputManager.Instance.m_MovementControls.Disable();
-        m_Animator_SkillGroup.SetBool("ZoomIn",true);
+       // m_Animator_SkillGroup.SetBool("ZoomIn",true);
+     //  m_Animator_SkillGroup.gameObject.SetActive(true);
         m_MenuControls.Enable();
     }
 
@@ -78,7 +80,7 @@ public class UiSkillBoard : UiScreen
         for (int i = 0; i < m_SkillBoardCreature.m_Skills.Count; i++)
         {
             m_CurrentSkillMenuButtonsMenu[i].gameObject.SetActive(true);
-            m_CurrentSkillMenuButtonsMenu[i].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Skills[i], this);
+            m_CurrentSkillMenuButtonsMenu[i].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Skills[i]);
         }
         
        // m_DomainButton = Instantiate<ButtonSkillWrapper>(m_ButtonReference, gameObject.transform);

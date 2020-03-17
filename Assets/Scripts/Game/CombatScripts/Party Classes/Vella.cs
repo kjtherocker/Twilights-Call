@@ -30,7 +30,10 @@ public class Vella : Creatures
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
 
-
+        
+        m_Domain = new Domain_PatchWorkChimera();
+        m_Domain.Start();
+        m_Domain.DomainUser = Name;
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Vella/Prefab/Pref_Vella", typeof(GameObject));
 

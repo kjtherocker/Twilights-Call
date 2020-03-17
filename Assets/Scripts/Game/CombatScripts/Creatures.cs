@@ -188,29 +188,21 @@ public class Creatures : MonoBehaviour
         string AttackingElement = elementalType.ToString();
         string ElementalWeakness = elementalWeakness.ToString();
         string ElementalStrength = elementalStrength.ToString();
+        
+        int ArgumentReference = Decrementby;
+        float ConvertToFloat = ArgumentReference / 1.5f;
+        int ConvertToInt = Mathf.CeilToInt(ConvertToFloat);
+        Decrementby = ConvertToInt;
 
         if (AttackingElement.Equals(ElementalWeakness))
         {
-            int ArgumentReference = Decrementby;
-            float ConvertToFloat = ArgumentReference * 1.5f;
-            int ConvertToInt = Mathf.CeilToInt(ConvertToFloat);
-            Decrementby = ConvertToInt;
-
-
             yield return new WaitForSeconds(TimeTillHoveringUiElement);
             FloatingUiElementsController.CreateFloatingText(Decrementby.ToString(), ModelInGame.gameObject.transform, FloatingUiElementsController.UiElementType.Weak);
-
         }
         if (AttackingElement.Equals(ElementalStrength))
         {
-            int ArgumentReference = Decrementby;
-            float ConvertToFloat = ArgumentReference / 1.5f;
-            int ConvertToInt = Mathf.CeilToInt(ConvertToFloat);
-            Decrementby = ConvertToInt;
-
             yield return new WaitForSeconds(TimeTillHoveringUiElement);
             FloatingUiElementsController.CreateFloatingText(Decrementby.ToString(), ModelInGame.gameObject.transform, FloatingUiElementsController.UiElementType.Strong);
-
         }
 
         yield return new WaitForSeconds(TimeTillDamage);
@@ -233,10 +225,6 @@ public class Creatures : MonoBehaviour
         {
             CurrentHealth = MaxHealth;
         }
-        
-   
-
-
     }
 
 

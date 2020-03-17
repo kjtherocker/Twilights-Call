@@ -28,7 +28,6 @@ public class AiController : MonoBehaviour
 
     public Transform m_AiModel;
     
-    
     private Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
 
     public HealthBar m_Healthbar;
@@ -113,13 +112,8 @@ public class AiController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("k"))
-        {
-            if (m_Creature.m_Domain != null && m_Creature.charactertype == Creatures.Charactertype.Ally)
-            {
-                Domain();
-            }
-        }
+
+
     }
 
     public void SetGoal(Vector2Int m_Goal)
@@ -175,7 +169,28 @@ public class AiController : MonoBehaviour
         }
         return new HashSet<CombatNode>(cachedPaths.Keys);
     }
+    
 
+    
+    public HashSet<CombatNode> GetNodesInRange(List<CombatNode> aCells, CombatNode aNodeHeuristicIsBasedOff, int aRange)
+    {
+        cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
+
+        var paths = cachePaths(aCells, aNodeHeuristicIsBasedOff, m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+        foreach (var key in paths.Keys)
+        {
+            var path = paths[key];
+            
+            var pathCost = path.Sum(c => 1);
+            key.m_Heuristic = pathCost;
+            if (pathCost <= aRange)
+            {
+                cachedPaths.Add(key, path);
+            }
+        }
+        return new HashSet<CombatNode>(cachedPaths.Keys);
+    }
+    
 
     public virtual void SetGoalPosition(Vector2Int m_Goal)
     {
@@ -199,9 +214,9 @@ public class AiController : MonoBehaviour
 
     }
 
-    public void Domain()
+    public void Domain(int aDomainRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),4);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),aDomainRange);
 
 
         foreach (CombatNode node in _pathsInRange)
@@ -210,7 +225,7 @@ public class AiController : MonoBehaviour
             node.DomainOnNode = m_Creature.m_Domain;
             if (node.m_CreatureOnGridPoint != null)
             {
-                node.m_CreatureOnGridPoint.StatsBeforeDomain();
+               // node.m_CreatureOnGridPoint.StatsBeforeDomain();
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
                 node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
             }
@@ -223,34 +238,16 @@ public class AiController : MonoBehaviour
     
     public void Devour(int DevourRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),4);
+        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),DevourRange);
 
 
         foreach (CombatNode node in _pathsInRange)
         {
-            MeshRenderer meshRenderer = node.m_Cube.GetComponent<MeshRenderer>();
-            meshRenderer.material = meshRenderer.materials[1];
+            node.DomainRevert();
         }
 
     }
     
-    public HashSet<CombatNode> GetNodesInRange(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff, int Range)
-    {
-      cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
-
-      var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
-      foreach (var key in paths.Keys)
-      {
-          var path = paths[key];
-          
-          var pathCost = path.Sum(c => c.m_MovementCost);
-          if (pathCost <= Range)
-          {
-              cachedPaths.Add(key, path);
-          }
-      }
-       return new HashSet<CombatNode>(cachedPaths.Keys);
-    }
 
 
     public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
@@ -307,10 +304,10 @@ public class AiController : MonoBehaviour
         //Setting the node you are on to the new one
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
 
-        Node_ObjectIsOn.m_CreatureOnGridPoint = m_Creature;
+        Node_ObjectIsOn.SetCreatureOnTopOfNode(m_Creature);
         Node_ObjectIsOn.m_IsCovered = true;
         
-        m_PreviousNode.DomainOnNode.UndoDomainEffect(ref  Node_ObjectIsOn.m_CreatureOnGridPoint);
+     //   m_PreviousNode.DomainOnNode.UndoDomainEffect(ref  Node_ObjectIsOn.m_CreatureOnGridPoint);
         
         
         for (int i = aListOfNodes.Count; i < 0; i--)
@@ -320,6 +317,8 @@ public class AiController : MonoBehaviour
 
         
     }
+    
+
 
     public virtual Dictionary<CombatNode, List<CombatNode>> cachePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn,DelegateReturnNodeIndex delegateReturnNodeIndex )
     {

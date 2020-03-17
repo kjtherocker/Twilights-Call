@@ -19,6 +19,9 @@
 		_RimColor("Rim Color", Color) = (1,1,1,1)
 		_RimAmount("Rim Amount", Range(0, 1)) = 0.716
 		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
+		
+		 _EmissionColor ("Color", Color) = (0.8,0.8,0.8,1)
+          [Toggle] _DynamicEmissionLM ("Dynamic Emission (Lightmapper)", Int) = 0
 	}
 		SubShader
 		{
@@ -84,6 +87,10 @@
 
 			float4 _Color;
 
+            float4 _EmissionColor;
+
+            float4 _Illum;
+
 			float4 _AmbientColor;
 
 			float4 _SpecularColor;
@@ -124,8 +131,10 @@
 				float4 rim = rimIntensity * _RimColor;
 
 				float4 sample = tex2D(_MainTex, i.uv);
+				
 
-				return (light + _AmbientColor + specular + rim) * _Color * sample;
+
+				return (light + _AmbientColor + specular + rim) * _Color * sample ;
 			}
 			ENDCG
 		}

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.VersionControl;
-using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 
 public class CombatCameraController : MonoBehaviour
 {
@@ -29,15 +28,15 @@ public class CombatCameraController : MonoBehaviour
 
     public CameraState m_cameraState;
 
-    public Grid m_Grid;
+    private Grid m_Grid;
     public Creatures m_ToFollowCreature;
     public CombatNode m_NodeTheCameraIsOn;
 
     public Vector2Int m_CameraPositionInGrid;
 
 
-
-    public CombatCameraWrapper m_CombatCameraWrapper;
+    public CameraUiLayer m_CameraUiLayer;
+    public CombatInputLayer m_CombatInputLayer;
 
     public void InitalizeCamera()
     {
@@ -52,14 +51,13 @@ public class CombatCameraController : MonoBehaviour
             m_NodeTheCameraIsOn = Grid.Instance.GetNode(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y);
         }
 
-        
-        Debug.Log("Initialized Camera");
-
         m_cameraState = CameraState.Normal;
 
-        m_CombatCameraWrapper = GetComponent<CombatCameraWrapper>();
-
-        m_CombatCameraWrapper.Initalize(m_NodeTheCameraIsOn);
+        m_CameraUiLayer = GetComponent<CameraUiLayer>();
+        m_CombatInputLayer = new CombatInputLayer();
+       
+        m_CameraUiLayer.Initalize(m_NodeTheCameraIsOn,m_CombatInputLayer);
+        m_CombatInputLayer.Initialize(m_CameraUiLayer,this);
     }
 
     // Update is called once per frame
@@ -102,7 +100,7 @@ public class CombatCameraController : MonoBehaviour
                    
                    //InputManager.Instance.m_MovementControls.Disable();
                    
-                   m_NodeTheCameraIsOn = m_NodeTheCameraIsOn = m_Grid.GetNode(m_ToFollowCreature.m_CreatureAi.m_Position.x, m_ToFollowCreature.m_CreatureAi.m_Position.y);
+                   m_NodeTheCameraIsOn = m_Grid.GetNode(m_ToFollowCreature.m_CreatureAi.m_Position.x, m_ToFollowCreature.m_CreatureAi.m_Position.y);
                     //m_Grid.GetNode(m_ToFollowCreature.m_CreatureAi.m_Position.x, m_ToFollowCreature.m_CreatureAi.m_Position.y);
                    
                    transform.position = Vector3.Lerp(transform.position, new Vector3(
@@ -183,37 +181,38 @@ public class CombatCameraController : MonoBehaviour
     public void MoveCamera(CameraMovementDirections cameraMovementDirections )
     {
 
-        Vector2Int TempInitalCameraPostion = m_CameraPositionInGrid;
+        Vector2Int TempInitalCameraPostion = Vector2Int.zero;
         
 
         if (cameraMovementDirections == CameraMovementDirections.Up)
         {
-            m_CameraPositionInGrid = new Vector2Int(m_CameraPositionInGrid.x - 1, m_CameraPositionInGrid.y);
+            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x - 1, m_CameraPositionInGrid.y);
         }
 
         if (cameraMovementDirections == CameraMovementDirections.Down)
         {
-            m_CameraPositionInGrid = new Vector2Int(m_CameraPositionInGrid.x + 1, m_CameraPositionInGrid.y);
+            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x + 1, m_CameraPositionInGrid.y);
         }
 
 
         if (cameraMovementDirections == CameraMovementDirections.Left)
         {
-            m_CameraPositionInGrid = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y - 1);
+            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y - 1);
         }
 
 
         if (cameraMovementDirections == CameraMovementDirections.Right)
         {
-            m_CameraPositionInGrid = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y + 1);
+            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y + 1);
         }
 
 
 
-        if (CheckingGridDimensionBoundrys(m_CameraPositionInGrid))
+        if (CheckingGridDimensionBoundrys(TempInitalCameraPostion))
         {
+            m_CameraPositionInGrid = TempInitalCameraPostion;
             m_NodeTheCameraIsOn = m_Grid.GetNode(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y);;
-            m_CombatCameraWrapper.CameraStateChanged(m_NodeTheCameraIsOn);
+            m_CameraUiLayer.CameraStateChanged(m_NodeTheCameraIsOn);
         }
 
 
@@ -234,6 +233,3 @@ public class CombatCameraController : MonoBehaviour
     }
 
 }
-
-
-

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -39,7 +40,7 @@ public class CombatManager : Singleton<CombatManager>
     public List<Relic> Relics;
 
 
-    public enum BattleStates
+    public enum CombatStates
     {
         NoTurn,
         Spawn,
@@ -51,7 +52,7 @@ public class CombatManager : Singleton<CombatManager>
 
     }
 
-    public BattleStates m_BattleStates;
+    public CombatStates m_BattleStates;
 
     void Start()
     {
@@ -72,9 +73,6 @@ public class CombatManager : Singleton<CombatManager>
 
             GridFormations tempGridFormations = m_Gridformation.GetComponentInChildren<GridFormations>();
             m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
-            
-            Debug.Log("Initalized camera inside combatmanager");
-            m_BattleCamera.InitalizeCamera();
             Relics = tempGridFormations.m_RelicsInGrid;
             
             TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
@@ -89,25 +87,25 @@ public class CombatManager : Singleton<CombatManager>
            
             AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
            
-         //   AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-         //                                                                       
-         //   AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+            AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
+                                                                                
+            AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
             
             
             CombatHasStarted = true;
 
 
             
-            m_BattleStates = BattleStates.AllyTurn;
+            m_BattleStates = CombatStates.AllyTurn;
             
             WhichSidesTurnIsIt = false;
 
             if (tempGridFormations.m_StartDialogueTrigger != null)
             {
-                tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
+              //  tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
             }
 
-
+            m_BattleCamera.InitalizeCamera();
         }
 
     }
@@ -116,6 +114,14 @@ public class CombatManager : Singleton<CombatManager>
     {
         StartCoroutine(aSkill);
     }
+    
+    public void EndTurn()
+    {
+        StartCoroutine(EnemyTurn());
+
+    }
+
+
 
     public void AddCreatureToCombat(Creatures aCreature, Vector2Int aPosition, List<Creatures> aList)
     {
@@ -147,8 +153,10 @@ public class CombatManager : Singleton<CombatManager>
         aList[TopElement].m_CreatureAi.m_Creature = aList[aList.Count - 1];
         
         //Healthbar
-        aList[TopElement].m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aList[TopElement].m_CreatureAi.transform); 
+
+        aList[TopElement].m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aList[TopElement].m_CreatureAi.transform);
         AddHealthbar(aList[TopElement]);
+        
 
         //Node
         m_Grid.GetNode(aPosition.x, aPosition.y).m_CreatureOnGridPoint = aList[TopElement];
@@ -171,15 +179,15 @@ public class CombatManager : Singleton<CombatManager>
 
        switch (m_BattleStates)
        {
-           case BattleStates.Spawn:
+           case CombatStates.Spawn:
              
-                   m_BattleStates = BattleStates.AllyTurn;
+                   m_BattleStates = CombatStates.AllyTurn;
 
 
              
                break;
 
-           case BattleStates.AllyTurn:
+           case CombatStates.AllyTurn:
 
                if (Input.GetKeyDown("i"))
                {
@@ -188,7 +196,7 @@ public class CombatManager : Singleton<CombatManager>
 
                 break;
 
-            case BattleStates.EnemyTurn:
+            case CombatStates.EnemyTurn:
 
 
 
@@ -196,19 +204,19 @@ public class CombatManager : Singleton<CombatManager>
 
 
 
-            case BattleStates.EndOfCombat:
+            case CombatStates.EndOfCombat:
 
-               if (Input.anyKey)
-               {
-                   //CombatEnd();
-               }
+           //    if (Input.anyKey)
+            //   {
+              //    CombatEnd();
+             //  }
                break;
        }
 
 
        if (Input.GetKeyDown("l"))
        {
-           Relics[0].m_CreatureAi.Domain();
+           EnemyTurn();
        }
     }
 
@@ -232,6 +240,11 @@ public class CombatManager : Singleton<CombatManager>
                 if (TurnOrderEnemy[i].Name == aName)
                 {
                     TurnOrderEnemy.RemoveAt(i);
+
+                    if (!TurnOrderEnemy.Any())
+                    {
+                        m_BattleStates = CombatStates.EndOfCombat;
+                    }
                 }
             }
         }
@@ -240,7 +253,7 @@ public class CombatManager : Singleton<CombatManager>
 
     public IEnumerator EnemyTurn()
     {
-        m_BattleStates = BattleStates.EnemyTurn;
+        m_BattleStates = CombatStates.EnemyTurn;
 
         m_TurnSwitchText.gameObject.SetActive(true);
         m_TurnSwitchText.text = "ENEMY TURN";
@@ -274,9 +287,16 @@ public class CombatManager : Singleton<CombatManager>
         }
     }
 
+    public void CombatEnd()
+    {
+        GameManager.Instance.SwitchToOverworld();
+        UiManager.Instance.PushScreen(UiManager.Screen.ArenaMenu);
+    }
+
+
     public IEnumerator AllyTurn()
     {
-        m_BattleStates = BattleStates.AllyTurn;
+        m_BattleStates = CombatStates.AllyTurn;
 
         m_TurnSwitchText.gameObject.SetActive(true);
         m_TurnSwitchText.text = "PLAYER TURN";

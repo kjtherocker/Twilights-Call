@@ -9,6 +9,7 @@ public class UiManager : Singleton<UiManager>
         CommandBoard,
         SkillBoard,
         ArenaMenu,
+        DomainBoard,
         PartyMenu,
         TurnIndicator,
         EndCombatMenu,

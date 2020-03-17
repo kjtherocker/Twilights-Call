@@ -22,6 +22,11 @@ public class Fide : Creatures
 
         SetCreature();
 
+                
+        m_Domain = new Domain_PatchWorkChimera();
+        m_Domain.Start();
+        m_Domain.DomainUser = Name;
+        
         m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));

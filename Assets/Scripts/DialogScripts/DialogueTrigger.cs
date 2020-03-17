@@ -6,23 +6,6 @@ using UnityEngine;
 using UnityEngine.Playables;
 
 [System.Serializable]
-public class CharacterInCutsceneReferences
-{
-    public Creatures m_CharacterModel;
-    public string m_CharacterName;
-    public GameObject m_SpawnPosition;
-    public bool m_SpawnOnStart;
-
-
-    public void Initalize()
-    {
-       m_CharacterName = m_CharacterModel.Name;
-    }
-}
-
-
-
-[System.Serializable]
 public class DialogueTrigger : MonoBehaviour
 {
 
@@ -79,7 +62,7 @@ public class DialogueTrigger : MonoBehaviour
             {
                 if (m_TriggerType == TriggerType.Default)
                 {
-                    TriggerDialogue();
+                //    TriggerDialogue();
                 }
                 else if (m_TriggerType == TriggerType.Menu)
                 {

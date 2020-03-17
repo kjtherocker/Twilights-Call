@@ -19,6 +19,7 @@ public class UiScreenCommandBoard : UiScreen
        
         m_MenuControls.Player.XButton.performed += XButton => PlayerMovement();
         m_MenuControls.Player.SquareButton.performed += SquareButton => SpawnSkillBoard();
+        m_MenuControls.Player.TriangleButton.performed += TriangleButton => SpawnDomainBoard();
         m_MenuControls.Disable();
     }
 
@@ -58,12 +59,35 @@ public class UiScreenCommandBoard : UiScreen
             return;
         }
         InputManager.Instance.m_MovementControls.Enable();
+        GameManager.Instance.BattleCamera.m_CombatInputLayer.m_CombatInputState =
+            CombatInputLayer.CombatInputState.Walk;
+        
      //   m_CommandboardCreature.m_CreatureAi.FindAllPaths();
         
         GameManager.Instance.UiManager.PopScreen();
         
     }
 
+    
+    public void SpawnDomainBoard()
+    {
+        if (m_CommandboardCreature.m_CreatureAi.m_HasAttackedForThisTurn)
+        {
+            return;
+        }
+
+        m_MenuControls.Disable();
+        
+        GameManager.Instance.UiManager.PopScreen();
+        GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainBoard);
+
+        UiDomainBoard ScreenTemp =
+            GameManager.Instance.UiManager.GetScreen(UiManager.Screen.DomainBoard) as UiDomainBoard;
+
+        ScreenTemp.SpawnSkills(m_CommandboardCreature);
+       
+        
+    }
 
     public void SpawnSkillBoard()
     {

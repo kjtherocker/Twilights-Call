@@ -13,6 +13,7 @@ public class OverworldCamera : MonoBehaviour
     void Start()
     {
         offset = transform.position - player.transform.position;
+        UiManager.Instance.PushScreen(UiManager.Screen.ArenaMenu);
     }
 
     void LateUpdate()

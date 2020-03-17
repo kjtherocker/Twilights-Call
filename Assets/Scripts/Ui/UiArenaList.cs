@@ -16,9 +16,17 @@ public class UiArenaList : UiScreen
         
         m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SelectArena();
-        m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
+
+
+    public override void OnPop()
+    {
+        base.OnPop();
+        m_MenuControls.Disable();
+    }
+
+    
 
     public override void OnPush()
     {
@@ -41,6 +49,7 @@ public class UiArenaList : UiScreen
         {
             arena.ChangeColorToDefault();
         }
+        m_ArenaTabs[m_CursorYCurrent].ChangeColorToSelected();    
     }
 
     public override void MenuSelection(int aCursorX, int aCursorY)

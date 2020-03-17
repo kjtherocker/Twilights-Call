@@ -31,7 +31,7 @@ public class Sigma : Creatures {
 
         m_DomainList = DomainList.DomainListEnum.PatchworkChimera;
         
-        m_Domain = DomainList.Instance.SetDomain(m_DomainList);
+        m_Domain = new Domain_PatchWorkChimera();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
 

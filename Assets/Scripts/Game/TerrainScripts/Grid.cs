@@ -36,24 +36,6 @@ public class Grid : Singleton<Grid>
         m_GridPathList = aNodeGroup;
     }
 
-    public Transform[,] ConvertCombatnodesToTransforms()
-    {
-        
-        Transform[,]  m_TransformArray = new Transform[m_GridDimensions.x, m_GridDimensions.y];
-        
-        for (int i = 0; i < m_GridDimensions.x * m_GridDimensions.y; i++)
-        {
-
-            m_TransformArray[m_GridPathArray[i, i].m_PositionInGrid.x, m_GridPathArray[i, i].m_PositionInGrid.y]
-                = m_GridPathArray[i, i].gameObject.transform;
-
-          
-        }
-
-        return m_TransformArray;
-
-    }
-
     public CombatNode GetNode(Vector2Int grid)
     {
         if (m_GridPathArray != null)
@@ -163,6 +145,20 @@ public class Grid : Singleton<Grid>
 
   
 
+    public bool CheckingGridDimensionBoundrys(Vector2Int aPositionInGrid)
+    {
+        if (aPositionInGrid.x < m_GridDimensions.x && aPositionInGrid.x >= 0 &&
+            aPositionInGrid.y < m_GridDimensions.y && aPositionInGrid.y >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    
 
     public List<CombatNode> GetTheLowestH(Vector2Int grid, int aMovement)
     {

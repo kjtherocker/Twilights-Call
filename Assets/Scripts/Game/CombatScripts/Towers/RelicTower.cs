@@ -7,6 +7,9 @@ public class RelicTower : Relic
     
     public DomainList.DomainListEnum m_DomainType;
     public bool m_OnByDefault;
+    public int LengthOfDomain;
+    public bool m_TowerTakenOver;
+    
 
     public override void Start()
     {
@@ -18,19 +21,40 @@ public class RelicTower : Relic
         Name = "RelicTower";
 
         AmountOfTurns = 0;
+
+        m_TowerTakenOver = false;
         
         SetCreature();
 
+        LengthOfDomain = 3;
 
-        m_DomainList = DomainList.DomainListEnum.PatchworkChimera;
         
-        m_Domain = new Domain_PatchWorkChimera();
-        m_Domain.Start();
-        m_Domain.DomainUser = Name;
         m_CreatureMovement = 8;
 
         charactertype = Charactertype.Undefined;
         elementalStrength = ElementalStrength.Fire;
         elementalWeakness = ElementalWeakness.Null;
+    }
+
+    public void ActivateRelicTower(Domain aDomain)
+    {
+        if (m_TowerTakenOver == true)
+        {
+            return;
+        }
+
+        m_Domain = aDomain;
+        m_Domain.Start();
+        m_Domain.DomainUser = Name;
+        DomainRecession();
+        
+        m_TowerTakenOver = true;
+
+    }
+
+    public void DomainRecession()
+    {
+        m_CreatureAi.Domain(8);
+        LengthOfDomain--;
     }
 }

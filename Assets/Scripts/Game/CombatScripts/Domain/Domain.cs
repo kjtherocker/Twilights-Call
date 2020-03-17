@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class Domain
+public class Domain : Skills
 {
     public enum DomainType
     {
@@ -17,13 +17,12 @@ public class Domain
 
     // Use this for initialization
 
-    [SerializeField] public Skills.ElementalType m_ElementalType;
-    [SerializeField] public string DomainName;
-    [SerializeField] public DomainType Domaintype;
-    [SerializeField] public string DomainUser;
-    [SerializeField] public string DomainDescription;
-    [SerializeField] public int m_CostToUse;
-    [SerializeField] public Material m_DomainTexture;
+
+    public string DomainName;
+    public DomainType Domaintype;
+    public string DomainUser;
+    public string DomainDescription;
+    public Material m_DomainTexture;
 
     public virtual void Start()
     {

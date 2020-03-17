@@ -19,7 +19,7 @@ public class UiScreen : MonoBehaviour
     // Use this for initialization
     public virtual void Initialize()
     {
-
+        m_MenuControls = new PlayerInput();
     }
 
     public virtual void OnPop()
@@ -30,6 +30,11 @@ public class UiScreen : MonoBehaviour
 
     public virtual void OnPush()
     {
+        if (m_MenuControls == null)
+        {
+            Initialize();
+        }
+
         m_MenuControls.Enable();
         gameObject.SetActive(true);
     }

@@ -51,6 +51,7 @@ public class GameManager : Singleton<GameManager>
         m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         m_NodeFormation = GameObject.Find("NodeFormations").GetComponent<NodeFormations>();
         QualitySettings.vSyncCount = 1;
+        Physics.autoSimulation = false;
         SwitchToOverworld();
     }
 

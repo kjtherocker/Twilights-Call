@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 562a21d559491744cb939f39bc117531
+guid: 6be66ae06d8157149af272ba8137d979
 ModelImporter:
-  serializedVersion: 28
+  serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Cavia Attack
+    second: Ani_Cavia_Idle
+  - first:
+      74: 3490224605832310213
+    second: Ani_CaviaIdle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,18 +38,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cavia Attack
+      name: Ani_CaviaIdle
       takeName: Take 001
       internalID: 0
-      firstFrame: 360
-      lastFrame: 425
+      firstFrame: 120
+      lastFrame: 180
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -118,9 +121,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

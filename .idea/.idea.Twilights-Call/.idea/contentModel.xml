@@ -227,6 +227,10 @@
                 <e p="DebuffSkills" t="Include">
                   <e p="Restrict.cs" t="Include" />
                 </e>
+                <e p="Devour" t="Include">
+                  <e p="Devour.cs" t="Include" />
+                  <e p="DevourPhase1.cs" t="Include" />
+                </e>
                 <e p="HealSkills" t="Include">
                   <e p="HolyWater.cs" t="Include" />
                 </e>
@@ -246,7 +250,8 @@
                 <e p="RelicTower.cs" t="Include" />
               </e>
               <e p="Wrappers" t="Include">
-                <e p="CombatCameraWrapper.cs" t="Include" />
+                <e p="CameraUiLayer.cs" t="Include" />
+                <e p="CombatInputLayer.cs" t="Include" />
                 <e p="TurnIndicatorWrapper.cs" t="Include" />
               </e>
             </e>
@@ -312,6 +317,7 @@
               <e p="PartyMenu.cs" t="Include" />
             </e>
             <e p="UiArenaList.cs" t="Include" />
+            <e p="UiDomainBoard.cs" t="Include" />
             <e p="UiDomainTab.cs" t="Include" />
             <e p="UiManager.cs" t="Include" />
             <e p="UiScreen.cs" t="Include" />
@@ -327,6 +333,10 @@
           <e p="DontBackwardsCull.shader" t="Include" />
           <e p="DoubleTexture.shader" t="Include" />
           <e p="OdellWaterShader.shader" t="Include" />
+          <e p="region" t="Include">
+            <e p="NewSurfaceShader.shader" t="Include" />
+            <e p="Region.shader" t="Include" />
+          </e>
           <e p="RenderOntop.shader" t="Include" />
           <e p="Shader_WeaponTest.shader" t="Include" />
           <e p="TestCellShading.shader" t="Include" />
