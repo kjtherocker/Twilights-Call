@@ -16,6 +16,13 @@ public class CombatNode : Cell
         Empty
     }
 
+    public enum CombatNodeAreaType
+    {
+        Walkable,
+        Domainable,
+        Devourable
+    }
+
     public enum WalkOntopTriggerTypes
     {
         None,
@@ -350,19 +357,41 @@ public class CombatNode : Cell
    }
    
 
-   public void CreateWalkableArea()
+   public void CreateWalkableArea(CombatNodeAreaType aAreaType)
     {
 
-         m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(true);
-         m_IsWalkable = true;
+        if (aAreaType == CombatNodeAreaType.Walkable)
+        {
+            m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_WalkableTile;
+            m_IsWalkable = true;
+        }
+        else if (aAreaType == CombatNodeAreaType.Devourable)
+        {
+            m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DevourTile;
+            m_IsWalkable = true;
+        }
+        else if (aAreaType == CombatNodeAreaType.Domainable)
+        {
+            m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DomainTile;
+            m_IsWalkable = true;
+        }
+
+        m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(true);
+
         
     }
 
-    public void RemoveWalkableArea()
+    public void RemoveWalkableArea(CombatNodeAreaType aAreaType)
     {
+        if (aAreaType == CombatNodeAreaType.Walkable)
+        {
+            m_IsWalkable = false;
+            m_Heuristic = 0;
+        }
+        
         m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(false);
-        m_IsWalkable = false;
-        m_Heuristic = 0;
+
+        
     }
 
     

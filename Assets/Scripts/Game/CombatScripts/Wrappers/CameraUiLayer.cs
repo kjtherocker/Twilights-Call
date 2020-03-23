@@ -61,6 +61,7 @@ public class CameraUiLayer : MonoBehaviour
         m_CombatInput.m_CameraPositionInGrid = aCombatNode.m_PositionInGrid;
         m_CameraPositionInGrid = aCombatNode.m_PositionInGrid;
         
+        
         m_Selector.gameObject.transform.position =
             new Vector3(m_NodeTheCameraIsOn.transform.position.x, m_NodeTheCameraIsOn.transform.position.y + Constants.Constants.m_HeightOffTheGrid + 0.8f,
                 m_NodeTheCameraIsOn.transform.position.z);

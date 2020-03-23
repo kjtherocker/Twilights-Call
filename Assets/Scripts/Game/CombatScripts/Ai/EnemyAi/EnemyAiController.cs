@@ -158,10 +158,10 @@ public class EnemyAiController : AiController
     {
         m_Grid.RemoveWalkableArea();
         FindAllPaths();
-        _pathsInRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_EnemyRange);
+        m_NodeInWalkableRange = GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_EnemyRange);
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
-        foreach (CombatNode node in _pathsInRange)
+        foreach (CombatNode node in m_NodeInWalkableRange)
         {
             if (CheckIfAllyIsOnNode(node))
             {
@@ -195,12 +195,12 @@ public class EnemyAiController : AiController
 
     public void EnemyAttack()
     {
-        _pathsInRange =
+        m_NodeInWalkableRange =
             GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_Creature.m_Attack.m_SkillRange);
         
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
-        foreach (CombatNode node in _pathsInRange)
+        foreach (CombatNode node in m_NodeInWalkableRange)
         {
             if (CheckIfAllyIsOnNode(node))
             {

@@ -13,6 +13,10 @@ public class Grid : Singleton<Grid>
     public CombatNode[,] m_GridPathArray;
     public List<CombatNode> m_GridPathList;
     
+    public Material m_WalkableTile;    
+    public Material m_DomainTile;
+    public Material m_DevourTile;
+    
     // Use this for initialization
     void Start ()
     {
@@ -81,7 +85,7 @@ public class Grid : Singleton<Grid>
         {
             for (int y = 0; y < m_GridDimensions.y; y++)
             {
-                m_GridPathArray[x, y].RemoveWalkableArea();
+                m_GridPathArray[x, y].RemoveWalkableArea(CombatNode.CombatNodeAreaType.Walkable);
             }
         }
     }

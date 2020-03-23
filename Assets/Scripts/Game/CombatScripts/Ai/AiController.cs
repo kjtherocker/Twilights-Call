@@ -19,7 +19,7 @@ public class AiController : MonoBehaviour
 
     public CombatNode m_PreviousNode;
     public DomainState m_Domainstate;
-    
+
     public Pathfinder _Pathfinder;
     public CombatNode Node_MovingTo;
     public CombatNode Node_ObjectIsOn;
@@ -27,12 +27,15 @@ public class AiController : MonoBehaviour
     public Creatures m_Creature;
 
     public Transform m_AiModel;
-    
+
     private Dictionary<CombatNode, List<CombatNode>> cachedPaths = null;
 
     public HealthBar m_Healthbar;
-    
-    protected HashSet<CombatNode> _pathsInRange;
+
+    protected HashSet<CombatNode> m_NodeInWalkableRange;
+    protected HashSet<CombatNode> m_NodeInDevourRange;
+    protected HashSet<CombatNode> m_NodeInDomainRange;
+
 
     public Vector3 CreatureOffset;
 
@@ -46,8 +49,9 @@ public class AiController : MonoBehaviour
     public delegate bool DelegateReturnNodeIndex(CombatNode node, Vector2Int Postion);
 
     public MovementType m_MovementType;
+
     // Use this for initialization
-    public virtual void Start ()
+    public virtual void Start()
     {
         //m_Goal = new Vector2Int(9, 2);
         //m_Position = new Vector2Int(4, 4);
@@ -57,10 +61,10 @@ public class AiController : MonoBehaviour
         m_MovementHasStarted = false;
         m_InitalPosition = m_Position;
 
-       // m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
+        // m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
 //
-       // m_Healthbar.Partymember = m_Creature;
-        
+        // m_Healthbar.Partymember = m_Creature;
+
         Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
         Node_MovingTo = Node_ObjectIsOn;
 
@@ -87,21 +91,21 @@ public class AiController : MonoBehaviour
 
 
         _Pathfinder = new Pathfinder();
-        
+
     }
-    
-    
-    
+
+
+
 
     // Update is called once per frame
-    public virtual void Update ()
+    public virtual void Update()
     {
 
         if (Node_ObjectIsOn != Node_MovingTo)
         {
-             transform.position = Vector3.MoveTowards
-                    (transform.position, Node_MovingTo.gameObject.transform.position + CreatureOffset,
-                    8 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards
+            (transform.position, Node_MovingTo.gameObject.transform.position + CreatureOffset,
+                8 * Time.deltaTime);
         }
 
         if (m_MovementHasStarted == true)
@@ -118,48 +122,49 @@ public class AiController : MonoBehaviour
 
     public void SetGoal(Vector2Int m_Goal)
     {
-      m_Grid.SetHeuristicToZero();
-      m_Grid.m_GridPathToGoal.Clear();
-      m_Grid.RemoveWalkableArea();
-      m_Grid.GetNode(m_Goal.x, m_Goal.y).m_IsGoal = true;
-      
+        m_Grid.SetHeuristicToZero();
+        m_Grid.m_GridPathToGoal.Clear();
+        m_Grid.RemoveWalkableArea();
+        m_Grid.GetNode(m_Goal.x, m_Goal.y).m_IsGoal = true;
+
 
 
     }
 
     public void FindAllPaths()
     {
-        _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, Node_ObjectIsOn,m_Movement);
+        m_NodeInWalkableRange = GetAvailableDestinations(m_Grid.m_GridPathList, Node_ObjectIsOn, m_Movement);
 
 
-        foreach (CombatNode node in _pathsInRange)
+        foreach (CombatNode node in m_NodeInWalkableRange)
         {
-            node.CreateWalkableArea();
+            node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Walkable);
         }
     }
 
     public void DeselectAllPaths()
     {
-        if (_pathsInRange != null)
+        if (m_NodeInWalkableRange != null)
         {
 
-            foreach (CombatNode node in _pathsInRange)
+            foreach (CombatNode node in m_NodeInWalkableRange)
             {
                 node.m_Heuristic = 0;
-                node.RemoveWalkableArea();
+                node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Walkable);
             }
         }
     }
 
-    public HashSet<CombatNode> GetAvailableDestinations(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff, int Range)
+    public HashSet<CombatNode> GetAvailableDestinations(List<CombatNode> cells, CombatNode NodeHeuristicIsBasedOff,
+        int Range)
     {
         cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cachePaths(cells, NodeHeuristicIsBasedOff,m_MovementType.CheckIfNodeIsClearAndReturnNodeIndex);
+        var paths = cachePaths(cells, NodeHeuristicIsBasedOff, m_MovementType.CheckIfNodeIsClearAndReturnNodeIndex);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
-            
+
             var pathCost = path.Sum(c => c.m_MovementCost);
             key.m_Heuristic = pathCost;
             if (pathCost <= Range)
@@ -167,20 +172,22 @@ public class AiController : MonoBehaviour
                 cachedPaths.Add(key, path);
             }
         }
+
         return new HashSet<CombatNode>(cachedPaths.Keys);
     }
-    
 
-    
+
+
     public HashSet<CombatNode> GetNodesInRange(List<CombatNode> aCells, CombatNode aNodeHeuristicIsBasedOff, int aRange)
     {
         cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
-        var paths = cachePaths(aCells, aNodeHeuristicIsBasedOff, m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+        var paths = cachePaths(aCells, aNodeHeuristicIsBasedOff,
+            m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
-            
+
             var pathCost = path.Sum(c => 1);
             key.m_Heuristic = pathCost;
             if (pathCost <= aRange)
@@ -188,69 +195,93 @@ public class AiController : MonoBehaviour
                 cachedPaths.Add(key, path);
             }
         }
+
         return new HashSet<CombatNode>(cachedPaths.Keys);
     }
-    
+
 
     public virtual void SetGoalPosition(Vector2Int m_Goal)
     {
-        
+
         SetGoal(m_Goal);
 
-        _pathsInRange = GetAvailableDestinations(m_Grid.m_GridPathList, m_Grid.GetNode(m_Goal.x, m_Goal.y),100);
+        m_NodeInWalkableRange =
+            GetAvailableDestinations(m_Grid.m_GridPathList, m_Grid.GetNode(m_Goal.x, m_Goal.y), 100);
 
 
-        foreach (CombatNode node in _pathsInRange)
+        foreach (CombatNode node in m_NodeInWalkableRange)
         {
             node.m_IsWalkable = true;
         }
 
 
 
-        List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid,m_Movement);
+        List<CombatNode> TempList = m_Grid.GetTheLowestH(Node_ObjectIsOn.m_PositionInGrid, m_Movement);
 
 
         StartCoroutine(GetToGoal(TempList));
 
     }
 
-    public void Domain(int aDomainRange)
+    public void SetDomain(int aDomainRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),aDomainRange);
+        m_NodeInDomainRange =
+            GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), aDomainRange);
 
 
-        foreach (CombatNode node in _pathsInRange)
+        foreach (CombatNode node in m_NodeInDomainRange)
+        {
+            node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+        }
+
+    }
+
+    public void ActivateDomain()
+    {
+
+        foreach (CombatNode node in m_NodeInDomainRange)
         {
             node.m_DomainCombatNode = CombatNode.DomainCombatNode.Domain;
             node.DomainOnNode = m_Creature.m_Domain;
             if (node.m_CreatureOnGridPoint != null)
             {
-               // node.m_CreatureOnGridPoint.StatsBeforeDomain();
+                // node.m_CreatureOnGridPoint.StatsBeforeDomain();
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
                 node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
+                node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
             }
 
 
             node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
-
     }
-    
-    public void Devour(int DevourRange)
+
+    public void SetDevour(int DevourRange)
     {
-        _pathsInRange = GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y),DevourRange);
+        m_NodeInDevourRange =
+            GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), DevourRange);
 
 
-        foreach (CombatNode node in _pathsInRange)
+        foreach (CombatNode node in m_NodeInDevourRange)
         {
-            node.DomainRevert();
+            node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
         }
 
     }
-    
+
+    public void ActivateDevour()
+    {
+        
+        foreach (CombatNode node in m_NodeInDevourRange)
+        {
+            node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
+            node.DomainRevert();
+        }
+    }
 
 
-    public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
+
+public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
         m_CreaturesAnimator.SetBool("b_IsWalking", true);

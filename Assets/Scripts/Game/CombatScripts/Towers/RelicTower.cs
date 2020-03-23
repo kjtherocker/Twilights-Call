@@ -54,7 +54,7 @@ public class RelicTower : Relic
 
     public void DomainRecession()
     {
-        m_CreatureAi.Domain(8);
+        m_CreatureAi.SetDomain(8);
         LengthOfDomain--;
     }
 }

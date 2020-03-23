@@ -13,17 +13,21 @@ public class UiDomainBoard : UiScreen
     }
 
     public Creatures m_SkillBoardCreature;
-    public ButtonSkillWrapper m_ButtonReference;
-    public List<ButtonSkillWrapper> m_CurrentSkillMenuButtonsMenu;
+    public DomainWrapper m_ButtonReference;
+    public List<DomainWrapper> m_CurrentSkillMenuButtonsMenu;
 
     public Animator m_Animator_SkillGroup;
-    public ButtonSkillWrapper m_DomainButton;
+    public DomainWrapper m_DomainButton;
 
     public TextMeshProUGUI m_DescriptionText;
     public int m_SkillBoardPointerPosition;
     
     public bool m_SwapBetweenSkillDomain;
 
+    public GameObject EmptySkillCard;
+    public GameObject EmptyDevourCard;
+    public GameObject EmptyDomainCard;
+    
     DomainBoardState m_DomainBoardState;
     
     public Vector3 m_CenterCardPosition;
@@ -66,23 +70,35 @@ public class UiDomainBoard : UiScreen
         if (m_SkillBoardPointerPosition == 0)
         {
             GameManager.Instance.BattleCamera.m_CombatInputLayer.SetDomainPhase(m_SkillBoardCreature.m_Domain);
+            m_CurrentSkillMenuButtonsMenu[1].gameObject.SetActive(false);
         }
         else if (m_SkillBoardPointerPosition == 1)
         {
             GameManager.Instance.BattleCamera.m_CombatInputLayer.SetDevourPhase(); 
+            m_CurrentSkillMenuButtonsMenu[0].gameObject.SetActive(false);
         }
-        
 
+
+        SetSkillInstantly(m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition]);
+        //StartCoroutine(MoveSkillToSide( m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition]));
+
+        
+        
         InputManager.Instance.m_MovementControls.Enable();
-        GameManager.Instance.UiManager.PopScreen();
+        //GameManager.Instance.UiManager.PopScreen();
     }
 
     public override void OnPop()
     {
         gameObject.SetActive((false));
         m_MenuControls.Disable();
-     //   m_Animator_SkillGroup.gameObject.SetActive(false);
-       // m_Animator_SkillGroup.SetBool("ZoomIn",false);
+ 
+
+        m_CurrentSkillMenuButtonsMenu[0].gameObject.transform.position = EmptyDomainCard.transform.position;
+        m_CurrentSkillMenuButtonsMenu[1].gameObject.transform.position = EmptyDevourCard.transform.position;
+        
+        //   m_Animator_SkillGroup.gameObject.SetActive(false);
+        // m_Animator_SkillGroup.SetBool("ZoomIn",false);
     }
 
     public override void OnPush()
@@ -92,6 +108,12 @@ public class UiDomainBoard : UiScreen
         ResetCursorPosition();
        // m_Animator_SkillGroup.SetBool("ZoomIn",true);
      //  m_Animator_SkillGroup.gameObject.SetActive(true);
+
+     foreach (var VARIABLE in m_CurrentSkillMenuButtonsMenu)
+     {
+         VARIABLE.gameObject.SetActive(true);
+     }
+     
         m_MenuControls.Enable();
         m_DomainBoardState = DomainBoardState.Selecting;
     }
@@ -109,19 +131,38 @@ public class UiDomainBoard : UiScreen
     }
 
 
-
-    public void AnimatedCardMovementToCenter(ButtonSkillWrapper a_SkillWrapper)
+    public void SetSkillInstantly(DomainWrapper aButtonSkillWrapper)
     {
-     //  a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 150, a_SkillWrapper.transform.position.z);
+        aButtonSkillWrapper.gameObject.transform.position = EmptySkillCard.gameObject.transform.position;
+    }
 
-     //  m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
+
+    public IEnumerator MoveSkillToSide(DomainWrapper aButtonSkillWrapper)
+    {
+
+        if (aButtonSkillWrapper.gameObject.transform.position == EmptySkillCard.gameObject.transform.position)
+        {
+            yield break;
+        }
+
+        aButtonSkillWrapper.gameObject.transform.position = Vector3.MoveTowards( aButtonSkillWrapper.gameObject.transform.position,
+            EmptySkillCard.gameObject.transform.position, Time.deltaTime * 8);
+        
+        yield return new WaitForEndOfFrame();
+    }
+
+    public void AnimatedCardMovementToCenter(DomainWrapper a_SkillWrapper)
+    {
+      a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 150, a_SkillWrapper.transform.position.z);
+
+ //      m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
     }
     
-    public void AnimatedCardMovementDown(ButtonSkillWrapper a_SkillWrapper)
+    public void AnimatedCardMovementDown(DomainWrapper a_SkillWrapper)
     {
-     //   a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 125, a_SkillWrapper.transform.position.z);
-//
-     //   m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
+       a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 125, a_SkillWrapper.transform.position.z);
+     
+    //   m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
     }
 
 
@@ -151,6 +192,8 @@ public class UiDomainBoard : UiScreen
 
         
         
-        //AnimatedCardMovementDown(m_CurrentSkillMenuButtonsMenu[OriginalPointerPosition]);
+        AnimatedCardMovementDown(m_CurrentSkillMenuButtonsMenu[OriginalPointerPosition]);
+        AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition]);
+        
     }
 }

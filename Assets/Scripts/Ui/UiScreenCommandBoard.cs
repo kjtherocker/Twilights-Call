@@ -77,6 +77,8 @@ public class UiScreenCommandBoard : UiScreen
         }
 
         m_MenuControls.Disable();
+
+        m_CommandboardCreature.m_CreatureAi.DeselectAllPaths();
         
         GameManager.Instance.UiManager.PopScreen();
         GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainBoard);
@@ -97,6 +99,8 @@ public class UiScreenCommandBoard : UiScreen
         }
 
         m_MenuControls.Disable();
+        
+        m_CommandboardCreature.m_CreatureAi.DeselectAllPaths();
         
         GameManager.Instance.UiManager.PopScreen();
         GameManager.Instance.UiManager.PushScreen(UiManager.Screen.SkillBoard);

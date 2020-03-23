@@ -48,6 +48,9 @@ public class CombatInputLayer
         InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => CreateCommandBoard();
         InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => PlayerWalk();
         InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => AttackingIndividual();
+        InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => ActivatedDevour();
+        InputManager.Instance.m_MovementControls.Player.XButton.performed += XButton => ActivatedDomain();
+        
         InputManager.Instance.m_MovementControls.Player.SquareButton.performed += SquareButton => ReturnToCommandboard();
     }
 
@@ -318,15 +321,41 @@ public class CombatInputLayer
     
     public void SetDomainPhase(Domain aDomain)
     {
-        m_Creature.m_CreatureAi.Domain(aDomain.m_SkillRange);
+        m_CombatInputState = CombatInputState.Domain;
+        m_Creature.m_CreatureAi.SetDomain(m_Creature.m_Domain.m_SkillRange);
+    }
+
+    private void ActivatedDomain()
+    {
+        if (m_CombatInputState != CombatInputState.Domain)
+        {
+            return;
+        }
+        GameManager.Instance.UiManager.PopScreen();
+        m_Creature.m_CreatureAi.ActivateDomain();
         m_CombatInputState = CombatInputState.Default;
     }
     
+    
     public void SetDevourPhase()
     {
-        m_Creature.m_CreatureAi.Devour(4);
+        m_Creature.m_CreatureAi.SetDevour(4);
+        m_CombatInputState = CombatInputState.Devour;
+    }
+
+    private void ActivatedDevour()
+    {
+
+        if (m_CombatInputState != CombatInputState.Devour)
+        {
+            return;
+        }
+        GameManager.Instance.UiManager.PopScreen();
+        m_Creature.m_CreatureAi.ActivateDevour();
         m_CombatInputState = CombatInputState.Default;
     }
+
+
 
 
 }
