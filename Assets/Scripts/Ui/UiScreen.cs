@@ -39,13 +39,13 @@ public class UiScreen : MonoBehaviour
         gameObject.SetActive(true);
     }
     
-    public void MoveMenuCursorPosition(Vector2 aMovement)
+    public virtual void MoveMenuCursorPosition(Vector2 aMovement)
     {
         m_CursorXPrevious = m_CursorXCurrent;
         m_CursorYPrevious = m_CursorYCurrent;
         
-        m_CursorXCurrent = MenuDirectionCalculation(aMovement.x, m_CursorXCurrent, m_CursorXMax, m_CursorXMin);
-        m_CursorYCurrent = MenuDirectionCalculation(aMovement.y, m_CursorYCurrent, m_CursorYMax, m_CursorYMin);
+        m_CursorXCurrent = MenuDirectionCalculationLooping(aMovement.x, m_CursorXCurrent, m_CursorXMax, m_CursorXMin);
+        m_CursorYCurrent = MenuDirectionCalculationLooping(aMovement.y, m_CursorYCurrent, m_CursorYMax, m_CursorYMin);
         MenuSelection(m_CursorXCurrent, m_CursorYCurrent);
     }
 
@@ -67,7 +67,7 @@ public class UiScreen : MonoBehaviour
         m_CursorXMin = 0;
     }
 
-    public int MenuDirectionCalculation(float Axis, int aCurrent,int aMax, int aMin)
+    public virtual int MenuDirectionCalculationLooping(float Axis, int aCurrent,int aMax, int aMin)
     {
         if (Axis < 0)
         {
@@ -91,6 +91,55 @@ public class UiScreen : MonoBehaviour
         return aCurrent;
     }
 
+    public virtual int MenuDirectionCalculationEnd(float Axis, int aCurrent,int aMax, int aMin)
+    {
+        if (Axis < 0)
+        {
+            aCurrent++;
+        }
+        
+        if (Axis > 0)
+        {
+            aCurrent--;
+        }
+
+        if (aCurrent < aMin)
+        {
+            aCurrent = aMin;
+        }
+        else if (aCurrent > aMax)
+        {
+            aCurrent = aMax;
+        }
+
+        return aCurrent;
+    }
+    
+    public virtual int MenuDirectionCalculationEndInvertAxis(float Axis, int aCurrent,int aMax, int aMin)
+    {
+        if (Axis > 0)
+        {
+            aCurrent++;
+        }
+        
+        if (Axis < 0)
+        {
+            aCurrent--;
+        }
+
+        if (aCurrent < aMin)
+        {
+            aCurrent = aMin;
+        }
+        else if (aCurrent > aMax)
+        {
+            aCurrent = aMax;
+        }
+
+        return aCurrent;
+    }
+
+    
     public virtual void ReturnToLastScreen()
     {
         GameManager.Instance.m_UiManager.ReturnToLastScreen();

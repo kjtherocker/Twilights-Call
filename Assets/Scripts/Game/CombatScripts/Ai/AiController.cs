@@ -223,8 +223,25 @@ public class AiController : MonoBehaviour
 
     }
 
+    public void RemoveDomainArea()
+    {
+        if ( m_NodeInDomainRange != null)
+        {
+            if (m_NodeInDomainRange.Count > 0)
+            {
+                foreach (CombatNode node in m_NodeInDomainRange)
+                {
+                    node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+                }
+            }
+        }
+    }
+
     public void SetDomain(int aDomainRange)
     {
+
+        RemoveDomainArea();
+        
         m_NodeInDomainRange =
             GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), aDomainRange);
 
@@ -254,6 +271,8 @@ public class AiController : MonoBehaviour
 
             node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
+
+        RemoveDomainArea();
     }
 
     public void SetDevour(int DevourRange)

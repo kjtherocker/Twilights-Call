@@ -27,6 +27,7 @@ public class UiSkillBoard : UiScreen
        
         m_MenuControls.Player.Movement.performed += movement => MoveCommandBoardPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
+        m_MenuControls.Player.XButton.performed += XButton => SetSkill();
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
@@ -37,14 +38,9 @@ public class UiSkillBoard : UiScreen
 
     public void SetSkill()
     {
-        if(m_SwapBetweenSkillDomain == false)
-        {
-            GameManager.Instance.BattleCamera.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
-        }
-        else
-        {
-            GameManager.Instance.BattleCamera.m_CombatInputLayer.SetDomainPhase(m_SkillBoardCreature.m_Domain);
-        }
+
+        GameManager.Instance.BattleCamera.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
+ 
         InputManager.Instance.m_MovementControls.Enable();
         GameManager.Instance.UiManager.PopScreen();
     }
@@ -89,6 +85,7 @@ public class UiSkillBoard : UiScreen
 
         AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[0]);
     }
+
 
 
 

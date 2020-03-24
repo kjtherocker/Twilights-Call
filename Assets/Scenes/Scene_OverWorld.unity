@@ -13002,7 +13002,9 @@ MonoBehaviour:
   m_DomainButton: {fileID: 0}
   m_DescriptionText: {fileID: 0}
   m_SkillBoardPointerPosition: 0
+  m_CardPower: 0
   m_SwapBetweenSkillDomain: 0
+  m_SelectedDomainWrapper: {fileID: 0}
   EmptySkillCard: {fileID: 2000009869}
   EmptyDevourCard: {fileID: 335484303}
   EmptyDomainCard: {fileID: 1657003124}

@@ -26,6 +26,8 @@ public class DomainWrapper : MonoBehaviour
     public Image m_Image_CardDesign;
     public Image m_Image_ElementalIcon;
 
+    public int CardPower;
+    
     public string m_NameOfSkill;
 
     public TextMeshProUGUI m_CardRange;
@@ -42,6 +44,7 @@ public class DomainWrapper : MonoBehaviour
     {
          m_Color_TransparentWhite = new Color(1, 1, 1, 0.5f);
          m_Color_White = new Color(1, 1, 1, 1);
+         CardPower = 1;
     }
     
     public void SetElementalIcon(Skills.ElementalType aSkills, string sourceName = "Global")
@@ -92,16 +95,23 @@ public class DomainWrapper : MonoBehaviour
         m_Button.interactable = false;
     }
 
-
-
-    public void ButtonClick()
+    public void CardPowerSet(int aPower)
     {
-        if (m_ButtonTurnHolder.CurrentMana >= m_ButtonSkill.GetCostToUse() || m_ListReference.Count >= 0)
+        if (aPower <= 0 || aPower == 4)
         {
-            // m_CombatManagerRefrence.SetBattleStateToSelect();
-            // m_CombatManagerRefrence.SetTurnHolderSkills(m_SkillNumber);
+            return;
         }
+
+        Debug.Log("Increase Card Power");
+
+        GameManager.Instance.m_BattleCamera.m_CombatInputLayer.SetDomainPhase(aPower);
+        m_CardRange.text = "Lv. " + aPower;
     }
+
+
+
+
+
 
     public void ToDestroy()
     {

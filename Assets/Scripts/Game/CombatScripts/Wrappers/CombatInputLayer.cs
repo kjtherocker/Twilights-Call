@@ -319,13 +319,13 @@ public class CombatInputLayer
         }
     }
     
-    public void SetDomainPhase(Domain aDomain)
+    public void SetDomainPhase(int aRange)
     {
         m_CombatInputState = CombatInputState.Domain;
-        m_Creature.m_CreatureAi.SetDomain(m_Creature.m_Domain.m_SkillRange);
+        m_Creature.m_CreatureAi.SetDomain(aRange);
     }
 
-    private void ActivatedDomain()
+    public void ActivatedDomain()
     {
         if (m_CombatInputState != CombatInputState.Domain)
         {
@@ -337,13 +337,13 @@ public class CombatInputLayer
     }
     
     
-    public void SetDevourPhase()
+    public void SetDevourPhase(int aRange)
     {
-        m_Creature.m_CreatureAi.SetDevour(4);
+        m_Creature.m_CreatureAi.SetDevour(aRange);
         m_CombatInputState = CombatInputState.Devour;
     }
 
-    private void ActivatedDevour()
+    public void ActivatedDevour()
     {
 
         if (m_CombatInputState != CombatInputState.Devour)
