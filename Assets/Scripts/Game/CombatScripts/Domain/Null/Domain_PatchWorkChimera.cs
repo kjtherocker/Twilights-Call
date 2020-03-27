@@ -20,7 +20,7 @@ public class Domain_PatchWorkChimera : Domain
         
         
         
-        m_DomainTexture = (Material)Resources.Load("Objects/Battle/Node/Material/Material_CrystalNode", typeof(Material));
+        m_DomainTexture = (Material)Resources.Load("Objects/Battle/Node/Material/Material_PatchWorkChimera", typeof(Material));
         
     }
 

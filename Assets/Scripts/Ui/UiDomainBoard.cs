@@ -27,6 +27,8 @@ public class UiDomainBoard : UiScreen
     public bool m_SwapBetweenSkillDomain;
 
     public DomainWrapper m_SelectedDomainWrapper;
+
+    public GameObject m_MovingBackground;
     
     public GameObject EmptySkillCard;
     public GameObject EmptyDevourCard;
@@ -71,6 +73,7 @@ public class UiDomainBoard : UiScreen
     public override void OnPush()
     {
         gameObject.SetActive((true));
+        m_MovingBackground.SetActive(false);
         InputManager.Instance.m_MovementControls.Disable();
         ResetCursorPosition();
         // m_Animator_SkillGroup.SetBool("ZoomIn",true);
@@ -157,6 +160,7 @@ public class UiDomainBoard : UiScreen
 
         SelectedCardEmpowerValues();
         m_DomainBoardState = DomainBoardState.Selected;
+        m_MovingBackground.SetActive(true);
     }
 
     public void SpawnSkills(Creatures aCreatures)

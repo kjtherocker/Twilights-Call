@@ -102,7 +102,20 @@ public class DomainWrapper : MonoBehaviour
             return;
         }
 
-        Debug.Log("Increase Card Power");
+        if (aPower > 1)
+        {
+            m_LeftArrow.gameObject.SetActive(true);
+        }
+        else if(aPower == 1)
+        {
+            m_LeftArrow.gameObject.SetActive(false);
+        }
+
+        if (m_Domain.m_CostToUse * aPower > m_ButtonTurnHolder.CurrentMana)
+        {
+            m_RightArrow.gameObject.SetActive(true);
+        }
+        
 
         GameManager.Instance.m_BattleCamera.m_CombatInputLayer.SetDomainPhase(aPower);
         m_CardRange.text = "Lv. " + aPower;

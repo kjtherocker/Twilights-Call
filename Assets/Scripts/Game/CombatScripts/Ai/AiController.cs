@@ -249,6 +249,7 @@ public class AiController : MonoBehaviour
         foreach (CombatNode node in m_NodeInDomainRange)
         {
             node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+            
         }
 
     }
@@ -260,12 +261,14 @@ public class AiController : MonoBehaviour
         {
             node.m_DomainCombatNode = CombatNode.DomainCombatNode.Domain;
             node.DomainOnNode = m_Creature.m_Domain;
+
             if (node.m_CreatureOnGridPoint != null)
-            {
-                // node.m_CreatureOnGridPoint.StatsBeforeDomain();
+            { 
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
                 node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
                 node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+
+ 
             }
 
 
@@ -284,6 +287,7 @@ public class AiController : MonoBehaviour
         foreach (CombatNode node in m_NodeInDevourRange)
         {
             node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
+            node.m_DomainCombatNode = CombatNode.DomainCombatNode.None;
         }
 
     }

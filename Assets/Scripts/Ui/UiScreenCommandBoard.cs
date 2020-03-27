@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,9 @@ public class UiScreenCommandBoard : UiScreen
 {
     public Animator m_CommandBoardAnimator;
     public Creatures m_CommandboardCreature;
+
+    public GameObject m_CommandObjects;
+    
     public TextMeshProUGUI m_MovementText;
     public TextMeshProUGUI m_Attack;
     public TextMeshProUGUI m_Skill;
@@ -35,9 +39,11 @@ public class UiScreenCommandBoard : UiScreen
         gameObject.SetActive(true);
         InputManager.Instance.m_MovementControls.Disable();
         m_MenuControls.Enable();
+        
+
+        
         m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
-
     public void TurnCommandBoardOff()
     {
        m_MenuControls.Disable();
@@ -47,10 +53,21 @@ public class UiScreenCommandBoard : UiScreen
 
     }
 
+    public void Update()
+    {
+        if (m_CommandboardCreature != null)
+        {
+            Vector2 screenPosition = GameManager.Instance.BattleCamera.GetComponent<Camera>()
+                .WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
+            m_CommandObjects.transform.position = screenPosition;
+        }
+    }
+
     public void SetCreatureReference(Creatures aCreature)
     {
         m_CommandboardCreature = aCreature;
-
+        Vector2 screenPosition = GameManager.Instance.BattleCamera.GetComponent<Camera>().WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
+        m_CommandObjects.transform.position = screenPosition;
     }
 
     public void PlayerMovement()

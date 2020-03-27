@@ -319,7 +319,7 @@
             </e>
             <e p="UiArenaList.cs" t="Include" />
             <e p="UiDomainBoard.cs" t="Include" />
-            <e p="UiDomainTab.cs" t="Include" />
+            <e p="UiDomainStatus.cs" t="Include" />
             <e p="UiManager.cs" t="Include" />
             <e p="UiScreen.cs" t="Include" />
             <e p="UiScreenCommandBoard.cs" t="Include" />

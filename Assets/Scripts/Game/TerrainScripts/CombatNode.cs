@@ -109,6 +109,8 @@ public class CombatNode : Cell
             m_CurrentWalkablePlaneBeingUsed = m_WalkablePlane;
         }
 
+        m_DomainCombatNode = CombatNode.DomainCombatNode.None;
+
         m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(false);
         m_AttackingPlane.gameObject.SetActive(false);
         m_Cube.gameObject.SetActive(true);

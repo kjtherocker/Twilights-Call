@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UiDomainTab : MonoBehaviour
+public class UiDomainStatus : MonoBehaviour
 {
     public Animator DomainAnimator;
     public Domain m_Domain;
     public TextMeshProUGUI m_Text_DomainUser;
     public TextMeshProUGUI m_Text_DomainName;
     public TextMeshProUGUI m_Text_DomainDescription;
-    public int m_CommandBoardPointerPosition;
+
     
     // Use this for initialization
 	void Start ()
@@ -37,16 +37,13 @@ public class UiDomainTab : MonoBehaviour
     {
 
         gameObject.SetActive(false);
-        m_CommandBoardPointerPosition = 0;
-
 
     }
 
     public void SetDomainReference(Domain aDomain)
     {
-        m_Text_DomainUser.text = aDomain.DomainUser;
-        m_Text_DomainName.text = aDomain.DomainName;
-        m_Text_DomainDescription.text = aDomain.DomainDescription;
+        m_Text_DomainName.text = aDomain.SkillName;
+        m_Text_DomainDescription.text = aDomain.SkillDescription;
 
     }
 

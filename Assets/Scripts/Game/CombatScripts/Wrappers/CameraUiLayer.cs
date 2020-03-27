@@ -17,6 +17,9 @@ public class CameraUiLayer : MonoBehaviour
     public HealthBar m_PlayerStatusSheet;
     public HealthBar m_EnemyStatusSheet;
 
+    public UiDomainStatus m_DomainTab;
+    
+    
     private Vector2Int m_CameraPositionInGrid;
     public GameObject m_Selector;
     
@@ -68,7 +71,8 @@ public class CameraUiLayer : MonoBehaviour
 
 
         HandleStatus();
-
+        HandleDomainStatus();
+        
         m_CombatInput.SetAttackTile();
         DebugLogs();
     }
@@ -125,6 +129,24 @@ public class CameraUiLayer : MonoBehaviour
 
 
  
+    public void HandleDomainStatus()
+    {
+
+
+
+        if (m_NodeTheCameraIsOn.m_DomainCombatNode != CombatNode.DomainCombatNode.Domain)
+        {
+            m_DomainTab.gameObject.SetActive(false);
+        }
+        else
+        {
+            m_DomainTab.SetDomainReference(m_NodeTheCameraIsOn.DomainOnNode);
+            m_DomainTab.gameObject.SetActive(true);
+        }
+
+        
+    }
+
 
 
 }
