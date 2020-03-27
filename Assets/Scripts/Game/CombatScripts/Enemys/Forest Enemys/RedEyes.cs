@@ -13,9 +13,11 @@ public class RedEyes : Creatures
         CurrentMana = 10;
         MaxMana = 10;
         Strength = 75;
-        Magic = 250;
-        Dexterity = 10;
-        Speed = 10;
+        Magic = 40;
+        Hit = 20;
+        Evasion = 20;
+        Defence = 20;
+        Resistance = 20;
         Name = "Red Eyes";
 
         AmountOfTurns = 2;

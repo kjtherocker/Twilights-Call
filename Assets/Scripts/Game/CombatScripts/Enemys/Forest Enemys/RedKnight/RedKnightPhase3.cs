@@ -12,10 +12,12 @@ public class RedKnightPhase3 : Creatures
         MaxHealth = 200;
         CurrentMana = 10;
         MaxMana = 10;
-        Strength = 350;
-        Magic = 350;
-        Dexterity = 10;
-        Speed = 10;
+        Strength = 75;
+        Magic = 40;
+        Hit = 20;
+        Evasion = 20;
+        Defence = 20;
+        Resistance = 20;
         if (Name == "No Name")
         {
             Name = NameGenerator.Instance.GetName();

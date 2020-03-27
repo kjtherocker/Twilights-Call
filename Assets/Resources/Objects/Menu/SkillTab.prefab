@@ -86,11 +86,21 @@ MonoBehaviour:
     m_SkillRange: 0
   m_Domain:
     m_ElementalType: 0
+    m_SkillType: 0
+    m_SkillFormation: 0
+    m_Damagetype: 0
+    m_SkillAilment: 0
+    SkillName: 
+    SkillDescription: 
+    m_SkillParticleEffect: {fileID: 0}
+    m_CostToUse: 0
+    m_Damage: 0
+    m_AnimationName: 
+    m_SkillRange: 0
     DomainName: 
     Domaintype: 0
     DomainUser: 
     DomainDescription: 
-    m_CostToUse: 0
     m_DomainTexture: {fileID: 0}
   m_SkillBoard: {fileID: 0}
   m_Button: {fileID: 0}
@@ -870,14 +880,14 @@ RectTransform:
   m_GameObject: {fileID: 166278079929737504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2808, y: 1.2808, z: 1.2808}
   m_Children: []
   m_Father: {fileID: 166278078509934325}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: 183.20012}
+  m_AnchoredPosition: {x: -33, y: 172.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &166278079929737517
@@ -906,10 +916,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UNREGISTERED CARD
+  m_text: PATCHWORK CHIMERA
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51b3937217abb9a4f89cdaa837978573, type: 2}
-  m_sharedMaterial: {fileID: -7038196448638763172, guid: 51b3937217abb9a4f89cdaa837978573,
+  m_fontAsset: {fileID: 11400000, guid: e568302c653b2054dbb8a0bd79924996, type: 2}
+  m_sharedMaterial: {fileID: 8561034599206291310, guid: e568302c653b2054dbb8a0bd79924996,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -935,13 +945,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 41.35
+  m_fontSize: 30.15
   m_fontSizeBase: 56.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18.42
   m_fontSizeMax: 72
-  m_fontStyle: 33
+  m_fontStyle: 1
   m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -973,7 +983,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -19.075056, y: -26.264717, z: -59.43296, w: -55.277184}
+  m_margin: {x: 15.365176, y: -26.264717, z: -23.577011, w: -55.277184}
   m_textInfo:
     textComponent: {fileID: 166278079929737506}
     characterCount: 17

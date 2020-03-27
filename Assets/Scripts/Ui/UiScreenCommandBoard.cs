@@ -25,7 +25,8 @@ public class UiScreenCommandBoard : UiScreen
 
     public override void OnPop()
     {
-        //m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossOut");
+        m_MenuControls.Disable();
+        m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossOut");
         TurnCommandBoardOff();
     }
 
@@ -34,7 +35,7 @@ public class UiScreenCommandBoard : UiScreen
         gameObject.SetActive(true);
         InputManager.Instance.m_MovementControls.Disable();
         m_MenuControls.Enable();
-       // m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
+        m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
 
     public void TurnCommandBoardOff()

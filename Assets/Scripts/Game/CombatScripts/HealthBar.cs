@@ -25,6 +25,13 @@ public class HealthBar : MonoBehaviour
     private int m_MaxMana = 150;
     public bool m_IsSelected;
 
+    public TextMeshProUGUI TextStrength;
+    public TextMeshProUGUI Text_Magic;
+    public TextMeshProUGUI Text_Hit;
+    public TextMeshProUGUI Text_Defence;
+    public TextMeshProUGUI Text_Resistance;
+    public TextMeshProUGUI Text_Evasion;
+
     // Use this for initialization
     void Start()
     {
@@ -86,6 +93,11 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void UpdateHealthbar()
     {
+        if (Partymember == null)
+        {
+            return;
+        }
+
         if (m_CurrentHealth <= 0)
         {
             m_CurrentHealth = 0;
@@ -104,6 +116,17 @@ public class HealthBar : MonoBehaviour
         if (m_CurrentMana >= m_MaxMana)
         {
             m_CurrentMana = m_MaxMana;
+        }
+
+
+        if (TextStrength != null)
+        {
+            TextStrength.text = "" + Partymember.Strength;
+            Text_Magic.text = "" + Partymember.Magic;
+            Text_Hit.text = "" + Partymember.Hit;
+            Text_Defence.text = "" + Partymember.Defence;
+            Text_Resistance.text = "" + Partymember.Resistance;
+            Text_Evasion.text = "" + Partymember.Evasion;
         }
 
         if (Image_Manahbar != null)

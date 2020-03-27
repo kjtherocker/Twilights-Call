@@ -72,8 +72,11 @@ public class Creatures : MonoBehaviour
     public int MaxMana;
     public int Strength;
     public int Magic;
-    public int Dexterity;
-    public int Speed;
+    public int Hit;
+    public int Evasion;
+    public int Defence;
+    public int Resistance;
+
 
     public int BeforeDomain_MaxHealth;
     public int BeforeDomain_MaxMana;

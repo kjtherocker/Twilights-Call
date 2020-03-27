@@ -13,10 +13,12 @@ public class Cavia : Creatures
         MaxHealth = 50;
         CurrentMana = 100;
         MaxMana = 200;
-        Strength = 200;
-        Magic = 300;
-        Dexterity = 60;
-        Speed = 90;
+        Strength = 75;
+        Magic = 40;
+        Hit = 20;
+        Evasion = 20;
+        Defence = 20;
+        Resistance = 20;
         Name = "Cavia";
 
         AmountOfTurns = 1;
