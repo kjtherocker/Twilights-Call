@@ -309,6 +309,7 @@
             <e p="ButtonWrappers" t="Include">
               <e p="ArenaButton.cs" t="Include" />
               <e p="ButtonSkillWrapper.cs" t="Include" />
+              <e p="DomainClashTabs.cs" t="Include" />
               <e p="DomainWrapper.cs" t="Include" />
             </e>
             <e p="EndOfCombatMenu.cs" t="Include" />
@@ -319,6 +320,7 @@
             </e>
             <e p="UiArenaList.cs" t="Include" />
             <e p="UiDomainBoard.cs" t="Include" />
+            <e p="UiDomainClash.cs" t="Include" />
             <e p="UiDomainStatus.cs" t="Include" />
             <e p="UiManager.cs" t="Include" />
             <e p="UiScreen.cs" t="Include" />

@@ -169,7 +169,7 @@ public class UiDomainBoard : UiScreen
         m_SkillBoardCreature = aCreatures;
         
         m_CurrentSkillMenuButtonsMenu[0].SetupButton(m_SkillBoardCreature,m_SkillBoardCreature.m_Domain);
-        m_CurrentSkillMenuButtonsMenu[1].SetupButton(m_SkillBoardCreature,new Devour());
+      //  m_CurrentSkillMenuButtonsMenu[1].SetupButton(m_SkillBoardCreature,new Devour());
 
 
         AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[0]);

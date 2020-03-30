@@ -59,15 +59,22 @@ public class DomainWrapper : MonoBehaviour
 
 
 
-    public void SetupButton(Creatures a_TurnHolder, Skills a_Skill)
+    public void SetupButton(Creatures a_TurnHolder, Domain a_Skill)
     {
         m_ButtonTurnHolder = a_TurnHolder;
         m_ButtonSkill = a_Skill;
         m_SkillType = a_Skill.GetSkillType();
         SetCardDesign(m_SkillType);
+        
+        m_ButtonTurnHolder = a_TurnHolder;
+        m_Domain = a_Skill;
+        SetCardDesign(Skills.SkillType.Domain);
+        SetElementalIcon(a_Skill.m_ElementalType);
 
-        SetElementalIcon(a_Skill.GetElementalType());
-        m_Text_NameOfSkill.text = a_Skill.SkillName;
+        
+        m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
+
+        //m_Text_NameOfSkill.text = a_Skill.SkillName;
         m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
         
         if (m_ButtonTurnHolder.CurrentMana <= m_ButtonSkill.GetCostToUse())
@@ -82,12 +89,7 @@ public class DomainWrapper : MonoBehaviour
     
     public void SetupDomain(Creatures a_TurnHolder, Domain aDomain)
     {
-        m_ButtonTurnHolder = a_TurnHolder;
-        m_Domain = aDomain;
-        SetCardDesign(Skills.SkillType.Domain);
-        SetElementalIcon(aDomain.m_ElementalType);
-        m_Text_NameOfSkill.text = aDomain.DomainName;
-        m_CostToUseText.text = aDomain.m_CostToUse.ToString();
+       
     }
 
     public void SetAsNotInteractable()
@@ -111,9 +113,13 @@ public class DomainWrapper : MonoBehaviour
             m_LeftArrow.gameObject.SetActive(false);
         }
 
-        if (m_Domain.m_CostToUse * aPower > m_ButtonTurnHolder.CurrentMana)
+        if (m_ButtonTurnHolder.CurrentMana > m_Domain.m_CostToUse * aPower )
         {
             m_RightArrow.gameObject.SetActive(true);
+        }
+        else
+        {
+            m_RightArrow.gameObject.SetActive(false);
         }
         
 

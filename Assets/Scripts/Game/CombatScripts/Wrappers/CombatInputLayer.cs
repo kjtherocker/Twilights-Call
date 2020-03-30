@@ -335,6 +335,8 @@ public class CombatInputLayer
         m_Creature.m_CreatureAi.ActivateDomain();
         m_CombatInputState = CombatInputState.Default;
         
+        m_CameraUiLayer.CameraStateChanged(m_NodeTheCameraIsOn);
+        
         InputManager.Instance.m_MovementControls.Enable();
     }
     
@@ -355,7 +357,8 @@ public class CombatInputLayer
         GameManager.Instance.UiManager.PopScreen();
         m_Creature.m_CreatureAi.ActivateDevour();
         m_CombatInputState = CombatInputState.Default;
-        
+
+        m_CameraUiLayer.CameraStateChanged(m_NodeTheCameraIsOn);
         InputManager.Instance.m_MovementControls.Enable();
     }
 
