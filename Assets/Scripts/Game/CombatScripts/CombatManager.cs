@@ -216,9 +216,19 @@ public class CombatManager : Singleton<CombatManager>
 
        if (Input.GetKeyDown("l"))
        {
-           EnemyTurn();
+           GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainClash);
+           
+           UiDomainClash ScreenTemp =
+               GameManager.Instance.UiManager.GetScreen(UiManager.Screen.DomainClash) as UiDomainClash;
+
+           ScreenTemp.SetClash(PartyManager.m_CurrentParty[0],
+           PartyManager.m_CurrentParty[1]);
+           
+
        }
     }
+
+
 
     public void RemoveDeadFromList(string aName, Creatures.Charactertype aCharactertype)
     {

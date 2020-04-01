@@ -32,9 +32,9 @@ public class AiController : MonoBehaviour
 
     public HealthBar m_Healthbar;
 
-    protected HashSet<CombatNode> m_NodeInWalkableRange;
-    protected HashSet<CombatNode> m_NodeInDevourRange;
-    protected HashSet<CombatNode> m_NodeInDomainRange;
+    public HashSet<CombatNode> m_NodeInWalkableRange;
+    public HashSet<CombatNode> m_NodeInDevourRange;
+    public HashSet<CombatNode> m_NodeInDomainRange;
 
 
     public Vector3 CreatureOffset;
@@ -235,6 +235,25 @@ public class AiController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void DomainClashResult(int aDomainRemoved)
+    {
+
+        int i = 0;
+        foreach (CombatNode node in m_NodeInDomainRange.Reverse())
+        {
+            if (i == aDomainRemoved)
+            {
+                break;
+            }
+
+            i++;
+            
+            node.DomainRevert();
+        }
+        
+    
     }
 
     public void SetDomain(int aDomainRange)
