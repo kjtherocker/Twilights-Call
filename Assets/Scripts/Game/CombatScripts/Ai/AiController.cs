@@ -251,6 +251,7 @@ public class AiController : MonoBehaviour
             i++;
             
             node.DomainRevert();
+            m_NodeInDomainRange.Remove(node);
         }
         
     

@@ -28,7 +28,7 @@ public class Cavia : Creatures
         SetCreature();
         
                 
-        m_Domain = new Domain_PatchWorkChimera();
+        m_Domain = new PatchWorkChimera();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
         

@@ -105,14 +105,6 @@
             <e p="NewUI.uss" t="Include" />
             <e p="NewUI.uxml" t="Include" />
           </e>
-          <e p="WorldSpaceDissolve" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="ShaderPosition.cs" t="Include" />
-            </e>
-            <e p="Shaders" t="Include">
-              <e p="Appear.shader" t="Include" />
-            </e>
-          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="DialogScripts" t="Include">
@@ -177,8 +169,11 @@
               <e p="Domain" t="Include">
                 <e p="Domain.cs" t="Include" />
                 <e p="DomainList.cs" t="Include" />
+                <e p="Fire" t="Include">
+                  <e p="CrystalFool.cs" t="Include" />
+                </e>
                 <e p="Null" t="Include">
-                  <e p="Domain_PatchWorkChimera.cs" t="Include" />
+                  <e p="PatchWorkChimera.cs" t="Include" />
                 </e>
               </e>
               <e p="Enemys" t="Include">
@@ -332,7 +327,6 @@
         <e p="Shaders" t="Include">
           <e p="CelShader.shader" t="Include" />
           <e p="CutoutRotationsShader.shader" t="Include" />
-          <e p="Disappear.shader" t="Include" />
           <e p="DontBackwardsCull.shader" t="Include" />
           <e p="DoubleTexture.shader" t="Include" />
           <e p="OdellWaterShader.shader" t="Include" />
@@ -356,6 +350,14 @@
           <e p="Scripts" t="Include">
             <e p="BounceTransform.cs" t="Include" />
             <e p="RotateTransform.cs" t="Include" />
+          </e>
+        </e>
+        <e p="WorldSpaceDissolve" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="ShaderPosition.cs" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="Appear.shader" t="Include" />
           </e>
         </e>
       </e>

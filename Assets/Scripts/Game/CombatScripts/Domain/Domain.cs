@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 
 
 [System.Serializable]
@@ -33,6 +33,11 @@ public class Domain : Skills
         
         m_CostToUse = 50;
         
+    }
+
+    public void OnLoadDomainMaterial(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Material> obj)
+    {
+        m_DomainTexture = obj.Result;
     }
 
     public virtual void DomainEffect(ref Creatures m_CreatureOnDomain)

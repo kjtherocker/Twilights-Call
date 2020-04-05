@@ -29,6 +29,7 @@ public class UiDomainClash : UiScreen
     public DomainClashTabs m_DomainClashTabA;
     public DomainClashTabs m_DomainClashTabB;
     public float SliderPosition;
+    public float m_SliderSpeed;
     
     
     public override void Initialize()
@@ -48,62 +49,74 @@ public class UiDomainClash : UiScreen
         
         m_DomainClashTabA.SetCreature(aCreatureA);
         m_DomainClashTabB.SetCreature(aCreatureB);
-        
-        
-        m_DomainClashTabA.IncrementTerritoryNumbers();
-        m_DomainClashTabB.IncrementTerritoryNumbers();
-        StartCoroutine(ClashSlider());
+
+
+        if (m_DomainClashTabA.TerritoryValue > m_DomainClashTabB.TerritoryValue)
+        {
+            ClashSlider(true);
+        }
+        else if (m_DomainClashTabB.TerritoryValue > m_DomainClashTabA.TerritoryValue)
+        {
+            ClashSlider(false);
+        }
+
+
+
+
     }
 
-    public IEnumerator ClashSlider()
+    public void ClashSlider(bool aWinner)
     {
-        int CurrentTerritoryA = m_DomainClashTabA.TerritoryValue;
-        int CurrentTerritoryB = m_DomainClashTabB.TerritoryValue;
-        
-        Debug.Log("Territory A " + CurrentTerritoryA);
-        Debug.Log("Territory B " + CurrentTerritoryB);
-        
-      // if (CurrentTerritoryA == CurrentTerritoryB)
-      // {
-      //     SliderPosition = 0.5f;
-      // }
-
-        if (CurrentTerritoryA > CurrentTerritoryB)
+        if (aWinner)
         {
-            SliderPosition += 0.1f;
+            StartCoroutine(MoveSlider(0.1f));
         }
-        if (CurrentTerritoryA < CurrentTerritoryB)
-        {
-            SliderPosition -= 0.1f;
-        }
-
-        if (SliderPosition <= 0.0f)
-        {
-            Debug.Log("BWins");
-            yield break;
-        }
-        else if (SliderPosition >= 1.0f)
-        {
-            Debug.Log("AWins");
-            yield break;
-        }
-
-        m_DomainClashTabA.IncrementTerritoryNumbers();
-        m_DomainClashTabB.IncrementTerritoryNumbers();
-
-        m_TerritorySlider.value = SliderPosition;
         
+        if (aWinner == false)
+        {
+            StartCoroutine(MoveSlider(-0.1f));
+        }
         
-        yield return new WaitForSeconds(.5f);
-        StartCoroutine(ClashSlider());
     }
+
+    public IEnumerator MoveSlider(float aSliderDirection)
+    {
+        if (m_TerritorySlider.value <= 0 || m_TerritorySlider.value >= 1)
+        {
+            Winner();
+            yield break;
+        }
+
+        m_TerritorySlider.value += aSliderDirection * m_SliderSpeed * Time.deltaTime;
+
+        yield return new WaitForEndOfFrame();
+
+        StartCoroutine(MoveSlider(aSliderDirection));
+
+    }
+
+    public void Winner()
+    {
+        
+        if (m_DomainClashTabA.TerritoryValue > m_DomainClashTabB.TerritoryValue)
+        {
+            DomainClashWinner(m_DomainClashTabA.m_Creatures,m_DomainClashTabB.m_Creatures);
+        }
+        else if (m_DomainClashTabB.TerritoryValue > m_DomainClashTabA.TerritoryValue)
+        {
+            DomainClashWinner(m_DomainClashTabB.m_Creatures,m_DomainClashTabA.m_Creatures);
+        }
+
+        
+    }
+
 
     public void DomainClashWinner(Creatures aDomainWinner,Creatures  aDomainLoser)
     {
-        int WinnersRemainingTerritory = aDomainWinner.m_CreatureAi.m_NodeInDomainRange.Count - aDomainLoser.m_CreatureAi.m_NodeInDomainRange.Count;
-        
-        
-
+         aDomainWinner.m_CreatureAi.DomainClashResult(aDomainLoser.m_CreatureAi.m_NodeInDomainRange.Count); 
+         aDomainLoser.m_CreatureAi.DomainClashResult(aDomainLoser.m_CreatureAi.m_NodeInDomainRange.Count); 
+         GameManager.Instance.UiManager.PopScreen();
+         InputManager.Instance.m_MovementControls.Enable();
     }
 
 

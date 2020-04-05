@@ -69,44 +69,45 @@ public class PropList : Singleton<PropList>
 
 
     //public List<GameObject> m_PropSet;
-    public  List<Prop> m_PropSet = new List<Prop>();
-    public List<NodeReplacement> m_NodeReplacements;
+    private  List<Prop> m_PropSet = new List<Prop>();
+    private Dictionary <Props, GameObject> m_Props = new Dictionary <Props, GameObject>();
+
+    private Props m_PropType;
+    
+    private List<NodeReplacement> m_NodeReplacements;
     // Start is called before the first frame update
     void Start()
     {
 
-    //   Addressables.LoadAssetAsync<Prop>("Tree1").Completed += OnLoadDone;
-    //   Addressables.LoadAssetAsync<Prop>("Tree2").Completed += OnLoadDone;
-    //   Addressables.LoadAssetAsync<Prop>("Tree3").Completed += OnLoadDone;
-       
-       
-       
-       
-    // Addressables.LoadAssetAsync<Prop>("Angled_Top_Broken_Pillar").Completed += OnLoadDone;
-    // Addressables.LoadAssetAsync<Prop>("Fully_Intact_Pillar").Completed += OnLoadDone;
-    // Addressables.LoadAssetAsync<Prop>("Middle_Broken_Pillar_1").Completed += OnLoadDone;
-    // Addressables.LoadAssetAsync<Prop>("Middle_Broken_Pillar_2").Completed += OnLoadDone;
-    // Addressables.LoadAssetAsync<Prop>("Middle_Dented_Pillar").Completed += OnLoadDone;
-    // Addressables.LoadAssetAsync<Prop>("Pillar_Stub").Completed += OnLoadDone;
-    // Addressables.LoadAssetAsync<Prop>("Top_Broken_Pillar").Completed += OnLoadDone;
-       
-       
+        m_PropType = Props.Tree1;
+       //  m_Props.Add(Props.None, Addressables.LoadAssetAsync<GameObject>("Tree1").Completed += OnComplete);
+
+
+         
+        
+        
+        
      // StartCoroutine(LoadProps());
-
+        m_PropType = Props.None;
     }
 
 
-    private void OnLoadDone(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Prop> obj)
+    private GameObject OnComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
     {
-        m_PropSet.Add(obj.Result);
-
+        Debug.Log("This is what addressables is getting " + obj.Result);
+        return obj.Result;
     }
+
 
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("a"))
+        {
+            
+           // Debug.Log("This is what testo is " + m_Testo);
+        }
     }
 
    public IEnumerator LoadProps()
@@ -125,19 +126,14 @@ public class PropList : Singleton<PropList>
 
     public GameObject ReturnPropData(Props aProp, string sourceName = "Global")
     {
-
-        for (int i = 0; i < m_PropSet.Count() - 1; i++)
+        
+        Debug.Log("Prop Found " + m_Props[aProp]);
+        if (m_Props.ContainsKey(aProp))
         {
-            if (m_PropSet[i].m_Prop == aProp)
-            {
-                return m_PropSet[i].gameObject;
-            }
+            return m_Props[aProp];
         }
 
-        Debug.Log("Couldnt find " + aProp);
-        
         return null;
- 
     }
 
     public NodeReplacement NodeReplacementData(NodeReplacements aProp, string sourceName = "Global")

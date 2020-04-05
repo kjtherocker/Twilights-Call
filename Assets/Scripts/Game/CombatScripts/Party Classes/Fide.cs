@@ -25,7 +25,7 @@ public class Fide : Creatures
         SetCreature();
 
                 
-        m_Domain = new Domain_PatchWorkChimera();
+        m_Domain = new CrystalFool();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
         

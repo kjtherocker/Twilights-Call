@@ -115,9 +115,11 @@ public class CombatNode : Cell
         m_AttackingPlane.gameObject.SetActive(false);
         m_Cube.gameObject.SetActive(true);
         m_IsSelector = false;
+        
+
         MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
         m_IniitalMaterial = meshRenderer.materials[1];
-
+        
         m_PropOnNodeTemp = m_PropOnNode;
 
         m_NodesInitalVector3Coordinates = gameObject.transform.position;
@@ -322,6 +324,9 @@ public class CombatNode : Cell
         Material[] tempmaterials = meshRenderer.materials;
         tempmaterials[1] = m_IniitalMaterial;
         meshRenderer.materials = tempmaterials;
+
+        m_DomainCombatNode = CombatNode.DomainCombatNode.None;
+        DomainOnNode = null;
     }
 
    // public IEnumerator DomainMaterialChange()

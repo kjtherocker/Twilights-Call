@@ -18,7 +18,7 @@ public class DomainList : Singleton<DomainList>
     {
 
         
-        m_DomainTypes.Add((int)DomainListEnum.PatchworkChimera, new Domain_PatchWorkChimera());
+        m_DomainTypes.Add((int)DomainListEnum.PatchworkChimera, new PatchWorkChimera());
         
         //for (int i = 0; i < m_DomainTypes.Count; i++)
         //{
