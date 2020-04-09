@@ -237,7 +237,13 @@ public class AiController : MonoBehaviour
         }
     }
 
-    public void DomainClashResult(int aDomainRemoved)
+
+    public void DomainClash(int aDomainRemoved)
+    {
+        StartCoroutine(DomainClashResult(aDomainRemoved));
+    }
+
+    public IEnumerator DomainClashResult(int aDomainRemoved)
     {
 
         int i = 0;
@@ -250,8 +256,11 @@ public class AiController : MonoBehaviour
 
             i++;
             
+            GameManager.Instance.m_BattleCamera.m_CameraPositionInGrid = node.m_PositionInGrid;
             node.DomainRevert();
             m_NodeInDomainRange.Remove(node);
+
+            yield return new WaitForSeconds(1.0f);
         }
         
     
@@ -269,7 +278,6 @@ public class AiController : MonoBehaviour
         foreach (CombatNode node in m_NodeInDomainRange)
         {
             node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
-            
         }
 
     }
@@ -294,6 +302,23 @@ public class AiController : MonoBehaviour
 
             node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
+        
+        foreach (CombatNode node in m_NodeInDomainRange)
+        {
+            foreach (CombatNode neighbour in node.GetNeighbours(m_Grid.m_GridPathList))
+            {
+                if (neighbour.DomainOnNode == null)
+                {
+                    continue;
+                }
+
+                if (neighbour.DomainOnNode != node.DomainOnNode)
+                {
+                    
+                }
+            }
+        }
+        
 
         RemoveDomainArea();
     }

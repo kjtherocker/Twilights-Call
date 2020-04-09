@@ -326,6 +326,10 @@
         </e>
         <e p="Shaders" t="Include">
           <e p="CelShader.shader" t="Include" />
+          <e p="Cutout" t="Include">
+            <e p="Grid.shader" t="Include" />
+            <e p="TrueGrid.shader" t="Include" />
+          </e>
           <e p="CutoutRotationsShader.shader" t="Include" />
           <e p="DontBackwardsCull.shader" t="Include" />
           <e p="DoubleTexture.shader" t="Include" />

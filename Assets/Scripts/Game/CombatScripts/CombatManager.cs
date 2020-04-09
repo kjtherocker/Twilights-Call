@@ -46,6 +46,7 @@ public class CombatManager : Singleton<CombatManager>
         Spawn,
         EnemyTurn,
         AllyTurn,
+        DomainClash,
     
         EndOfCombat
 
@@ -216,19 +217,32 @@ public class CombatManager : Singleton<CombatManager>
 
        if (Input.GetKeyDown("l"))
        {
-           GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainClash);
-           
-           UiDomainClash ScreenTemp =
-               GameManager.Instance.UiManager.GetScreen(UiManager.Screen.DomainClash) as UiDomainClash;
 
-           ScreenTemp.SetClash(PartyManager.m_CurrentParty[0],
-           PartyManager.m_CurrentParty[1]);
-           
+           StartCoroutine(
+               DomainHasClashed(PartyManager.m_CurrentParty[0], PartyManager.m_CurrentParty[1]));
 
        }
     }
+    
+    public IEnumerator DomainHasClashed(Creatures CreatureA, Creatures CreaturesB)
+    {
+        
+        m_BattleStates = CombatStates.DomainClash;
 
+        m_TurnSwitchText.gameObject.SetActive(true);
+        m_TurnSwitchText.text = "Domain Clash";
+        m_TurnSwitchText.color = Color.white;
 
+        yield return new WaitForSeconds(2f);
+        m_TurnSwitchText.gameObject.SetActive(false);
+        
+        GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainClash);
+           
+        UiDomainClash ScreenTemp =
+            GameManager.Instance.UiManager.GetScreen(UiManager.Screen.DomainClash) as UiDomainClash;
+
+        ScreenTemp.SetClash(CreatureA, CreaturesB);
+    }
 
     public void RemoveDeadFromList(string aName, Creatures.Charactertype aCharactertype)
     {

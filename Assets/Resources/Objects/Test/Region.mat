@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Region
-  m_Shader: {fileID: 4800000, guid: c41066df33f1d9f48a2c20dec4acc020, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0b637e4505ca0f1489d28d17bc45a20c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -63,6 +63,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GridSpacing: 1.4
+    - _GridThickness: 5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -74,7 +76,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AgrColor: {r: 1, g: 0, b: 0, a: 0.5}
+    - _BaseColour: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ComColor: {r: 0, g: 0, b: 1, a: 0.8156863}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GridColour: {r: 0, g: 1, b: 0.19600487, a: 0.5}
     - _ResColor: {r: 0, g: 1, b: 0, a: 0.75686276}
