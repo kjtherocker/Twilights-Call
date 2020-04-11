@@ -26,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 166278078509934090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.43374598, y: 0.43374598, z: 0.43374598}
+  m_LocalScale: {x: 0.64762616, y: 0.64762616, z: 0.64762616}
   m_Children:
   - {fileID: 166278080382364164}
   - {fileID: 166278079759042299}
@@ -102,6 +102,7 @@ MonoBehaviour:
     DomainUser: 
     DomainDescription: 
     m_DomainTexture: {fileID: 0}
+    m_Creature: {fileID: 0}
   m_SkillBoard: {fileID: 0}
   m_Button: {fileID: 0}
   m_CostToUseText: {fileID: 166278079530945751}
@@ -887,7 +888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: 172.6}
+  m_AnchoredPosition: {x: -40, y: 196}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &166278079929737517
@@ -916,7 +917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PATCHWORK CHIMERA
+  m_text: Phoenix Spirit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e568302c653b2054dbb8a0bd79924996, type: 2}
   m_sharedMaterial: {fileID: 8561034599206291310, guid: e568302c653b2054dbb8a0bd79924996,
@@ -945,7 +946,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.15
+  m_fontSize: 53.3
   m_fontSizeBase: 56.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -986,7 +987,7 @@ MonoBehaviour:
   m_margin: {x: 15.365176, y: -26.264717, z: -23.577011, w: -55.277184}
   m_textInfo:
     textComponent: {fileID: 166278079929737506}
-    characterCount: 17
+    characterCount: 14
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

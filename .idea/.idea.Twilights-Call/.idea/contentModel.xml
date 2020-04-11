@@ -312,6 +312,7 @@
               <e p="MainMenu.cs" t="Include" />
               <e p="Options.cs" t="Include" />
               <e p="PartyMenu.cs" t="Include" />
+              <e p="UiMemoria.cs" t="Include" />
             </e>
             <e p="UiArenaList.cs" t="Include" />
             <e p="UiDomainBoard.cs" t="Include" />

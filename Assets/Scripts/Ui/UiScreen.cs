@@ -71,12 +71,12 @@ public class UiScreen : MonoBehaviour
     {
         if (Axis < 0)
         {
-            aCurrent++;
+            aCurrent--;
         }
         
         if (Axis > 0)
         {
-            aCurrent--;
+            aCurrent++;
         }
 
         if (aCurrent < aMin)

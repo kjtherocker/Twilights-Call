@@ -61,16 +61,22 @@ public class ButtonSkillWrapper : MonoBehaviour
 
         SetElementalIcon(a_Skill.GetElementalType());
         m_Text_NameOfSkill.text = a_Skill.SkillName;
+
+        if (a_Skill.SkillName == "")
+        {
+            m_Text_NameOfSkill.text = "Name Is Empty";
+        }
+
         m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
         
-        if (m_ButtonTurnHolder.CurrentMana <= m_ButtonSkill.GetCostToUse())
-        {
-            m_Text_NameOfSkill.color = m_Color_TransparentWhite;
-        }
-        else if (m_ButtonTurnHolder.CurrentMana >= m_ButtonSkill.GetCostToUse())
-        {
-            m_Text_NameOfSkill.color = m_Color_White;
-        }
+      // if (m_ButtonTurnHolder.CurrentMana <= m_ButtonSkill.GetCostToUse())
+      // {
+      //     m_Text_NameOfSkill.color = m_Color_TransparentWhite;
+      // }
+      // else if (m_ButtonTurnHolder.CurrentMana >= m_ButtonSkill.GetCostToUse())
+      // {
+      //     m_Text_NameOfSkill.color = m_Color_White;
+      // }
     }
     
     public void SetupDomain(Creatures a_TurnHolder, Domain aDomain)
