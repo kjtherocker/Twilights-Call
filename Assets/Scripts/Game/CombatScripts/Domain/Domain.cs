@@ -23,7 +23,7 @@ public class Domain : Skills
     public string DomainUser;
     public string DomainDescription;
     public Material m_DomainTexture;
-
+    public Creatures m_Creature;
     public virtual void Start()
     {
         m_ElementalType = Skills.ElementalType.Null;

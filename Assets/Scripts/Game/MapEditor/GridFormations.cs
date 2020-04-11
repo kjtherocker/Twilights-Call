@@ -121,6 +121,21 @@ public class GridFormations : MonoBehaviour
 
     }
 
+    public void ColorAllNodes()
+    {
+        for (int x = 0; x < m_GridDimensions.x; x++)
+        {
+            for (int y = 0; y < m_GridDimensions.y; y++)
+            {
+
+                m_GridPathArray[x, y].GetComponent<MeshRenderer>();
+
+            }
+        }
+    
+    }
+
+
     public void StartCameraEditor()
     {
 #if UNITY_EDITOR

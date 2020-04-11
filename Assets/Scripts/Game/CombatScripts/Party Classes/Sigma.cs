@@ -36,6 +36,7 @@ public class Sigma : Creatures {
         m_Domain = new PatchWorkChimera();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
+        m_Domain.m_Creature = this;
 
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));

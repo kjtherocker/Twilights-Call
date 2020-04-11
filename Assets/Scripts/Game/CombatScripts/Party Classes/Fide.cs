@@ -28,6 +28,7 @@ public class Fide : Creatures
         m_Domain = new CrystalFool();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
+        m_Domain.m_Creature = this;
         
         m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 

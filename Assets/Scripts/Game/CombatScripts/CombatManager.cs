@@ -39,6 +39,8 @@ public class CombatManager : Singleton<CombatManager>
     public List<Creatures> TurnOrderEnemy;
     public List<Relic> Relics;
 
+    public Dictionary<Creatures, Creatures> m_CreaturesWhosDomainHaveClashed;
+    
 
     public enum CombatStates
     {
@@ -106,6 +108,8 @@ public class CombatManager : Singleton<CombatManager>
               //  tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
             }
 
+            m_CreaturesWhosDomainHaveClashed = new Dictionary<Creatures, Creatures>();
+            
             m_BattleCamera.InitalizeCamera();
         }
 
@@ -223,6 +227,28 @@ public class CombatManager : Singleton<CombatManager>
 
        }
     }
+
+    public void SetDomainClash(Creatures CreatureA, Creatures CreaturesB)
+    {
+        if (m_CreaturesWhosDomainHaveClashed.ContainsKey(CreatureA) &&
+            m_CreaturesWhosDomainHaveClashed.ContainsValue(CreaturesB))
+        {
+            return;
+        }
+        
+        if (m_CreaturesWhosDomainHaveClashed.ContainsKey(CreaturesB) &&
+            m_CreaturesWhosDomainHaveClashed.ContainsValue(CreatureA))
+        {
+            return;
+        }
+        
+        
+
+        
+        Debug.Log("We are Clashing " + CreatureA.name + " " + CreaturesB.name );
+        m_CreaturesWhosDomainHaveClashed.Add(CreatureA,CreaturesB);
+    }
+    
     
     public IEnumerator DomainHasClashed(Creatures CreatureA, Creatures CreaturesB)
     {

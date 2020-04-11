@@ -97,8 +97,9 @@ public class CombatNode : Cell
     public GridFormations NodesGridFormation;
 
     public Material m_IniitalMaterial;
+    private MeshRenderer m_MeshRenderer;
 
-
+    private float m_DomainSwapAmount;
     // Use this for initialization
     void Start()
     {
@@ -117,8 +118,8 @@ public class CombatNode : Cell
         m_IsSelector = false;
         
 
-        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
-        m_IniitalMaterial = meshRenderer.materials[1];
+        m_MeshRenderer = m_Cube.GetComponent<MeshRenderer>();
+        m_IniitalMaterial = m_MeshRenderer.materials[1];
         
         m_PropOnNodeTemp = m_PropOnNode;
 
@@ -309,30 +310,74 @@ public class CombatNode : Cell
         }
     }
 
+    public void DomainClashing()
+    {
+        foreach (CombatNode neighbour in GetNeighbours(m_Grid.m_GridPathList))
+        {
+            if (neighbour.DomainOnNode == null)
+            {
+                continue;
+            }
+
+            if (neighbour.DomainOnNode.DomainUser == "")
+            {
+                continue;
+            }
+
+            if (neighbour.DomainOnNode.DomainUser != DomainOnNode.DomainUser)
+            {
+                GameManager.Instance.m_CombatManager.SetDomainClash(
+                    DomainOnNode.m_Creature, neighbour.DomainOnNode.m_Creature);
+
+            }
+        }
+    }
+
 
     public void DomainTransfer(Material aDomainMaterial)
     {
-        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
-        Material[] tempmaterials = meshRenderer.materials;
-        tempmaterials[1] = aDomainMaterial;
-        meshRenderer.materials = tempmaterials;
+        m_DomainSwapAmount = 0;
+        m_MeshRenderer.materials[1].SetTexture("_SecTex",aDomainMaterial.mainTexture );
+        m_MeshRenderer.materials[1].SetColor("_SecColor", aDomainMaterial.color);
+
+        StartCoroutine(DomainChangeAnimation(true));
     }
     
     public void DomainRevert()
     {
-        MeshRenderer meshRenderer = m_Cube.GetComponent<MeshRenderer>();
-        Material[] tempmaterials = meshRenderer.materials;
-        tempmaterials[1] = m_IniitalMaterial;
-        meshRenderer.materials = tempmaterials;
+        m_DomainSwapAmount = 1;
 
         m_DomainCombatNode = CombatNode.DomainCombatNode.None;
         DomainOnNode = null;
+        StartCoroutine(DomainChangeAnimation(false));
     }
 
-   // public IEnumerator DomainMaterialChange()
-   // {
-   //     
-   // }
+
+    public IEnumerator DomainChangeAnimation(bool aIsChangingToNewTexture)
+    {
+        if (m_DomainSwapAmount > 1.1 || m_DomainSwapAmount < -0.1)
+        {
+           
+            yield break;
+        }
+
+
+        if (aIsChangingToNewTexture)
+        {
+            m_DomainSwapAmount += 0.01f;
+        }
+        else
+        {
+            m_DomainSwapAmount -= 0.01f;
+        }
+
+
+        yield return new WaitForSeconds(0.01f);
+        m_MeshRenderer.materials[1].SetFloat("_SliceAmount", m_DomainSwapAmount);
+        StartCoroutine(DomainChangeAnimation(aIsChangingToNewTexture));
+    }
+
+
 
    public void SetCreatureOnTopOfNode(Creatures aCreatures)
    {

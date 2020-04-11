@@ -260,7 +260,15 @@ public class AiController : MonoBehaviour
             node.DomainRevert();
             m_NodeInDomainRange.Remove(node);
 
-            yield return new WaitForSeconds(1.0f);
+
+            if (i < 10)
+            {
+                yield return new WaitForSeconds(1.0f/ i);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
         }
         
     
@@ -295,7 +303,7 @@ public class AiController : MonoBehaviour
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
                 node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
                 node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
-
+        
  
             }
 
@@ -303,22 +311,11 @@ public class AiController : MonoBehaviour
             node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
         
+
         foreach (CombatNode node in m_NodeInDomainRange)
         {
-            foreach (CombatNode neighbour in node.GetNeighbours(m_Grid.m_GridPathList))
-            {
-                if (neighbour.DomainOnNode == null)
-                {
-                    continue;
-                }
-
-                if (neighbour.DomainOnNode != node.DomainOnNode)
-                {
-                    
-                }
-            }
+            node.DomainClashing();
         }
-        
 
         RemoveDomainArea();
     }
@@ -334,6 +331,23 @@ public class AiController : MonoBehaviour
             node.CreateWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
             node.m_DomainCombatNode = CombatNode.DomainCombatNode.None;
         }
+        
+        foreach (CombatNode node in m_NodeInDomainRange)
+        {
+            foreach (CombatNode neighbour in node.GetNeighbours(m_Grid.m_GridPathList))
+            {
+                if (neighbour.DomainOnNode == null)
+                {
+                    continue;
+                }
+
+                if (neighbour.DomainOnNode.DomainUser != node.DomainOnNode.DomainUser)
+                {
+                    Debug.Log("Clashing");
+                    
+                }
+            }
+        }
 
     }
 
@@ -344,6 +358,12 @@ public class AiController : MonoBehaviour
         {
             node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
             node.DomainRevert();
+        }
+        
+        
+        foreach (CombatNode node in m_NodeInDevourRange)
+        {
+            node.DomainClashing();
         }
     }
 

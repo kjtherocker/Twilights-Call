@@ -331,6 +331,9 @@
             <e p="TrueGrid.shader" t="Include" />
           </e>
           <e p="CutoutRotationsShader.shader" t="Include" />
+          <e p="Dissolve" t="Include">
+            <e p="Dissolve.shader" t="Include" />
+          </e>
           <e p="DontBackwardsCull.shader" t="Include" />
           <e p="DoubleTexture.shader" t="Include" />
           <e p="OdellWaterShader.shader" t="Include" />

@@ -69,34 +69,46 @@ MonoBehaviour:
   m_HeuristicCalculated: 0
   m_IsSelector: 0
   m_IsWalkable: 0
+  m_IsCovered: 0
   m_DomainCombatNode: 0
+  m_WalkOnTopTriggerTypes: 0
   DomainOnNode:
     m_ElementalType: 0
+    m_SkillType: 0
+    m_SkillFormation: 0
+    m_Damagetype: 0
+    m_SkillAilment: 0
+    SkillName: 
+    SkillDescription: 
+    m_SkillParticleEffect: {fileID: 0}
+    m_CostToUse: 0
+    m_Damage: 0
+    m_AnimationName: 
+    m_SkillRange: 0
     DomainName: 
     Domaintype: 0
     DomainUser: 
     DomainDescription: 
-    m_CostToUse: 0
+    m_DomainTexture: {fileID: 0}
+    m_Creature: {fileID: 0}
   m_NodeReplacement: {fileID: 0}
-  m_NodeYouCameFrom: {fileID: 0}
   m_CreatureOnGridPoint: {fileID: 0}
   m_WalkablePlane: {fileID: 1409765530857748}
   m_CurrentWalkablePlaneBeingUsed: {fileID: 1409765530857748}
   m_AttackingPlane: {fileID: 1935922309869406}
   m_Cube: {fileID: 3097081281721215251}
-  m_SelectorEditor: {fileID: 0}
   m_Prop: {fileID: 0}
-  m_PropList: {fileID: 0}
   m_Renderer: {fileID: 0}
   m_WhiteNode: {fileID: 2100000, guid: f448ebf1ca498154195c02a8f2e560a1, type: 2}
   m_InitalNode: {fileID: 8360046917521507808}
-  m_NodesInitalVector3Coordinates: {x: 17.485687, y: 0.29667, z: 7.7112837}
+  m_NodesInitalVector3Coordinates: {x: 20.407646, y: 0.29666996, z: 7.7112837}
   m_Grid: {fileID: 0}
-  m_OpenList: []
   m_CombatsNodeType: 0
+  m_RelicTower: {fileID: 0}
   m_PropOnNode: 0
   m_NodeReplacementOnNode: 0
   NodesGridFormation: {fileID: 0}
+  m_IniitalMaterial: {fileID: 0}
 --- !u!1 &1409765530857748
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,11 +336,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3721082239912409295}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 1e7fd84b5b769d34b8bc13fb639c752d,
-        type: 3}
-      propertyPath: m_Name
-      value: kyoob
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1e7fd84b5b769d34b8bc13fb639c752d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -409,6 +416,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 10981f04dff7d9a468c99a986143f08e, type: 2}
+    - target: {fileID: -927199367670048503, guid: 1e7fd84b5b769d34b8bc13fb639c752d,
+        type: 3}
+      propertyPath: m_Name
+      value: Cube
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7fd84b5b769d34b8bc13fb639c752d, type: 3}
 --- !u!1 &3097081281721215251 stripped
