@@ -11,6 +11,7 @@ public class UiManager : Singleton<UiManager>
         ArenaMenu,
         DomainBoard,
         DomainClash,
+        Memoria,
         PartyMenu,
         TurnIndicator,
         EndCombatMenu,

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cavia : Creatures
+public class Cavia : Ally
 {
 
 
@@ -35,9 +35,7 @@ public class Cavia : Creatures
         m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
 
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
+
 
 
 

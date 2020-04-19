@@ -327,7 +327,7 @@ public class DialogueManager : Singleton<DialogueManager>
         
         m_DialogueBox.SetActive(false);
         m_DialogueVertical.SetActive(false);
-        //Destroy(m_DialogueTrigger.gameObject);
+        Destroy(m_DialogueTrigger.gameObject);
         AudioManager.Instance.StopSound();
         InputManager.Instance.m_BaseMovementControls.Enable();
         m_OverworldCamera.gameObject.SetActive(true);

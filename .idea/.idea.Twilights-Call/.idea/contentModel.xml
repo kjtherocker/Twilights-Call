@@ -177,6 +177,7 @@
                 </e>
               </e>
               <e p="Enemys" t="Include">
+                <e p="Enemy.cs" t="Include" />
                 <e p="EnemyList.cs" t="Include" />
                 <e p="Forest Enemys" t="Include">
                   <e p="RedEyes.cs" t="Include" />
@@ -191,6 +192,7 @@
               </e>
               <e p="HealthBar.cs" t="Include" />
               <e p="Party Classes" t="Include">
+                <e p="Ally.cs" t="Include" />
                 <e p="Cavia.cs" t="Include" />
                 <e p="Dolls" t="Include">
                   <e p="Alpha.cs" t="Include" />
@@ -229,6 +231,7 @@
                 <e p="HealSkills" t="Include">
                   <e p="HolyWater.cs" t="Include" />
                 </e>
+                <e p="Memoria.cs" t="Include" />
                 <e p="ResurrectSkills" t="Include">
                   <e p="PhoenixSpirit.cs" t="Include" />
                 </e>

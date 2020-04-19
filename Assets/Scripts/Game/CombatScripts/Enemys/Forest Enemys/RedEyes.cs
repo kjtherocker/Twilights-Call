@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedEyes : Creatures
+public class RedEyes : Enemy
 {
 
     // Use this for initialization

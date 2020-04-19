@@ -6,18 +6,23 @@ using TMPro;
 public class UiMemoria : UiScreen
 {
 
-    public Creatures m_SkillBoardCreature;
-    public ButtonSkillWrapper m_ButtonReference;
-    public List<ButtonSkillWrapper> m_CurrentSkillMenuButtonsMenu;
+    public Creatures m_MemoriaCreature;
+    public List<ButtonSkillWrapper> m_MemoriaSkills;
+    public List<ButtonSkillWrapper> m_CreatureSkills;
     public Animator m_Animator_SkillGroup;
-    public ButtonSkillWrapper m_DomainButton;
 
     public TextMeshProUGUI m_DescriptionText;
     public int m_SkillBoardPointerPosition;
+
+    private Memoria m_Memoria;
+
+    public float m_CardMovementSpeed;
     
     public bool m_SwapBetweenSkillDomain;
     
-    public Vector3 m_CenterCardPosition;
+    private Vector3 m_CenterCardPosition;
+
+ 
     // Use this for initialization
     public override void Initialize()
     {
@@ -27,7 +32,9 @@ public class UiMemoria : UiScreen
        
         m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
-        m_MenuControls.Player.XButton.performed += XButton => SetSkill();
+
+        m_CardMovementSpeed = 300;
+        
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
@@ -35,7 +42,7 @@ public class UiMemoria : UiScreen
     
     public override void ResetCursorPosition()
     {
-        m_CursorXMax = m_CurrentSkillMenuButtonsMenu.Count -1;
+        m_CursorXMax = m_MemoriaSkills.Count -1;
         m_CursorXCurrent = 0;
 
     }
@@ -54,19 +61,43 @@ public class UiMemoria : UiScreen
     public override void MenuSelection(int aCursorX, int aCursorY)
     {
         m_SkillBoardPointerPosition = aCursorX;
+        
+        SetCardHighlight(m_MemoriaSkills[m_SkillBoardPointerPosition].gameObject);
+        
+        m_DescriptionText.text = m_MemoriaSkills[m_SkillBoardPointerPosition].m_ButtonSkill.SkillDescription;
+    }
 
-        AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[m_CursorXPrevious]);
-        AnimatedCardMovementDown(m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition]);
+    IEnumerator MoveCardIntoDeck(GameObject aCard)
+    {
+        
+        
+        if (Vector3.Distance(aCard.transform.position, m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position) < 0.1f)
+        {
+            m_MemoriaCreature.m_Skills.Add(m_MemoriaSkills[m_SkillBoardPointerPosition].m_ButtonSkill);
+            InputManager.Instance.m_MovementControls.Enable();
+            GameManager.Instance.UiManager.PopScreen();
+            m_Memoria.DestroyMemoria();
+            yield break;
+        }
 
+        aCard.transform.position = Vector3.MoveTowards(aCard.transform.position,
+            m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position, m_CardMovementSpeed * Time.deltaTime);
+
+        yield return new WaitForEndOfFrame();
+        
+        StartCoroutine(MoveCardIntoDeck(aCard));
     }
 
     public void SetSkill()
     {
 
-        GameManager.Instance.BattleCamera.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
- 
-        InputManager.Instance.m_MovementControls.Enable();
-        GameManager.Instance.UiManager.PopScreen();
+        
+
+        StartCoroutine(MoveCardIntoDeck(m_MemoriaSkills[m_SkillBoardPointerPosition].gameObject));
+        m_MenuControls.Disable();
+        //InputManager.Instance.m_MovementControls.Enable();
+        //GameManager.Instance.UiManager.PopScreen();
+        //m_Memoria.DestroyMemoria();
     }
 
     public override void OnPop()
@@ -84,37 +115,58 @@ public class UiMemoria : UiScreen
         m_MenuControls.Enable();
     }
 
-    public void SpawnSkills(Creatures aCreatures)
+    public void SetMemoriaScreen(Creatures aCreature, Memoria aMemoria)
     {
+        m_MemoriaCreature = aCreature;
 
-        m_SkillBoardCreature = aCreatures;
+        m_Memoria = aMemoria;
 
-        for (int i = 0; i < m_SkillBoardCreature.m_Skills.Count; i++)
+        
+        for (int i = 0; i < m_MemoriaSkills.Count; i++)
         {
-            m_CurrentSkillMenuButtonsMenu[i].gameObject.SetActive(false);
+            m_MemoriaSkills[i].gameObject.SetActive(false);
 
         }
         
-        for (int i = 0; i < m_SkillBoardCreature.m_Skills.Count; i++)
+        for (int i = 0; i < aMemoria.m_Skills.Count; i++)
         {
-            m_CurrentSkillMenuButtonsMenu[i].gameObject.SetActive(true);
-            m_CurrentSkillMenuButtonsMenu[i].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Skills[i]);
+            m_MemoriaSkills[i].gameObject.SetActive(true);
+            m_MemoriaSkills[i].SetupButton(aCreature, aMemoria.m_Skills[i]);
         }
         
-       ResetCursorPosition();
-        AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[0]);
+        
+        for (int i = 0; i < m_CreatureSkills.Count; i++)
+        {
+            m_CreatureSkills[i].gameObject.SetActive(false);
+
+        }
+        
+        for (int i = 0; i < m_MemoriaCreature.m_Skills.Count; i++)
+        {
+            m_CreatureSkills[i].gameObject.SetActive(true);
+            m_CreatureSkills[i].SetupButton(aCreature, aCreature.m_Skills[i]);
+        }
+
+        
+        ResetCursorPosition();
+        
+        SetCardHighlight(m_MemoriaSkills[0].gameObject);
+
+        m_DescriptionText.text = m_MemoriaSkills[0].m_ButtonSkill.SkillDescription;
     }
+
     
-    public void AnimatedCardMovementToCenter(ButtonSkillWrapper a_SkillWrapper)
-    {
-        a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 150, a_SkillWrapper.transform.position.z);
+    
+//  public void AnimatedCardMovementToCenter(ButtonSkillWrapper a_SkillWrapper)
+//  {
+//      a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 150, a_SkillWrapper.transform.position.z);
 
-        m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
-    }
-    public void AnimatedCardMovementDown(ButtonSkillWrapper a_SkillWrapper)
-    {
-        a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 125, a_SkillWrapper.transform.position.z);
+//      m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
+//  }
+//  public void AnimatedCardMovementDown(ButtonSkillWrapper a_SkillWrapper)
+//  {
+//      a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 125, a_SkillWrapper.transform.position.z);
 
-        m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
-    }
+//      m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
+//  }
 }

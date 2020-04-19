@@ -16,6 +16,7 @@ public class UiScreen : MonoBehaviour
     public int m_CursorXPrevious;
     public int m_CursorXMin;
     
+    public GameObject CardHighlight;
     // Use this for initialization
     public virtual void Initialize()
     {
@@ -139,6 +140,11 @@ public class UiScreen : MonoBehaviour
         return aCurrent;
     }
 
+    protected virtual void SetCardHighlight(GameObject aCardToHighlight)
+    {
+        CardHighlight.gameObject.transform.position = aCardToHighlight.gameObject.transform.position;
+    }
+    
     
     public virtual void ReturnToLastScreen()
     {

@@ -254,29 +254,9 @@ public class Creatures : MonoBehaviour
         CurrentHealth = 0;
         AlimentCounter = 0;
         BuffandDebuff = 0;
-
-        Grid Grid = GameManager.Instance.m_Grid;
-        CombatManager combatManager = GameManager.Instance.CombatManager;
         
-        if (charactertype == Charactertype.Enemy)
-        {
-
-            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_CreatureOnGridPoint = null;
-
-            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_IsCovered = false;
-            Destroy(gameObject);
-        }
-        if (charactertype == Charactertype.Ally)
-        {
-            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_CreatureOnGridPoint = null;
-
-            Grid.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_IsCovered = false;
-            
-
-            Destroy(ModelInGame.gameObject);
-        }
         
-        combatManager.RemoveDeadFromList(Name,charactertype);
+        CombatManager.Instance.RemoveDeadFromList(Name,charactertype);
     }
 
 

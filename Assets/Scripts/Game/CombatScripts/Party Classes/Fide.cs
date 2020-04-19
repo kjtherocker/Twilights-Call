@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fide : Creatures
+public class Fide : Ally
 {
     // Use this for initialization
     void Start()

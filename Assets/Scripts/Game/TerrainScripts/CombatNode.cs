@@ -29,6 +29,7 @@ public class CombatNode : Cell
         RelicTower,
         DialoguePrompt,
         Items,
+        Memoria
         
     }
     
@@ -99,6 +100,8 @@ public class CombatNode : Cell
     public Material m_IniitalMaterial;
     private MeshRenderer m_MeshRenderer;
 
+    public Memoria m_MemoriaOnTop;
+    
     private float m_DomainSwapAmount;
     // Use this for initialization
     void Start()
@@ -334,6 +337,22 @@ public class CombatNode : Cell
     }
 
 
+
+    public void SpawnMemoria(List<Skills> a_Skills)
+    {
+        m_MemoriaOnTop = CombatManager.Instance.ReturnMemoria();
+        
+        m_MemoriaOnTop.transform.position =
+            new Vector3( transform.position.x , transform.position.y  + Constants.Constants.m_HeightOffTheGrid , transform.position.z);
+
+        m_MemoriaOnTop.AttachSkills(a_Skills);
+
+        m_MemoriaOnTop.m_NodePosition = m_PositionInGrid;
+
+        m_WalkOnTopTriggerTypes = WalkOntopTriggerTypes.Memoria;
+
+    }
+
     public void DomainTransfer(Material aDomainMaterial)
     {
         m_DomainSwapAmount = 0;
@@ -404,9 +423,21 @@ public class CombatNode : Cell
            case WalkOntopTriggerTypes.DialoguePrompt:
                
                break ;
+           case  WalkOntopTriggerTypes.Memoria:
+               
+               
+               UiManager.Instance.PushScreen(UiManager.Screen.Memoria);
+               
+               UiMemoria ScreenTemp =
+                   GameManager.Instance.UiManager.GetScreen(UiManager.Screen.Memoria) as UiMemoria;
+
+               ScreenTemp.SetMemoriaScreen(m_CreatureOnGridPoint,m_MemoriaOnTop);
+               break;
                
        }
    }
+   
+   
    
 
    public void CreateWalkableArea(CombatNodeAreaType aAreaType)

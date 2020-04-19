@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedKnightPhase2 : Creatures
+public class RedKnightPhase2 : Enemy
 {
 
     // Use this for initialization
@@ -30,6 +30,10 @@ public class RedKnightPhase2 : Creatures
 
         m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack));
 
+        m_SkillLootTable.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.FireBall));
+        m_SkillLootTable.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_SkillLootTable.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Restrict));
+        
 
         AmountOfTurns = 1;
 

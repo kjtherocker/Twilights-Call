@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor;
 using TMPro;
+using UnityEngine.AddressableAssets;
 
 
 public class CombatManager : Singleton<CombatManager>
@@ -39,6 +40,11 @@ public class CombatManager : Singleton<CombatManager>
     public List<Creatures> TurnOrderEnemy;
     public List<Relic> Relics;
 
+    public List<Memoria> m_MemoriaPool;
+
+    public GameObject m_MemoriaPrefab;
+    
+    
     public Dictionary<Creatures, Creatures> m_CreaturesWhosDomainHaveClashed;
     
 
@@ -111,9 +117,13 @@ public class CombatManager : Singleton<CombatManager>
             m_CreaturesWhosDomainHaveClashed = new Dictionary<Creatures, Creatures>();
             
             m_BattleCamera.InitalizeCamera();
+            
+            Addressables.LoadAssetAsync<GameObject>("Memoria").Completed += OnLoadMemoria;
+            
         }
 
     }
+
 
     public void InvokeSkill(IEnumerator aSkill)
     {
@@ -226,6 +236,45 @@ public class CombatManager : Singleton<CombatManager>
                DomainHasClashed(PartyManager.m_CurrentParty[0], PartyManager.m_CurrentParty[1]));
 
        }
+    }
+
+    
+    public void OnLoadMemoria(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
+    {
+        m_MemoriaPrefab = obj.Result;
+        SpawnMemoriaPool(m_MemoriaPrefab.GetComponent<Memoria>());
+
+    }
+
+    public void SpawnMemoriaPool(Memoria aMemoria)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            m_MemoriaPool.Add(Instantiate(aMemoria));
+            m_MemoriaPool[i].Initialize();
+        }
+    }
+
+    public Memoria ReturnMemoria()
+    {
+        Memoria TempMemoria = null;
+        
+        foreach (Memoria aMemoria in m_MemoriaPool)
+        {
+            if (aMemoria.InUse == false)
+            {
+                TempMemoria = aMemoria;
+            }
+        }
+
+        if (TempMemoria != null)
+        {
+            m_MemoriaPool.Add(Instantiate(m_MemoriaPrefab.GetComponent<Memoria>()));
+            TempMemoria =  m_MemoriaPool[m_MemoriaPool.Count - 1];
+        }
+
+        TempMemoria.InUse = true;
+        return TempMemoria;
     }
 
     public void SetDomainClash(Creatures CreatureA, Creatures CreaturesB)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vella : Creatures
+public class Vella : Ally
 {
    
 

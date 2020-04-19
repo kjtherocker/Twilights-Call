@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sigma : Creatures {
+public class Sigma : Ally {
 
 
    
