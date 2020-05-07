@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 
 
 [ExecuteInEditMode]
-public class PropList : Singleton<PropList>
+public class PropList
 {
 
     public enum Props
@@ -69,18 +69,92 @@ public class PropList : Singleton<PropList>
 
 
     //public List<GameObject> m_PropSet;
-    private  List<Prop> m_PropSet = new List<Prop>();
+
     private Dictionary <Props, GameObject> m_Props = new Dictionary <Props, GameObject>();
 
     private Props m_PropType;
     
     private List<NodeReplacement> m_NodeReplacements;
     // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
 
         m_PropType = Props.Tree1;
-       //  m_Props.Add(Props.None, Addressables.LoadAssetAsync<GameObject>("Tree1").Completed += OnComplete);
+
+        Debug.Log("Initialized");
+        //Tree
+        AddPropToDictionary(Props.Tree1,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Tree2,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Tree3,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        
+        //Bridge
+        
+        AddPropToDictionary(Props.EndBridge,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.MiddleBridge,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.EndBridge,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        
+        //Pillar
+        
+        AddPropToDictionary(Props.Pillar_Stub,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Fully_Intact_Pillar,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Middle_Broken_Pillar_1,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Middle_Broken_Pillar_2,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Middle_Dented_Pillar,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+       
+        
+        //Wall
+        AddPropToDictionary(Props.Modular_Wall_End,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Corner_Ruin_Wall,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Modular_Wall_Mid1,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Modular_Wall_Mid2,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Modular_Wall_Mid3,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Modular_Wall_Mid4,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Modular_Wall_Mid5,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            
+        AddPropToDictionary(Props.Modular_Wall_Start,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+        
+        AddPropToDictionary(Props.Singular_Ruin_Wall,
+            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+
+        
+        
+        
+        //Addressables.LoadAssetAsync<GameObject>("Tree1").Completed += OnComplete;
 
 
          
@@ -92,11 +166,25 @@ public class PropList : Singleton<PropList>
     }
 
 
-    private GameObject OnComplete(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
+    public void AddPropToDictionary(Props aPropType, GameObject aGameObject)
     {
-        Debug.Log("This is what addressables is getting " + obj.Result);
-        return obj.Result;
+        if (m_Props.ContainsKey(aPropType) )
+        {
+            Debug.Log("Prop Type " + aPropType + " is already initialized");
+            return;
+            
+        }
+        
+        
+        
+
+      //  m_Props.Add(Props.Tree1,aGameObject);
+//
+      //  Debug.Log(m_Props.Values.Count);
+        
     }
+
+
 
 
 
@@ -112,15 +200,17 @@ public class PropList : Singleton<PropList>
 
    public IEnumerator LoadProps()
    {
-       m_PropSet = new List<Prop>();
-        yield return Addressables.LoadAssetsAsync<Prop>("prop", ob =>
-        {
-            
-            Prop tempProp = ob.GetComponent<Prop>();
-            
-            m_PropSet.Add(tempProp);
-            
-        });
+    //  m_PropSet = new List<Prop>();
+    //   yield return Addressables.LoadAssetsAsync<Prop>("prop", ob =>
+    //   {
+    //       
+    //       Prop tempProp = ob.GetComponent<Prop>();
+    //       
+    //       m_PropSet.Add(tempProp);
+    //       
+    //   });
+    
+        yield break;
    }
 
 

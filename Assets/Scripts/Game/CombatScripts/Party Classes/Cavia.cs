@@ -32,10 +32,11 @@ public class Cavia : Ally
         m_Domain.Start();
         m_Domain.DomainUser = Name;
         
-        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
 
+        m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Flying);
 
 
 

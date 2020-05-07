@@ -65,7 +65,10 @@ public class Creatures : MonoBehaviour
     public ElementalStrength elementalStrength;
     public ElementalWeakness elementalWeakness;
     public DomainStages m_DomainStages;
+    public MovementType m_CreaturesMovementType;
 
+    public MovementList m_MovementList;
+    
     public int CurrentHealth;
     public int MaxHealth;
     public int CurrentMana;
@@ -112,7 +115,7 @@ public class Creatures : MonoBehaviour
     int AlimentCounter;
 
     bool m_IsAlive;
-
+    protected SkillList m_CreatureSkillList;
 
     // Update is called once per frame
     public void SetCreature()
@@ -121,7 +124,11 @@ public class Creatures : MonoBehaviour
         m_BloodArts = new List<Skills>();
 
         m_DomainStages = DomainStages.NotActivated;
-       
+
+
+        m_MovementList = GameManager.Instance.m_MovementList;
+        m_CreatureSkillList = GameManager.Instance.m_SkillList;
+
         //m_Attack = gameObject.AddComponent<Attack>();
     }
 

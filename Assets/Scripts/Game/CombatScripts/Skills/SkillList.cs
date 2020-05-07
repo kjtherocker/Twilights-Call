@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillList : Singleton<SkillList>
+
+[System.Serializable]
+public class SkillList 
 {
     public enum SkillEnum
     {
@@ -27,7 +29,7 @@ public class SkillList : Singleton<SkillList>
 
     public Dictionary<int, Skills> m_SkillTypes = new Dictionary<int, Skills>();
     // Use this for initialization
-    void Start ()
+    public void Initialize()
     {
 
         //AlimentEffects

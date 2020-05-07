@@ -107,6 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6561cdabb17bf46b5db6b23843f3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ArenaName: 
+  m_MissionTag: 
+  m_Description: 
   m_GridDimensions: {x: 20, y: 20}
   m_PrefabNode: {fileID: 1239355093901072, guid: fe660e566e314254b88c9c45e5e5a342,
     type: 3}
@@ -119,6 +122,8 @@ MonoBehaviour:
   Node: {fileID: 4742899402649803501}
   Enemy: {fileID: 6932941092595413544}
   m_EnemysInGrid: []
+  m_RelicsInGrid: []
+  m_StartDialogueTrigger: {fileID: 0}
 --- !u!1 &6932941092595413544
 GameObject:
   m_ObjectHideFlags: 0

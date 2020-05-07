@@ -165,6 +165,7 @@ public class CombatManager : Singleton<CombatManager>
         aList[TopElement].m_CreatureAi.m_Position = m_Grid.GetNode(aPosition.x, aPosition.y).m_PositionInGrid;
         aList[TopElement].m_CreatureAi.m_Grid = m_Grid;
         aList[TopElement].m_CreatureAi.m_Movement = aCreature.m_CreatureMovement;
+        aList[TopElement].m_CreatureAi.m_MovementType = aCreature.m_CreaturesMovementType;
         aList[TopElement].m_CreatureAi.m_Creature = aList[aList.Count - 1];
         
         //Healthbar
@@ -182,7 +183,13 @@ public class CombatManager : Singleton<CombatManager>
 
     public void AddHealthbar(Creatures aCreature)
     {
-        
+
+        if (aCreature == null)
+        {
+            Debug.Log("Creature Was null");
+            return;
+        }
+
         aCreature.m_CreatureAi.m_Healthbar = Instantiate<HealthBar>(m_Healthbar, aCreature.m_CreatureAi.transform);
         aCreature.m_CreatureAi.m_Healthbar.Partymember = aCreature;
     }

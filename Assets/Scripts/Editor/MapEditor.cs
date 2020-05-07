@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor( typeof( EditorTest ) )]
+[CustomEditor( typeof( GridFormationEditor ) )]
 public class MapEditor : Editor
 {
 
 
 
     SerializedProperty m_Selector;
-
+    private SerializedProperty m_PropList;
     SerializedProperty m_EditorProp;
     SerializedProperty m_EditorNode;
     SerializedProperty m_LeftClickState;
@@ -29,6 +29,18 @@ public class MapEditor : Editor
   
     }
     // Update is called once per frame
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        GridFormationEditor myScript = (GridFormationEditor)target;
+        if (GUILayout.Button("Build Grid"))
+        {
+            myScript.StartEditor();
+        }
+
+
+    }
     void OnSceneGUI()
     {
         int controlID = GUIUtility.GetControlID(FocusType.Passive);
@@ -57,10 +69,14 @@ public class MapEditor : Editor
             case EventType.MouseDown:
                 if (e.type == EventType.MouseDown && e.button == 0)
                 {
+                    
+                    
                     serializedObject.Update();
                     m_LeftClickState = serializedObject.FindProperty("m_LeftClick");
+
+
                     
-                    NodeEditor(m_CurrentNode,(EditorTest.MapEditorMode)m_LeftClickState.enumValueIndex);
+                    NodeEditor(m_CurrentNode,(GridFormationEditor.MapEditorMode)m_LeftClickState.enumValueIndex);
 
                 }
                 if (e.type == EventType.MouseDown && e.button == 1)
@@ -68,7 +84,7 @@ public class MapEditor : Editor
                     serializedObject.Update();
                     m_RightClickState = serializedObject.FindProperty("m_RightClick");
                     
-                    NodeEditor(m_CurrentNode,(EditorTest.MapEditorMode)m_RightClickState.enumValueIndex);
+                    NodeEditor(m_CurrentNode,(GridFormationEditor.MapEditorMode)m_RightClickState.enumValueIndex);
                 }
                 GUIUtility.hotControl = controlID;
                 Event.current.Use();
@@ -85,22 +101,22 @@ public class MapEditor : Editor
     }
 
 
-    void NodeEditor(CombatNode aCombatnode, EditorTest.MapEditorMode aMapEditorMode)
+    void NodeEditor(CombatNode aCombatnode, GridFormationEditor.MapEditorMode aMapEditorMode)
     {
 
-        if (aMapEditorMode == EditorTest.MapEditorMode.Enemy)
+        if (aMapEditorMode == GridFormationEditor.MapEditorMode.Enemy)
         {
             PlaceEnemy(aCombatnode);
         }
-        if (aMapEditorMode == EditorTest.MapEditorMode.Node)
+        if (aMapEditorMode == GridFormationEditor.MapEditorMode.Node)
         {
             SwitchNodeType(aCombatnode);
         }
-        if (aMapEditorMode == EditorTest.MapEditorMode.Prop)
+        if (aMapEditorMode == GridFormationEditor.MapEditorMode.Prop)
         {
             SwitchProp(aCombatnode);
         }
-        if (aMapEditorMode == EditorTest.MapEditorMode.NodeReplacement)
+        if (aMapEditorMode == GridFormationEditor.MapEditorMode.NodeReplacement)
         {
             SwitchNodeType(aCombatnode);
         }
@@ -151,6 +167,8 @@ public class MapEditor : Editor
             serializedObject.Update();
             serializedObject.ApplyModifiedProperties();
         }
+
+
         
         void PlaceEnemy(CombatNode aCombatnode)
         {

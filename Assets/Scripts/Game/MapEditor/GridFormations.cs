@@ -37,6 +37,9 @@ public class GridFormations : MonoBehaviour
 
     public DialogueTrigger m_StartDialogueTrigger;
 
+    public Material m_WallMaterial;
+    public Material m_TopMaterial;
+    
     public void Start()
     {
         m_Grid = Grid.Instance;
@@ -123,36 +126,19 @@ public class GridFormations : MonoBehaviour
 
     public void ColorAllNodes()
     {
-        for (int x = 0; x < m_GridDimensions.x; x++)
+        for (int i = 0; i < m_ListToConvert.Count; i++)
         {
-            for (int y = 0; y < m_GridDimensions.y; y++)
-            {
+            Debug.Log("Issue");
+            Material[] matArray = m_ListToConvert[i].m_Cube.GetComponent<MeshRenderer>().materials;
+            matArray[0] = m_WallMaterial;
+            matArray[1] = m_TopMaterial;
+            m_ListToConvert[i].m_Cube.GetComponent<MeshRenderer>().materials = matArray;
 
-                m_GridPathArray[x, y].GetComponent<MeshRenderer>();
-
-            }
         }
     
     }
 
 
-    public void StartCameraEditor()
-    {
-#if UNITY_EDITOR
-       // m_EditorCamera.Convert1DArrayto2D(m_ListToConvert,m_GridDimensions);
-       // m_EditorCamera.m_NodeTheCameraIsOn = m_EditorCamera.m_GridPathArray[1, 1];
-       // m_EditorCamera.m_EditingHasStarted = true;
-#endif
-    }
-
-    public void StopCameraEditor()
-    {
-#if UNITY_EDITOR
-      // m_EditorCamera.m_EditingHasStarted = false;
-      // m_EditorCamera.m_GridPathArray = null;
-      // m_EditorCamera.m_NodeTheCameraIsOn = null;
-#endif
-    }
 
 
 }

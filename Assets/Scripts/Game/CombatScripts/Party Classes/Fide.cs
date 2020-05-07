@@ -30,16 +30,19 @@ public class Fide : Ally
         m_Domain.DomainUser = Name;
         m_Domain.m_Creature = this;
         
-        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.FireBall));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.FireBall));
 
-        m_BloodArts.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.BloodRelief));
+        m_BloodArts.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.BloodRelief));
 
+        m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
+
+        
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Fide/Pref_Fide", typeof(GameObject));
 
         m_Texture = (Material)Resources.Load("Materials/Portrait/Material_Knight", typeof(Material));

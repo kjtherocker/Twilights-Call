@@ -20,7 +20,9 @@ public class EnemyAiController : AiController
     {
         base.Start();
         m_EnemyRange = 6;
-        
+
+
+        m_Behaviour = new Behaviour_WalkClose();
         if (m_AiModel == null)
         {
             m_AiModel = transform.GetChild(0);
@@ -30,11 +32,6 @@ public class EnemyAiController : AiController
         if (m_CreaturesAnimator == null)
         {
             m_CreaturesAnimator = GetComponentInChildren<Animator>();
-        }
-
-        if (m_MovementType == null)
-        {
-            m_MovementType = GetComponent<MovementType>();
         }
 
     }

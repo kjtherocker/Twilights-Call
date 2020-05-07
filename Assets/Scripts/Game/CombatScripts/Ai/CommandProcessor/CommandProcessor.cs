@@ -3,27 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandProcessor : Singleton<CommandProcessor>
+[System.Serializable]
+public class CommandProcessor
 {
     public List<Action> m_ActionsStack;
     
     public List<Action> m_LastActionsStack;
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("q"))
-        {
-            UndoTopMostAction();
-        }
-        
-        if (Input.GetKeyDown("e"))
-        {
-            UndoTopMostAction();
-        }
-
-    }
-
     public void AddActionToList( Action aAction)
     {
         m_ActionsStack.Add(aAction);

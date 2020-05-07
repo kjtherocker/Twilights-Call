@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementType : MonoBehaviour
+
+
+
+[System.Serializable]
+public class MovementType
 {
     public virtual bool CheckIfNodeIsClearAndReturnNodeIndex(CombatNode aNode, Vector2Int m_Position)
     {

@@ -101,14 +101,15 @@ MonoBehaviour:
   m_Renderer: {fileID: 0}
   m_WhiteNode: {fileID: 2100000, guid: f448ebf1ca498154195c02a8f2e560a1, type: 2}
   m_InitalNode: {fileID: 8360046917521507808}
-  m_NodesInitalVector3Coordinates: {x: 20.407646, y: 0.29666996, z: 7.7112837}
+  m_NodesInitalVector3Coordinates: {x: 4.47679, y: -5.3893375, z: 8.239605}
   m_Grid: {fileID: 0}
   m_CombatsNodeType: 0
   m_RelicTower: {fileID: 0}
   m_PropOnNode: 0
   m_NodeReplacementOnNode: 0
   NodesGridFormation: {fileID: 0}
-  m_IniitalMaterial: {fileID: 0}
+  m_IniitalMaterial: {fileID: 2100000, guid: 10981f04dff7d9a468c99a986143f08e, type: 2}
+  m_MemoriaOnTop: {fileID: 0}
 --- !u!1 &1409765530857748
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +122,7 @@ GameObject:
   - component: {fileID: 33388831628834536}
   - component: {fileID: 23080585596690472}
   - component: {fileID: 64979100895060454}
+  - component: {fileID: 259217377}
   m_Layer: 0
   m_Name: Walkable
   m_TagString: Untagged
@@ -136,8 +138,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409765530857748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.567, z: 0}
-  m_LocalScale: {x: 0.1871253, y: 0.1871253, z: 0.1871253}
+  m_LocalPosition: {x: 0, y: 1.484, z: 0}
+  m_LocalScale: {x: 0.19956912, y: 0.19956912, z: 0.19956912}
   m_Children: []
   m_Father: {fileID: 3721082239912409295}
   m_RootOrder: 0
@@ -203,6 +205,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &259217377
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409765530857748}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 362d79ab3424eaf4c882a49bd0ab163e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1935922309869406
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,8 +251,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935922309869406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 1.521, z: -0.00000047683716}
-  m_LocalScale: {x: 0.20873395, y: 0.20874467, z: 0.20873395}
+  m_LocalPosition: {x: 0, y: 1.484, z: 0}
+  m_LocalScale: {x: 0.19956912, y: 0.19956912, z: 0.19956912}
   m_Children: []
   m_Father: {fileID: 4425715549244666}
   m_RootOrder: 0

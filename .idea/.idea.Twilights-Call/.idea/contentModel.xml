@@ -106,6 +106,37 @@
             <e p="NewUI.uxml" t="Include" />
           </e>
         </e>
+        <e p="Resources" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="CelShader.shader" t="Include" />
+            <e p="Cutout" t="Include">
+              <e p="Grid.shader" t="Include" />
+              <e p="TrueGrid.shader" t="Include" />
+            </e>
+            <e p="CutoutRotationsShader.shader" t="Include" />
+            <e p="Dissolve" t="Include">
+              <e p="Dissolve.shader" t="Include" />
+            </e>
+            <e p="DontBackwardsCull.shader" t="Include" />
+            <e p="DoubleTexture.shader" t="Include" />
+            <e p="OdellWaterShader.shader" t="Include" />
+            <e p="region" t="Include">
+              <e p="NewSurfaceShader.shader" t="Include" />
+              <e p="Region.shader" t="Include" />
+            </e>
+            <e p="RenderOntop.shader" t="Include" />
+            <e p="Shader_WeaponTest.shader" t="Include" />
+            <e p="TestCellShading.shader" t="Include" />
+            <e p="Triplanar.shader" t="Include" />
+            <e p="UnlitTransparentShader.shader" t="Include" />
+            <e p="Water" t="Include">
+              <e p="HiddenNormalsTexture.shader" t="Include" />
+              <e p="ToonLit.shader" t="Include" />
+              <e p="ToonWater.shader" t="Include" />
+              <e p="UnlitShadowCaster.shader" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="DialogScripts" t="Include">
             <e p="Dialogue.cs" t="Include" />
@@ -128,6 +159,7 @@
             </e>
           </e>
           <e p="Editor" t="Include">
+            <e p="BuildScript.cs" t="Include" />
             <e p="MapEditor.cs" t="Include" />
           </e>
           <e p="Game" t="Include">
@@ -157,6 +189,7 @@
                 <e p="MovementTypes" t="Include">
                   <e p="Movement_Flying.cs" t="Include" />
                   <e p="Movement_Normal.cs" t="Include" />
+                  <e p="MovementList.cs" t="Include" />
                   <e p="MovementType.cs" t="Include" />
                 </e>
               </e>
@@ -296,8 +329,8 @@
           </e>
           <e p="Temp" t="Include">
             <e p="DestroyParticleSystems.cs" t="Include" />
-            <e p="EditorTest.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />
+            <e p="GridFormationEditor.cs" t="Include" />
             <e p="ScreenshotController.cs" t="Include" />
             <e p="Services" t="Include">
               <e p="Singleton.cs" t="Include" />
@@ -326,35 +359,6 @@
             <e p="UiScreenCommandBoard.cs" t="Include" />
             <e p="UiScreenEndCombatMenu.cs" t="Include" />
             <e p="UiSkillBoard.cs" t="Include" />
-          </e>
-        </e>
-        <e p="Shaders" t="Include">
-          <e p="CelShader.shader" t="Include" />
-          <e p="Cutout" t="Include">
-            <e p="Grid.shader" t="Include" />
-            <e p="TrueGrid.shader" t="Include" />
-          </e>
-          <e p="CutoutRotationsShader.shader" t="Include" />
-          <e p="Dissolve" t="Include">
-            <e p="Dissolve.shader" t="Include" />
-          </e>
-          <e p="DontBackwardsCull.shader" t="Include" />
-          <e p="DoubleTexture.shader" t="Include" />
-          <e p="OdellWaterShader.shader" t="Include" />
-          <e p="region" t="Include">
-            <e p="NewSurfaceShader.shader" t="Include" />
-            <e p="Region.shader" t="Include" />
-          </e>
-          <e p="RenderOntop.shader" t="Include" />
-          <e p="Shader_WeaponTest.shader" t="Include" />
-          <e p="TestCellShading.shader" t="Include" />
-          <e p="Triplanar.shader" t="Include" />
-          <e p="UnlitTransparentShader.shader" t="Include" />
-          <e p="Water" t="Include">
-            <e p="HiddenNormalsTexture.shader" t="Include" />
-            <e p="ToonLit.shader" t="Include" />
-            <e p="ToonWater.shader" t="Include" />
-            <e p="UnlitShadowCaster.shader" t="Include" />
           </e>
         </e>
         <e p="Shared" t="Include">

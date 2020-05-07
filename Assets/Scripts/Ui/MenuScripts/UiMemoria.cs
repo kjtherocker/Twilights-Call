@@ -22,7 +22,9 @@ public class UiMemoria : UiScreen
     
     private Vector3 m_CenterCardPosition;
 
- 
+    public List<Vector3> m_DefaultMemoriaCardPositions;
+    
+    
     // Use this for initialization
     public override void Initialize()
     {
@@ -33,7 +35,9 @@ public class UiMemoria : UiScreen
         m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
 
-        m_CardMovementSpeed = 300;
+        m_CardMovementSpeed = 3;
+
+
         
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
@@ -71,16 +75,16 @@ public class UiMemoria : UiScreen
     {
         
         
-        if (Vector3.Distance(aCard.transform.position, m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position) < 0.1f)
+        if (Vector3.Distance(aCard.transform.position, m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position) < 1.9f)
         {
             m_MemoriaCreature.m_Skills.Add(m_MemoriaSkills[m_SkillBoardPointerPosition].m_ButtonSkill);
             InputManager.Instance.m_MovementControls.Enable();
-            GameManager.Instance.UiManager.PopScreen();
+            OnPop();
             m_Memoria.DestroyMemoria();
             yield break;
         }
 
-        aCard.transform.position = Vector3.MoveTowards(aCard.transform.position,
+        aCard.transform.position = Vector3.Lerp(aCard.transform.position,
             m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position, m_CardMovementSpeed * Time.deltaTime);
 
         yield return new WaitForEndOfFrame();
@@ -93,11 +97,10 @@ public class UiMemoria : UiScreen
 
         
 
-        StartCoroutine(MoveCardIntoDeck(m_MemoriaSkills[m_SkillBoardPointerPosition].gameObject));
         m_MenuControls.Disable();
-        //InputManager.Instance.m_MovementControls.Enable();
-        //GameManager.Instance.UiManager.PopScreen();
-        //m_Memoria.DestroyMemoria();
+        StartCoroutine(MoveCardIntoDeck(m_MemoriaSkills[m_SkillBoardPointerPosition].gameObject));
+        
+
     }
 
     public override void OnPop()
@@ -105,6 +108,10 @@ public class UiMemoria : UiScreen
         gameObject.SetActive((false));
         m_MenuControls.Disable();
 
+        for (int i = 0; i < m_MemoriaSkills.Count; i++)
+        {
+            m_MemoriaSkills[i].transform.position = m_DefaultMemoriaCardPositions[i];
+        }
     }
 
     public override void OnPush()
@@ -122,6 +129,15 @@ public class UiMemoria : UiScreen
         m_Memoria = aMemoria;
 
         
+        
+        
+        foreach (var aCardTab in m_MemoriaSkills)
+        {
+            m_DefaultMemoriaCardPositions.Add(aCardTab.gameObject.transform.position);
+            
+        }
+        
+        
         for (int i = 0; i < m_MemoriaSkills.Count; i++)
         {
             m_MemoriaSkills[i].gameObject.SetActive(false);
@@ -131,6 +147,7 @@ public class UiMemoria : UiScreen
         for (int i = 0; i < aMemoria.m_Skills.Count; i++)
         {
             m_MemoriaSkills[i].gameObject.SetActive(true);
+
             m_MemoriaSkills[i].SetupButton(aCreature, aMemoria.m_Skills[i]);
         }
         
@@ -154,19 +171,5 @@ public class UiMemoria : UiScreen
 
         m_DescriptionText.text = m_MemoriaSkills[0].m_ButtonSkill.SkillDescription;
     }
-
     
-    
-//  public void AnimatedCardMovementToCenter(ButtonSkillWrapper a_SkillWrapper)
-//  {
-//      a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 150, a_SkillWrapper.transform.position.z);
-
-//      m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
-//  }
-//  public void AnimatedCardMovementDown(ButtonSkillWrapper a_SkillWrapper)
-//  {
-//      a_SkillWrapper.transform.position = new Vector3(a_SkillWrapper.transform.position.x, 125, a_SkillWrapper.transform.position.z);
-
-//      m_DescriptionText.text = a_SkillWrapper.m_ButtonSkill.SkillDescription;
-//  }
 }

@@ -20,24 +20,28 @@ public class RedKnightPhase4 : Enemy
         Resistance = 20;
         if (Name == "No Name")
         {
-            Name = NameGenerator.Instance.GetName();
+            Name = GameManager.Instance.m_NameGenerator.GetName();
+            transform.name = Name;
         }
 
 
         SetCreature();
 
-        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
 
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.FireBall));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.FireBall));
         
-        m_SkillLootTable.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.FireBall));
-        m_SkillLootTable.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_SkillLootTable.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.Restrict));
+        m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.FireBall));
+        m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Restrict));
 
 
         AmountOfTurns = 1;
 
+        m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
+
+        
         Model = (GameObject)Resources.Load("Objects/Battle/Enemy/Forest/RedKnights/Pref_RedKnight_Phase4", typeof(GameObject));
 
         m_Texture = (Material)Resources.Load("Materials/Portrait/Material_GreenSlime", typeof(Material));

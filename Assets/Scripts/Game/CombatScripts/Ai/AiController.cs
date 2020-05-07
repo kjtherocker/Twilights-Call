@@ -47,7 +47,6 @@ public class AiController : MonoBehaviour
     public bool m_HasMovedForThisTurn;
 
     public delegate bool DelegateReturnNodeIndex(CombatNode node, Vector2Int Postion);
-
     public MovementType m_MovementType;
 
     // Use this for initialization
@@ -80,13 +79,15 @@ public class AiController : MonoBehaviour
             m_CreaturesAnimator = GetComponentInChildren<Animator>();
         }
 
-        if (m_MovementType == null)
-        {
-            m_MovementType = GetComponent<MovementType>();
-        }
+
+
+
 
         m_Grid = GameManager.Instance.m_Grid;
 
+
+
+     
 
 
 

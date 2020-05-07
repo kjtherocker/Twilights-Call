@@ -25,17 +25,20 @@ public class Vella : Ally
 
         SetCreature();
         
-        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
         
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.ShadowBlast));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.PheonixSpirit));
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
 
         
         m_Domain = new PatchWorkChimera();
         m_Domain.Start();
         m_Domain.DomainUser = Name;
+        
+        m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
+
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Vella/Prefab/Pref_Vella", typeof(GameObject));
 

@@ -22,14 +22,11 @@ public class GridEditor : Editor
         {
             myScript.DeleteGrid();
         }
-        if (GUILayout.Button("Start Editor"))
+        if (GUILayout.Button("Color All Nodes"))
         {
-            myScript.StartCameraEditor();
+            myScript.ColorAllNodes();
         }
-        if (GUILayout.Button("Stop Editor"))
-        {
-            myScript.StopCameraEditor();
-        }
+
     }
 }
 #endif

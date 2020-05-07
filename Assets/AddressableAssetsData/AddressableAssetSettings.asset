@@ -22,9 +22,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 5f8919de5d2279245b98b4cd2a87e035, type: 2}
   - {fileID: 11400000, guid: f2ba4afd1dd7b5046975f329ff963857, type: 2}
-  - {fileID: 11400000, guid: 81a267c76b0a22446bb0fa8162922437, type: 2}
-  - {fileID: 11400000, guid: 0a3edd12f679db449994885ab3b10b24, type: 2}
-  - {fileID: 11400000, guid: 4e8d1bd9c9ff70f44819d2e10c39992f, type: 2}
+  - {fileID: 11400000, guid: 2bb9f7ecd162a934ca9f280ff1660129, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -64,9 +62,7 @@ MonoBehaviour:
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
-    m_LabelNames:
-    - default
-    - prop
+    m_LabelNames: []
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 0d4c43de310170f4ab923f5582405fa7, type: 2}

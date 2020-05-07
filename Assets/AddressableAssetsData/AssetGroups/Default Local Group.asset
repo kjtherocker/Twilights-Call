@@ -17,12 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6f69c11cfe3e5e54f9de91b0cbead277
   m_SerializeEntries:
-  - m_GUID: 81a267c76b0a22446bb0fa8162922437
-    m_Address: Assets/AddressableAssetsData/AssetGroups/Levels.asset
+  - m_GUID: 709b827f5e3992c40b381cb0dc13237f
+    m_Address: PatchWorkChimera
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 905da42daebb167428c6fbc20803c533
-    m_Address: Arena
+  - m_GUID: a6ac1e91bec242b4a91de09553396ef2
+    m_Address: Memoria
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adf7efe36ddf1ba43a50458acece3b81
+    m_Address: CrystalFool
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

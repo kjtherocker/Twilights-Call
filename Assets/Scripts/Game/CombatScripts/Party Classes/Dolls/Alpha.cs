@@ -30,7 +30,7 @@ public class Alpha : Ally
 
         m_CreatureMovement = 5;
 		
-        m_Attack = SkillList.Instance.SetSkills(SkillList.SkillEnum.Attack);
+        m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
 
         m_DomainList = DomainList.DomainListEnum.PatchworkChimera;
         
@@ -38,7 +38,7 @@ public class Alpha : Ally
         m_Domain.Start();
         m_Domain.DomainUser = Name;
         
-        m_Skills.Add(SkillList.Instance.SetSkills(SkillList.SkillEnum.icerain));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Dolls/Alpha/Pref_Alpha", typeof(GameObject));
         

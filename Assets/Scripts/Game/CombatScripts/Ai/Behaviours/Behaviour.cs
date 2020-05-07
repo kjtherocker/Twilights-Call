@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Behaviour : MonoBehaviour
+[System.Serializable]
+public class Behaviour
 {
     public virtual Creatures AllyToAttack(List<Creatures> aCharacterList)
     {

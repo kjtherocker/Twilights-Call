@@ -104,7 +104,7 @@ public class CombatNode : Cell
     
     private float m_DomainSwapAmount;
     // Use this for initialization
-    void Start()
+    public void Initialize()
     {
         m_MovementCost = 1;
 
@@ -128,6 +128,8 @@ public class CombatNode : Cell
 
         m_NodesInitalVector3Coordinates = gameObject.transform.position;
         SetPropState();
+        
+
     }
 
     private void OnEnable()
@@ -279,7 +281,7 @@ public class CombatNode : Cell
     public void SpawnProp()
     {
         m_PropOnNodeTemp = m_PropOnNode;
-        m_Prop = Instantiate<GameObject>(PropList.Instance.ReturnPropData(m_PropOnNode));
+        m_Prop = Instantiate<GameObject>(GameManager.Instance.m_PropList.ReturnPropData(m_PropOnNode));
         m_Prop.transform.parent = transform;
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
@@ -299,7 +301,7 @@ public class CombatNode : Cell
         if (m_NodeReplacementOnNode != PropList.NodeReplacements.None)
         {
             m_NodeReplacementTemp = m_NodeReplacementOnNode;
-            m_NodeReplacement = Instantiate(PropList.Instance.NodeReplacementData(m_NodeReplacementOnNode), this.gameObject.transform);
+            m_NodeReplacement = Instantiate(GameManager.Instance.m_PropList.NodeReplacementData(m_NodeReplacementOnNode), this.gameObject.transform);
             Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
             m_NodeReplacement.gameObject.transform.position =  gameObject.transform.position + m_NodeReplacement.m_NodeSpawnOffSet + CreatureOffset;
             m_NodeHeightOffset = m_NodeReplacement.m_NodeHeightOffset;
@@ -356,8 +358,15 @@ public class CombatNode : Cell
     public void DomainTransfer(Material aDomainMaterial)
     {
         m_DomainSwapAmount = 0;
-        m_MeshRenderer.materials[1].SetTexture("_SecTex",aDomainMaterial.mainTexture );
-        m_MeshRenderer.materials[1].SetColor("_SecColor", aDomainMaterial.color);
+
+        
+
+        
+        if (aDomainMaterial != null)
+        {
+            m_MeshRenderer.materials[1].SetTexture("_SecTex", aDomainMaterial.mainTexture); 
+            m_MeshRenderer.materials[1].SetColor("_SecColor", aDomainMaterial.color);
+        }
 
         StartCoroutine(DomainChangeAnimation(true));
     }
@@ -425,13 +434,13 @@ public class CombatNode : Cell
                break ;
            case  WalkOntopTriggerTypes.Memoria:
                
-               
                UiManager.Instance.PushScreen(UiManager.Screen.Memoria);
                
                UiMemoria ScreenTemp =
                    GameManager.Instance.UiManager.GetScreen(UiManager.Screen.Memoria) as UiMemoria;
 
                ScreenTemp.SetMemoriaScreen(m_CreatureOnGridPoint,m_MemoriaOnTop);
+               
                break;
                
        }
@@ -446,16 +455,19 @@ public class CombatNode : Cell
         if (aAreaType == CombatNodeAreaType.Walkable)
         {
             m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_WalkableTile;
+            m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }
         else if (aAreaType == CombatNodeAreaType.Devourable)
         {
             m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DevourTile;
+            m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }
         else if (aAreaType == CombatNodeAreaType.Domainable)
         {
             m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DomainTile;
+            m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }
 
@@ -539,7 +551,7 @@ public class CombatNode : Cell
         
         Vector3 NodeTransform = gameObject.transform.position;
 #if UNITY_EDITOR
-        EditorTest.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+        GridFormationEditor.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
 #endif
     }
 }

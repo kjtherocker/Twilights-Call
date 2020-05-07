@@ -24,10 +24,15 @@ public class GameManager : Singleton<GameManager>
     public Grid m_Grid;
     public Grid Grid { get { return m_Grid; } }
 
+    
 
+
+    public MovementList m_MovementList;
+    public SkillList m_SkillList;
     public NodeFormations m_NodeFormation;
-    public NodeFormations NodeFormation { get { return m_NodeFormation; } }
+    public NameGenerator m_NameGenerator;
 
+    public PropList m_PropList;
 
 
     public enum GameStates
@@ -44,15 +49,47 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        m_MovementList = new MovementList();
+        m_MovementList.Initialize();
+        
+        m_SkillList = new SkillList();
+        m_SkillList.Initialize();
 
-        Application.targetFrameRate = 60;
+
+        m_NameGenerator = new NameGenerator();
+        m_NameGenerator.Initialize();
+        
+        m_NodeFormation = new NodeFormations();
+        
+ 
+
         m_GameStates = GameStates.Overworld;
-        m_PartyManager = GameObject.Find("PartyManager").GetComponent<PartyManager>();
-        m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        m_NodeFormation = GameObject.Find("NodeFormations").GetComponent<NodeFormations>();
+        if (m_PartyManager == null)
+        {
+            m_PartyManager = GameObject.Find("PartyManager").GetComponent<PartyManager>();
+        }
+
+
+        if (m_CombatManager == null)
+        {
+            m_CombatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        }
+        
         QualitySettings.vSyncCount = 1;
         Physics.autoSimulation = false;
+        
+
+        
+        
         SwitchToOverworld();
+    }
+
+    public PropList InitializePropList()
+    {
+        m_PropList = new PropList();
+        m_PropList.Initialize();
+
+        return m_PropList;
     }
 
     public void SwitchToOverworld()

@@ -71,7 +71,7 @@ public class UiSkillBoard : UiScreen
         GameManager.Instance.BattleCamera.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
  
         InputManager.Instance.m_MovementControls.Enable();
-        GameManager.Instance.UiManager.PopScreen();
+        OnPop();
     }
 
     public override void OnPop()

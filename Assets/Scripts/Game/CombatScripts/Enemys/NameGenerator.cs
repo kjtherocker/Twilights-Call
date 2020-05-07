@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
-public class NameGenerator : Singleton<NameGenerator>
+[System.Serializable]
+public class NameGenerator
 {
     private List<string> m_Names;
 
-    void Awake()
+    public void Initialize()
     {
         //Meme names
         m_Names = new List<string>();
