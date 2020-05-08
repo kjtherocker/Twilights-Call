@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartyManager : MonoBehaviour
+public class PartyManager : Singleton<PartyManager>
 {
     public List<Creatures> m_CurrentParty;
     public List<Creatures> m_ReservePartymembers;

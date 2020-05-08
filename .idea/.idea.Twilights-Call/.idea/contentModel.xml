@@ -284,6 +284,7 @@
                 <e p="CameraUiLayer.cs" t="Include" />
                 <e p="CombatInputLayer.cs" t="Include" />
                 <e p="TurnIndicatorWrapper.cs" t="Include" />
+                <e p="UiTabScreen.cs" t="Include" />
               </e>
             </e>
             <e p="Debug" t="Include">
@@ -295,6 +296,7 @@
               <e p="CameraEditor.cs" t="Include" />
               <e p="GridEditor.cs" t="Include" />
               <e p="GridFormations.cs" t="Include" />
+              <e p="InitializeCombatArena.cs" t="Include" />
               <e p="PropList.cs" t="Include" />
             </e>
             <e p="OverworldScripts" t="Include">
@@ -350,6 +352,7 @@
               <e p="PartyMenu.cs" t="Include" />
               <e p="UiMemoria.cs" t="Include" />
             </e>
+            <e p="test.cs" t="Include" />
             <e p="UiArenaList.cs" t="Include" />
             <e p="UiDomainBoard.cs" t="Include" />
             <e p="UiDomainClash.cs" t="Include" />

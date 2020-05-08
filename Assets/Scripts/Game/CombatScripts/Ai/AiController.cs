@@ -85,12 +85,7 @@ public class AiController : MonoBehaviour
 
         m_Grid = GameManager.Instance.m_Grid;
 
-
-
-     
-
-
-
+        
         _Pathfinder = new Pathfinder();
 
     }

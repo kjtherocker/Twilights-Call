@@ -44,6 +44,19 @@ public class CameraUiLayer : MonoBehaviour
         
         m_CommandBoardExists = false;
 
+        m_PlayerStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as HealthBar;
+        m_EnemyStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as HealthBar;
+
+        m_DomainTab = UiManager.Instance.GetUiTab(UiManager.UiTab.DomainTab) as UiDomainStatus;
+
+        
+        DebugMenu m_Debugmenu = UiManager.Instance.GetUiTab(UiManager.UiTab.DebugUi) as DebugMenu;
+
+        m_NodePositionText = m_Debugmenu.m_NodePositionText;
+        m_NodeType = m_Debugmenu.m_NodeType;
+        m_NodeProp =  m_Debugmenu.m_NodeProp;
+        m_NodeHeuristic = m_Debugmenu.m_NodeHeuristic;
+        
         m_Grid = Grid.Instance;
     }
     

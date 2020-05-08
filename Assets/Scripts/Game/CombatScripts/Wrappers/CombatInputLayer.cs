@@ -130,7 +130,6 @@ public class CombatInputLayer
         {
             m_Grid.SetHeuristicToZero();
             m_Grid.RemoveWalkableArea();
-            Debug.Log("Walkable terrain Creature On Grid point null");
             return;
         }
 

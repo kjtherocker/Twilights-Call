@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UiArenaList : UiScreen
 {
@@ -62,8 +63,9 @@ public class UiArenaList : UiScreen
 
     public void SelectArena()
     {
-        GameManager.Instance.CombatManager.m_GridFormation = m_ArenaTabs[m_CursorYCurrent].m_Arena;
-        GameManager.Instance.SwitchToBattle();
+        SceneManager.LoadScene(2);
+        //GameManager.Instance.CombatManager.m_GridFormation = m_ArenaTabs[m_CursorYCurrent].m_Arena;
+      //  GameManager.Instance.SwitchToBattle();
         OnPop();
         
     }

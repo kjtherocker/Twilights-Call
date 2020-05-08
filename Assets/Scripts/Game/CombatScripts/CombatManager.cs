@@ -23,11 +23,9 @@ public class CombatManager : Singleton<CombatManager>
     public int m_EnemyAiCurrentlyInList;
     
 
-    public GameObject m_GridFormation;
-
     public Vector3 CreatureOffset;
 
-    private GameObject m_Gridformation;
+    private GridFormations m_Gridformation;
 
     public HealthBar m_Healthbar;
     
@@ -70,17 +68,12 @@ public class CombatManager : Singleton<CombatManager>
         PartyManager = GameManager.Instance.PartyManager;
     }
 
-    public void CombatStart()
+    public void CombatStart(GridFormations aGridFormations)
     {
-        if (CombatHasStarted == false)
-        {
+        
+            m_Gridformation = aGridFormations;
 
-
-            //Setting up the players
-
-            m_Gridformation = Instantiate<GameObject>(m_GridFormation.gameObject);
-
-            GridFormations tempGridFormations = m_Gridformation.GetComponentInChildren<GridFormations>();
+            GridFormations tempGridFormations = m_Gridformation;
             m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
             Relics = tempGridFormations.m_RelicsInGrid;
             
@@ -116,12 +109,9 @@ public class CombatManager : Singleton<CombatManager>
 
             m_CreaturesWhosDomainHaveClashed = new Dictionary<Creatures, Creatures>();
             
-            m_BattleCamera.InitalizeCamera();
+           
             
             Addressables.LoadAssetAsync<GameObject>("Memoria").Completed += OnLoadMemoria;
-            
-        }
-
     }
 
 

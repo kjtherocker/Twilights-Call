@@ -34,9 +34,9 @@ public class Alpha : Ally
 
         m_DomainList = DomainList.DomainListEnum.PatchworkChimera;
         
-        m_Domain = DomainList.Instance.SetDomain(m_DomainList);
-        m_Domain.Start();
-        m_Domain.DomainUser = Name;
+      // m_Domain = DomainList.Instance.SetDomain(m_DomainList);
+      // m_Domain.Start();
+      // m_Domain.DomainUser = Name;
         
         m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
 

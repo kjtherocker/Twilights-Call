@@ -148,6 +148,6 @@ public class UiScreen : MonoBehaviour
     
     public virtual void ReturnToLastScreen()
     {
-        GameManager.Instance.m_UiManager.ReturnToLastScreen();
+        GameManager.Instance.mUiManager.ReturnToLastScreen();
     }
 }

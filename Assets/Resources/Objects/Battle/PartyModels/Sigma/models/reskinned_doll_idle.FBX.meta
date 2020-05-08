@@ -8,7 +8,7 @@ ModelImporter:
     second: Ani_Sigma_Idle2
   - first:
       74: 1827226128182048838
-    second: Take 001
+    second: Ani_SigmaTrueIdle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -38,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Ani_SigmaTrueIdle
       takeName: Take 001
       internalID: 0
       firstFrame: 120

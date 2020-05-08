@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DomainList : Singleton<DomainList>
+[System.Serializable]
+public class DomainList 
 {
 
     public enum DomainListEnum

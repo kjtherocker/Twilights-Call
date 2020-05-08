@@ -526,23 +526,23 @@ public class CombatNode : Cell
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         
 
-        GameObject Enemy = PrefabUtility.
-            InstantiatePrefab(EnemyList.Instance.ReturnEnemyData(EnemyList.EnemyEnum.RedKnight1)) as GameObject;
+      //  GameObject Enemy = PrefabUtility.
+      //      InstantiatePrefab(EnemyList.Instance.ReturnEnemyData(EnemyList.EnemyEnum.RedKnight1)) as GameObject;
+//
+
+      //  NodesGridFormation.m_EnemysInGrid.Add(Enemy.GetComponent<Creatures>());
 
 
-        NodesGridFormation.m_EnemysInGrid.Add(Enemy.GetComponent<Creatures>());
+     //  Enemy.transform.parent = NodesGridFormation.Enemy.transform;
+     //  Enemy.transform.position = gameObject.transform.position + CreatureOffset;
+     //  Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
+     //  EnemyAiController m_CreatureAi = Enemy.GetComponent<EnemyAiController>();
+     //  m_CreatureAi.m_Position = m_PositionInGrid;
 
-
-        Enemy.transform.parent = NodesGridFormation.Enemy.transform;
-        Enemy.transform.position = gameObject.transform.position + CreatureOffset;
-        Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
-        EnemyAiController m_CreatureAi = Enemy.GetComponent<EnemyAiController>();
-        m_CreatureAi.m_Position = m_PositionInGrid;
-
-        m_CreatureAi.m_Grid = m_Grid;
-        
-       m_CreatureOnGridPoint = Enemy.GetComponent<Creatures>();
-       m_IsCovered = true;
+     //  m_CreatureAi.m_Grid = m_Grid;
+     //  
+     // m_CreatureOnGridPoint = Enemy.GetComponent<Creatures>();
+     // m_IsCovered = true;
        #endif
     }
 

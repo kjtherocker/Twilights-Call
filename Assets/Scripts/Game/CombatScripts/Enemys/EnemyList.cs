@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [ExecuteInEditMode]
-public class EnemyList : Singleton<EnemyList>
+public class EnemyList 
 {
     public enum EnemyEnum
     {

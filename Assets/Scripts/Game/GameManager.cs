@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public GameObject Overworld_Objects;
-    public GameObject Combat_Objects;
     public PartyManager m_PartyManager;
     public PartyManager PartyManager { get { return m_PartyManager; } }
 
@@ -15,8 +14,8 @@ public class GameManager : Singleton<GameManager>
     public CombatCameraController m_BattleCamera;
     public CombatCameraController BattleCamera { get { return m_BattleCamera; } }
 
-    public UiManager m_UiManager;
-    public UiManager UiManager { get { return m_UiManager; } }
+    public UiManager mUiManager;
+    public UiManager UiManager { get { return mUiManager; } }
 
 
     
@@ -77,10 +76,7 @@ public class GameManager : Singleton<GameManager>
         
         QualitySettings.vSyncCount = 1;
         Physics.autoSimulation = false;
-        
 
-        
-        
         SwitchToOverworld();
     }
 
@@ -96,14 +92,8 @@ public class GameManager : Singleton<GameManager>
     {
         m_GameStates = GameStates.Overworld;
         Overworld_Objects.SetActive(true);
-        Combat_Objects.SetActive(false);
+
     }
 
-    public void SwitchToBattle()
-    {
-        m_GameStates = GameStates.Combat;
-        m_CombatManager.CombatStart();
-        Overworld_Objects.SetActive(false);
-        Combat_Objects.SetActive(true);
-    }
+
 }

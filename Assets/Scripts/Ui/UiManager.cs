@@ -23,7 +23,22 @@ public class UiManager : Singleton<UiManager>
         _NumberOfScreens
     }
 
+    public enum UiTab
+    {
+        PlayerStatus,
+        EnemyStatus,
+        DebugUi,
+        DomainTab,
+
+        
+        _NumberOfScreens
+    }
+    
+    
     public UiScreen[] m_UiScreens;
+
+    
+    public List<UiTabScreen> m_UiTabs;
 
     public List<KeyValuePair<Screen, UiScreen>> m_ScreenStack = new List<KeyValuePair<Screen, UiScreen>>();
     
@@ -37,6 +52,7 @@ public class UiManager : Singleton<UiManager>
     // Use this for initialization
     public void Start()
     {
+
         for (int i = 0; i < m_UiScreens.Length - 1; i++)
         {
             if (m_UiScreens[i] != null)
@@ -47,10 +63,9 @@ public class UiManager : Singleton<UiManager>
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public UiTabScreen GetUiTab(UiTab aUiTab)
     {
-
+        return m_UiTabs[(int)aUiTab];
     }
 
     public Screen GetTopScreenType()

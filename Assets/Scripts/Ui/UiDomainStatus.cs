@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UiDomainStatus : MonoBehaviour
+public class UiDomainStatus : UiTabScreen
 {
     public Animator DomainAnimator;
     public Domain m_Domain;
