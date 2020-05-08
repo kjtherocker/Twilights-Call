@@ -332,7 +332,7 @@ public class CombatInputLayer
             return;
         }
         GameManager.Instance.UiManager.PopScreen();
-        m_Creature.m_CreatureAi.ActivateDomain();
+       // m_Creature.m_CreatureAi.ActivateDomain();
         m_CombatInputState = CombatInputState.Default;
         
         m_CameraUiLayer.CameraStateChanged(m_NodeTheCameraIsOn);
