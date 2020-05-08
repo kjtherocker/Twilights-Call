@@ -130,12 +130,13 @@ public class CombatInputLayer
         {
             m_Grid.SetHeuristicToZero();
             m_Grid.RemoveWalkableArea();
+            Debug.Log("Walkable terrain Creature On Grid point null");
             return;
         }
 
         
         
-
+   
         if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.GetCharactertype() == Creatures.Charactertype.Ally)
         {
             CalculateCreaturesPath(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
@@ -296,6 +297,7 @@ public class CombatInputLayer
             m_Grid.SetHeuristicToZero();
             m_Grid.RemoveWalkableArea();
             
+            Debug.Log("Calculating paths boyz");
             aCreature.m_CreatureAi.FindAllPaths();
         }
     }
@@ -332,9 +334,9 @@ public class CombatInputLayer
             return;
         }
         GameManager.Instance.UiManager.PopScreen();
-       // m_Creature.m_CreatureAi.ActivateDomain();
+        m_Creature.m_CreatureAi.ActivateDomain();
         m_CombatInputState = CombatInputState.Default;
-        
+        m_CommandBoardExists = false;
         m_CameraUiLayer.CameraStateChanged(m_NodeTheCameraIsOn);
         
         InputManager.Instance.m_MovementControls.Enable();
@@ -357,7 +359,7 @@ public class CombatInputLayer
         GameManager.Instance.UiManager.PopScreen();
         m_Creature.m_CreatureAi.ActivateDevour();
         m_CombatInputState = CombatInputState.Default;
-
+        m_CommandBoardExists = false;
         m_CameraUiLayer.CameraStateChanged(m_NodeTheCameraIsOn);
         InputManager.Instance.m_MovementControls.Enable();
     }
