@@ -50,7 +50,7 @@ public class AiController : MonoBehaviour
     public MovementType m_MovementType;
 
     // Use this for initialization
-    public virtual void Start()
+    public virtual void Initialize()
     {
         //m_Goal = new Vector2Int(9, 2);
         //m_Position = new Vector2Int(4, 4);
@@ -60,11 +60,10 @@ public class AiController : MonoBehaviour
         m_MovementHasStarted = false;
         m_InitalPosition = m_Position;
 
-        // m_Healthbar = gameObject.transform.parent.GetComponentInChildren<HealthBar>();
-//
-        // m_Healthbar.Partymember = m_Creature;
-
-        Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
+        m_Grid = Grid.Instance;
+        
+        
+        Node_ObjectIsOn = m_Grid.GetNode(m_Position);
         Node_MovingTo = Node_ObjectIsOn;
 
 
@@ -78,12 +77,7 @@ public class AiController : MonoBehaviour
         {
             m_CreaturesAnimator = GetComponentInChildren<Animator>();
         }
-
-
-
-
-
-        m_Grid = GameManager.Instance.m_Grid;
+        
 
         
         _Pathfinder = new Pathfinder();

@@ -63,10 +63,9 @@ public class UiArenaList : UiScreen
 
     public void SelectArena()
     {
-        SceneManager.LoadScene(2);
-        //GameManager.Instance.CombatManager.m_GridFormation = m_ArenaTabs[m_CursorYCurrent].m_Arena;
-      //  GameManager.Instance.SwitchToBattle();
+        m_MenuControls.Disable();
         OnPop();
+        SceneManager.LoadScene(2);
         
     }
 }

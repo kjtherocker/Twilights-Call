@@ -331,7 +331,7 @@ public class CombatNode : Cell
 
             if (neighbour.DomainOnNode.DomainUser != DomainOnNode.DomainUser)
             {
-                GameManager.Instance.m_CombatManager.SetDomainClash(
+               CombatManager.Instance.SetDomainClash(
                     DomainOnNode.m_Creature, neighbour.DomainOnNode.m_Creature);
 
             }

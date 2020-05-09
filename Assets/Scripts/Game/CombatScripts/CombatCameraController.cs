@@ -34,10 +34,11 @@ public class CombatCameraController : MonoBehaviour
 
     public Vector2Int m_CameraPositionInGrid;
 
+    public bool MovementInverted = true;
 
     public CameraUiLayer m_CameraUiLayer;
     public CombatInputLayer m_CombatInputLayer;
-
+    public Vector3 m_CameraOffset;
     public void InitalizeCamera()
     {
         InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
@@ -45,6 +46,8 @@ public class CombatCameraController : MonoBehaviour
         GameManager.Instance.m_BattleCamera = this;
 
         m_Grid = Grid.Instance;
+        
+        m_CameraOffset = new Vector3(18.6f, 26.4f, 21.6f);
         
         if (m_NodeTheCameraIsOn != null)
         {
@@ -84,9 +87,9 @@ public class CombatCameraController : MonoBehaviour
                     m_NodeTheCameraIsOn = m_Grid.GetNode(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y);
                     
                     transform.position = Vector3.Lerp(transform.position, new Vector3(
-                        m_NodeTheCameraIsOn.transform.position.x + 18.5f,
-                        m_NodeTheCameraIsOn.transform.position.y + 18.9f,
-                        m_NodeTheCameraIsOn.transform.position.z - 18.5f), Time.deltaTime * 2);
+                        m_NodeTheCameraIsOn.transform.position.x + m_CameraOffset.x,
+                        m_NodeTheCameraIsOn.transform.position.y + m_CameraOffset.y,
+                        m_NodeTheCameraIsOn.transform.position.z - m_CameraOffset.z), Time.deltaTime * 2);
                 }
                 //InputManager.Instance.m_MovementControls.Enable();
                 
@@ -104,9 +107,9 @@ public class CombatCameraController : MonoBehaviour
                     //m_Grid.GetNode(m_ToFollowCreature.m_CreatureAi.m_Position.x, m_ToFollowCreature.m_CreatureAi.m_Position.y);
                    
                    transform.position = Vector3.Lerp(transform.position, new Vector3(
-                           m_NodeTheCameraIsOn.gameObject.transform.position.x + 13.5f,
-                           m_NodeTheCameraIsOn.gameObject.transform.position.y + 13.9f,
-                           m_NodeTheCameraIsOn.gameObject.transform.position.z - 13.5f), Time.deltaTime * 2);
+                           m_NodeTheCameraIsOn.gameObject.transform.position.x + m_CameraOffset.x,
+                           m_NodeTheCameraIsOn.gameObject.transform.position.y + m_CameraOffset.y,
+                           m_NodeTheCameraIsOn.gameObject.transform.position.z - m_CameraOffset.z), Time.deltaTime * 2);
                }
 
 
@@ -118,9 +121,9 @@ public class CombatCameraController : MonoBehaviour
                // m_Grid.SetAttackingTileInGrid(m_CameraPositionInGrid + new Vector2Int(1,0));
 
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
-                        m_NodeTheCameraIsOn.transform.position.x + 13.5f,
-                        m_NodeTheCameraIsOn.transform.position.y + 13.9f,
-                        m_NodeTheCameraIsOn.transform.position.z - 13.5f), Time.deltaTime * 2);
+                        m_NodeTheCameraIsOn.transform.position.x + m_CameraOffset.x,
+                        m_NodeTheCameraIsOn.transform.position.y + m_CameraOffset.y,
+                        m_NodeTheCameraIsOn.transform.position.z - m_CameraOffset.z), Time.deltaTime * 2);
 
                
 
@@ -182,28 +185,58 @@ public class CombatCameraController : MonoBehaviour
     {
 
         Vector2Int TempInitalCameraPostion = Vector2Int.zero;
+
         
-
-        if (cameraMovementDirections == CameraMovementDirections.Up)
+        //Inverted MovementControls
+        if (MovementInverted == true)
         {
-            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x - 1, m_CameraPositionInGrid.y);
+            if (cameraMovementDirections == CameraMovementDirections.Up)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x - 1, m_CameraPositionInGrid.y);
+            }
+
+            if (cameraMovementDirections == CameraMovementDirections.Down)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x + 1, m_CameraPositionInGrid.y);
+            }
+
+
+            if (cameraMovementDirections == CameraMovementDirections.Left)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y - 1);
+            }
+
+
+            if (cameraMovementDirections == CameraMovementDirections.Right)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y + 1);
+            }
         }
 
-        if (cameraMovementDirections == CameraMovementDirections.Down)
+        //None Inverted Movement Controls
+        if (MovementInverted == false)
         {
-            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x + 1, m_CameraPositionInGrid.y);
-        }
+            if (cameraMovementDirections == CameraMovementDirections.Up)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y + 1);
+            }
+
+            if (cameraMovementDirections == CameraMovementDirections.Down)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x , m_CameraPositionInGrid.y - 1);
+            }
 
 
-        if (cameraMovementDirections == CameraMovementDirections.Left)
-        {
-            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y - 1);
-        }
+            if (cameraMovementDirections == CameraMovementDirections.Left)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x - 1, m_CameraPositionInGrid.y);
+            }
 
 
-        if (cameraMovementDirections == CameraMovementDirections.Right)
-        {
-            TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y + 1);
+            if (cameraMovementDirections == CameraMovementDirections.Right)
+            {
+                TempInitalCameraPostion = new Vector2Int(m_CameraPositionInGrid.x + 1, m_CameraPositionInGrid.y );
+            }
         }
 
 

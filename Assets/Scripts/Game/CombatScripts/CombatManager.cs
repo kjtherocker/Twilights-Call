@@ -73,6 +73,8 @@ public class CombatManager : Singleton<CombatManager>
         
             m_Gridformation = aGridFormations;
 
+            PartyManager = PartyManager.Instance;
+            
             GridFormations tempGridFormations = m_Gridformation;
             m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
             Relics = tempGridFormations.m_RelicsInGrid;
@@ -152,11 +154,12 @@ public class CombatManager : Singleton<CombatManager>
         
         //Ai
         aList[TopElement].m_CreatureAi = aList[aList.Count - 1].ModelInGame.GetComponent<AiController>();
-        aList[TopElement].m_CreatureAi.m_Position = m_Grid.GetNode(aPosition.x, aPosition.y).m_PositionInGrid;
+        aList[TopElement].m_CreatureAi.m_Position = aPosition;
         aList[TopElement].m_CreatureAi.m_Grid = m_Grid;
         aList[TopElement].m_CreatureAi.m_Movement = aCreature.m_CreatureMovement;
         aList[TopElement].m_CreatureAi.m_MovementType = aCreature.m_CreaturesMovementType;
         aList[TopElement].m_CreatureAi.m_Creature = aList[aList.Count - 1];
+        aList[TopElement].m_CreatureAi.Initialize();
         
         //Healthbar
 
@@ -229,8 +232,8 @@ public class CombatManager : Singleton<CombatManager>
        if (Input.GetKeyDown("l"))
        {
 
-           StartCoroutine(
-               DomainHasClashed(PartyManager.m_CurrentParty[0], PartyManager.m_CurrentParty[1]));
+       //   StartCoroutine(
+       //       DomainHasClashed(PartyManager.m_CurrentParty[0], PartyManager.m_CurrentParty[1]));
 
        }
     }
@@ -385,8 +388,8 @@ public class CombatManager : Singleton<CombatManager>
 
     public void CombatEnd()
     {
-        GameManager.Instance.SwitchToOverworld();
-        UiManager.Instance.PushScreen(UiManager.Screen.ArenaMenu);
+        
+      //  UiManager.Instance.PushScreen(UiManager.Screen.ArenaMenu);
     }
 
 

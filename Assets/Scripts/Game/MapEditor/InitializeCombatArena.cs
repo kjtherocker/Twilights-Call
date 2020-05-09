@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InitializeCombatArena : MonoBehaviour
 {
@@ -12,12 +13,21 @@ public class InitializeCombatArena : MonoBehaviour
 
     public void Start()
     {
-        Initialize();
+        #if UNITY_EDITOR
+        SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
+        
+        #endif
+        StartCoroutine(Initialize());
     }
 
-    public void Initialize()
+    
+    public IEnumerator Initialize()
     {
-        m_BattleCamera.InitalizeCamera();
+        
+        yield return new WaitForSeconds(0.6f);
+       
         CombatManager.Instance.CombatStart(m_CurrentLevel);
+        m_BattleCamera.InitalizeCamera(); 
     }
+
 }

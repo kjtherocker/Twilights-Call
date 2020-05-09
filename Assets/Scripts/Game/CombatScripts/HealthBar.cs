@@ -16,7 +16,6 @@ public class HealthBar : UiTabScreen
     public Image Image_Portrait;
     public Creatures Partymember;
 
-    public Camera m_PortraitCamera;
 
     public int m_CurrentHealth = 150;
     private int m_MaxHealth = 150;
@@ -77,17 +76,17 @@ public class HealthBar : UiTabScreen
             m_CurrentMana = Partymember.CurrentMana;
             m_MaxMana = Partymember.MaxMana;
 
-            if(m_PortraitCamera != null)
-            {
-                m_PortraitCamera.gameObject.transform.position = new Vector3(Partymember.ModelInGame.transform.position.x,
-                 Partymember.ModelInGame.transform.position.y + 1.7f, Partymember.ModelInGame.transform.position.z) +
-                  Partymember.ModelInGame.transform.forward;
-                 m_PortraitCamera.gameObject.transform.rotation = Partymember.ModelInGame.transform.rotation;
+          // if(m_PortraitCamera != null)
+          // {
+          //     m_PortraitCamera.gameObject.transform.position = new Vector3(Partymember.ModelInGame.transform.position.x,
+          //      Partymember.ModelInGame.transform.position.y + 1.7f, Partymember.ModelInGame.transform.position.z) +
+          //       Partymember.ModelInGame.transform.forward;
+          //      m_PortraitCamera.gameObject.transform.rotation = Partymember.ModelInGame.transform.rotation;
 
-                 Quaternion Rotation = Partymember.ModelInGame.transform.rotation;
+          //      Quaternion Rotation = Partymember.ModelInGame.transform.rotation;
 
-                 m_PortraitCamera.transform.eulerAngles = new Vector3(Rotation.eulerAngles.x, Rotation.eulerAngles.y + 180, Rotation.eulerAngles.z);
-            }
+          //      m_PortraitCamera.transform.eulerAngles = new Vector3(Rotation.eulerAngles.x, Rotation.eulerAngles.y + 180, Rotation.eulerAngles.z);
+          // }
         }
     }
     // Update is called once per frame

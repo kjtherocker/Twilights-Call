@@ -16,9 +16,9 @@ public class EnemyAiController : AiController
 
     public bool DoNothing;
     
-    public override void Start()
+    public override void Initialize()
     {
-        base.Start();
+        base.Initialize();
         m_EnemyRange = 6;
 
 
@@ -219,7 +219,7 @@ public class EnemyAiController : AiController
             Debug.Log(m_Creature.Name + " waited");
         }
 
-        GameManager.Instance.m_CombatManager.EnemyMovement();
+        CombatManager.instance.EnemyMovement();
         return;
     }
 

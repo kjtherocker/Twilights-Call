@@ -96,7 +96,7 @@ public class CombatInputLayer
          
 
         //Push Screen
-        GameManager.Instance.UiManager.PushScreen(UiManager.Screen.CommandBoard);
+        UiManager.Instance.PushScreen(UiManager.Screen.CommandBoard);
 
         m_CombatInputState = CombatInputState.Commandboard;
         

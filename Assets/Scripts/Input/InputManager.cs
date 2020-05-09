@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +14,6 @@ public class InputManager : Singleton<InputManager>
     {
         m_MovementControls = new PlayerInput();
         m_MovementControls.Enable();
-
-        m_BaseMovementControls = new BaseInput();
-        m_BaseMovementControls.Enable();
     }
-
-
+    
 }
