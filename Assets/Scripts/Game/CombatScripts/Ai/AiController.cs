@@ -411,7 +411,7 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
         m_Position = aListOfNodes[aListOfNodes.Count - 1].m_PositionInGrid;
         m_PreviousNode = Node_ObjectIsOn;
         //Setting the node you are on to the new one
-        Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
+        Node_ObjectIsOn = Grid.instance.GetNode(m_Position);
 
         Node_ObjectIsOn.SetCreatureOnTopOfNode(m_Creature);
         Node_ObjectIsOn.m_IsCovered = true;
@@ -461,15 +461,15 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         if (m_MovementHasStarted == false)
         {
-            GameManager.Instance.m_Grid.GetNode(m_Position).m_CreatureOnGridPoint = null;
-            GameManager.Instance.m_Grid.GetNode(m_Position).m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
+            Grid.instance.GetNode(m_Position).m_CreatureOnGridPoint = null;
+            Grid.instance.GetNode(m_Position).m_CombatsNodeType = CombatNode.CombatNodeTypes.Normal;
 
             m_Position = m_InitalPosition;
 
-            CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + GameManager.Instance.m_Grid.GetNode(m_Position).m_NodeHeightOffset, 0);
+            CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Grid.instance.GetNode(m_Position).m_NodeHeightOffset, 0);
 
-            GameManager.Instance.m_Grid.GetNode(m_Position).m_CreatureOnGridPoint = m_Creature;
-            gameObject.transform.position = GameManager.Instance.m_Grid.GetNode(m_Position).transform.position + CreatureOffset;
+            Grid.instance.GetNode(m_Position).m_CreatureOnGridPoint = m_Creature;
+            gameObject.transform.position = Grid.instance.GetNode(m_Position).transform.position + CreatureOffset;
 
             m_HasMovedForThisTurn = false;
         }

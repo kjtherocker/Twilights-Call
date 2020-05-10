@@ -6,23 +6,17 @@ public class PartyManager : Singleton<PartyManager>
 {
     public List<Creatures> m_CurrentParty;
     public List<Creatures> m_ReservePartymembers;
-
+    
 
     // Use this for initialization
-    void Start()
+    public void Initialize()
     {
         m_CurrentParty.Add(gameObject.AddComponent<Sigma>());
         m_CurrentParty.Add(gameObject.AddComponent<Fide>());
         m_CurrentParty.Add(gameObject.AddComponent<Cavia>());
         m_CurrentParty.Add(gameObject.AddComponent<Vella>());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
-
-    }
+    
 
     public void CombatEnd()
     {

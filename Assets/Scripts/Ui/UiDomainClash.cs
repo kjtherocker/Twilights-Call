@@ -115,7 +115,7 @@ public class UiDomainClash : UiScreen
     {
        // aDomainWinner.m_CreatureAi.DomainClash(aDomainLoser.m_CreatureAi.m_NodeInDomainRange.Count); 
         aDomainLoser.m_CreatureAi.DomainClash(aDomainLoser.m_CreatureAi.m_NodeInDomainRange.Count); 
-         GameManager.Instance.UiManager.PopScreen();
+         UiManager.Instance.PopScreen();
          InputManager.Instance.m_MovementControls.Enable();
     }
 

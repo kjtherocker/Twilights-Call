@@ -82,7 +82,7 @@ public class UiScreenCommandBoard : UiScreen
         
      //   m_CommandboardCreature.m_CreatureAi.FindAllPaths();
         
-        GameManager.Instance.UiManager.PopScreen();
+        UiManager.Instance.PopScreen();
         
     }
 
@@ -98,11 +98,11 @@ public class UiScreenCommandBoard : UiScreen
 
         m_CommandboardCreature.m_CreatureAi.DeselectAllPaths();
         
-        GameManager.Instance.UiManager.PopScreen();
-        GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainBoard);
+        UiManager.Instance.PopScreen();
+        UiManager.Instance.PushScreen(UiManager.Screen.DomainBoard);
 
         UiDomainBoard ScreenTemp =
-            GameManager.Instance.UiManager.GetScreen(UiManager.Screen.DomainBoard) as UiDomainBoard;
+            UiManager.Instance.GetScreen(UiManager.Screen.DomainBoard) as UiDomainBoard;
 
         ScreenTemp.SpawnSkills(m_CommandboardCreature);
        
@@ -120,11 +120,11 @@ public class UiScreenCommandBoard : UiScreen
         
         m_CommandboardCreature.m_CreatureAi.DeselectAllPaths();
         
-        GameManager.Instance.UiManager.PopScreen();
-        GameManager.Instance.UiManager.PushScreen(UiManager.Screen.SkillBoard);
+        UiManager.Instance.PopScreen();
+        UiManager.Instance.PushScreen(UiManager.Screen.SkillBoard);
 
         UiSkillBoard ScreenTemp =
-            GameManager.Instance.UiManager.GetScreen(UiManager.Screen.SkillBoard) as UiSkillBoard;
+            UiManager.Instance.GetScreen(UiManager.Screen.SkillBoard) as UiSkillBoard;
 
         ScreenTemp.SpawnSkills(m_CommandboardCreature);
        

@@ -329,6 +329,9 @@
             <e p="InputManager.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
           </e>
+          <e p="Services" t="Include">
+            <e p="Preloader.cs" t="Include" />
+          </e>
           <e p="Temp" t="Include">
             <e p="DestroyParticleSystems.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />

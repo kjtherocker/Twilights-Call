@@ -50,7 +50,7 @@ public class UiManager : Singleton<UiManager>
     }
 
     // Use this for initialization
-    public void Start()
+    public void Initialize()
     {
 
         for (int i = 0; i < m_UiScreens.Length - 1; i++)

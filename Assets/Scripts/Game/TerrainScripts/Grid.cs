@@ -18,10 +18,6 @@ public class Grid : Singleton<Grid>
     public Material m_DevourTile;
     
     // Use this for initialization
-    void Start ()
-    {
-        GameManager.Instance.m_Grid = this;
-    }
 
 
     public void Convert1DArrayto2D(List<CombatNode> aNodeGroup, Vector2Int grid)

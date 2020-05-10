@@ -13,14 +13,13 @@ public class CombatManager : Singleton<CombatManager>
 {
 
     public PartyManager PartyManager;
-    public CombatCameraController m_BattleCamera;
     public Grid m_Grid;
 
 
     bool WhichSidesTurnIsIt;
     bool CombatHasStarted;
 
-    public int m_EnemyAiCurrentlyInList;
+    private int m_EnemyAiCurrentlyInList;
     
 
     public Vector3 CreatureOffset;
@@ -40,7 +39,7 @@ public class CombatManager : Singleton<CombatManager>
 
     public List<Memoria> m_MemoriaPool;
 
-    public GameObject m_MemoriaPrefab;
+    private GameObject m_MemoriaPrefab;
     
     
     public Dictionary<Creatures, Creatures> m_CreaturesWhosDomainHaveClashed;
@@ -65,11 +64,13 @@ public class CombatManager : Singleton<CombatManager>
     {
         CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         
-        PartyManager = GameManager.Instance.PartyManager;
+        PartyManager = PartyManager.Instance;
     }
 
     public void CombatStart(GridFormations aGridFormations)
     {
+
+            m_Grid = Grid.Instance;
         
             m_Gridformation = aGridFormations;
 
@@ -87,13 +88,13 @@ public class CombatManager : Singleton<CombatManager>
             }
             
             
-            AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
-           
-            AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
-           
-            AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-                                                                                
-            AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+           AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
+          
+           AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
+          
+           AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
+                                                                               
+           AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
             
             
             CombatHasStarted = true;
@@ -311,10 +312,10 @@ public class CombatManager : Singleton<CombatManager>
         yield return new WaitForSeconds(2f);
         m_TurnSwitchText.gameObject.SetActive(false);
         
-        GameManager.Instance.UiManager.PushScreen(UiManager.Screen.DomainClash);
+        UiManager.instance.PushScreen(UiManager.Screen.DomainClash);
            
         UiDomainClash ScreenTemp =
-            GameManager.Instance.UiManager.GetScreen(UiManager.Screen.DomainClash) as UiDomainClash;
+            UiManager.Instance.GetScreen(UiManager.Screen.DomainClash) as UiDomainClash;
 
         ScreenTemp.SetClash(CreatureA, CreaturesB);
     }

@@ -35,10 +35,10 @@ public class Action_Move : Action
          //m_ActionCommandNode.m_NodeIsCovered = true;
          
         CreatureOffset = 
-            new Vector3(0, Constants.Constants.m_HeightOffTheGrid + GameManager.Instance.m_Grid.GetNode(m_ActionCommandNode.m_PositionInGrid).m_NodeHeightOffset, 0);
+            new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).m_NodeHeightOffset, 0);
         
-        GameManager.Instance.m_Grid.GetNode(m_ActionCommandNode.m_PositionInGrid).m_CreatureOnGridPoint = m_ActionCreature;
-        m_ActionCreature.m_CreatureAi.transform.position = GameManager.Instance.m_Grid.GetNode(m_ActionCommandNode.m_PositionInGrid).transform.position + CreatureOffset;
+        Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).m_CreatureOnGridPoint = m_ActionCreature;
+        m_ActionCreature.m_CreatureAi.transform.position = Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).transform.position + CreatureOffset;
 
     }
 }

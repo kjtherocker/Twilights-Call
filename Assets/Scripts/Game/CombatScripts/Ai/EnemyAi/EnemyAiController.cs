@@ -120,7 +120,7 @@ public class EnemyAiController : AiController
         m_Position = aListOfNodes[aListOfNodes.Count - 1].m_PositionInGrid;
 
         //Setting the node you are on to the new one
-        Node_ObjectIsOn = GameManager.Instance.m_Grid.GetNode(m_Position);
+        Node_ObjectIsOn = Grid.instance.GetNode(m_Position);
 
 
         Node_ObjectIsOn.m_IsGoal = false;
@@ -172,7 +172,7 @@ public class EnemyAiController : AiController
             Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
 
             CombatNode NodeNeightboringAlly =
-                GameManager.Instance.m_Grid.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
+                Grid.instance.CheckNeighborsForLowestNumber(CharacterInRange.m_CreatureAi.m_Position);
 
 
             if (NodeNeightboringAlly != null)

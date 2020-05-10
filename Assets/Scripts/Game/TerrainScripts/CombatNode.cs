@@ -108,6 +108,8 @@ public class CombatNode : Cell
     {
         m_MovementCost = 1;
 
+        m_Grid = Grid.Instance;
+        
         if (m_NodeReplacement == null)
         {
             m_CurrentWalkablePlaneBeingUsed = m_WalkablePlane;
@@ -119,8 +121,8 @@ public class CombatNode : Cell
         m_AttackingPlane.gameObject.SetActive(false);
         m_Cube.gameObject.SetActive(true);
         m_IsSelector = false;
-        
 
+        
         m_MeshRenderer = m_Cube.GetComponent<MeshRenderer>();
         m_IniitalMaterial = m_MeshRenderer.materials[1];
         
@@ -437,7 +439,7 @@ public class CombatNode : Cell
                UiManager.Instance.PushScreen(UiManager.Screen.Memoria);
                
                UiMemoria ScreenTemp =
-                   GameManager.Instance.UiManager.GetScreen(UiManager.Screen.Memoria) as UiMemoria;
+                   UiManager.Instance.GetScreen(UiManager.Screen.Memoria) as UiMemoria;
 
                ScreenTemp.SetMemoriaScreen(m_CreatureOnGridPoint,m_MemoriaOnTop);
                
@@ -454,19 +456,19 @@ public class CombatNode : Cell
 
         if (aAreaType == CombatNodeAreaType.Walkable)
         {
-            m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_WalkableTile;
+           // m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_WalkableTile;
             m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }
         else if (aAreaType == CombatNodeAreaType.Devourable)
         {
-            m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DevourTile;
+           // m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DevourTile;
             m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }
         else if (aAreaType == CombatNodeAreaType.Domainable)
         {
-            m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DomainTile;
+            //m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DomainTile;
             m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }

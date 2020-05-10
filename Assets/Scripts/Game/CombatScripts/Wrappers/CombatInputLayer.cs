@@ -101,7 +101,7 @@ public class CombatInputLayer
         m_CombatInputState = CombatInputState.Commandboard;
         
         //Get Screen
-        UiScreenCommandBoard ScreenTemp = GameManager.Instance.UiManager.GetScreen(UiManager.Screen.CommandBoard) 
+        UiScreenCommandBoard ScreenTemp = UiManager.Instance.GetScreen(UiManager.Screen.CommandBoard) 
             as UiScreenCommandBoard;
 
         //Set Screen Variables
@@ -332,7 +332,7 @@ public class CombatInputLayer
         {
             return;
         }
-        GameManager.Instance.UiManager.PopScreen();
+        UiManager.Instance.PopScreen();
         m_Creature.m_CreatureAi.ActivateDomain();
         m_CombatInputState = CombatInputState.Default;
         m_CommandBoardExists = false;
@@ -355,7 +355,7 @@ public class CombatInputLayer
         {
             return;
         }
-        GameManager.Instance.UiManager.PopScreen();
+        UiManager.Instance.PopScreen();
         m_Creature.m_CreatureAi.ActivateDevour();
         m_CombatInputState = CombatInputState.Default;
         m_CommandBoardExists = false;

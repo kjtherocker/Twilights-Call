@@ -24,8 +24,12 @@ public class InitializeCombatArena : MonoBehaviour
     public IEnumerator Initialize()
     {
         
-        yield return new WaitForSeconds(0.6f);
-       
+        yield return new WaitForSeconds(0.1f);
+        
+        yield return new WaitUntil(() => Preloader.Instance.m_InitializationSteps == Preloader.InitializationSteps.Finished);
+
+        
+        
         CombatManager.Instance.CombatStart(m_CurrentLevel);
         m_BattleCamera.InitalizeCamera(); 
     }
