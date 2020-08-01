@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -213,7 +214,7 @@ public class AiController : MonoBehaviour
 
     }
 
-    public void RemoveDomainArea()
+    public void RemoveDomainTile()
     {
         if ( m_NodeInDomainRange != null)
         {
@@ -267,7 +268,7 @@ public class AiController : MonoBehaviour
     public void SetDomain(int aDomainRange)
     {
 
-        RemoveDomainArea();
+        RemoveDomainTile();
         
         m_NodeInDomainRange =
             GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), aDomainRange);
@@ -287,17 +288,17 @@ public class AiController : MonoBehaviour
         {
             node.m_DomainCombatNode = CombatNode.DomainCombatNode.Domain;
             node.DomainOnNode = m_Creature.m_Domain;
-
+            node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+            
             if (node.m_CreatureOnGridPoint != null)
             { 
                 node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
                 node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
-                node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
-        
- 
+             
+                
             }
-
-
+            
+            
             node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
         }
         
@@ -306,8 +307,6 @@ public class AiController : MonoBehaviour
         {
             node.DomainClashing();
         }
-
-        RemoveDomainArea();
     }
 
     public void SetDevour(int DevourRange)
@@ -373,10 +372,6 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
                 {
 
                     Node_MovingTo = aListOfNodes[i];
-
-                   
-
-
                     Vector3 relativePos = aListOfNodes[i].gameObject.transform.position - transform.position + CreatureOffset;
 
 
@@ -410,9 +405,9 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
 
         m_Position = aListOfNodes[aListOfNodes.Count - 1].m_PositionInGrid;
         m_PreviousNode = Node_ObjectIsOn;
+        
         //Setting the node you are on to the new one
         Node_ObjectIsOn = Grid.instance.GetNode(m_Position);
-
         Node_ObjectIsOn.SetCreatureOnTopOfNode(m_Creature);
         Node_ObjectIsOn.m_IsCovered = true;
         
@@ -426,10 +421,14 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
 
         
     }
+
+public void Reset()
+{
     
+}
 
 
-    public virtual Dictionary<CombatNode, List<CombatNode>> cachePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn,DelegateReturnNodeIndex delegateReturnNodeIndex )
+public virtual Dictionary<CombatNode, List<CombatNode>> cachePaths(List<CombatNode> cells, CombatNode aNodeHeuristicIsBasedOn,DelegateReturnNodeIndex delegateReturnNodeIndex )
     {
         var edges = GetGraphEdges(cells,delegateReturnNodeIndex);
         var paths = _Pathfinder.findAllPaths(edges, aNodeHeuristicIsBasedOn,m_Movement);

@@ -15,7 +15,6 @@ public class Pathfinder : IPathfinding
         cameFrom.Add(originNode, default(CombatNode));
         Dictionary<CombatNode, int> costSoFar = new Dictionary<CombatNode, int>();
         costSoFar.Add(originNode, 0);
-
         while (frontier.Count != 0)
         {
             var current = frontier.Dequeue();
@@ -37,7 +36,6 @@ public class Pathfinder : IPathfinding
                 }
             }
         }
-
         Dictionary<CombatNode, List<CombatNode>> paths = new Dictionary<CombatNode, List<CombatNode>>();
         foreach (CombatNode destination in cameFrom.Keys)
         {

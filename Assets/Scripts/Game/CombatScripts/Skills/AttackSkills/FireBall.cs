@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class FireBall : Skills
 {
-
-
-
-    // Use this for initialization
     public override void Start()
     {
 
@@ -22,18 +18,9 @@ public class FireBall : Skills
         SkillName = "Fire Ball";
         SkillDescription = "FireBall that will hit the whole enemy team";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public override IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
     {
-        
         return aVictum.DecrementHealth(m_Damage + aAttacker.GetAllStrength(), GetElementalType(),
             0.1f, 0.1f, 1);
-        
     }
 }

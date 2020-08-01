@@ -39,14 +39,11 @@
         };
  
  
-        void surf (Input IN, inout SurfaceOutput o) {
+        void surf (Input IN, inout SurfaceOutput o) 
+        {
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             fixed4 c2 = tex2D (_SecTex, IN.uv_SecTex) * _SecColor;
             half test = tex2D(_SliceGuide, IN.uv_MainTex).rgb - _SliceAmount;
-
-            
-            
-            
             fixed4 Result =  !test;
            
            if(test < 0)
@@ -58,11 +55,8 @@
              o.Albedo = c.rgb;
            }
            
-             
             if (test < _BurnSize && _SliceAmount > 0) 
             {
-            
-            
                 o.Emission = tex2D(_BurnRamp, float2(test * (1 / _BurnSize), 0)) * _BurnColor * _EmissionAmount * c2;
             }
 

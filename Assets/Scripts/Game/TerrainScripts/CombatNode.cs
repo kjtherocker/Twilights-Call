@@ -360,9 +360,6 @@ public class CombatNode : Cell
     public void DomainTransfer(Material aDomainMaterial)
     {
         m_DomainSwapAmount = 0;
-
-        
-
         
         if (aDomainMaterial != null)
         {
@@ -553,7 +550,7 @@ public class CombatNode : Cell
         
         Vector3 NodeTransform = gameObject.transform.position;
 #if UNITY_EDITOR
-        GridFormationEditor.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+        //GridFormationEditor.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
 #endif
     }
 }

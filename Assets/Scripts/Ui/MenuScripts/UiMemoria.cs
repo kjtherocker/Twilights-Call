@@ -42,8 +42,6 @@ public class UiMemoria : UiScreen
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
-	// Update is called once per frame
-    
     public override void ResetCursorPosition()
     {
         m_CursorXMax = m_MemoriaSkills.Count -1;
