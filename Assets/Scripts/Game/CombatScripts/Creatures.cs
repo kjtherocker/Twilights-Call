@@ -80,7 +80,11 @@ public class Creatures : MonoBehaviour
     public int Defence;
     public int Resistance;
 
-
+    public int CurrentDomainpoints;
+    public int MaxDomainPoints = 3;
+    
+    
+    
     public int BeforeDomain_MaxHealth;
     public int BeforeDomain_MaxMana;
     public int BeforeDomain_Strength;
@@ -130,36 +134,12 @@ public class Creatures : MonoBehaviour
         m_CreatureSkillList = GameManager.Instance.m_SkillList;
 
         //m_Attack = gameObject.AddComponent<Attack>();
+
+        CurrentDomainpoints = MaxDomainPoints;
     }
-
-
-    public void StatsBeforeDomain()
-    {
-        
-        BeforeDomain_MaxHealth = MaxHealth;
-        BeforeDomain_MaxMana = MaxMana;
-        BeforeDomain_Strength = Strength;
-        
-    }
-
-    public void ReturnStatsToStateAfterDomain()
-    {
-        MaxHealth = BeforeDomain_MaxHealth;
-        MaxMana = BeforeDomain_MaxMana;
-        Strength = BeforeDomain_Strength;
-    }
-
-
-
     public virtual void EndTurn()
     {
 
-
-    }
-
-    public virtual void SetObjectToRotateAround(Creatures gameObject)
-    {
-        ObjectToRotateAround = gameObject;
 
     }
 
@@ -226,15 +206,8 @@ public class Creatures : MonoBehaviour
 
             Death();
         }
-        else if (CurrentHealth >= 0)
-        {
-            m_IsAlive = true;
-        }
 
-        if (CurrentHealth >= MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
+        CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
     }
 
 

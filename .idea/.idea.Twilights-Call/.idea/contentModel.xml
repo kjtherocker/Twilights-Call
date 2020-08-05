@@ -297,6 +297,7 @@
               <e p="GridEditor.cs" t="Include" />
               <e p="GridFormations.cs" t="Include" />
               <e p="InitializeCombatArena.cs" t="Include" />
+              <e p="LevelCreator.cs" t="Include" />
               <e p="PropList.cs" t="Include" />
             </e>
             <e p="OverworldScripts" t="Include">
@@ -357,6 +358,7 @@
             <e p="UiScreenCommandBoard.cs" t="Include" />
             <e p="UiScreenEndCombatMenu.cs" t="Include" />
             <e p="UiSkillBoard.cs" t="Include" />
+            <e p="UiStatus.cs" t="Include" />
           </e>
         </e>
         <e p="Shared" t="Include">

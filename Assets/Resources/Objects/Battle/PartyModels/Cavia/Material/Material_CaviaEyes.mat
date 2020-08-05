@@ -64,6 +64,7 @@ Material:
     - _Cutoff: 0.471
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _DynamicEmissionLM: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -72,6 +73,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineDot: 0.25
     - _OutlineExtrusion: 0.01
+    - _OutlineWidth: 0.5
     - _Parallax: 0.02
     - _RimAmount: 0.97
     - _RimThreshold: 0.54

@@ -89,6 +89,8 @@ public class UiSkillBoard : UiScreen
        // m_Animator_SkillGroup.SetBool("ZoomIn",true);
      //  m_Animator_SkillGroup.gameObject.SetActive(true);
         m_MenuControls.Enable();
+        
+        m_SkillBoardCreature.m_CreatureAi.m_CreaturesAnimator.SetTrigger("t_SpellStart");
     }
 
     public void SpawnSkills(Creatures aCreatures)

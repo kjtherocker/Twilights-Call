@@ -9,29 +9,16 @@ public class HealthBar : UiTabScreen
     public Image Image_Healthbar;
     public TextMeshProUGUI Text_HealthRatio;
 
-    public Image Image_Manahbar;
-    public TextMeshProUGUI Text_ManaRatio;
 
-    public TextMeshProUGUI Text_Name;
-    public Image Image_Portrait;
+
     public Creatures Partymember;
 
 
     public int m_CurrentHealth = 150;
     private int m_MaxHealth = 150;
 
-    public int m_CurrentMana = 150;
-    private int m_MaxMana = 150;
     public bool m_IsSelected;
-
-    public TextMeshProUGUI TextStrength;
-    public TextMeshProUGUI Text_Magic;
-    public TextMeshProUGUI Text_Hit;
-    public TextMeshProUGUI Text_Defence;
-    public TextMeshProUGUI Text_Resistance;
-    public TextMeshProUGUI Text_Evasion;
-
-    // Use this for initialization
+    
     void Start()
     {
         UpdateHealthbar();
@@ -51,16 +38,7 @@ public class HealthBar : UiTabScreen
         m_CurrentHealth = Partymember.CurrentHealth;
         m_MaxHealth = Partymember.MaxHealth;
 
-        m_CurrentMana = Partymember.CurrentMana;
-        m_MaxMana = Partymember.MaxMana;
 
-      
-        
-
-        if (Text_Name != null)
-        {
-            Text_Name.text = Partymember.Name;
-        }
     }
 
     private void Update()
@@ -73,9 +51,7 @@ public class HealthBar : UiTabScreen
             m_CurrentHealth = Partymember.CurrentHealth;
             m_MaxHealth = Partymember.MaxHealth;
 
-            m_CurrentMana = Partymember.CurrentMana;
-            m_MaxMana = Partymember.MaxMana;
-
+         
           // if(m_PortraitCamera != null)
           // {
           //     m_PortraitCamera.gameObject.transform.position = new Vector3(Partymember.ModelInGame.transform.position.x,
@@ -105,33 +81,6 @@ public class HealthBar : UiTabScreen
         if (m_CurrentHealth >= m_MaxHealth)
         {
             m_CurrentHealth = m_MaxHealth;
-        }
-
-        if (m_CurrentMana <= 0)
-        {
-            m_CurrentMana = 0;
-        }
-
-        if (m_CurrentMana >= m_MaxMana)
-        {
-            m_CurrentMana = m_MaxMana;
-        }
-
-
-        if (TextStrength != null)
-        {
-            TextStrength.text = "" + Partymember.Strength;
-            Text_Magic.text = "" + Partymember.Magic;
-            Text_Hit.text = "" + Partymember.Hit;
-            Text_Defence.text = "" + Partymember.Defence;
-            Text_Resistance.text = "" + Partymember.Resistance;
-            Text_Evasion.text = "" + Partymember.Evasion;
-        }
-
-        if (Image_Manahbar != null)
-        {
-            float ManaRatio = (float)m_CurrentMana / (float)m_MaxMana;
-            Image_Manahbar.fillAmount = ManaRatio;
         }
 
         float HealthRatio = (float)m_CurrentHealth / (float)m_MaxHealth;

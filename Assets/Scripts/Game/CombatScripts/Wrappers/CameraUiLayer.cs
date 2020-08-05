@@ -14,8 +14,8 @@ public class CameraUiLayer : MonoBehaviour
     private Grid m_Grid;
     public CombatNode m_NodeTheCameraIsOn;
     
-    public HealthBar m_PlayerStatusSheet;
-    public HealthBar m_EnemyStatusSheet;
+    public UiStatus m_PlayerStatusSheet;
+    public UiStatus m_EnemyStatusSheet;
 
     public UiDomainStatus m_DomainTab;
     
@@ -44,8 +44,8 @@ public class CameraUiLayer : MonoBehaviour
         
         m_CommandBoardExists = false;
 
-        m_PlayerStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as HealthBar;
-        m_EnemyStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as HealthBar;
+        m_PlayerStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
+        m_EnemyStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
 
         m_DomainTab = UiManager.Instance.GetUiTab(UiManager.UiTab.DomainTab) as UiDomainStatus;
 
@@ -110,8 +110,8 @@ public class CameraUiLayer : MonoBehaviour
                     
 
                     m_PlayerStatusSheet.gameObject.SetActive(true);
-                    m_EnemyStatusSheet.gameObject.SetActive(false);
-                    if (m_PlayerStatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
+                   // m_EnemyStatusSheet.gameObject.SetActive(false);
+                    if (m_PlayerStatusSheet.Creature != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
                     {
                         m_PlayerStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
                     }
@@ -119,25 +119,25 @@ public class CameraUiLayer : MonoBehaviour
                 else if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Enemy)
                 {
                     
-                    m_PlayerStatusSheet.gameObject.SetActive(false);
-                    m_EnemyStatusSheet.gameObject.SetActive(true);
-                    if (m_EnemyStatusSheet.Partymember != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
+                  //   m_PlayerStatusSheet.gameObject.SetActive(false);
+                  //  m_EnemyStatusSheet.gameObject.SetActive(true);
+                    if (m_EnemyStatusSheet.Creature != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
                     {
                         m_EnemyStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
                     }
                 }
+                else
+                {
+                
+                
+                
+                  // m_PlayerStatusSheet.gameObject.SetActive(false);
+                  // m_EnemyStatusSheet.gameObject.SetActive(false);
 
+                }
             }
-            else
-            {
-                
-                
-                
-                m_PlayerStatusSheet.gameObject.SetActive(false);
-                m_EnemyStatusSheet.gameObject.SetActive(false);
 
-            }
-        
+         
 
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -77,7 +78,13 @@ public class DialogueTrigger : MonoBehaviour
     }
 
 
-
+    public void Update()
+    {
+        if (Input.GetKeyDown("a"))
+        {
+            TriggerDialogue();
+        }
+    }
 
     public void TriggerDialogue()
     {

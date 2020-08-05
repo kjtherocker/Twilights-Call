@@ -33,6 +33,6 @@ public class CrystalFool : Domain
     
     public override void UndoDomainEffect(ref Creatures m_CreatureOnDomain)
     {
-        m_CreatureOnDomain.ReturnStatsToStateAfterDomain();
+
     }
 }

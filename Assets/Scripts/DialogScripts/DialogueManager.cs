@@ -31,7 +31,6 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] Font[] m_TypesOfFonts;
 
     public List<Dialogue> m_Dialogue;
-   // public List<Dialogue> m_DialogueTrigger.m_Dialogue;
     public List<GameObject> m_DialogueObjects;
 
     public DialogueTrigger m_DialogueTrigger;
@@ -41,13 +40,13 @@ public class DialogueManager : Singleton<DialogueManager>
     public TextMeshProUGUI m_DialogueBoxText;
     public TextMeshProUGUI m_VerticalText;
     public TextMeshProUGUI m_DisplayText;
-    public Text m_DisplayName;
+    public TextMeshProUGUI m_DisplayName;
     public Canvas m_DialogueCanvas;
 
     public RawImage m_ChatBox;
     public RawImage m_Portrait;
 
-    public OverworldCamera m_OverworldCamera;
+
 
     public GameObject m_DialogueBox;
     public GameObject m_DialogueVertical;
@@ -66,6 +65,8 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool TextScroll;
     
     public PlayerInput m_DialogueControls;
+
+    public AudioClip DialogueClick;
     // Use this for initialization
     void Start()
     {
@@ -84,6 +85,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         if (Constants.Constants.TurnDialogueOff == false)
         {
+            gameObject.SetActive(true);
 
             m_DialogueJson = aTextAsset;
             DeSerializeJsonDialogue(m_DialogueJson);
@@ -107,8 +109,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 m_VerticalText.text = "";
                 m_DisplayText = m_VerticalText;
             }
-
-            m_OverworldCamera.gameObject.SetActive(false);
+            
             m_DialogueCanvas.gameObject.SetActive(true);
 
             InputManager.Instance.m_BaseMovementControls.Disable();
@@ -249,7 +250,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
                 break;
             }
-
+            AudioManager.Instance.PlaySoundOneShot(DialogueClick,AudioManager.Soundtypes.Dialogue);
             counter += 1;
             yield return  new WaitForSeconds(0.03f);
         }
@@ -328,9 +329,9 @@ public class DialogueManager : Singleton<DialogueManager>
         m_DialogueBox.SetActive(false);
         m_DialogueVertical.SetActive(false);
         Destroy(m_DialogueTrigger.gameObject);
-        AudioManager.Instance.StopSound();
+        //AudioManager.Instance.StopSound();
         InputManager.Instance.m_BaseMovementControls.Enable();
-        m_OverworldCamera.gameObject.SetActive(true);
+ 
     }
 
 
