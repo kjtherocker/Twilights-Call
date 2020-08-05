@@ -15,8 +15,6 @@ public class CameraUiLayer : MonoBehaviour
     public CombatNode m_NodeTheCameraIsOn;
     
     public UiStatus m_PlayerStatusSheet;
-    public UiStatus m_EnemyStatusSheet;
-
     public UiDomainStatus m_DomainTab;
     
     
@@ -45,7 +43,6 @@ public class CameraUiLayer : MonoBehaviour
         m_CommandBoardExists = false;
 
         m_PlayerStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
-        m_EnemyStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
 
         m_DomainTab = UiManager.Instance.GetUiTab(UiManager.UiTab.DomainTab) as UiDomainStatus;
 
@@ -102,52 +99,22 @@ public class CameraUiLayer : MonoBehaviour
 
     public void HandleStatus()
     {
-
             if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint != null)
             {
+                m_PlayerStatusSheet.gameObject.SetActive(false);
+ 
                 if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
                 {
-                    
+                    m_PlayerStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
+                }
 
-                    m_PlayerStatusSheet.gameObject.SetActive(true);
-                   // m_EnemyStatusSheet.gameObject.SetActive(false);
-                    if (m_PlayerStatusSheet.Creature != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
-                    {
-                        m_PlayerStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
-                    }
-                }
-                else if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Enemy)
-                {
-                    
-                  //   m_PlayerStatusSheet.gameObject.SetActive(false);
-                  //  m_EnemyStatusSheet.gameObject.SetActive(true);
-                    if (m_EnemyStatusSheet.Creature != m_NodeTheCameraIsOn.m_CreatureOnGridPoint)
-                    {
-                        m_EnemyStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
-                    }
-                }
-                else
-                {
-                
-                
-                
-                  // m_PlayerStatusSheet.gameObject.SetActive(false);
-                  // m_EnemyStatusSheet.gameObject.SetActive(false);
-
-                }
             }
-
-         
-
     }
 
 
  
     public void HandleDomainStatus()
     {
-
-
-
         if (m_NodeTheCameraIsOn.m_DomainCombatNode != CombatNode.DomainCombatNode.Domain)
         {
             m_DomainTab.gameObject.SetActive(false);
@@ -157,8 +124,6 @@ public class CameraUiLayer : MonoBehaviour
             m_DomainTab.SetDomainReference(m_NodeTheCameraIsOn.DomainOnNode);
             m_DomainTab.gameObject.SetActive(true);
         }
-
-        
     }
 
 

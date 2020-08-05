@@ -340,6 +340,7 @@
               <e p="ButtonSkillWrapper.cs" t="Include" />
               <e p="DomainClashTabs.cs" t="Include" />
               <e p="DomainWrapper.cs" t="Include" />
+              <e p="UiStatusDomainPointWrapper.cs" t="Include" />
             </e>
             <e p="EndOfCombatMenu.cs" t="Include" />
             <e p="MenuScripts" t="Include">

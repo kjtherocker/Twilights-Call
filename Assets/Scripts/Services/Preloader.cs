@@ -19,7 +19,7 @@ public class Preloader : Singleton<Preloader>
     // Start is called before the first frame update
 
      public InitializationSteps m_InitializationSteps;
-
+     public Camera m_TestCamera;
 
      
     void Start()
@@ -29,7 +29,9 @@ public class Preloader : Singleton<Preloader>
 
     public void InitializePreloadObjects()
     {
-
+       // m_TestCamera.gameObject.SetActive(false);
+        
+        
         m_InitializationSteps = InitializationSteps.GameManager;
         GameManager.Instance.Initialize();
 
@@ -45,6 +47,33 @@ public class Preloader : Singleton<Preloader>
         {
             InputManager.instance.Initialize();
         }
+
+        
+     // switch (m_InitializationSteps)
+     // {
+     //     case InitializationSteps.Input:
+     //     {
+
+     //         m_InitializationSteps = InitializationSteps.PartyManager;
+
+     //     }
+     //         break;
+
+     //     case InitializationSteps.PartyManager:
+     //     {
+
+     //         PartyManager.instance.Initialize();
+     //         m_InitializationSteps = InitializationSteps.Finished;
+     //     }
+     //         break;
+
+     //     case InitializationSteps.Finished:
+     //     {
+
+
+     //     }
+     //         break;
+     // }
 
         m_InitializationSteps = InitializationSteps.Input;
         

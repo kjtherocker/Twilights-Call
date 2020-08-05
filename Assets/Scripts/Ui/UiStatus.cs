@@ -21,7 +21,7 @@ public class UiStatus : UiTabScreen
 
 
     public Slider m_HealthbarSlider;
-    public List<Slider> m_DomainSliders;
+    public List<UiStatusDomainPointWrapper> m_DomainSliders;
 
     public TextMeshProUGUI Text_Strength;
     public TextMeshProUGUI Text_Magic;
@@ -39,6 +39,8 @@ public class UiStatus : UiTabScreen
 
     public void SetCharacter(Creatures Character)
     {
+        
+        gameObject.SetActive(true);
         if (Creature != null)
         {
             Creature.gameObject.layer = 0;
@@ -46,6 +48,11 @@ public class UiStatus : UiTabScreen
         }
 
         Creature = Character;
+        
+        if (Text_Name != null)
+        {
+            Text_Name.text = Creature.Name;
+        }
 
         m_CurrentHealth = Creature.CurrentHealth;
         m_MaxHealth = Creature.MaxHealth;
@@ -55,20 +62,24 @@ public class UiStatus : UiTabScreen
         m_CurrentMana = Creature.CurrentMana;
 
 
-        foreach (Slider aSlider in m_DomainSliders)
-        {
-            aSlider.value = 0;
-        }
+        StartCoroutine(CatchAFrame());
+     
+    }
 
-        for (int i = 0; i < Creature.CurrentDomainpoints; i++)
-        {
-            m_DomainSliders[i].value = 1;
-        }
+    IEnumerator CatchAFrame()
+    {
+        yield return new WaitForEndOfFrame();
+       
+       UpdateHealthbar();
+       foreach (UiStatusDomainPointWrapper aSlider in m_DomainSliders)
+       {
+           aSlider.SetDomainPointOpacity(false);
+       }
 
-        if (Text_Name != null)
-        {
-            Text_Name.text = Creature.Name;
-        }
+       for (int i = 0; i < Creature.CurrentDomainpoints; i++)
+       {
+           m_DomainSliders[i].SetDomainPointOpacity(true);
+       }
     }
 
     private void Update()
@@ -127,39 +138,4 @@ public class UiStatus : UiTabScreen
         m_HealthbarSlider.value  = HealthRatio;
 
     }
-
-    public void SetIsSelected(bool a_isselected)
-    {
-        m_IsSelected = a_isselected;
-    }
-
-    public bool GetIsSelected()
-    {
-        return m_IsSelected;
-    }
-    private void TakeDamage(int damage)
-    {
-        m_CurrentHealth -= damage;
-    }
-
-    private void HealDamage(int heal)
-    {
-        m_CurrentHealth += heal;
-
-    }
-
-    public void SetHealthBarPosition(int a_Minimum, int a_Maximum)
-    {
-        if (m_IsSelected == true)
-        {
-            gameObject.transform.position = new Vector3(a_Maximum, gameObject.transform.position.y, gameObject.transform.position.z);
-        }
-        else
-        {
-            gameObject.transform.position = new Vector3(a_Minimum, gameObject.transform.position.y, gameObject.transform.position.z);
-        }
-
-    }
-
-
 }
