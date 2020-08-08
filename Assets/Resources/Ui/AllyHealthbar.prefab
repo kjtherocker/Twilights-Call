@@ -5276,7 +5276,7 @@ MonoBehaviour:
   Creature: {fileID: 0}
   m_IsSelected: 0
   m_HealthbarSlider: {fileID: 4057961895675959161}
-  m_DomainSliders:
+  m_DomainPointWrappers:
   - {fileID: 4312652577431112707}
   - {fileID: 7859521078128206875}
   - {fileID: 5061319074547426649}

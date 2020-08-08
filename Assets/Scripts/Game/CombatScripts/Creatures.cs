@@ -95,8 +95,11 @@ public class Creatures : MonoBehaviour
     public int AmountOfTurns;
 
     public int BuffandDebuff;
-    public int BuffandDebuffDamageStrength;
-    public int BuffandDebuffDamageMagic;
+    public int BuffDamageStrength;
+    public int BuffDamageMagic;
+    
+    public int DebuffDamageStrength;
+    public int DebuffDamageMagic;
 
     public bool IsSelected;
     public bool IsCurrentTurnHolder;
@@ -111,7 +114,8 @@ public class Creatures : MonoBehaviour
 
     public DomainList.DomainListEnum m_DomainList;
     public Domain m_Domain;
-    
+
+    public List<StatusEffects> m_StatusEffectsOnCreature;
     
     public Creatures ObjectToRotateAround;
     
@@ -126,7 +130,7 @@ public class Creatures : MonoBehaviour
     {
         m_Skills = new List<Skills>();
         m_BloodArts = new List<Skills>();
-
+        m_StatusEffectsOnCreature = new List<StatusEffects>();
         m_DomainStages = DomainStages.NotActivated;
 
 
@@ -139,7 +143,20 @@ public class Creatures : MonoBehaviour
     }
     public virtual void EndTurn()
     {
+        if (m_StatusEffectsOnCreature.Count == 0)
+        {
+            return;
+        }
 
+        for(int i =  m_StatusEffectsOnCreature.Count -1 ; i >= 0;i--)
+        {
+            m_StatusEffectsOnCreature[i].EndOfTurn();
+
+            if (m_StatusEffectsOnCreature[i].CheckIfStatusEffectIsActive() == false)
+            {
+                m_StatusEffectsOnCreature.RemoveAt(i);
+            }
+        }
 
     }
 
@@ -147,7 +164,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryStrength;
 
-        TemporaryStrength = BuffandDebuffDamageStrength + Strength;
+        TemporaryStrength = BuffDamageStrength + DebuffDamageStrength + Strength;
 
         return TemporaryStrength;
     }
@@ -156,12 +173,17 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryMagic;
 
-        TemporaryMagic = BuffandDebuffDamageMagic + Magic;
+        TemporaryMagic = BuffDamageMagic + DebuffDamageMagic + Magic;
 
         return TemporaryMagic;
     }
 
-
+    public virtual IEnumerator SetStatusEffect(StatusEffects aStatusEffect)
+    {
+        m_StatusEffectsOnCreature.Add(aStatusEffect);
+        
+        yield return new WaitForEndOfFrame();
+    }
 
     public virtual void DecrementHealth(int Decremenby)
     {

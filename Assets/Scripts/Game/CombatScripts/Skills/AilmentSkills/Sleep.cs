@@ -16,7 +16,6 @@ public class Sleep : Skills
         m_Damagetype = DamageType.Magic;
         m_SkillAilment = SkillAilment.Sleep;
         m_Damage = 0;
-        m_CostToUse = 35;
         SkillName = "Sleep";
         SkillDescription = "Try to make the enemy party Sleep";
     }

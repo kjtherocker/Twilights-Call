@@ -17,10 +17,8 @@ public class CrystalFool : Domain
         SkillDescription = "Increased Physical Attack damage";
         DomainUser = "";
         Domaintype = DomainType.OneTime;
-        m_CostToUse = 5;
-        
-        
-        
+
+
         Addressables.LoadAssetAsync<Material>("CrystalFool").Completed += OnLoadDomainMaterial;
         
     }

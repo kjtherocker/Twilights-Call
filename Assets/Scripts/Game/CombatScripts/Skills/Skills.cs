@@ -75,9 +75,6 @@ public class Skills
     public ParticleSystem m_SkillParticleEffect;
 
     [SerializeField]
-    public int m_CostToUse;
-
-    [SerializeField]
     public int m_Damage;
 
     [SerializeField]
@@ -98,11 +95,6 @@ public class Skills
     public ParticleSystem GetSkillParticleEffect()
     {
         return m_SkillParticleEffect;
-    }
-
-    public int GetCostToUse()
-    {
-        return m_CostToUse;
     }
 
     public string GetSkillName()

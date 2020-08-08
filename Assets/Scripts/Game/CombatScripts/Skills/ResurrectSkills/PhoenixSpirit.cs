@@ -16,7 +16,6 @@ public class PhoenixSpirit : Skills
         m_SkillFormation = SkillFormation.SingleNode;
         m_Damagetype = DamageType.Magic;
         m_Damage = 0;
-        m_CostToUse = 40;
         SkillName = "Phoenix Spirit";
         SkillDescription = "Resurrect one dead party member";
     }

@@ -13,7 +13,6 @@ public class DevourPhase1 : Skills
         m_SkillFormation = SkillFormation.SingleNode;
         m_Damagetype = DamageType.Magic;
         m_SkillParticleEffect = (ParticleSystem)Resources.Load("ParticleSystems/Waves/FireWave/ParticleEffect_FireWave", typeof(ParticleSystem));
-        m_CostToUse = 40;
         m_Damage = 10;
         m_SkillRange = 1;
         SkillName = "Devour Phase 1";

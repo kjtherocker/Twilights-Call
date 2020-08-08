@@ -40,8 +40,8 @@ public class Sigma : Ally {
 
         m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
         
-        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
-        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Invigorate));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.FireBall));
         m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
         m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
 

@@ -14,7 +14,7 @@ public class CameraUiLayer : MonoBehaviour
     private Grid m_Grid;
     public CombatNode m_NodeTheCameraIsOn;
     
-    public UiStatus m_PlayerStatusSheet;
+    public UiStatus m_StatusSheet;
     public UiDomainStatus m_DomainTab;
     
     
@@ -35,14 +35,10 @@ public class CameraUiLayer : MonoBehaviour
         m_NodeTheCameraIsOn = aDefaultPosition;
 
         m_CombatInput = aCombatInput;
-        
-      // m_Selector.gameObject.transform.position =
-      //         new Vector3(m_NodeTheCameraIsOn.transform.position.x, m_NodeTheCameraIsOn.transform.position.y + Constants.Constants.m_HeightOffTheGrid + 0.8f,
-      //             m_NodeTheCameraIsOn.transform.position.z);
-        
+
         m_CommandBoardExists = false;
 
-        m_PlayerStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
+        m_StatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
 
         m_DomainTab = UiManager.Instance.GetUiTab(UiManager.UiTab.DomainTab) as UiDomainStatus;
 
@@ -99,15 +95,10 @@ public class CameraUiLayer : MonoBehaviour
 
     public void HandleStatus()
     {
+        m_StatusSheet.gameObject.SetActive(false);
             if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint != null)
             {
-                m_PlayerStatusSheet.gameObject.SetActive(false);
- 
-                if (m_NodeTheCameraIsOn.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
-                {
-                    m_PlayerStatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
-                }
-
+                m_StatusSheet.SetCharacter(m_NodeTheCameraIsOn.m_CreatureOnGridPoint);
             }
     }
 

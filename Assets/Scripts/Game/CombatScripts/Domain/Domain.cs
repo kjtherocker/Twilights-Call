@@ -24,15 +24,13 @@ public class Domain : Skills
     public string DomainDescription;
     public Material m_DomainTexture;
     public Creatures m_Creature;
+    public float m_CostToUse;
     public virtual void Start()
     {
         m_ElementalType = Skills.ElementalType.Null;
         DomainName = "Not Initalized";
         DomainDescription = "Something bad happend";
         DomainUser = "Mr Messup";
-        
-        m_CostToUse = 50;
-        
     }
 
     public void OnLoadDomainMaterial(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Material> obj)

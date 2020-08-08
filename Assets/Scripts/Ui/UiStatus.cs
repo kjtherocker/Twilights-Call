@@ -21,7 +21,7 @@ public class UiStatus : UiTabScreen
 
 
     public Slider m_HealthbarSlider;
-    public List<UiStatusDomainPointWrapper> m_DomainSliders;
+    public List<UiStatusDomainPointWrapper> m_DomainPointWrappers;
 
     public TextMeshProUGUI Text_Strength;
     public TextMeshProUGUI Text_Magic;
@@ -60,7 +60,17 @@ public class UiStatus : UiTabScreen
         m_HealthbarSlider.value = m_CurrentHealth / m_MaxHealth;
 
         m_CurrentMana = Creature.CurrentMana;
+        
+        UpdateHealthbar();
+        foreach (UiStatusDomainPointWrapper aSlider in m_DomainPointWrappers)
+        {
+            aSlider.SetDomainPointOpacity(false);
+        }
 
+        for (int i = 0; i < Creature.CurrentDomainpoints; i++)
+        {
+            m_DomainPointWrappers[i].SetDomainPointOpacity(true);
+        }
 
         StartCoroutine(CatchAFrame());
      
@@ -71,14 +81,14 @@ public class UiStatus : UiTabScreen
         yield return new WaitForEndOfFrame();
        
        UpdateHealthbar();
-       foreach (UiStatusDomainPointWrapper aSlider in m_DomainSliders)
+       foreach (UiStatusDomainPointWrapper aSlider in m_DomainPointWrappers)
        {
            aSlider.SetDomainPointOpacity(false);
        }
 
        for (int i = 0; i < Creature.CurrentDomainpoints; i++)
        {
-           m_DomainSliders[i].SetDomainPointOpacity(true);
+           m_DomainPointWrappers[i].SetDomainPointOpacity(true);
        }
     }
 
@@ -107,6 +117,17 @@ public class UiStatus : UiTabScreen
           //      m_PortraitCamera.transform.eulerAngles = new Vector3(Rotation.eulerAngles.x, Rotation.eulerAngles.y + 180, Rotation.eulerAngles.z);
           // }
         }
+
+        if (Input.GetKeyDown("q"))
+        {
+              
+            for (int i = 0; i < 3; i++)
+            {
+                // m_DomainPointWrappers[i].SetDomainHighlighting(false);
+                m_DomainPointWrappers[i].SetDomainHighlighting(true);
+            }
+        }
+
     }
     // Update is called once per frame
     void UpdateHealthbar()
@@ -136,6 +157,19 @@ public class UiStatus : UiTabScreen
 
         float HealthRatio = (float)m_CurrentHealth / (float)m_MaxHealth;
         m_HealthbarSlider.value  = HealthRatio;
+
+    }
+
+    
+    
+    public void SetDomainHighlighting(int aNumberOfDomainPoints)
+    {
+        
+       for (int i = 0; i < aNumberOfDomainPoints; i++)
+       {
+          // m_DomainPointWrappers[i].SetDomainHighlighting(false);
+           m_DomainPointWrappers[i].SetDomainHighlighting(true);
+       }
 
     }
 }

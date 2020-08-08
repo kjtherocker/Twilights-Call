@@ -31828,32 +31828,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1710475373}
     m_Modifications:
-    - target: {fileID: 4057961896021172345, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4057961896288313250, guid: 54927aef646d7e74bb80c1156a7539fb,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4057961896288313250, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961896288313250, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961896597495188, guid: 54927aef646d7e74bb80c1156a7539fb,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4057961896597495188, guid: 54927aef646d7e74bb80c1156a7539fb,
+    - target: {fileID: 4057961896288313250, guid: 54927aef646d7e74bb80c1156a7539fb,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -31862,11 +31847,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AllyHealthbar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961896645847768, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4057961896645847770, guid: 54927aef646d7e74bb80c1156a7539fb,
         type: 3}
@@ -31973,37 +31953,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4057961896707723743, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961896717837094, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961896717837094, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4057961897238470604, guid: 54927aef646d7e74bb80c1156a7539fb,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961897238470604, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057961897267339521, guid: 54927aef646d7e74bb80c1156a7539fb,
-        type: 3}
-      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4057961897267339521, guid: 54927aef646d7e74bb80c1156a7539fb,
+    - target: {fileID: 4057961897238470604, guid: 54927aef646d7e74bb80c1156a7539fb,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -34243,10 +34198,7 @@ MonoBehaviour:
   Creature: {fileID: 0}
   m_IsSelected: 0
   m_HealthbarSlider: {fileID: 7046194041640381995}
-  m_DomainSliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_DomainPointWrappers: []
   Text_Strength: {fileID: 0}
   Text_Magic: {fileID: 0}
   Text_Hit: {fileID: 0}

@@ -67,7 +67,7 @@ public class ButtonSkillWrapper : MonoBehaviour
             m_Text_NameOfSkill.text = "Name Is Empty";
         }
 
-        m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
+
         
       // if (m_ButtonTurnHolder.CurrentMana <= m_ButtonSkill.GetCostToUse())
       // {
@@ -98,7 +98,7 @@ public class ButtonSkillWrapper : MonoBehaviour
 
     public void ButtonClick()
     {
-        if (m_ButtonTurnHolder.CurrentMana >= m_ButtonSkill.GetCostToUse() || m_ListReference.Count >= 0)
+        if ( m_ListReference.Count >= 0)
         {
             // m_CombatManagerRefrence.SetBattleStateToSelect();
             // m_CombatManagerRefrence.SetTurnHolderSkills(m_SkillNumber);

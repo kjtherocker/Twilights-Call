@@ -14,8 +14,7 @@ public class ShadowBlast : Skills
         m_SkillType = SkillType.Attack;
         m_SkillFormation = SkillFormation.SingleNode;
         m_Damagetype = DamageType.Magic;
-        
-        m_CostToUse = 40;
+
         m_Damage = 10;
         SkillName = "Shadow Blast";
         SkillDescription = "Blast that will hit the whole enemy team";

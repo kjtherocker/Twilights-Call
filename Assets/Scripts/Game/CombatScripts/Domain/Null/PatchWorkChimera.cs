@@ -17,10 +17,8 @@ public class PatchWorkChimera : Domain
         SkillDescription = "Steal the effect of another Domain";
         DomainUser = "";
         Domaintype = DomainType.OneTime;
-        m_CostToUse = 5;
-        
-        
-        
+
+
         Addressables.LoadAssetAsync<Material>("PatchWorkChimera").Completed += OnLoadDomainMaterial;
         
     }

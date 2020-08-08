@@ -24,6 +24,7 @@ public class Fide : Ally
 
         SetCreature();
 
+        CurrentDomainpoints = 0;
                 
         m_Domain = new CrystalFool();
         m_Domain.Start();

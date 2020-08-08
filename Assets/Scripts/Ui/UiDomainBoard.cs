@@ -37,6 +37,8 @@ public class UiDomainBoard : UiScreen
     private DomainBoardState m_DomainBoardState;
     
     public Vector3 m_CenterCardPosition;
+
+    private UiStatus m_PlayerStatusSheet;
     // Use this for initialization
     public override void Initialize()
     {
@@ -48,7 +50,7 @@ public class UiDomainBoard : UiScreen
         m_MenuControls.Player.XButton.performed += XButton => ActivateSelectedCard();
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
 
-
+        
 
         ResetCursorPosition();
         m_DomainBoardState = DomainBoardState.Selecting;
@@ -201,6 +203,8 @@ public class UiDomainBoard : UiScreen
     {
         AnimatedCardMovementDown(m_CurrentSkillMenuButtonsMenu[m_CursorXPrevious]);
         AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[m_CursorXCurrent]);
+        
+        
     }
 
     public void EmpowerCard()
@@ -218,7 +222,8 @@ public class UiDomainBoard : UiScreen
 
         
         m_SelectedDomainWrapper.CardPowerSet(m_CursorXCurrent);
-        
+        m_PlayerStatusSheet = UiManager.Instance.GetUiTab(UiManager.UiTab.PlayerStatus) as UiStatus;
+        m_PlayerStatusSheet.SetDomainHighlighting(m_CursorXCurrent);
 
     }
 

@@ -251,12 +251,6 @@
                 <e p="BloodSkills" t="Include">
                   <e p="BloodRelief.cs" t="Include" />
                 </e>
-                <e p="BuffSkills" t="Include">
-                  <e p="Invigorate.cs" t="Include" />
-                </e>
-                <e p="DebuffSkills" t="Include">
-                  <e p="Restrict.cs" t="Include" />
-                </e>
                 <e p="Devour" t="Include">
                   <e p="Devour.cs" t="Include" />
                   <e p="DevourPhase1.cs" t="Include" />
@@ -271,6 +265,15 @@
                 <e p="SkillList.cs" t="Include" />
                 <e p="Skills.cs" t="Include" />
                 <e p="SkillStatus.cs" t="Include" />
+                <e p="StatusEffect" t="Include">
+                  <e p="BuffSkills" t="Include">
+                    <e p="Invigorate.cs" t="Include" />
+                  </e>
+                  <e p="DebuffSkills" t="Include">
+                    <e p="Restrict.cs" t="Include" />
+                  </e>
+                  <e p="StatusEffects.cs" t="Include" />
+                </e>
               </e>
               <e p="Text" t="Include">
                 <e p="FloatingUiElements.cs" t="Include" />

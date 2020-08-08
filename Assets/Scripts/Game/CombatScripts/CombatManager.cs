@@ -407,6 +407,7 @@ public class CombatManager : Singleton<CombatManager>
         {
             creature.m_CreatureAi.m_HasMovedForThisTurn = false;
             creature.m_CreatureAi.m_HasAttackedForThisTurn = false;
+            creature.EndTurn();
         }
 
         yield return new WaitForSeconds(2f);

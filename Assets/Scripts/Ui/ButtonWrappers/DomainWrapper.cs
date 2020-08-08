@@ -59,32 +59,22 @@ public class DomainWrapper : MonoBehaviour
 
 
 
-    public void SetupButton(Creatures a_TurnHolder, Domain a_Skill)
+    public void SetupButton(Creatures a_TurnHolder, Domain aDomain)
     {
         m_ButtonTurnHolder = a_TurnHolder;
-        m_ButtonSkill = a_Skill;
-        m_SkillType = a_Skill.GetSkillType();
+        m_ButtonSkill = aDomain;
+        m_SkillType = aDomain.GetSkillType();
         SetCardDesign(m_SkillType);
         
         m_ButtonTurnHolder = a_TurnHolder;
-        m_Domain = a_Skill;
+        m_Domain = aDomain;
         SetCardDesign(Skills.SkillType.Domain);
-        SetElementalIcon(a_Skill.m_ElementalType);
+        SetElementalIcon(aDomain.m_ElementalType);
 
         
-        m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
-
-        //m_Text_NameOfSkill.text = a_Skill.SkillName;
-        m_CostToUseText.text = a_Skill.m_CostToUse.ToString();
+        m_CostToUseText.text = aDomain.m_CostToUse.ToString();
+        m_CostToUseText.text = aDomain.m_CostToUse.ToString();
         
-        if (m_ButtonTurnHolder.CurrentMana <= m_ButtonSkill.GetCostToUse())
-        {
-            m_Text_NameOfSkill.color = m_Color_TransparentWhite;
-        }
-        else if (m_ButtonTurnHolder.CurrentMana >= m_ButtonSkill.GetCostToUse())
-        {
-            m_Text_NameOfSkill.color = m_Color_White;
-        }
     }
     
     public void SetupDomain(Creatures a_TurnHolder, Domain aDomain)

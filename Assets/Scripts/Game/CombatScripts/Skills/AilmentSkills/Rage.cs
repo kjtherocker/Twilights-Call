@@ -17,7 +17,6 @@ public class Rage : Skills
         m_Damagetype = DamageType.Magic;
         m_SkillAilment = SkillAilment.Rage;
         m_Damage = 0;
-        m_CostToUse = 75;
         SkillName = "Rage";
         SkillDescription = "Make the enemy unable to do anything but attack";
     }
