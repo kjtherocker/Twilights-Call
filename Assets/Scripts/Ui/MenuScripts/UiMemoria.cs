@@ -24,6 +24,11 @@ public class UiMemoria : UiScreen
 
     public List<Vector3> m_DefaultMemoriaCardPositions;
     
+    public GameObject m_MemoriaScream;
+    public GameObject m_Board;
+
+    private Animator m_ScreamAnimator;
+    private Animator m_BoardAnimator;
     
     // Use this for initialization
     public override void Initialize()
@@ -38,7 +43,11 @@ public class UiMemoria : UiScreen
         m_CardMovementSpeed = 3;
 
 
+        m_ScreamAnimator = m_MemoriaScream.GetComponent<Animator>();
+        m_BoardAnimator = m_Board.GetComponent<Animator>();
         
+        m_ScreamAnimator.SetTrigger("t_Push"); 
+        m_BoardAnimator.SetTrigger("t_Push");
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
@@ -118,6 +127,8 @@ public class UiMemoria : UiScreen
         InputManager.Instance.m_MovementControls.Disable();
 
         m_MenuControls.Enable();
+        
+       
     }
 
     public void SetMemoriaScreen(Creatures aCreature, Memoria aMemoria)

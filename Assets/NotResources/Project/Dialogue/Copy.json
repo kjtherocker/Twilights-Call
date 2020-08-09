@@ -1,0 +1,51 @@
+{
+"Items":
+[
+{
+    "m_Name":"Alpha",
+    "m_Sentances": "<color=#FFFFFF>TEMP</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+},
+{
+    "m_Name":"Unknown",
+    "m_Sentances": "<color=#FFFFFF>TEMP.</color>",
+	"m_ChatBoxName": "Black"
+}
+
+
+]
+}

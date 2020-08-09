@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class PlayerInput : IInputActionCollection, IDisposable
+public class @PlayerInput : IInputActionCollection, IDisposable
 {
-    private InputActionAsset asset;
-    public PlayerInput()
+    public InputActionAsset asset { get; }
+    public @PlayerInput()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInput"",
@@ -398,8 +398,8 @@ public class PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_CircleButton;
     public struct PlayerActions
     {
-        private PlayerInput m_Wrapper;
-        public PlayerActions(PlayerInput wrapper) { m_Wrapper = wrapper; }
+        private @PlayerInput m_Wrapper;
+        public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @XButton => m_Wrapper.m_Player_XButton;
         public InputAction @SquareButton => m_Wrapper.m_Player_SquareButton;
@@ -414,40 +414,40 @@ public class PlayerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                XButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
-                XButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
-                XButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
-                SquareButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSquareButton;
-                SquareButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSquareButton;
-                SquareButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSquareButton;
-                TriangleButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriangleButton;
-                TriangleButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriangleButton;
-                TriangleButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriangleButton;
-                CircleButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
-                CircleButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
-                CircleButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
+                @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @XButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
+                @XButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
+                @XButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
+                @SquareButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSquareButton;
+                @SquareButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSquareButton;
+                @SquareButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSquareButton;
+                @TriangleButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriangleButton;
+                @TriangleButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriangleButton;
+                @TriangleButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriangleButton;
+                @CircleButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
+                @CircleButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
+                @CircleButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Movement.started += instance.OnMovement;
-                Movement.performed += instance.OnMovement;
-                Movement.canceled += instance.OnMovement;
-                XButton.started += instance.OnXButton;
-                XButton.performed += instance.OnXButton;
-                XButton.canceled += instance.OnXButton;
-                SquareButton.started += instance.OnSquareButton;
-                SquareButton.performed += instance.OnSquareButton;
-                SquareButton.canceled += instance.OnSquareButton;
-                TriangleButton.started += instance.OnTriangleButton;
-                TriangleButton.performed += instance.OnTriangleButton;
-                TriangleButton.canceled += instance.OnTriangleButton;
-                CircleButton.started += instance.OnCircleButton;
-                CircleButton.performed += instance.OnCircleButton;
-                CircleButton.canceled += instance.OnCircleButton;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @XButton.started += instance.OnXButton;
+                @XButton.performed += instance.OnXButton;
+                @XButton.canceled += instance.OnXButton;
+                @SquareButton.started += instance.OnSquareButton;
+                @SquareButton.performed += instance.OnSquareButton;
+                @SquareButton.canceled += instance.OnSquareButton;
+                @TriangleButton.started += instance.OnTriangleButton;
+                @TriangleButton.performed += instance.OnTriangleButton;
+                @TriangleButton.canceled += instance.OnTriangleButton;
+                @CircleButton.started += instance.OnCircleButton;
+                @CircleButton.performed += instance.OnCircleButton;
+                @CircleButton.canceled += instance.OnCircleButton;
             }
         }
     }
