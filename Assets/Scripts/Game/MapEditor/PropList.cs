@@ -84,89 +84,77 @@ public class PropList
         Debug.Log("Initialized");
         //Tree
         AddPropToDictionary(Props.Tree1,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Tree/Prefab/3D_Tree_1.prefab");
         
         AddPropToDictionary(Props.Tree2,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Tree/Prefab/3D_Tree_2.prefab");
         
         AddPropToDictionary(Props.Tree3,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Tree/Prefab/3D_Tree_3.prefab");
         
         
         //Bridge
         
         AddPropToDictionary(Props.EndBridge,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Bridge/Prefab/3D_Bridge_End.prefab");
         
         AddPropToDictionary(Props.MiddleBridge,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Bridge/Prefab/3D_Bridge_Middle.prefab");
         
         AddPropToDictionary(Props.EndBridge,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Bridge/Prefab/3D_Bridge_Start.prefab");
         
         
         //Pillar
         
         AddPropToDictionary(Props.Pillar_Stub,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Pillars/Models/3D_Pillar_Stub.FBX");
         
         AddPropToDictionary(Props.Fully_Intact_Pillar,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Pillars/Models/3D_Fully_Intact_Pillar.FBX");
         
         AddPropToDictionary(Props.Middle_Broken_Pillar_1,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Pillars/Models/3D_Middle_Broken_Pillar_1.FBX");
         
         AddPropToDictionary(Props.Middle_Broken_Pillar_2,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Pillars/Models/3D_Middle_Broken_Pillar_2.FBX");
         
         AddPropToDictionary(Props.Middle_Dented_Pillar,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Pillars/Models/3D_Middle_Dented_Pillar.FBX");
        
         
         //Wall
         AddPropToDictionary(Props.Modular_Wall_End,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_End.prefab");
         
         AddPropToDictionary(Props.Corner_Ruin_Wall,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Corner_Ruin_Wall.prefab");
         
         AddPropToDictionary(Props.Modular_Wall_Mid1,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid1.prefab");
         
         AddPropToDictionary(Props.Modular_Wall_Mid2,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid2.prefab");
         
         AddPropToDictionary(Props.Modular_Wall_Mid3,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid3.prefab");
         
         AddPropToDictionary(Props.Modular_Wall_Mid4,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid4.prefab");
         
         AddPropToDictionary(Props.Modular_Wall_Mid5,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid5.prefab");
             
         AddPropToDictionary(Props.Modular_Wall_Start,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Start.prefab");
         
         AddPropToDictionary(Props.Singular_Ruin_Wall,
-            Resources.Load<GameObject>("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma"));
-
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Singular_Ruin_Wall.prefab");
         
-        
-        
-        //Addressables.LoadAssetAsync<GameObject>("Tree1").Completed += OnComplete;
-
-
-         
-        
-        
-        
-     // StartCoroutine(LoadProps());
-        m_PropType = Props.None;
     }
 
 
-    public void AddPropToDictionary(Props aPropType, GameObject aGameObject)
+    public void AddPropToDictionary(Props aPropType, string aPath)
     {
         if (m_Props.ContainsKey(aPropType) )
         {
@@ -174,14 +162,12 @@ public class PropList
             return;
             
         }
-        
-        
-        
 
-      //  m_Props.Add(Props.Tree1,aGameObject);
-//
-      //  Debug.Log(m_Props.Values.Count);
+        GameObject tempgameobject = Resources.Load<GameObject>(aPath);
         
+        Debug.Log("The prop we got from the resources was " + tempgameobject.name);
+        
+        m_Props.Add(aPropType, tempgameobject);
     }
 
 

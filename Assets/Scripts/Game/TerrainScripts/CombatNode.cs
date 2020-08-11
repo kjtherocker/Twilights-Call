@@ -283,7 +283,7 @@ public class CombatNode : Cell
     public void SpawnProp()
     {
         m_PropOnNodeTemp = m_PropOnNode;
-        m_Prop = Instantiate<GameObject>(GameManager.Instance.m_PropList.ReturnPropData(m_PropOnNode));
+        m_Prop = Instantiate<GameObject>(LevelCreator.Instance.m_PropList.ReturnPropData(m_PropOnNode));
         m_Prop.transform.parent = transform;
         Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
@@ -550,7 +550,7 @@ public class CombatNode : Cell
         
         Vector3 NodeTransform = gameObject.transform.position;
 #if UNITY_EDITOR
-        //GridFormationEditor.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+        LevelCreator.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
 #endif
     }
 }

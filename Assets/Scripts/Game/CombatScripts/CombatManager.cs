@@ -65,6 +65,11 @@ public class CombatManager : Singleton<CombatManager>
         CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         
         PartyManager = PartyManager.Instance;
+
+        PropList testo = new PropList();
+        
+        
+        testo.Initialize();
     }
 
     public void CombatStart(GridFormations aGridFormations)

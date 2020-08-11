@@ -70,7 +70,7 @@ public class MapEditor : Editor
                  
                  
                  serializedObject.Update();
-                 m_LeftClickState = serializedObject.FindProperty("m_LeftClick");
+                 m_LeftClickState = serializedObject.FindProperty("m_LeftClickState");
 
 
                  
@@ -80,7 +80,7 @@ public class MapEditor : Editor
              if (e.type == EventType.MouseDown && e.button == 1)
              {
                  serializedObject.Update();
-                 m_RightClickState = serializedObject.FindProperty("m_RightClick");
+                 m_RightClickState = serializedObject.FindProperty("m_RightClickState");
                  
                  NodeEditor(m_CurrentNode,(LevelCreator.MapEditorMode)m_RightClickState.enumValueIndex);
              }
@@ -159,7 +159,7 @@ public class MapEditor : Editor
              return;
          }
          serializedObject.Update();
-         m_Prop = serializedObject.FindProperty("m_Props");
+         m_Prop = serializedObject.FindProperty("m_PropIndex");
          aCombatnode.m_PropOnNode = (PropList.Props)m_Prop.enumValueIndex;;
          aCombatnode.SetPropState();
          serializedObject.Update();
