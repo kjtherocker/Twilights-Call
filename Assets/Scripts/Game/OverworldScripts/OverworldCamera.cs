@@ -5,9 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class OverworldCamera : MonoBehaviour
 {
+    public bool PreloadScene = false;
     void Start()
     {
-        SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
+
+#if UNITY_EDITOR
+
+        if (PreloadScene == true)
+        {
+            SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
+        }
+#endif
         StartCoroutine(Testo());
     }
 

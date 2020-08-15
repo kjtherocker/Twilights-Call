@@ -128,7 +128,7 @@ public class MapEditor : Editor
          }
 
          serializedObject.Update();
-         m_NodeType = serializedObject.FindProperty("m_NodeType");
+         m_NodeType = serializedObject.FindProperty("m_CombatNodeTypes");
          
          Debug.Log(aCombatnode + " we changed this into " + (CombatNode.CombatNodeTypes)m_NodeType.enumValueIndex);
 

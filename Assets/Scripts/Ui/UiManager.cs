@@ -12,6 +12,7 @@ public class UiManager : Singleton<UiManager>
         DomainBoard,
         DomainClash,
         Memoria,
+        MainMenu,
         PartyMenu,
         TurnIndicator,
         EndCombatMenu,
@@ -113,6 +114,9 @@ public class UiManager : Singleton<UiManager>
             m_LastScreen.RemoveAt(0);
         }
         m_LastScreen.Add(m_ScreenStack[m_ScreenStack.Count - 1].Key);
+        
+        Debug.Log("Popped Screen " + m_ScreenStack[m_ScreenStack.Count - 1].Key);
+        
         m_ScreenStack[m_ScreenStack.Count - 1].Value.OnPop();
         m_ScreenStack.RemoveAt(m_ScreenStack.Count - 1);
        

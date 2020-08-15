@@ -264,6 +264,9 @@
               <e p="DebugMenu.cs" t="Include" />
             </e>
             <e p="GameManager.cs" t="Include" />
+            <e p="Initializer" t="Include">
+              <e p="MainMenuInitialize.cs" t="Include" />
+            </e>
             <e p="JsonHelper.cs" t="Include" />
             <e p="MapEditor" t="Include">
               <e p="CameraEditor.cs" t="Include" />

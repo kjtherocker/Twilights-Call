@@ -19,6 +19,7 @@ public class LevelCreator : Singleton<LevelCreator>
 
    public  PropList m_PropList;
    public Node.NodeTypes m_NodeType;
+   public CombatNode.CombatNodeTypes m_CombatNodeTypes;
    public PropList.NodeReplacements m_NodeReplacements;
    public PropList.Props m_PropIndex;
    public MapEditorMode m_LeftClickState;

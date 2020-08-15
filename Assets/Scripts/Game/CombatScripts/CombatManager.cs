@@ -66,60 +66,60 @@ public class CombatManager : Singleton<CombatManager>
         
         PartyManager = PartyManager.Instance;
 
-        PropList testo = new PropList();
-        
-        
-        testo.Initialize();
+      // PropList testo = new PropList();
+      // 
+      // 
+      // testo.Initialize();
     }
 
     public void CombatStart(GridFormations aGridFormations)
     {
 
-            m_Grid = Grid.Instance;
+         m_Grid = Grid.Instance;
         
-            m_Gridformation = aGridFormations;
+         m_Gridformation = aGridFormations;
 
-            PartyManager = PartyManager.Instance;
-            
-            GridFormations tempGridFormations = m_Gridformation;
-            m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
-            Relics = tempGridFormations.m_RelicsInGrid;
-            
-            TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
+         PartyManager = PartyManager.Instance;
+         
+         GridFormations tempGridFormations = m_Gridformation;
+         m_Grid.Convert1DArrayto2D(tempGridFormations.m_ListToConvert, tempGridFormations.m_GridDimensions);
+         Relics = tempGridFormations.m_RelicsInGrid;
+         
+         TurnOrderEnemy = tempGridFormations.m_EnemysInGrid;
 
-            foreach (Creatures aEnemys in TurnOrderEnemy)
-            {
-                AddHealthbar(aEnemys);
-            }
-            
-            
-           AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
-          
-           AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
-          
-           AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(12, 4), TurnOrderAlly);
-                                                                               
-           AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
-            
-            
-            CombatHasStarted = true;
+         foreach (Creatures aEnemys in TurnOrderEnemy)
+         {
+             AddHealthbar(aEnemys);
+         }
+         
+         
+        AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
+        
+        AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
+        
+        AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(17, 16), TurnOrderAlly);
+                                                                            
+        AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+         
+         
+         CombatHasStarted = true;
 
 
-            
-            m_BattleStates = CombatStates.AllyTurn;
-            
-            WhichSidesTurnIsIt = false;
+         
+         m_BattleStates = CombatStates.AllyTurn;
+         
+         WhichSidesTurnIsIt = false;
 
-            if (tempGridFormations.m_StartDialogueTrigger != null)
-            {
-              //  tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
-            }
+         if (tempGridFormations.m_StartDialogueTrigger != null)
+         {
+           //  tempGridFormations.m_StartDialogueTrigger.TriggerDialogue();
+         }
 
-            m_CreaturesWhosDomainHaveClashed = new Dictionary<Creatures, Creatures>();
-            
-           
-            
-            Addressables.LoadAssetAsync<GameObject>("Memoria").Completed += OnLoadMemoria;
+         m_CreaturesWhosDomainHaveClashed = new Dictionary<Creatures, Creatures>();
+         
+        
+         
+         Addressables.LoadAssetAsync<GameObject>("Memoria").Completed += OnLoadMemoria;
     }
 
 

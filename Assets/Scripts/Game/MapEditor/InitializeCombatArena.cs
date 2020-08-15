@@ -9,13 +9,17 @@ public class InitializeCombatArena : MonoBehaviour
     public GridFormations m_CurrentLevel;
     public CombatCameraController m_BattleCamera;
     public TextAsset TextAsset;
-
+    public bool PreloadScene = false;
     public void Start()
     {
-        #if UNITY_EDITOR
-        SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
+#if UNITY_EDITOR
+
+        if (PreloadScene == true)
+        {
+            SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
+        }
+#endif
         
-        #endif
         StartCoroutine(Initialize());
     }
 
@@ -27,8 +31,8 @@ public class InitializeCombatArena : MonoBehaviour
         
         yield return new WaitUntil(() => Preloader.Instance.m_InitializationSteps == Preloader.InitializationSteps.Finished);
 
-        //DialogueManager.instance.StartDialogue(TextAsset,DialogueManager.DialogueType.DialogueBox);
         
+        Debug.Log("Preload Is Initialized");
         CombatManager.Instance.CombatStart(m_CurrentLevel);
         m_BattleCamera.InitalizeCamera(); 
     }

@@ -11,7 +11,7 @@ public class CombatNode : Cell
     public enum CombatNodeTypes
     {
         Normal,
-        Idontwannaremoveitfonowsochangeitlaterkylealsofuckyou,
+        Test,
         Wall,
         Empty
     }
@@ -242,7 +242,7 @@ public class CombatNode : Cell
 
         if (m_NodeHeight == 0)
         {
-            gameObject.transform.position = m_NodesInitalVector3Coordinates;
+          //  gameObject.transform.position = m_NodesInitalVector3Coordinates;
         }
 
         if (m_NodeHeight == 1)

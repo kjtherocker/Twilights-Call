@@ -28,6 +28,8 @@ public class MainMenu : UiScreen
         m_MenuControls.Player.XButton.performed += XButton => SelectMenuItem();
         m_MenuControls.Disable();
 
+        m_MenuItems = new List<Method>();
+        
         m_MenuItems.Add(Playgame);
        // m_MenuItems.Add(Playgame);
         m_MenuItems.Add(ExitGame);
@@ -47,9 +49,11 @@ public class MainMenu : UiScreen
     
     public override void OnPop()
     {
+        gameObject.SetActive(false);
         m_MenuControls.Disable();
-        m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossOut");
         TurnCommandBoardOff();
+        
+
     }
 
     public override void OnPush()
@@ -58,9 +62,6 @@ public class MainMenu : UiScreen
         InputManager.Instance.m_MovementControls.Disable();
         m_MenuControls.Enable();
         
-
-        
-        m_CommandBoardAnimator.SetTrigger("t_CommandBoardCrossIn");
     }
     public void TurnCommandBoardOff()
     {
@@ -73,19 +74,22 @@ public class MainMenu : UiScreen
 
     public void Update()
     {
-        if(m_HeartAnimator.GetCurrentAnimatorStateInfo(0).IsName("PatchworkHeartFail") && 
-           m_HeartAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-        {
-            SceneManager.LoadScene(1);
-        }
+      //  if(m_HeartAnimator.GetCurrentAnimatorStateInfo(0).IsName("PatchworkHeartFail") && 
+      //     m_HeartAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+      //  {
+      //      SceneManager.LoadScene(1);
+      //  }
     }
 
 
 
     public void Playgame()
     {
-        m_HeartAnimator.SetBool("PlayButton", true);
-
+        
+        UiManager.instance.PopScreen();
+        SceneManager.LoadScene(1);
+        //m_HeartAnimator.SetBool("PlayButton", true);
+        
     }
 
     public void ExitGame()
