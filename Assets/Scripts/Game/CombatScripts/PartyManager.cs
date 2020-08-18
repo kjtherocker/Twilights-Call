@@ -15,6 +15,12 @@ public class PartyManager : Singleton<PartyManager>
         m_CurrentParty.Add(gameObject.AddComponent<Fide>());
         m_CurrentParty.Add(gameObject.AddComponent<Cavia>());
         m_CurrentParty.Add(gameObject.AddComponent<Vella>());
+
+
+        foreach (Creatures ACreatures in m_CurrentParty)
+        {
+            ACreatures.Initialize();
+        }
     }
     
 

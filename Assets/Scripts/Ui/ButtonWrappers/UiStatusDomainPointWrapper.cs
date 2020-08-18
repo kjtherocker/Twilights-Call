@@ -86,7 +86,6 @@ public class UiStatusDomainPointWrapper : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-        Debug.Log("yall is shi2131231231232131t happeninbg");
         StartCoroutine(coroutine);
 
     }

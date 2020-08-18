@@ -65,11 +65,6 @@ public class CombatManager : Singleton<CombatManager>
         CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
         
         PartyManager = PartyManager.Instance;
-
-      // PropList testo = new PropList();
-      // 
-      // 
-      // testo.Initialize();
     }
 
     public void CombatStart(GridFormations aGridFormations)
@@ -101,12 +96,10 @@ public class CombatManager : Singleton<CombatManager>
                                                                             
         AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
          
-         
-         CombatHasStarted = true;
+        m_Gridformation.InitializeEnemys();
+        CombatHasStarted = true;
 
-
-         
-         m_BattleStates = CombatStates.AllyTurn;
+        m_BattleStates = CombatStates.AllyTurn;
          
          WhichSidesTurnIsIt = false;
 
@@ -116,8 +109,6 @@ public class CombatManager : Singleton<CombatManager>
          }
 
          m_CreaturesWhosDomainHaveClashed = new Dictionary<Creatures, Creatures>();
-         
-        
          
          Addressables.LoadAssetAsync<GameObject>("Memoria").Completed += OnLoadMemoria;
     }

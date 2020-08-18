@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fide : Ally
 {
     // Use this for initialization
-    void Start()
+    public override void Initialize ()
     {
         CurrentHealth = 50;
         MaxHealth = 50;

@@ -91,6 +91,9 @@ public class CombatNode : Cell
     
     public PropList.Props m_PropOnNode;
     PropList.Props m_PropOnNodeTemp;
+    
+    public EnemyList.EnemyTypes m_EnemyOnNode;
+    EnemyList.EnemyTypes m_EnemyOnNodeTemp;
 
     public PropList.NodeReplacements m_NodeReplacementOnNode;
     PropList.NodeReplacements m_NodeReplacementTemp;
@@ -138,6 +141,12 @@ public class CombatNode : Cell
     {
         m_PropOnNodeTemp = m_PropOnNode;
     }
+    
+    
+    //Regioned the function since it was long and ugly
+    
+    #region PropState
+
 
     public void SetPropState()
     {
@@ -250,7 +259,7 @@ public class CombatNode : Cell
             // gameObject.transform.position = gameObject.transform.position + new Vector3(0, 2, 0);
         }
     }
-
+#endregion 
 
     public void DestroyNodeReplacement()
     {
@@ -294,6 +303,71 @@ public class CombatNode : Cell
             m_CreatureOnGridPoint = CreatureTemp;
         }
         m_CombatsNodeType = CombatNodeTypes.Wall;
+
+    }
+
+    public void DestroyEnemy()
+    {
+        if (m_CreatureOnGridPoint == null)
+        {
+            return;
+        }
+
+        DestroyImmediate(m_CreatureOnGridPoint.gameObject);
+        m_CreatureOnGridPoint = null;
+        m_IsCovered = false;
+        NodesGridFormation.RemoveEnemyFromList();
+
+    }
+    public void SpawnEnemy()
+    {
+        
+        if (m_EnemyOnNodeTemp == m_EnemyOnNode)
+        {
+            return;
+        }
+        else
+        {
+            DestroyEnemy();
+        }
+        
+        if (m_EnemyOnNode == EnemyList.EnemyTypes.None)
+        {
+            return;
+        }
+
+        if (LevelCreator.instance.m_EnemyList == null)
+        {
+            LevelCreator.instance.StartEditor();
+        }
+
+        m_EnemyOnNodeTemp = m_EnemyOnNode;
+        
+        Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        
+
+        GameObject Enemy = PrefabUtility.
+            InstantiatePrefab(LevelCreator.Instance.m_EnemyList.ReturnEnemyData(m_EnemyOnNode)) as GameObject;
+
+
+        Creatures m_EnemysCreature = Enemy.GetComponent<Creatures>();
+       
+        m_CreatureOnGridPoint = m_EnemysCreature;
+        NodesGridFormation.m_EnemysInGrid.Add(m_EnemysCreature);
+        
+        Enemy.transform.parent = NodesGridFormation.Enemy.transform;
+        Enemy.transform.position = gameObject.transform.position + CreatureOffset;
+        Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
+
+        EnemyAiController m_CreatureAi = (EnemyAiController)m_EnemysCreature.m_CreatureAi;
+
+        m_CreatureAi.Node_ObjectIsOn = this;
+        m_CreatureAi.Node_MovingTo = this;
+        m_CreatureAi.m_Position = m_PositionInGrid;
+        m_CreatureAi.m_Grid = m_Grid;
+            
+        
+        m_IsCovered = true;
 
     }
 
@@ -494,13 +568,6 @@ public class CombatNode : Cell
         new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1)
     };
 
-    public int GetDistance(CombatNode other)
-    {
-        return (int)(Mathf.Abs(m_PositionInGrid.x - other.m_PositionInGrid.x) + Mathf.Abs(m_PositionInGrid.y - other.m_PositionInGrid.y));
-    }
-    
-    //Distance is given using Manhattan Norm.
-
 
     public override List<CombatNode> GetNeighbours(List<CombatNode> cells)
     {
@@ -518,33 +585,7 @@ public class CombatNode : Cell
 
         return neighbours;
     }
-
-    public void SpawnEnemy()
-    {
-        #if UNITY_EDITOR
-        Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
-        
-
-      //  GameObject Enemy = PrefabUtility.
-      //      InstantiatePrefab(EnemyList.Instance.ReturnEnemyData(EnemyList.EnemyEnum.RedKnight1)) as GameObject;
-//
-
-      //  NodesGridFormation.m_EnemysInGrid.Add(Enemy.GetComponent<Creatures>());
-
-
-     //  Enemy.transform.parent = NodesGridFormation.Enemy.transform;
-     //  Enemy.transform.position = gameObject.transform.position + CreatureOffset;
-     //  Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
-     //  EnemyAiController m_CreatureAi = Enemy.GetComponent<EnemyAiController>();
-     //  m_CreatureAi.m_Position = m_PositionInGrid;
-
-     //  m_CreatureAi.m_Grid = m_Grid;
-     //  
-     // m_CreatureOnGridPoint = Enemy.GetComponent<Creatures>();
-     // m_IsCovered = true;
-       #endif
-    }
-
+    
     public void EditorSelector()
     {
         

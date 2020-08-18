@@ -14,16 +14,21 @@ public class LevelCreator : Singleton<LevelCreator>
         Terrain,
         NodeReplacement
     }
+    
+    public PropList m_PropList;
+    public EnemyList m_EnemyList;
 
-
-
-   public  PropList m_PropList;
+   public EnemyList.EnemyTypes m_EnemyTypes;
    public Node.NodeTypes m_NodeType;
    public CombatNode.CombatNodeTypes m_CombatNodeTypes;
    public PropList.NodeReplacements m_NodeReplacements;
    public PropList.Props m_PropIndex;
+   
+   
    public MapEditorMode m_LeftClickState;
    public MapEditorMode m_RightClickState;
+   
+   
    public  GameObject m_Selector;
    private CombatNode m_CurrentNode;
    private int layerMask;
@@ -32,10 +37,12 @@ public class LevelCreator : Singleton<LevelCreator>
     {
         m_PropList = new PropList();
         m_PropList.Initialize();
+        
+        m_EnemyList = new EnemyList();
+        m_EnemyList.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GetLists()
     {
         
     }

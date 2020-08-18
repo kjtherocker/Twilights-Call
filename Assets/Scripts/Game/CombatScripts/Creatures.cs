@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[Serializable]
 public class Creatures : MonoBehaviour
 {
 
@@ -124,6 +126,12 @@ public class Creatures : MonoBehaviour
 
     bool m_IsAlive;
     protected SkillList m_CreatureSkillList;
+
+
+    public virtual void Initialize()
+    {
+        
+    }
 
     // Update is called once per frame
     public void SetCreature()

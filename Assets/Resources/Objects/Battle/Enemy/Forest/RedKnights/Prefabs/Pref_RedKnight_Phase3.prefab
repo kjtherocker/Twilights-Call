@@ -1,0 +1,245 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8321605535965750829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4113812175554877345}
+  - component: {fileID: 2705639115553349154}
+  - component: {fileID: 4967805666759031502}
+  - component: {fileID: 7344338841261336918}
+  m_Layer: 0
+  m_Name: Pref_RedKnight_Phase3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4113812175554877345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321605535965750829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -132.66635, y: 107.316635, z: -536.73096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3141997218847687097}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2705639115553349154
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321605535965750829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 356d4269d26228e4ca4b04038e4087dd, type: 3}
+  m_Controller: {fileID: 9100000, guid: 211332590cdc9374c93cca4f32711dcc, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4967805666759031502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321605535965750829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b0a5015adf16c4bb91136cb3197648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Grid: {fileID: 0}
+  m_Position: {x: 0, y: 0}
+  m_InitalPosition: {x: 0, y: 0}
+  m_PreviousNode: {fileID: 0}
+  m_Domainstate: 0
+  Node_MovingTo: {fileID: 0}
+  Node_ObjectIsOn: {fileID: 0}
+  m_CreaturesAnimator: {fileID: 0}
+  m_Creature: {fileID: 7344338841261336918}
+  m_AiModel: {fileID: 0}
+  m_Healthbar: {fileID: 0}
+  CreatureOffset: {x: 0, y: 0, z: 0}
+  m_Movement: 0
+  m_Jump: 0
+  m_MovementHasStarted: 0
+  m_HasAttackedForThisTurn: 0
+  m_HasMovedForThisTurn: 0
+  m_Target: {fileID: 0}
+  m_AiFinished: 0
+  m_EndMovement: 0
+  m_EnemyRange: 0
+  DoNothing: 0
+--- !u!114 &7344338841261336918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321605535965750829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110d7069fe549414192f0df7ff70eec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Attack:
+    m_ElementalType: 0
+    m_SkillType: 0
+    m_SkillFormation: 0
+    m_Damagetype: 0
+    m_SkillAilment: 0
+    SkillName: 
+    SkillDescription: 
+    m_SkillParticleEffect: {fileID: 0}
+    m_Damage: 0
+    m_AnimationName: 
+    m_SkillRange: 0
+  m_CreatureAi: {fileID: 4967805666759031502}
+  m_creaturesAilment: 0
+  charactertype: 0
+  elementalStrength: 0
+  elementalWeakness: 0
+  m_DomainStages: 0
+  CurrentHealth: 0
+  MaxHealth: 0
+  CurrentMana: 0
+  MaxMana: 0
+  Strength: 0
+  Magic: 0
+  Hit: 0
+  Evasion: 0
+  Defence: 0
+  Resistance: 0
+  CurrentDomainpoints: 0
+  MaxDomainPoints: 3
+  BeforeDomain_MaxHealth: 0
+  BeforeDomain_MaxMana: 0
+  BeforeDomain_Strength: 0
+  m_CreatureMovement: 4
+  AmountOfTurns: 0
+  BuffandDebuff: 0
+  BuffDamageStrength: 0
+  BuffDamageMagic: 0
+  DebuffDamageStrength: 0
+  DebuffDamageMagic: 0
+  IsSelected: 0
+  IsCurrentTurnHolder: 0
+  DomainAffectingCreature: 
+  Name: No Name
+  m_Texture: {fileID: 0}
+  Model: {fileID: 0}
+  ModelInGame: {fileID: 0}
+  m_DomainList: 0
+  m_Domain:
+    m_ElementalType: 0
+    m_SkillType: 0
+    m_SkillFormation: 0
+    m_Damagetype: 0
+    m_SkillAilment: 0
+    SkillName: 
+    SkillDescription: 
+    m_SkillParticleEffect: {fileID: 0}
+    m_Damage: 0
+    m_AnimationName: 
+    m_SkillRange: 0
+    DomainName: 
+    Domaintype: 0
+    DomainUser: 
+    DomainDescription: 
+    m_DomainTexture: {fileID: 0}
+    m_Creature: {fileID: 0}
+    m_CostToUse: 0
+  ObjectToRotateAround: {fileID: 0}
+  m_SkillLootTable: []
+--- !u!1001 &8267910262676935654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4113812175554877345}
+    m_Modifications:
+    - target: {fileID: 1390595251291120595, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_Name
+      value: 3D_KnightPhase3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 82f3988b63b9d6946b486e23ec40a197, type: 3}
+--- !u!4 &3141997218847687097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6424131185982886495, guid: 82f3988b63b9d6946b486e23ec40a197,
+    type: 3}
+  m_PrefabInstance: {fileID: 8267910262676935654}
+  m_PrefabAsset: {fileID: 0}

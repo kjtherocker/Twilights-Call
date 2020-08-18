@@ -107,6 +107,27 @@ public class GridFormations : MonoBehaviour
      //  m_ListToConvert[aPositionInList].m_Grid = m_Grid;
     }
 
+
+    public void InitializeEnemys()
+    {
+        foreach (Creatures AEnemy in m_EnemysInGrid)
+        {
+            AEnemy.Initialize();
+            AEnemy.m_CreatureAi.Initialize();
+        }
+    }
+
+    public void RemoveEnemyFromList()
+    {
+        for (int i = m_EnemysInGrid.Count - 1; i >= 0; i--)
+        {
+            if (m_EnemysInGrid[i] == null)
+            {
+                m_EnemysInGrid.RemoveAt(i);
+            }
+        }
+    }
+
     public void DeleteGrid()
     {
         if (m_GridPathArray.Length > 0)

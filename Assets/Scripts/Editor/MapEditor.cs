@@ -17,6 +17,7 @@ public class MapEditor : Editor
     private SerializedProperty m_NodeType;
     SerializedProperty m_NodeReplacements;
     SerializedProperty m_Prop;
+    SerializedProperty m_EnemyTypes;
     private CombatNode m_CurrentNode;
     private int layerMask;
     
@@ -159,9 +160,11 @@ public class MapEditor : Editor
              return;
          }
          serializedObject.Update();
+         
          m_Prop = serializedObject.FindProperty("m_PropIndex");
-         aCombatnode.m_PropOnNode = (PropList.Props)m_Prop.enumValueIndex;;
+         aCombatnode.m_PropOnNode = (PropList.Props)m_Prop.enumValueIndex;
          aCombatnode.SetPropState();
+         
          serializedObject.Update();
          serializedObject.ApplyModifiedProperties();
      }
@@ -175,9 +178,13 @@ public class MapEditor : Editor
              return;
          }
         serializedObject.Update();
+        
+        m_EnemyTypes = serializedObject.FindProperty("m_EnemyTypes");
+        aCombatnode.m_EnemyOnNode = (EnemyList.EnemyTypes)m_EnemyTypes.enumValueIndex;
         aCombatnode.SpawnEnemy();
-         serializedObject.Update();
-         serializedObject.ApplyModifiedProperties();
+
+        serializedObject.Update();
+        serializedObject.ApplyModifiedProperties();
      }
 
 }

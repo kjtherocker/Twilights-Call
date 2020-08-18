@@ -6,7 +6,7 @@ public class RedKnightPhase3 : Enemy
 {
 
     // Use this for initialization
-    void Start()
+    public override void Initialize ()
     {
         CurrentHealth = 200;
         MaxHealth = 200;

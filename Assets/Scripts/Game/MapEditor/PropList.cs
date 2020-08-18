@@ -71,85 +71,80 @@ public class PropList
     //public List<GameObject> m_PropSet;
 
     private Dictionary <Props, GameObject> m_Props = new Dictionary <Props, GameObject>();
-
-    private Props m_PropType;
-    
     private List<NodeReplacement> m_NodeReplacements;
     // Start is called before the first frame update
     public void Initialize()
     {
 
-        m_PropType = Props.Tree1;
-
         Debug.Log("Initialized");
         //Tree
         AddPropToDictionary(Props.Tree1,
-            "Objects/Props/Tree/Prefab/3D_Tree_1.prefab");
+            "Objects/Props/Tree/Prefab/3D_Tree_1");
         
         AddPropToDictionary(Props.Tree2,
-            "Objects/Props/Tree/Prefab/3D_Tree_2.prefab");
+            "Objects/Props/Tree/Prefab/3D_Tree_2");
         
         AddPropToDictionary(Props.Tree3,
-            "Objects/Props/Tree/Prefab/3D_Tree_3.prefab");
+            "Objects/Props/Tree/Prefab/3D_Tree_3");
         
         
         //Bridge
         
         AddPropToDictionary(Props.EndBridge,
-            "Objects/Props/Bridge/Prefab/3D_Bridge_End.prefab");
+            "Objects/Props/Bridge/Prefab/3D_Bridge_End");
         
         AddPropToDictionary(Props.MiddleBridge,
-            "Objects/Props/Bridge/Prefab/3D_Bridge_Middle.prefab");
+            "Objects/Props/Bridge/Prefab/3D_Bridge_Middle");
         
         AddPropToDictionary(Props.EndBridge,
-            "Objects/Props/Bridge/Prefab/3D_Bridge_Start.prefab");
+            "Objects/Props/Bridge/Prefab/3D_Bridge_Start");
         
         
         //Pillar
         
         AddPropToDictionary(Props.Pillar_Stub,
-            "Objects/Props/Pillars/Models/3D_Pillar_Stub.FBX");
+            "Objects/Props/Pillars/Models/3D_Pillar_Stub");
         
         AddPropToDictionary(Props.Fully_Intact_Pillar,
-            "Objects/Props/Pillars/Models/3D_Fully_Intact_Pillar.FBX");
+            "Objects/Props/Pillars/Models/3D_Fully_Intact_Pillar");
         
         AddPropToDictionary(Props.Middle_Broken_Pillar_1,
-            "Objects/Props/Pillars/Models/3D_Middle_Broken_Pillar_1.FBX");
+            "Objects/Props/Pillars/Models/3D_Middle_Broken_Pillar_1");
         
         AddPropToDictionary(Props.Middle_Broken_Pillar_2,
-            "Objects/Props/Pillars/Models/3D_Middle_Broken_Pillar_2.FBX");
+            "Objects/Props/Pillars/Models/3D_Middle_Broken_Pillar_2");
         
         AddPropToDictionary(Props.Middle_Dented_Pillar,
-            "Objects/Props/Pillars/Models/3D_Middle_Dented_Pillar.FBX");
+            "Objects/Props/Pillars/Models/3D_Middle_Dented_Pillar");
        
         
         //Wall
         AddPropToDictionary(Props.Modular_Wall_End,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_End.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_End");
         
         AddPropToDictionary(Props.Corner_Ruin_Wall,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Corner_Ruin_Wall.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Corner_Ruin_Wall");
         
         AddPropToDictionary(Props.Modular_Wall_Mid1,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid1.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid1");
         
         AddPropToDictionary(Props.Modular_Wall_Mid2,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid2.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid2");
         
         AddPropToDictionary(Props.Modular_Wall_Mid3,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid3.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid3");
         
         AddPropToDictionary(Props.Modular_Wall_Mid4,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid4.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid4");
         
         AddPropToDictionary(Props.Modular_Wall_Mid5,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid5.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Mid5");
             
         AddPropToDictionary(Props.Modular_Wall_Start,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Start.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Modular_Wall_Start");
         
         AddPropToDictionary(Props.Singular_Ruin_Wall,
-            "Objects/Props/Walls/RuinWalls/Prefab/3D_Singular_Ruin_Wall.prefab");
+            "Objects/Props/Walls/RuinWalls/Prefab/3D_Singular_Ruin_Wall");
         
     }
 
