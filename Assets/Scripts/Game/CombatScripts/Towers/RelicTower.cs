@@ -15,8 +15,6 @@ public class RelicTower : Relic
     {
         CurrentHealth = 700;
         MaxHealth = 700;
-        CurrentMana = 100;
-        MaxMana = 200 ;
 
         Name = "RelicTower";
 

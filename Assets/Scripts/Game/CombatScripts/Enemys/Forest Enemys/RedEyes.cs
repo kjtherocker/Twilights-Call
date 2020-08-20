@@ -10,8 +10,6 @@ public class RedEyes : Enemy
     {
         CurrentHealth = 2000;
         MaxHealth = 2000;
-        CurrentMana = 10;
-        MaxMana = 10;
         Strength = 75;
         Magic = 40;
         Hit = 20;

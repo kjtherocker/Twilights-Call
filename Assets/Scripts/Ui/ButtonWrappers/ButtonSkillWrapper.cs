@@ -27,7 +27,11 @@ public class ButtonSkillWrapper : MonoBehaviour
     public Image m_Image_CardDesign;
     public Image m_Image_ElementalIcon;
 
+    public GameObject Hightlightpivot;
+
+
     public string m_NameOfSkill;
+
 
 
     Color m_Color_TransparentWhite;
@@ -36,8 +40,8 @@ public class ButtonSkillWrapper : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-         m_Color_TransparentWhite = new Color(1, 1, 1, 0.5f);
-         m_Color_White = new Color(1, 1, 1, 1);
+       //  m_Color_TransparentWhite = new Color(1, 1, 1, 0.5f);
+       //  m_Color_White = new Color(1, 1, 1, 1);
     }
     
     public void SetElementalIcon(Skills.ElementalType aSkills, string sourceName = "Global")
@@ -47,7 +51,7 @@ public class ButtonSkillWrapper : MonoBehaviour
 
     public void SetCardDesign(Skills.SkillType aSkills, string sourceName = "Global")
     {
-        m_Image_CardDesign.material = m_CardDesigns[(int)aSkills];
+        //m_Image_CardDesign.material = m_CardDesigns[(int)aSkills];
     }
 
 

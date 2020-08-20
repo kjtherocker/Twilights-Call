@@ -133,7 +133,7 @@ public class UiDomainBoard : UiScreen
 
         Debug.Log("Activated SelectedCard");
         
-        GameManager.Instance.BattleCamera.m_CombatInputLayer.ActivatedDomain();
+        GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.ActivatedDomain();
 
     }
     public void SetSkill()
@@ -147,13 +147,13 @@ public class UiDomainBoard : UiScreen
 
         if (m_SkillBoardPointerPosition == 0)
         {
-            GameManager.Instance.BattleCamera.m_CombatInputLayer.SetDomainPhase(1);
+            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.SetDomainPhase(1);
             m_SelectedDomainWrapper = m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition];
             m_CurrentSkillMenuButtonsMenu[1].gameObject.SetActive(false);
         }
         else if (m_SkillBoardPointerPosition == 1)
         {
-            GameManager.Instance.BattleCamera.m_CombatInputLayer.SetDevourPhase(1);
+            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.SetDevourPhase(1);
             m_SelectedDomainWrapper = m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition];
             m_CurrentSkillMenuButtonsMenu[0].gameObject.SetActive(false);
         }

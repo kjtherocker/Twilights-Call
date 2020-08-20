@@ -41,11 +41,11 @@ public class CombatCameraController : MonoBehaviour
     public Vector3 m_CameraOffset;
     public void InitalizeCamera()
     {
-        GameManager.Instance.m_BattleCamera = this;
+        GameManager.Instance.mMCombatCameraController = this;
         
         InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
         m_CameraPositionInGrid = new Vector2Int(5, 5);
-        GameManager.Instance.m_BattleCamera = this;
+        GameManager.Instance.mMCombatCameraController = this;
 
         m_Grid = Grid.Instance;
         
@@ -70,7 +70,12 @@ public class CombatCameraController : MonoBehaviour
     {
         CameraMovement();
     }
-    
+
+    public void SetCameraState(CameraState aCameraState)
+    {
+        m_cameraState = aCameraState;
+    }
+
     public void CameraMovement()
     {
 

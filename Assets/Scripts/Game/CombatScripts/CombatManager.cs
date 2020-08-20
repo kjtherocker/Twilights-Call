@@ -316,34 +316,20 @@ public class CombatManager : Singleton<CombatManager>
         ScreenTemp.SetClash(CreatureA, CreaturesB);
     }
 
-    public void RemoveDeadFromList(string aName, Creatures.Charactertype aCharactertype)
+    public void RemoveDeadFromList(Creatures.Charactertype aCharactertype)
     {
         if (aCharactertype == Creatures.Charactertype.Ally)
-        {
-            for (int i = 0; i < TurnOrderAlly.Count - 1; i++)
+        { 
+            for (int i = TurnOrderAlly.Count - 1; i >= 0; i--)
             {
-                if (TurnOrderAlly[i].Name == aName)
+                if (TurnOrderAlly[i] == null)
                 {    
                     TurnOrderAlly.RemoveAt(i);
                 }
             }
         }
 
-        if (aCharactertype == Creatures.Charactertype.Enemy)
-        {
-            for (int i = 0; i < TurnOrderEnemy.Count - 1; i++)
-            {
-                if (TurnOrderEnemy[i].Name == aName)
-                {
-                    TurnOrderEnemy.RemoveAt(i);
 
-                    if (!TurnOrderEnemy.Any())
-                    {
-                        m_BattleStates = CombatStates.EndOfCombat;
-                    }
-                }
-            }
-        }
 
     }
 

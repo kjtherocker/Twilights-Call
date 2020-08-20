@@ -10,8 +10,6 @@ public class RedKnightPhase1 : Enemy
     {
         CurrentHealth = 30;
         MaxHealth = 30;
-        CurrentMana = 10;
-        MaxMana = 10;
         Strength = 75;
         Magic = 40;
         Hit = 20;

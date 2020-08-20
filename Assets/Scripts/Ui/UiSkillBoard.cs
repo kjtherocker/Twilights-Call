@@ -26,14 +26,14 @@ public class UiSkillBoard : UiScreen
         m_SkillBoardPointerPosition = 0;
         m_CenterCardPosition = new Vector3(-38, -211, 0);
         m_MenuControls = new PlayerInput();
-       
+
         m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
-        //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
+        m_MenuControls.Player.CircleButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
-	// Update is called once per frame
+    // Update is called once per frame
     
     public override void ResetCursorPosition()
     {
@@ -59,7 +59,7 @@ public class UiSkillBoard : UiScreen
     {
         m_SkillBoardPointerPosition = aCursorX;
 
-        SetCardHighlight(m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition].gameObject);
+        SetCardHighlight(m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition].Hightlightpivot);
         m_DescriptionText.text =
             m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition].m_ButtonSkill.SkillDescription;
 
@@ -68,7 +68,7 @@ public class UiSkillBoard : UiScreen
     public void SetSkill()
     {
 
-        GameManager.Instance.BattleCamera.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
+        GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
  
         InputManager.Instance.m_MovementControls.Enable();
         OnPop();
@@ -117,7 +117,7 @@ public class UiSkillBoard : UiScreen
         
        ResetCursorPosition();
 
-       SetCardHighlight(m_CurrentSkillMenuButtonsMenu[0].gameObject);
+       SetCardHighlight(m_CurrentSkillMenuButtonsMenu[0].Hightlightpivot);
 
     }
 

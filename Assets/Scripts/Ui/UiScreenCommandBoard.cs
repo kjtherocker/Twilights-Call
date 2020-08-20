@@ -24,6 +24,8 @@ public class UiScreenCommandBoard : UiScreen
         m_MenuControls.Player.XButton.performed += XButton => PlayerMovement();
         m_MenuControls.Player.SquareButton.performed += SquareButton => SpawnSkillBoard();
         m_MenuControls.Player.TriangleButton.performed += TriangleButton => SpawnDomainBoard();
+        m_MenuControls.Player.CircleButton.performed += CircleButton => ReturnToLastScreen();
+
         m_MenuControls.Disable();
     }
 
@@ -57,7 +59,7 @@ public class UiScreenCommandBoard : UiScreen
     {
         if (m_CommandboardCreature != null)
         {
-            Vector2 screenPosition = GameManager.Instance.BattleCamera.GetComponent<Camera>()
+            Vector2 screenPosition = GameManager.Instance.m_CombatCameraController.GetComponent<Camera>()
                 .WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
             m_CommandObjects.transform.position = screenPosition;
         }
@@ -66,7 +68,7 @@ public class UiScreenCommandBoard : UiScreen
     public void SetCreatureReference(Creatures aCreature)
     {
         m_CommandboardCreature = aCreature;
-        Vector2 screenPosition = GameManager.Instance.BattleCamera.GetComponent<Camera>().WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
+        Vector2 screenPosition = GameManager.Instance.m_CombatCameraController.GetComponent<Camera>().WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
         m_CommandObjects.transform.position = screenPosition;
     }
 
@@ -77,7 +79,7 @@ public class UiScreenCommandBoard : UiScreen
             return;
         }
         InputManager.Instance.m_MovementControls.Enable();
-        GameManager.Instance.BattleCamera.m_CombatInputLayer.m_CombatInputState =
+        GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.m_CombatInputState =
             CombatInputLayer.CombatInputState.Walk;
         
      //   m_CommandboardCreature.m_CreatureAi.FindAllPaths();
@@ -132,4 +134,11 @@ public class UiScreenCommandBoard : UiScreen
     }
 
 
+    public override void ReturnToLastScreen()
+    {
+        base.ReturnToLastScreen();
+
+        GameManager.Instance.m_CombatCameraController.SetCameraState(CombatCameraController.CameraState.Normal);
+        InputManager.Instance.m_MovementControls.Enable();
+    }
 }

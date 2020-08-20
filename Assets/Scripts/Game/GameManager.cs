@@ -5,8 +5,8 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
-    public CombatCameraController m_BattleCamera;
-    public CombatCameraController BattleCamera { get { return m_BattleCamera; } }
+    public CombatCameraController mMCombatCameraController;
+    public CombatCameraController m_CombatCameraController { get { return mMCombatCameraController; } }
 
     public MovementList m_MovementList;
     public SkillList m_SkillList;

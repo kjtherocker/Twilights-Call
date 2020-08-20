@@ -136,6 +136,11 @@ public class UiManager : Singleton<UiManager>
     public void ReturnToLastScreen()
     {
         PopScreenNoLastScreen();
+        if (m_LastScreen.Count == 0)
+        {
+            return;
+        }
+
         PushScreen(m_LastScreen[m_LastScreen.Count - 1]);
         m_LastScreen.RemoveAt(m_LastScreen.Count - 1);
     }

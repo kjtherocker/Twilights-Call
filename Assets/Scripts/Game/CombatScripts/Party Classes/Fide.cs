@@ -9,8 +9,6 @@ public class Fide : Ally
     {
         CurrentHealth = 50;
         MaxHealth = 50;
-        CurrentMana = 100;
-        MaxMana = 200;
         Strength = 75;
         Magic = 40;
         Hit = 20;

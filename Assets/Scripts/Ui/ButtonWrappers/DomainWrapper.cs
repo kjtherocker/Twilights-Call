@@ -70,11 +70,6 @@ public class DomainWrapper : MonoBehaviour
         m_Domain = aDomain;
         SetCardDesign(Skills.SkillType.Domain);
         SetElementalIcon(aDomain.m_ElementalType);
-
-        
-        m_CostToUseText.text = aDomain.m_CostToUse.ToString();
-        m_CostToUseText.text = aDomain.m_CostToUse.ToString();
-        
     }
     
     public void SetupDomain(Creatures a_TurnHolder, Domain aDomain)
@@ -93,7 +88,8 @@ public class DomainWrapper : MonoBehaviour
         {
             return;
         }
-
+        
+        
         if (aPower > 1)
         {
             m_LeftArrow.gameObject.SetActive(true);
@@ -103,7 +99,7 @@ public class DomainWrapper : MonoBehaviour
             m_LeftArrow.gameObject.SetActive(false);
         }
 
-        if (m_ButtonTurnHolder.CurrentMana > m_Domain.m_CostToUse * aPower )
+        if (m_ButtonTurnHolder.CurrentDomainpoints > aPower )
         {
             m_RightArrow.gameObject.SetActive(true);
         }
@@ -113,7 +109,7 @@ public class DomainWrapper : MonoBehaviour
         }
         
 
-        GameManager.Instance.m_BattleCamera.m_CombatInputLayer.SetDomainPhase(aPower);
+        GameManager.Instance.mMCombatCameraController.m_CombatInputLayer.SetDomainPhase(aPower);
         m_CardRange.text = "Lv. " + aPower;
     }
 

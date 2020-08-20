@@ -29,7 +29,6 @@ public class PartyManager : Singleton<PartyManager>
         for (int i = 0; i < m_CurrentParty.Count; i++)
         {
             m_CurrentParty[i].CurrentHealth = m_CurrentParty[i].MaxHealth;
-            m_CurrentParty[i].CurrentMana = m_CurrentParty[i].MaxMana;
         }
     }
 

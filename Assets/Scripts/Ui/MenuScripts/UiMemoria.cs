@@ -46,8 +46,7 @@ public class UiMemoria : UiScreen
         m_ScreamAnimator = m_MemoriaScream.GetComponent<Animator>();
         m_BoardAnimator = m_Board.GetComponent<Animator>();
         
-        m_ScreamAnimator.SetTrigger("t_Push"); 
-        m_BoardAnimator.SetTrigger("t_Push");
+        
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }
@@ -128,7 +127,8 @@ public class UiMemoria : UiScreen
 
         m_MenuControls.Enable();
         
-       
+        m_ScreamAnimator.SetTrigger("t_Push"); 
+        m_BoardAnimator.SetTrigger("t_Push");
     }
 
     public void SetMemoriaScreen(Creatures aCreature, Memoria aMemoria)

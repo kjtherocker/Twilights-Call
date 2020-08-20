@@ -73,8 +73,6 @@ public class Creatures : MonoBehaviour
     
     public int CurrentHealth;
     public int MaxHealth;
-    public int CurrentMana;
-    public int MaxMana;
     public int Strength;
     public int Magic;
     public int Hit;
@@ -84,14 +82,7 @@ public class Creatures : MonoBehaviour
 
     public int CurrentDomainpoints;
     public int MaxDomainPoints = 3;
-    
-    
-    
-    public int BeforeDomain_MaxHealth;
-    public int BeforeDomain_MaxMana;
-    public int BeforeDomain_Strength;
-    
-    
+
     public int m_CreatureMovement = 4;
 
     public int AmountOfTurns;
@@ -266,7 +257,7 @@ public class Creatures : MonoBehaviour
         BuffandDebuff = 0;
         
         
-        CombatManager.Instance.RemoveDeadFromList(Name,charactertype);
+        CombatManager.Instance.RemoveDeadFromList(charactertype);
     }
 
 

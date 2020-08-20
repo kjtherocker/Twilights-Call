@@ -59,7 +59,7 @@ public class UiStatus : UiTabScreen
 
         m_HealthbarSlider.value = m_CurrentHealth / m_MaxHealth;
 
-        m_CurrentMana = Creature.CurrentMana;
+ 
         
         UpdateHealthbar();
         foreach (UiStatusDomainPointWrapper aSlider in m_DomainPointWrappers)
@@ -101,11 +101,8 @@ public class UiStatus : UiTabScreen
 
             m_CurrentHealth = Creature.CurrentHealth;
             m_MaxHealth = Creature.MaxHealth;
-
-            m_CurrentMana = Creature.CurrentMana;
-        
-
-          // if(m_PortraitCamera != null)
+            
+            // if(m_PortraitCamera != null)
           // {
           //     m_PortraitCamera.gameObject.transform.position = new Vector3(Partymember.ModelInGame.transform.position.x,
           //      Partymember.ModelInGame.transform.position.y + 1.7f, Partymember.ModelInGame.transform.position.z) +

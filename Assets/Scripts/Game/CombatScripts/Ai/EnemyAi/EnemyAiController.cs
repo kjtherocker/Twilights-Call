@@ -72,7 +72,7 @@ public class EnemyAiController : AiController
         m_MovementHasStarted = true; 
         
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
-        GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
+        GameManager.Instance.mMCombatCameraController.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
         Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
@@ -92,7 +92,7 @@ public class EnemyAiController : AiController
 
                 m_Position = Node_MovingTo.m_PositionInGrid;
 
-                GameManager.Instance.m_BattleCamera.m_CameraPositionInGrid = m_Position;
+                GameManager.Instance.mMCombatCameraController.m_CameraPositionInGrid = m_Position;
 
 
                 m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
@@ -107,7 +107,7 @@ public class EnemyAiController : AiController
         }
         
         //Camera no longer following the player;
-        GameManager.Instance.m_BattleCamera.m_cameraState = CombatCameraController.CameraState.Normal;
+        GameManager.Instance.mMCombatCameraController.m_cameraState = CombatCameraController.CameraState.Normal;
 
         //Setting the Walk Animation
         m_CreaturesAnimator.SetBool("b_IsWalking", false);
