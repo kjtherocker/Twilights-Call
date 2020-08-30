@@ -169,12 +169,12 @@ public class AiController : MonoBehaviour
 
 
 
-    public HashSet<CombatNode> GetNodesInRange(List<CombatNode> aCells, CombatNode aNodeHeuristicIsBasedOff, int aRange)
+    public HashSet<CombatNode> GetNodesInRange(List<CombatNode> aCells, CombatNode aNodeHeuristicIsBasedOff, int aRange,DelegateReturnNodeIndex delegateReturnNodeIndex)
     {
         cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
 
         var paths = cachePaths(aCells, aNodeHeuristicIsBasedOff,
-            m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+            delegateReturnNodeIndex);
         foreach (var key in paths.Keys)
         {
             var path = paths[key];
@@ -271,7 +271,8 @@ public class AiController : MonoBehaviour
         RemoveDomainTile();
         
         m_NodeInDomainRange =
-            GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), aDomainRange);
+            GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), aDomainRange,
+                m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex );
 
 
         foreach (CombatNode node in m_NodeInDomainRange)
@@ -307,12 +308,15 @@ public class AiController : MonoBehaviour
         {
             node.DomainClashing();
         }
+        
+        m_Creature.m_Domain.AdditionalDomainEffects();
     }
 
     public void SetDevour(int DevourRange)
     {
         m_NodeInDevourRange =
-            GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), DevourRange);
+            GetNodesInRange(m_Grid.m_GridPathList, m_Grid.GetNode(m_Position.x, m_Position.y), DevourRange,
+                m_Creature.m_Devour.CheckIfNodeIsClearAndReturnNodeIndex );
 
 
         foreach (CombatNode node in m_NodeInDevourRange)
@@ -321,22 +325,22 @@ public class AiController : MonoBehaviour
             node.m_DomainCombatNode = CombatNode.DomainCombatNode.None;
         }
         
-        foreach (CombatNode node in m_NodeInDomainRange)
-        {
-            foreach (CombatNode neighbour in node.GetNeighbours(m_Grid.m_GridPathList))
-            {
-                if (neighbour.DomainOnNode == null)
-                {
-                    continue;
-                }
-
-                if (neighbour.DomainOnNode.DomainUser != node.DomainOnNode.DomainUser)
-                {
-                    Debug.Log("Clashing");
-                    
-                }
-            }
-        }
+       // foreach (CombatNode node in m_NodeInDomainRange)
+       // {
+       //     foreach (CombatNode neighbour in node.GetNeighbours(m_Grid.m_GridPathList))
+       //     {
+       //         if (neighbour.DomainOnNode == null)
+       //         {
+       //             continue;
+       //         }
+//
+       //         if (neighbour.DomainOnNode.DomainUser != node.DomainOnNode.DomainUser)
+       //         {
+       //             Debug.Log("Clashing");
+       //             
+       //         }
+       //     }
+       // }
 
     }
 
@@ -345,15 +349,26 @@ public class AiController : MonoBehaviour
         
         foreach (CombatNode node in m_NodeInDevourRange)
         {
-            node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
-            node.DomainRevert();
+            if (node.m_CreatureOnGridPoint != null)
+            { 
+                node.DomainOnNode.UndoDomainEffect(ref node.m_CreatureOnGridPoint);
+                node.m_CreatureOnGridPoint.DomainAffectingCreature = "";
+             
+                
+            }
+
+            if (node.DomainOnNode != null)
+            {
+                node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Devourable);
+                node.DomainRevert();
+            }
         }
         
         
-        foreach (CombatNode node in m_NodeInDevourRange)
-        {
-            node.DomainClashing();
-        }
+       // foreach (CombatNode node in m_NodeInDevourRange)
+       // {
+       //     node.DomainClashing();
+       // }
     }
 
 

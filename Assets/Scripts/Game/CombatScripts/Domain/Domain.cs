@@ -45,7 +45,12 @@ public class Domain : Skills
     public virtual void UndoDomainEffect(ref Creatures m_CreatureOnDomain)
     {
     }
-    
+
+    public virtual void AdditionalDomainEffects()
+    {
+        
+    }
+
     public virtual bool CheckIfNodeIsClearAndReturnNodeIndex(CombatNode aNode, Vector2Int m_Position)
     {
         // if the node is out of bounds, return -1 (an invalid tile index)

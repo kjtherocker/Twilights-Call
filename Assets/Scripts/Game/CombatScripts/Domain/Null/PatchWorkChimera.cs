@@ -5,7 +5,8 @@ using UnityEngine.AddressableAssets;
 
 public class PatchWorkChimera : Domain
 {
-   
+    private Domain m_DomainCopy;
+    private List<Creatures> m_CreaturesToCopy;
     public override void Start()
     {
         m_ElementalType = Skills.ElementalType.Null;
@@ -25,12 +26,23 @@ public class PatchWorkChimera : Domain
 
     public override void DomainEffect(ref Creatures m_CreatureOnDomain)
     {
-     //   m_CreatureOnDomain.MaxHealth = m_CreatureOnDomain.MaxHealth / 2;
-        m_CreatureOnDomain.CurrentHealth = m_CreatureOnDomain.CurrentHealth / 2;
+        if (m_DomainCopy != null)
+        {
+            m_DomainCopy.DomainEffect(ref m_CreatureOnDomain);
+        }
+        
+        m_CreaturesToCopy.Add(m_CreatureOnDomain);
+
+
     }
-    
+
     public override void UndoDomainEffect(ref Creatures m_CreatureOnDomain)
     {
 
+    }
+    
+    public override void AdditionalDomainEffects()
+    {
+        //Here we can push a different screen with our copies
     }
 }

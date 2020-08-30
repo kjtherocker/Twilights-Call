@@ -144,12 +144,12 @@ public class UiStatus : UiTabScreen
 
         if (Text_Strength != null)
         {
-            Text_Strength.text = "" + Creature.Strength;
-            Text_Magic.text = "" + Creature.Magic;
-            Text_Hit.text = "" + Creature.Hit;
-            Text_Defence.text = "" + Creature.Defence;
-            Text_Resistance.text = "" + Creature.Resistance;
-            Text_Evasion.text = "" + Creature.Evasion;
+            Text_Strength.text = "" + Creature.GetAllStrength();
+            Text_Magic.text = "" + Creature.GetAllMagic();
+            Text_Hit.text = "" + Creature.GetAllHit();
+            Text_Defence.text = "" + Creature.GetAllDefence();
+            Text_Resistance.text = "" + Creature.GetAllResistance();
+            Text_Evasion.text = "" + Creature.GetAllEvasion();
         }
 
         float HealthRatio = (float)m_CurrentHealth / (float)m_MaxHealth;

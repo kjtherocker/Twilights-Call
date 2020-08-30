@@ -104,6 +104,7 @@ public class UiDomainBoard : UiScreen
         {
             m_CursorXCurrent = MenuDirectionCalculationEndInvertAxis(aMovement.x, m_CursorXCurrent, m_CursorXMax, m_CursorXMin);
         }
+        
 
         m_CursorYCurrent = MenuDirectionCalculationLooping(aMovement.y, m_CursorYCurrent, m_CursorYMax, m_CursorYMin);
         MenuSelection(m_CursorXCurrent, m_CursorYCurrent);
@@ -132,8 +133,15 @@ public class UiDomainBoard : UiScreen
         }
 
         Debug.Log("Activated SelectedCard");
+        if (m_SelectedDomainWrapper.m_DomainWrapperType == DomainWrapper.DomainWrapperType.Domain)
+        {
+            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.ActivatedDomain();
+        }
+        else if (m_SelectedDomainWrapper.m_DomainWrapperType == DomainWrapper.DomainWrapperType.Devour)
+        {
+            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.ActivatedDevour();
+        }
         
-        GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.ActivatedDomain();
 
     }
     public void SetSkill()
@@ -145,20 +153,18 @@ public class UiDomainBoard : UiScreen
         
 
 
-        if (m_SkillBoardPointerPosition == 0)
+        if (m_CursorXCurrent == 0)
         {
-            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.SetDomainPhase(1);
-            m_SelectedDomainWrapper = m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition];
+            m_SelectedDomainWrapper = m_CurrentSkillMenuButtonsMenu[m_CursorXCurrent];
             m_CurrentSkillMenuButtonsMenu[1].gameObject.SetActive(false);
         }
-        else if (m_SkillBoardPointerPosition == 1)
+        else if (m_CursorXCurrent == 1)
         {
-            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.SetDevourPhase(1);
-            m_SelectedDomainWrapper = m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition];
+            m_SelectedDomainWrapper = m_CurrentSkillMenuButtonsMenu[m_CursorXCurrent];
             m_CurrentSkillMenuButtonsMenu[0].gameObject.SetActive(false);
         }
 
-        SetSkillInstantly(m_CurrentSkillMenuButtonsMenu[m_SkillBoardPointerPosition]);
+        SetSkillInstantly(m_CurrentSkillMenuButtonsMenu[m_CursorXCurrent]);
 
         SelectedCardEmpowerValues();
         m_DomainBoardState = DomainBoardState.Selected;
@@ -169,9 +175,12 @@ public class UiDomainBoard : UiScreen
     {
 
         m_SkillBoardCreature = aCreatures;
+
+        m_CurrentSkillMenuButtonsMenu[0].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Domain,
+            DomainWrapper.DomainWrapperType.Domain);
         
-        m_CurrentSkillMenuButtonsMenu[0].SetupButton(m_SkillBoardCreature,m_SkillBoardCreature.m_Domain);
-      //  m_CurrentSkillMenuButtonsMenu[1].SetupButton(m_SkillBoardCreature,new Devour());
+        m_CurrentSkillMenuButtonsMenu[1].SetupButton(m_SkillBoardCreature, m_SkillBoardCreature.m_Devour,
+            DomainWrapper.DomainWrapperType.Devour);
 
 
         AnimatedCardMovementToCenter(m_CurrentSkillMenuButtonsMenu[0]);

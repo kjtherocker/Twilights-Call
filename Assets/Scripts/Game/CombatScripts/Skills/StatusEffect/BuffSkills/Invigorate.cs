@@ -25,7 +25,7 @@ public class Invigorate : StatusEffects
 
         Length = 1;
 
-        aVictum.BuffDamageStrength = aVictum.Strength / 4;
+        aVictum.BuffStrength = aVictum.Strength / 4;
 
         ActivatedCreature = aVictum;
         
@@ -35,7 +35,7 @@ public class Invigorate : StatusEffects
 
     public override void RevertStatusEffect()
     {
-        ActivatedCreature.BuffDamageStrength = 0;
+        ActivatedCreature.BuffStrength = 0;
 
     }
 

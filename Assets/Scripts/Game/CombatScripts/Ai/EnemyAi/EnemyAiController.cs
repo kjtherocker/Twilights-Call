@@ -28,8 +28,7 @@ public class EnemyAiController : AiController
             m_AiModel = transform.GetChild(0);
         }
 
-        Debug.Log(Node_MovingTo);
-        Debug.Log(Node_ObjectIsOn);
+  
         
         if (m_CreaturesAnimator == null)
         {

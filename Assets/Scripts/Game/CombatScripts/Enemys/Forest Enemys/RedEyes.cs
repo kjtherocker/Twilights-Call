@@ -20,7 +20,6 @@ public class RedEyes : Enemy
 
         AmountOfTurns = 2;
 
-        m_DomainStages = DomainStages.Encroaching;
 
         SetCreature();
 

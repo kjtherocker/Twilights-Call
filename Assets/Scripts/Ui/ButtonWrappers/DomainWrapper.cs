@@ -9,6 +9,12 @@ public class DomainWrapper : MonoBehaviour
 {
 
 
+    public enum DomainWrapperType
+    {
+        Domain,
+        Devour
+    }
+
     public Creatures m_ButtonTurnHolder;
 
     private List<Creatures> m_ListReference;
@@ -26,6 +32,8 @@ public class DomainWrapper : MonoBehaviour
     public Image m_Image_CardDesign;
     public Image m_Image_ElementalIcon;
 
+    public DomainWrapperType m_DomainWrapperType;
+    
     public int CardPower;
     
     public string m_NameOfSkill;
@@ -59,12 +67,14 @@ public class DomainWrapper : MonoBehaviour
 
 
 
-    public void SetupButton(Creatures a_TurnHolder, Domain aDomain)
+    public void SetupButton(Creatures a_TurnHolder, Domain aDomain,DomainWrapperType aWrapperType)
     {
         m_ButtonTurnHolder = a_TurnHolder;
         m_ButtonSkill = aDomain;
         m_SkillType = aDomain.GetSkillType();
         SetCardDesign(m_SkillType);
+
+        m_DomainWrapperType = aWrapperType;
         
         m_ButtonTurnHolder = a_TurnHolder;
         m_Domain = aDomain;
@@ -107,9 +117,17 @@ public class DomainWrapper : MonoBehaviour
         {
             m_RightArrow.gameObject.SetActive(false);
         }
-        
 
-        GameManager.Instance.mMCombatCameraController.m_CombatInputLayer.SetDomainPhase(aPower);
+
+        if (m_DomainWrapperType == DomainWrapperType.Domain)
+        {
+            GameManager.Instance.mMCombatCameraController.m_CombatInputLayer.SetDomainPhase(aPower);
+        }
+        else if (m_DomainWrapperType == DomainWrapperType.Devour)
+        {
+            GameManager.Instance.mMCombatCameraController.m_CombatInputLayer.SetDevourPhase(aPower);
+        }
+
         m_CardRange.text = "Lv. " + aPower;
     }
 

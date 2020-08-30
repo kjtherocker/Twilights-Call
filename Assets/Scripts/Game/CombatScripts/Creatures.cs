@@ -66,19 +66,44 @@ public class Creatures : MonoBehaviour
     public Charactertype charactertype;
     public ElementalStrength elementalStrength;
     public ElementalWeakness elementalWeakness;
-    public DomainStages m_DomainStages;
     public MovementType m_CreaturesMovementType;
 
     public MovementList m_MovementList;
     
     public int CurrentHealth;
     public int MaxHealth;
+    
+    
     public int Strength;
+    public int BuffStrength;
+    public int DebuffStrength;
+    public int DomainStrength;
+
     public int Magic;
+    public int BuffMagic;
+    public int DebuffMagic;
+    public int DomainMagic;
+    
     public int Hit;
+    public int BuffHit;
+    public int DebuffHit;
+    public int DomainHit;
+    
     public int Evasion;
+    public int BuffEvasion;
+    public int DebuffEvasion;
+    public int DomainEvasion;
+    
     public int Defence;
+    public int BuffDefence;
+    public int DebuffDefence;
+    public int DomainDefence;
+    
+    
     public int Resistance;
+    public int BuffResistance;
+    public int DebuffResistance;
+    public int DomainResistance;
 
     public int CurrentDomainpoints;
     public int MaxDomainPoints = 3;
@@ -86,16 +111,7 @@ public class Creatures : MonoBehaviour
     public int m_CreatureMovement = 4;
 
     public int AmountOfTurns;
-
-    public int BuffandDebuff;
-    public int BuffDamageStrength;
-    public int BuffDamageMagic;
     
-    public int DebuffDamageStrength;
-    public int DebuffDamageMagic;
-
-    public bool IsSelected;
-    public bool IsCurrentTurnHolder;
 
     public string DomainAffectingCreature;
     public string Name = "No Name";
@@ -107,14 +123,10 @@ public class Creatures : MonoBehaviour
 
     public DomainList.DomainListEnum m_DomainList;
     public Domain m_Domain;
+    public Devour m_Devour;
 
     public List<StatusEffects> m_StatusEffectsOnCreature;
     
-    public Creatures ObjectToRotateAround;
-    
-
-    int AlimentCounter;
-
     bool m_IsAlive;
     protected SkillList m_CreatureSkillList;
 
@@ -130,8 +142,8 @@ public class Creatures : MonoBehaviour
         m_Skills = new List<Skills>();
         m_BloodArts = new List<Skills>();
         m_StatusEffectsOnCreature = new List<StatusEffects>();
-        m_DomainStages = DomainStages.NotActivated;
-
+        
+        m_Devour = new Devour();
 
         m_MovementList = GameManager.Instance.m_MovementList;
         m_CreatureSkillList = GameManager.Instance.m_SkillList;
@@ -161,18 +173,56 @@ public class Creatures : MonoBehaviour
 
     public virtual int GetAllStrength()
     {
-        int TemporaryStrength;
+        int TemporaryStat;
 
-        TemporaryStrength = BuffDamageStrength + DebuffDamageStrength + Strength;
+        TemporaryStat = BuffStrength + DebuffStrength + Strength + DomainStrength;
 
-        return TemporaryStrength;
+        return TemporaryStat;
     }
 
     public virtual int GetAllMagic()
     {
+        int TemporaryStat;
+
+        TemporaryStat = BuffMagic + DebuffMagic + Magic + DomainMagic;
+
+        return TemporaryStat;
+    }
+    
+    
+    public virtual int GetAllHit()
+    {
+        int TemporaryStat;
+
+        TemporaryStat = BuffHit + DebuffHit + Hit + DomainHit;
+
+        return TemporaryStat;
+    }
+
+    public virtual int GetAllEvasion()
+    {
+        int TemporaryStat;
+
+        TemporaryStat = BuffEvasion+ DebuffEvasion + Evasion + DomainEvasion;
+
+        return TemporaryStat;
+    }
+    
+    
+    public virtual int GetAllDefence()
+    {
+        int TemporaryStat;
+
+        TemporaryStat = BuffDefence + DebuffDefence + Defence + DomainDefence;
+
+        return TemporaryStat;
+    }
+
+    public virtual int GetAllResistance()
+    {
         int TemporaryMagic;
 
-        TemporaryMagic = BuffDamageMagic + DebuffDamageMagic + Magic;
+        TemporaryMagic = BuffResistance + DebuffResistance + Resistance + DomainResistance;
 
         return TemporaryMagic;
     }
@@ -191,10 +241,6 @@ public class Creatures : MonoBehaviour
     }
     public virtual IEnumerator DecrementHealth(int Decrementby, Skills.ElementalType elementalType,float TimeTillInitalDamage, float TimeTillHoveringUiElement, float TimeTillDamage)
     {
-        if (m_creaturesAilment == CreaturesAilment.Sleep)
-        {
-            AlimentCounter = 0;
-        }
         FloatingUiElementsController.Initalize();
         string AttackingElement = elementalType.ToString();
         string ElementalWeakness = elementalWeakness.ToString();
@@ -221,14 +267,7 @@ public class Creatures : MonoBehaviour
 
         CurrentHealth -= Decrementby;
 
-        if (CurrentHealth <= 0)
-        {
-            m_IsAlive = false;
-
-            Death();
-        }
-
-        CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
+        DeathCheck();
     }
 
 
@@ -250,13 +289,24 @@ public class Creatures : MonoBehaviour
     {
         ModelInGame.gameObject.SetActive(true);
     }
+
+    public void DeathCheck()
+    {
+        if (CurrentHealth <= 0)
+        {
+            m_IsAlive = false;
+
+            Death();
+        }
+
+        CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
+    }
+
     public virtual void Death()
     {
         CurrentHealth = 0;
-        AlimentCounter = 0;
-        BuffandDebuff = 0;
-        
-        
+    
+
         CombatManager.Instance.RemoveDeadFromList(charactertype);
     }
 
