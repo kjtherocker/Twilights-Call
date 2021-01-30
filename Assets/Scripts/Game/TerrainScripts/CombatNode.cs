@@ -407,7 +407,7 @@ public class CombatNode : Cell
 
             if (neighbour.DomainOnNode.DomainUser != DomainOnNode.DomainUser)
             {
-               CombatManager.Instance.SetDomainClash(
+               TacticsManager.Instance.SetDomainClash(
                     DomainOnNode.m_Creature, neighbour.DomainOnNode.m_Creature);
 
             }
@@ -418,7 +418,7 @@ public class CombatNode : Cell
 
     public void SpawnMemoria(List<Skills> a_Skills)
     {
-        m_MemoriaOnTop = CombatManager.Instance.ReturnMemoria();
+        m_MemoriaOnTop = TacticsManager.Instance.ReturnMemoria();
         
         m_MemoriaOnTop.transform.position =
             new Vector3( transform.position.x , transform.position.y  + Constants.Constants.m_HeightOffTheGrid , transform.position.z);

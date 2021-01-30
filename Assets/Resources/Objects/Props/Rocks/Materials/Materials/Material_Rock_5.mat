@@ -69,7 +69,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineDot: 0.25
     - _OutlineExtrusion: 0.01
-    - _OutlineWidth: 0.5
+    - _OutlineWidth: 2.34
     - _Parallax: 0.02
     - _RimAmount: 0.716
     - _RimThreshold: 0.1

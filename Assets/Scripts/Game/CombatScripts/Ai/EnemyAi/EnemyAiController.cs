@@ -220,7 +220,7 @@ public class EnemyAiController : AiController
             Debug.Log(m_Creature.Name + " waited");
         }
 
-        CombatManager.instance.EnemyMovement();
+        TacticsManager.instance.EnemyMovement();
         return;
     }
 

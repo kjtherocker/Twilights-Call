@@ -9,12 +9,12 @@ public class Fide : Ally
     {
         CurrentHealth = 50;
         MaxHealth = 50;
-        Strength = 75;
-        Magic = 40;
-        Hit = 20;
-        Evasion = 20;
-        Defence = 20;
-        Resistance = 20;
+        BaseStrength = 75;
+        BaseMagic = 40;
+        BaseHit = 20;
+        BaseEvasion = 20;
+        BaseDefence = 20;
+        BaseResistance = 20;
         Name = "Fide";
 
         AmountOfTurns = 1;

@@ -74,33 +74,33 @@ public class Creatures : MonoBehaviour
     public int MaxHealth;
     
     
-    public int Strength;
+    public int BaseStrength;
     public int BuffStrength;
     public int DebuffStrength;
     public int DomainStrength;
 
-    public int Magic;
+    public int BaseMagic;
     public int BuffMagic;
     public int DebuffMagic;
     public int DomainMagic;
     
-    public int Hit;
+    public int BaseHit;
     public int BuffHit;
     public int DebuffHit;
     public int DomainHit;
     
-    public int Evasion;
+    public int BaseEvasion;
     public int BuffEvasion;
     public int DebuffEvasion;
     public int DomainEvasion;
     
-    public int Defence;
+    public int BaseDefence;
     public int BuffDefence;
     public int DebuffDefence;
     public int DomainDefence;
     
     
-    public int Resistance;
+    public int BaseResistance;
     public int BuffResistance;
     public int DebuffResistance;
     public int DomainResistance;
@@ -175,7 +175,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryStat;
 
-        TemporaryStat = BuffStrength + DebuffStrength + Strength + DomainStrength;
+        TemporaryStat = BuffStrength + DebuffStrength + BaseStrength + DomainStrength;
 
         return TemporaryStat;
     }
@@ -184,7 +184,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryStat;
 
-        TemporaryStat = BuffMagic + DebuffMagic + Magic + DomainMagic;
+        TemporaryStat = BuffMagic + DebuffMagic + BaseMagic + DomainMagic;
 
         return TemporaryStat;
     }
@@ -194,7 +194,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryStat;
 
-        TemporaryStat = BuffHit + DebuffHit + Hit + DomainHit;
+        TemporaryStat = BuffHit + DebuffHit + BaseHit + DomainHit;
 
         return TemporaryStat;
     }
@@ -203,7 +203,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryStat;
 
-        TemporaryStat = BuffEvasion+ DebuffEvasion + Evasion + DomainEvasion;
+        TemporaryStat = BuffEvasion+ DebuffEvasion + BaseEvasion + DomainEvasion;
 
         return TemporaryStat;
     }
@@ -213,7 +213,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryStat;
 
-        TemporaryStat = BuffDefence + DebuffDefence + Defence + DomainDefence;
+        TemporaryStat = BuffDefence + DebuffDefence + BaseDefence + DomainDefence;
 
         return TemporaryStat;
     }
@@ -222,7 +222,7 @@ public class Creatures : MonoBehaviour
     {
         int TemporaryMagic;
 
-        TemporaryMagic = BuffResistance + DebuffResistance + Resistance + DomainResistance;
+        TemporaryMagic = BuffResistance + DebuffResistance + BaseResistance + DomainResistance;
 
         return TemporaryMagic;
     }
@@ -307,7 +307,7 @@ public class Creatures : MonoBehaviour
         CurrentHealth = 0;
     
 
-        CombatManager.Instance.RemoveDeadFromList(charactertype);
+        TacticsManager.Instance.RemoveDeadFromList(charactertype);
     }
 
 

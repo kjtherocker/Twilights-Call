@@ -190,7 +190,7 @@ public class CombatInputLayer
 
     public void SkillUsed(int ASpellNodePositionX, int ASpellNodePositionY)
     {
-        CombatManager.Instance.InvokeSkill
+        TacticsManager.Instance.InvokeSkill
             (m_CreatureAttackingSkill.UseSkill(m_Grid.GetNode(ASpellNodePositionX, ASpellNodePositionY).m_CreatureOnGridPoint ,m_Creature));
     }
 

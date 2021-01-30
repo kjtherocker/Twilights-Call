@@ -333,7 +333,7 @@ public class AiController : MonoBehaviour
        //         {
        //             continue;
        //         }
-//
+       //
        //         if (neighbour.DomainOnNode.DomainUser != node.DomainOnNode.DomainUser)
        //         {
        //             Debug.Log("Clashing");

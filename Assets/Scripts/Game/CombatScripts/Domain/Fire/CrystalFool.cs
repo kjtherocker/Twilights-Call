@@ -25,7 +25,7 @@ public class CrystalFool : Domain
 
     public override void DomainEffect(ref Creatures m_CreatureOnDomain)
     {
-        m_CreatureOnDomain.DomainStrength =  m_CreatureOnDomain.Strength / 4;
+        m_CreatureOnDomain.DomainStrength =  m_CreatureOnDomain.BaseStrength / 4;
     }
     
     public override void UndoDomainEffect(ref Creatures m_CreatureOnDomain)

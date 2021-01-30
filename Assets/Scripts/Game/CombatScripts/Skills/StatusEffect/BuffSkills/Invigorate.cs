@@ -25,7 +25,7 @@ public class Invigorate : StatusEffects
 
         Length = 1;
 
-        aVictum.BuffStrength = aVictum.Strength / 4;
+        aVictum.BuffStrength = aVictum.BaseStrength / 4;
 
         ActivatedCreature = aVictum;
         

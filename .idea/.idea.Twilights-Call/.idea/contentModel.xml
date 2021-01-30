@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\kylej\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\kylej\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_Twilights-Call.1852476398.00" t="ExcludeRecursive" />
-    <e p="F:\Twilights-Call" t="IncludeRecursive">
+    <e p="C:\Users\kylej\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_Twilights-Call.1901956118.00" t="ExcludeRecursive" />
+    <e p="F:\PersonalProjects\Twilights-Call" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -51,15 +51,6 @@
                   <e p="TMPro_Properties.cginc" t="Include" />
                   <e p="TMPro_Surface.cginc" t="Include" />
                 </e>
-              </e>
-            </e>
-            <e p="ToonMetal" t="Include">
-              <e p="Script" t="Include">
-                <e p="turnaroundscript.cs" t="Include" />
-              </e>
-              <e p="Shader" t="Include">
-                <e p="ToonMetal.shader" t="Include" />
-                <e p="ToonMetalMask.shader" t="Include" />
               </e>
             </e>
             <e p="UiBuilderTest" t="Include">
@@ -167,7 +158,6 @@
                 <e p="ChantController.cs" t="Include" />
               </e>
               <e p="CombatCameraController.cs" t="Include" />
-              <e p="CombatManager.cs" t="Include" />
               <e p="Creatures.cs" t="Include" />
               <e p="Domain" t="Include">
                 <e p="Domain.cs" t="Include" />
@@ -245,6 +235,7 @@
                   <e p="StatusEffects.cs" t="Include" />
                 </e>
               </e>
+              <e p="TacticsManager.cs" t="Include" />
               <e p="Text" t="Include">
                 <e p="FloatingUiElements.cs" t="Include" />
                 <e p="FloatingUiElementsController.cs" t="Include" />

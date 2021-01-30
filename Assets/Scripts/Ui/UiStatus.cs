@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.AnimatedValues;
 
 public class UiStatus : UiTabScreen
 {
@@ -94,7 +95,7 @@ public class UiStatus : UiTabScreen
 
     private void Update()
     {
-        UpdateHealthbar();
+       // UpdateHealthbar();
 
         if (Creature != null)
         {
@@ -117,12 +118,12 @@ public class UiStatus : UiTabScreen
 
         if (Input.GetKeyDown("q"))
         {
-              
-            for (int i = 0; i < 3; i++)
-            {
-                // m_DomainPointWrappers[i].SetDomainHighlighting(false);
-                m_DomainPointWrappers[i].SetDomainHighlighting(true);
-            }
+            SetStatusPoints(50, 10, Text_Strength);
+            // for (int i = 0; i < 3; i++)
+            // {
+            //     // m_DomainPointWrappers[i].SetDomainHighlighting(false);
+            //     m_DomainPointWrappers[i].SetDomainHighlighting(true);
+            // }
         }
 
     }
@@ -157,8 +158,29 @@ public class UiStatus : UiTabScreen
 
     }
 
-    
-    
+
+    public IEnumerator SetStatusPoints(int aValueToChangeToo,int aBaseValue, TextMeshProUGUI aTextToSet)
+    {
+        if (aTextToSet == null)
+        {
+            yield break;
+        }
+
+        if (aBaseValue == aValueToChangeToo)
+        {
+            yield break;
+        }
+
+        aBaseValue++;
+        aTextToSet.text = aBaseValue.ToString();
+
+
+        yield return new WaitForEndOfFrame();
+
+    }
+
+
+
     public void SetDomainHighlighting(int aNumberOfDomainPoints)
     {
         

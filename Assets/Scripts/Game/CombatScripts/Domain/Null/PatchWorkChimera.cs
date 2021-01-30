@@ -19,7 +19,7 @@ public class PatchWorkChimera : Domain
         DomainUser = "";
         Domaintype = DomainType.OneTime;
 
-
+        m_CreaturesToCopy = new List<Creatures>();
         Addressables.LoadAssetAsync<Material>("PatchWorkChimera").Completed += OnLoadDomainMaterial;
         
     }
@@ -31,7 +31,7 @@ public class PatchWorkChimera : Domain
             m_DomainCopy.DomainEffect(ref m_CreatureOnDomain);
         }
         
-        m_CreaturesToCopy.Add(m_CreatureOnDomain);
+        m_CreaturesToCopy.Add(m_CreatureOnDomain); 
 
 
     }
@@ -43,6 +43,8 @@ public class PatchWorkChimera : Domain
     
     public override void AdditionalDomainEffects()
     {
+
+        float test = 0;
         //Here we can push a different screen with our copies
     }
 }

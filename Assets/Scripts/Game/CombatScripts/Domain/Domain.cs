@@ -38,6 +38,7 @@ public class Domain : Skills
         m_DomainTexture = obj.Result;
     }
 
+    
     public virtual void DomainEffect(ref Creatures m_CreatureOnDomain)
     {
     }
@@ -46,6 +47,11 @@ public class Domain : Skills
     {
     }
 
+    
+    
+    /// <summary>
+    /// Method used for when there is something additional after the Domain Effect is used
+    /// </summary>
     public virtual void AdditionalDomainEffects()
     {
         
