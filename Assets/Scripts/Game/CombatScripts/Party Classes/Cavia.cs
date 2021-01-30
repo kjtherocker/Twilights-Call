@@ -9,8 +9,8 @@ public class Cavia : Ally
     // Use this for initialization
     public override void Initialize ()
     {
-        CurrentHealth = 50;
-        MaxHealth = 50;
+        MaxHealth = 200;
+        CurrentHealth = MaxHealth;
         BaseStrength = 75;
         BaseMagic = 40;
         BaseHit = 20;

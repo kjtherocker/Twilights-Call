@@ -307,7 +307,7 @@ public class Creatures : MonoBehaviour
         CurrentHealth = 0;
     
 
-        TacticsManager.Instance.RemoveDeadFromList(charactertype);
+        TacticsManager.Instance.RemoveDeadFromList(charactertype, this);
     }
 
 

@@ -40,12 +40,16 @@ public class UiMemoria : UiScreen
         m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
 
-        m_CardMovementSpeed = 3;
+        m_CardMovementSpeed = 8;
 
 
         m_ScreamAnimator = m_MemoriaScream.GetComponent<Animator>();
         m_BoardAnimator = m_Board.GetComponent<Animator>();
-        
+
+        foreach (ButtonSkillWrapper aMemoriaSkill in m_MemoriaSkills)
+        {
+            m_DefaultMemoriaCardPositions.Add(aMemoriaSkill.transform.localPosition);    
+        }
         
         //m_MenuControls.Player.SquareButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
@@ -77,34 +81,40 @@ public class UiMemoria : UiScreen
         m_DescriptionText.text = m_MemoriaSkills[m_SkillBoardPointerPosition].m_ButtonSkill.SkillDescription;
     }
 
-    IEnumerator MoveCardIntoDeck(GameObject aCard)
+    IEnumerator MoveCardIntoDeck(Transform aObject, Transform aTarget, float aTimeUntilDone )
     {
+        Vector3 NewNodePosition = new Vector3(aTarget.transform.position.x,aTarget.transform.position.y ,
+            aTarget.transform.position.z);
         
+        float timeTaken = 0.0f;
         
-        if (Vector3.Distance(aCard.transform.position, m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position) < 1.9f)
+        while (aTimeUntilDone - timeTaken > 0)
         {
-            m_MemoriaCreature.m_Skills.Add(m_MemoriaSkills[m_SkillBoardPointerPosition].m_ButtonSkill);
-            InputManager.Instance.m_MovementControls.Enable();
-            OnPop();
-            m_Memoria.DestroyMemoria();
-            yield break;
+            if (Vector3.Distance(aObject.transform.position, NewNodePosition) < 0.9f)
+            {
+                timeTaken = aTimeUntilDone;
+            }
+
+            timeTaken += Time.deltaTime;
+            aObject.position = Vector3.Lerp(aObject.position, NewNodePosition, timeTaken /aTimeUntilDone );
+            yield return null;
         }
 
-        aCard.transform.position = Vector3.Lerp(aCard.transform.position,
-            m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform.position, m_CardMovementSpeed * Time.deltaTime);
-
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.2f);
         
-        StartCoroutine(MoveCardIntoDeck(aCard));
+        m_MemoriaCreature.m_Skills.Add(m_MemoriaSkills[m_SkillBoardPointerPosition].m_ButtonSkill);
+        InputManager.Instance.m_MovementControls.Enable();
+        OnPop();
+        m_Memoria.DestroyMemoria();
+        
     }
 
     public void SetSkill()
     {
-
         
-
         m_MenuControls.Disable();
-        StartCoroutine(MoveCardIntoDeck(m_MemoriaSkills[m_SkillBoardPointerPosition].gameObject));
+        StartCoroutine(MoveCardIntoDeck(m_MemoriaSkills[m_SkillBoardPointerPosition].transform,
+            m_CreatureSkills[m_MemoriaCreature.m_Skills.Count].transform, m_CardMovementSpeed ));
         
 
     }
@@ -116,7 +126,7 @@ public class UiMemoria : UiScreen
 
         for (int i = 0; i < m_MemoriaSkills.Count; i++)
         {
-            m_MemoriaSkills[i].transform.position = m_DefaultMemoriaCardPositions[i];
+            m_MemoriaSkills[i].transform.localPosition = m_DefaultMemoriaCardPositions[i];
         }
     }
 
@@ -127,7 +137,7 @@ public class UiMemoria : UiScreen
 
         m_MenuControls.Enable();
         
-        m_ScreamAnimator.SetTrigger("t_Push"); 
+      //  m_ScreamAnimator.SetTrigger("t_Push"); 
         m_BoardAnimator.SetTrigger("t_Push");
     }
 
@@ -136,16 +146,6 @@ public class UiMemoria : UiScreen
         m_MemoriaCreature = aCreature;
 
         m_Memoria = aMemoria;
-
-        
-        
-        
-        foreach (var aCardTab in m_MemoriaSkills)
-        {
-            m_DefaultMemoriaCardPositions.Add(aCardTab.gameObject.transform.position);
-            
-        }
-        
         
         for (int i = 0; i < m_MemoriaSkills.Count; i++)
         {

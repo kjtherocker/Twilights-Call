@@ -31,11 +31,6 @@ public class UiScreen : MonoBehaviour
 
     public virtual void OnPush()
     {
-        if (m_MenuControls == null)
-        {
-            Initialize();
-        }
-
         m_MenuControls.Enable();
         gameObject.SetActive(true);
     }

@@ -53,12 +53,23 @@ public class UiManager : Singleton<UiManager>
     // Use this for initialization
     public void Initialize()
     {
+        
+        m_UiScreens = new UiScreen[15];
+        m_UiScreens[(short) Screen.CommandBoard] = GetComponentInChildren<UiScreenCommandBoard>(true);
+        m_UiScreens[(short) Screen.SkillBoard] = GetComponentInChildren<UiSkillBoard>(true);
+        m_UiScreens[(short) Screen.ArenaMenu] = GetComponentInChildren<UiArenaList>(true);
+        m_UiScreens[(short) Screen.DomainBoard] = GetComponentInChildren<UiDomainBoard>(true);
+        m_UiScreens[(short) Screen.DomainClash] = GetComponentInChildren<UiDomainClash>(true);
+        m_UiScreens[(short) Screen.Memoria] = GetComponentInChildren<UiMemoria>(true);
+        m_UiScreens[(short) Screen.MainMenu] = GetComponentInChildren<MainMenu>(true);
+        
 
         for (int i = 0; i < m_UiScreens.Length - 1; i++)
         {
             if (m_UiScreens[i] != null)
             {
                 m_UiScreens[i].Initialize();
+                m_UiScreens[i].gameObject.SetActive(false);
             }
 
         }

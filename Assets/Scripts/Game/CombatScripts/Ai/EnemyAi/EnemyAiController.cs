@@ -7,6 +7,7 @@ public class EnemyAiController : AiController
 {
     // Start is called before the first frame update
 
+    private Creatures m_EnemyCreature;
     public AiController m_Target;
     public bool m_AiFinished;
     public bool m_EndMovement;
@@ -28,7 +29,7 @@ public class EnemyAiController : AiController
             m_AiModel = transform.GetChild(0);
         }
 
-  
+        m_EnemyCreature = GetComponent<Creatures>();
         
         if (m_CreaturesAnimator == null)
         {
@@ -126,7 +127,7 @@ public class EnemyAiController : AiController
 
         Node_ObjectIsOn.m_IsGoal = false;
         Node_ObjectIsOn.m_IsWalkable = false;
-        Node_ObjectIsOn.SetCreatureOnTopOfNode(m_Creature);
+        Node_ObjectIsOn.SetCreatureOnTopOfNode(m_EnemyCreature);
         Node_ObjectIsOn.m_IsCovered = true;
 
          m_Grid.RemoveWalkableArea();
@@ -194,7 +195,7 @@ public class EnemyAiController : AiController
     public void EnemyAttack()
     {
         m_NodeInWalkableRange =
-            GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_Creature.m_Attack.m_SkillRange);
+            GetAvailableEnemysInRange(m_Grid.m_GridPathList, Node_ObjectIsOn, m_EnemyCreature.m_Attack.m_SkillRange);
         
 
         List<Creatures> m_AllysInRange = new List<Creatures>();
@@ -210,14 +211,13 @@ public class EnemyAiController : AiController
         {
             Creatures CharacterInRange = m_Behaviour.AllyToAttack(m_AllysInRange);
 
-            Skills m_SkillToUse = m_Creature.m_Attack;
+            Skills m_SkillToUse = m_EnemyCreature.m_Attack;
 
-            StartCoroutine(CharacterInRange.DecrementHealth
-                (m_SkillToUse.m_Damage, m_SkillToUse.m_ElementalType, 2.0f, 2.0f, 2.0f));
+            StartCoroutine(m_SkillToUse.UseSkill(CharacterInRange,m_EnemyCreature ));
         }
         else
         {
-            Debug.Log(m_Creature.Name + " waited");
+            Debug.Log(m_EnemyCreature.Name + " waited");
         }
 
         TacticsManager.instance.EnemyMovement();
@@ -226,7 +226,7 @@ public class EnemyAiController : AiController
 
     public bool CheckIfAllyIsOnNode(CombatNode aNode)
     {
-        if (aNode.m_CreatureOnGridPoint != null && m_Creature != aNode.m_CreatureOnGridPoint)
+        if (aNode.m_CreatureOnGridPoint != null && m_EnemyCreature != aNode.m_CreatureOnGridPoint)
         {
             if (aNode.m_CreatureOnGridPoint.charactertype == Creatures.Charactertype.Ally)
             {

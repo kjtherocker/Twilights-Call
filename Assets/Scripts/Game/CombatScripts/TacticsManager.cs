@@ -88,13 +88,13 @@ public class TacticsManager : Singleton<TacticsManager>
          }
          
          
-        AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(3, 2), TurnOrderAlly);
+        AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(9, 3), TurnOrderAlly);
         
-        AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(3, 6), TurnOrderAlly);
+        AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(9, 4), TurnOrderAlly);
         
-        AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(17, 16), TurnOrderAlly);
+        AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(11, 3), TurnOrderAlly);
                                                                             
-        AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(12, 5), TurnOrderAlly);
+        AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(11, 4), TurnOrderAlly);
          
         m_Gridformation.InitializeEnemys();
         CombatHasStarted = true;
@@ -316,15 +316,25 @@ public class TacticsManager : Singleton<TacticsManager>
         ScreenTemp.SetClash(CreatureA, CreaturesB);
     }
 
-    public void RemoveDeadFromList(Creatures.Charactertype aCharactertype)
+    public void RemoveDeadFromList(Creatures.Charactertype aCharactertype, Creatures aCreature)
     {
         if (aCharactertype == Creatures.Charactertype.Ally)
         { 
             for (int i = TurnOrderAlly.Count - 1; i >= 0; i--)
             {
-                if (TurnOrderAlly[i] == null)
+                if (TurnOrderAlly[i] == aCreature)
                 {    
                     TurnOrderAlly.RemoveAt(i);
+                }
+            }
+        }
+        if (aCharactertype == Creatures.Charactertype.Enemy)
+        { 
+            for (int i = TurnOrderEnemy.Count - 1; i >= 0; i--)
+            {
+                if (TurnOrderEnemy[i] == aCreature)
+                {    
+                    TurnOrderEnemy.RemoveAt(i);
                 }
             }
         }
