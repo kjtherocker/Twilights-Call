@@ -36,6 +36,10 @@ public class Pathfinder : IPathfinding
                 }
             }
         }
+        
+        
+        
+        //Setting the destination
         Dictionary<CombatNode, List<CombatNode>> paths = new Dictionary<CombatNode, List<CombatNode>>();
         foreach (CombatNode destination in cameFrom.Keys)
         {

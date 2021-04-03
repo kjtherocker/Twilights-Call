@@ -72,7 +72,7 @@ public class EnemyAiController : AiController
         m_MovementHasStarted = true; 
         
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
-        GameManager.Instance.mMCombatCameraController.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
+        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
         Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
@@ -92,7 +92,7 @@ public class EnemyAiController : AiController
 
                 m_Position = Node_MovingTo.m_PositionInGrid;
 
-                GameManager.Instance.mMCombatCameraController.m_CameraPositionInGrid = m_Position;
+                GameManager.Instance.mMTacticsCameraController.m_CameraPositionInGrid = m_Position;
 
 
                 m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
@@ -107,7 +107,7 @@ public class EnemyAiController : AiController
         }
         
         //Camera no longer following the player;
-        GameManager.Instance.mMCombatCameraController.m_cameraState = CombatCameraController.CameraState.Normal;
+        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.Normal;
 
         //Setting the Walk Animation
         m_CreaturesAnimator.SetBool("b_IsWalking", false);
@@ -213,7 +213,20 @@ public class EnemyAiController : AiController
 
             Skills m_SkillToUse = m_EnemyCreature.m_Attack;
 
+            
             StartCoroutine(m_SkillToUse.UseSkill(CharacterInRange,m_EnemyCreature ));
+            
+          //  List<Creatures> CharacterInRange= new List<Creatures>(); 
+//
+          //  CharacterInRange.Add(m_Behaviour.AllyToAttack(m_AllysInRange));
+          //  
+          //  Skills m_SkillToUse = m_EnemyCreature.m_Attack;
+//
+//
+          //  
+          //  
+          //  StartCoroutine(
+          //      TacticsManager.instance.ActivateSkill(m_SkillToUse.UseSkill(CharacterInRange[0], m_EnemyCreature),CharacterInRange ));
         }
         else
         {

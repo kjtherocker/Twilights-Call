@@ -59,7 +59,7 @@ public class GridFormations : MonoBehaviour
             {
 
 
-                GameObject tempCombatnode = Instantiate(m_PrefabNode); //PrefabUtility.InstantiatePrefab(m_PrefabNode) as GameObject;
+                 GameObject tempCombatnode = PrefabUtility.InstantiatePrefab(m_PrefabNode) as GameObject;
 
                 tempCombatnode.gameObject.transform.parent = Node.transform;
                 

@@ -528,26 +528,45 @@ public class CombatNode : Cell
         if (aAreaType == CombatNodeAreaType.Walkable)
         {
            // m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_WalkableTile;
-            m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
-            m_IsWalkable = true;
+           m_IsWalkable = true;
         }
         else if (aAreaType == CombatNodeAreaType.Devourable)
         {
            // m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DevourTile;
-            m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
-            m_IsWalkable = true;
+           m_IsWalkable = true;
         }
         else if (aAreaType == CombatNodeAreaType.Domainable)
         {
             //m_WalkablePlane.GetComponent<Renderer>().material = m_Grid.m_DomainTile;
-            m_WalkablePlane.GetComponent<Animator>().SetBool("b_TileGrow", true);
             m_IsWalkable = true;
         }
 
+        StartCoroutine(DirectMovement(0.25f));
         m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(true);
 
         
     }
+   
+   public  IEnumerator DirectMovement( float aTimeUntilDone)
+   {
+       
+       Vector3 originalScale = new Vector3(0.05f, 0.05f, 0.05f);
+       Vector3 destinationScale = new Vector3(0.199f, 0.199f, 0.199f);
+         
+       float currentTime = 0.0f;
+
+       m_WalkablePlane.transform.localScale = originalScale;
+       while (currentTime <= aTimeUntilDone)
+       {
+           m_WalkablePlane.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / aTimeUntilDone);
+           currentTime += Time.deltaTime;
+           yield return null;
+       }
+       
+       m_WalkablePlane.transform.localScale = destinationScale;
+       yield return 0;
+   }
+
 
     public void RemoveWalkableArea(CombatNodeAreaType aAreaType)
     {

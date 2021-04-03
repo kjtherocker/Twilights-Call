@@ -135,11 +135,11 @@ public class UiDomainBoard : UiScreen
         Debug.Log("Activated SelectedCard");
         if (m_SelectedDomainWrapper.m_DomainWrapperType == DomainWrapper.DomainWrapperType.Domain)
         {
-            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.ActivatedDomain();
+            GameManager.Instance.MTacticsCameraController.m_CombatInputLayer.ActivatedDomain();
         }
         else if (m_SelectedDomainWrapper.m_DomainWrapperType == DomainWrapper.DomainWrapperType.Devour)
         {
-            GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.ActivatedDevour();
+            GameManager.Instance.MTacticsCameraController.m_CombatInputLayer.ActivatedDevour();
         }
         
 

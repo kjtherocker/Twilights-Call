@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class InitializeCombatArena : MonoBehaviour
 {
     public GridFormations m_CurrentLevel;
-    public CombatCameraController m_BattleCamera;
+    public TacticsCameraController m_BattleCamera;
     public TextAsset TextAsset;
     public bool PreloadScene = false;
     public void Start()

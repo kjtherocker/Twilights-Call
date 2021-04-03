@@ -29,17 +29,17 @@ public class CombatInputLayer
 
 
     private CameraUiLayer m_CameraUiLayer;
-    private CombatCameraController m_CombatCameraController;
+    private TacticsCameraController _mTacticsCameraController;
     
     private bool m_CommandBoardExists;
     private bool m_MovementHasBeenCalculated;
 
     public CombatInputState m_CombatInputState;
     
-    public void Initialize(CameraUiLayer aCameraUiLayer, CombatCameraController aCombatCameraController)
+    public void Initialize(CameraUiLayer aCameraUiLayer, TacticsCameraController aTacticsCameraController)
     {
         m_CameraUiLayer = aCameraUiLayer;
-        m_CombatCameraController = aCombatCameraController;
+        _mTacticsCameraController = aTacticsCameraController;
 
         m_Grid = Grid.Instance;
 
@@ -178,7 +178,7 @@ public class CombatInputLayer
             return;
         }
 
-        m_CombatCameraController.m_ToFollowCreature = m_Creature;
+        _mTacticsCameraController.m_ToFollowCreature = m_Creature;
         m_Creature.m_CreatureAi.SetGoalPosition(m_NodeTheCameraIsOn.m_PositionInGrid);
         m_Grid.GetNode(m_Creature.m_CreatureAi.m_InitalPosition.x, m_Creature.m_CreatureAi.m_InitalPosition.y).m_CreatureOnGridPoint = null;
         m_CommandBoardExists = false;
@@ -209,7 +209,7 @@ public class CombatInputLayer
                     m_NodeTheCameraIsOn.m_PositionInGrid.x + m_SpellAttackFormations[i].x,
                     m_NodeTheCameraIsOn.m_PositionInGrid.y + m_SpellAttackFormations[i].y);
 
-                if (!m_CombatCameraController.CheckingGridDimensionBoundrys(TempSpellNodePosition))
+                if (!_mTacticsCameraController.CheckingGridDimensionBoundrys(TempSpellNodePosition))
                 {
                     continue;
                 }
@@ -312,7 +312,7 @@ public class CombatInputLayer
             Vector2Int TempSpellPosition = new Vector2Int(m_NodeTheCameraIsOn.m_PositionInGrid.x + m_SpellAttackFormations[i].x,
                 m_NodeTheCameraIsOn.m_PositionInGrid.y + m_SpellAttackFormations[i].y);
 
-            if (m_CombatCameraController.CheckingGridDimensionBoundrys(TempSpellPosition))
+            if (_mTacticsCameraController.CheckingGridDimensionBoundrys(TempSpellPosition))
             {
                 m_Grid.SetAttackingTileInGrid(new Vector2Int(m_NodeTheCameraIsOn.m_PositionInGrid.x + m_SpellAttackFormations[i].x,
                     m_NodeTheCameraIsOn.m_PositionInGrid.y + m_SpellAttackFormations[i].y));

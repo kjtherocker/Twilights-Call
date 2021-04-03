@@ -68,7 +68,7 @@ public class UiSkillBoard : UiScreen
     public void SetSkill()
     {
 
-        GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
+        GameManager.Instance.MTacticsCameraController.m_CombatInputLayer.SetAttackPhase(m_SkillBoardCreature.m_Skills[m_SkillBoardPointerPosition]);
  
         InputManager.Instance.m_MovementControls.Enable();
         OnPop();

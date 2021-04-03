@@ -157,7 +157,6 @@
               <e p="Chant" t="Include">
                 <e p="ChantController.cs" t="Include" />
               </e>
-              <e p="CombatCameraController.cs" t="Include" />
               <e p="Creatures.cs" t="Include" />
               <e p="Domain" t="Include">
                 <e p="Domain.cs" t="Include" />
@@ -235,6 +234,7 @@
                   <e p="StatusEffects.cs" t="Include" />
                 </e>
               </e>
+              <e p="TacticsCameraController.cs" t="Include" />
               <e p="TacticsManager.cs" t="Include" />
               <e p="Text" t="Include">
                 <e p="FloatingUiElements.cs" t="Include" />

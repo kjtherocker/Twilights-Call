@@ -359,8 +359,17 @@ public class TacticsManager : Singleton<TacticsManager>
 
     }
 
+    public void ActivateSkill(IEnumerator aSkill,List<Creatures> aCreatures)
+    {
+        
+        
+    }
+
     public void EnemyMovement()
     {
+
+       
+
 
         if (m_EnemyAiCurrentlyInList > TurnOrderEnemy.Count - 1)
         {

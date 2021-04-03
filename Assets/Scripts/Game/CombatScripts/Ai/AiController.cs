@@ -247,7 +247,7 @@ public class AiController : MonoBehaviour
 
             i++;
             
-            GameManager.Instance.mMCombatCameraController.m_CameraPositionInGrid = node.m_PositionInGrid;
+            GameManager.Instance.mMTacticsCameraController.m_CameraPositionInGrid = node.m_PositionInGrid;
             node.DomainRevert();
             m_NodeInDomainRange.Remove(node);
 
@@ -377,7 +377,7 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
-        GameManager.Instance.mMCombatCameraController.m_cameraState = CombatCameraController.CameraState.PlayerMovement;
+        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
         Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
@@ -392,7 +392,7 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
 
                     m_Position = Node_MovingTo.m_PositionInGrid;
 
-                    GameManager.Instance.mMCombatCameraController.m_CameraPositionInGrid = m_Position;
+                    GameManager.Instance.mMTacticsCameraController.m_CameraPositionInGrid = m_Position;
 
                     m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
@@ -406,7 +406,7 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
 
         
         //Camera no longer following the player;
-        GameManager.Instance.mMCombatCameraController.m_cameraState = CombatCameraController.CameraState.Normal;
+        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.Normal;
 
         //Setting the Walk Animation
         m_CreaturesAnimator.SetBool("b_IsWalking", false);

@@ -59,7 +59,7 @@ public class UiScreenCommandBoard : UiScreen
     {
         if (m_CommandboardCreature != null)
         {
-            Vector2 screenPosition = GameManager.Instance.m_CombatCameraController.GetComponent<Camera>()
+            Vector2 screenPosition = GameManager.Instance.MTacticsCameraController.GetComponent<Camera>()
                 .WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
             m_CommandObjects.transform.position = screenPosition;
         }
@@ -68,7 +68,7 @@ public class UiScreenCommandBoard : UiScreen
     public void SetCreatureReference(Creatures aCreature)
     {
         m_CommandboardCreature = aCreature;
-        Vector2 screenPosition = GameManager.Instance.m_CombatCameraController.GetComponent<Camera>().WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
+        Vector2 screenPosition = GameManager.Instance.MTacticsCameraController.GetComponent<Camera>().WorldToScreenPoint(m_CommandboardCreature.m_CreatureAi.transform.position + Vector3.up);
         m_CommandObjects.transform.position = screenPosition;
     }
 
@@ -79,7 +79,7 @@ public class UiScreenCommandBoard : UiScreen
             return;
         }
         InputManager.Instance.m_MovementControls.Enable();
-        GameManager.Instance.m_CombatCameraController.m_CombatInputLayer.m_CombatInputState =
+        GameManager.Instance.MTacticsCameraController.m_CombatInputLayer.m_CombatInputState =
             CombatInputLayer.CombatInputState.Walk;
         
      //   m_CommandboardCreature.m_CreatureAi.FindAllPaths();
@@ -138,7 +138,7 @@ public class UiScreenCommandBoard : UiScreen
     {
         base.ReturnToLastScreen();
 
-        GameManager.Instance.m_CombatCameraController.SetCameraState(CombatCameraController.CameraState.Normal);
+        GameManager.Instance.MTacticsCameraController.SetCameraState(TacticsCameraController.CameraState.Normal);
         InputManager.Instance.m_MovementControls.Enable();
     }
 }

@@ -17,7 +17,7 @@ public class GrassController : MonoBehaviour
     public ParticleSystem m_DarkParticlesReference;
     public GameObject ForestEnviorment;
     public GameObject DomainEnviorment;
-    public CombatCameraController m_CameraReference;
+    public TacticsCameraController m_CameraReference;
     public Creatures m_RedeyesReference;
 
     bool DomainHasSpawned;

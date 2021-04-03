@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class CameraUiLayer : MonoBehaviour
 {
     
-    public CombatCameraController.CameraState m_cameraState;
+    public TacticsCameraController.CameraState m_cameraState;
     private List<Vector2Int> m_SpellAttackFormations;
     
     private Grid m_Grid;
