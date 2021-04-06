@@ -55,7 +55,7 @@ public class AiController : MonoBehaviour
     {
         //m_Goal = new Vector2Int(9, 2);
         //m_Position = new Vector2Int(4, 4);
-        CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
         m_Jump = 2;
         m_HasMovedForThisTurn = false;
         m_MovementHasStarted = false;
@@ -247,7 +247,7 @@ public class AiController : MonoBehaviour
 
             i++;
             
-            GameManager.Instance.mMTacticsCameraController.m_CameraPositionInGrid = node.m_PositionInGrid;
+            GameManager.Instance.m_TacticsCameraController.m_CameraPositionInGrid = node.m_PositionInGrid;
             node.DomainRevert();
             m_NodeInDomainRange.Remove(node);
 
@@ -377,7 +377,7 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
     {
         m_MovementHasStarted = true;
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
-        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.PlayerMovement;
+        GameManager.Instance.m_TacticsCameraController.m_cameraState = TacticsCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
         Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
@@ -392,11 +392,11 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
 
                     m_Position = Node_MovingTo.m_PositionInGrid;
 
-                    GameManager.Instance.mMTacticsCameraController.m_CameraPositionInGrid = m_Position;
+                    GameManager.Instance.m_TacticsCameraController.m_CameraPositionInGrid = m_Position;
 
                     m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
-                    CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
+                    CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
                     i++;
                     yield return new WaitUntil(() => Node_MovingTo == Node_ObjectIsOn);
                 }
@@ -406,7 +406,7 @@ public virtual IEnumerator GetToGoal(List<CombatNode> aListOfNodes)
 
         
         //Camera no longer following the player;
-        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.Normal;
+        GameManager.Instance.m_TacticsCameraController.m_cameraState = TacticsCameraController.CameraState.Normal;
 
         //Setting the Walk Animation
         m_CreaturesAnimator.SetBool("b_IsWalking", false);
@@ -480,7 +480,7 @@ public virtual Dictionary<CombatNode, List<CombatNode>> cachePaths(List<CombatNo
 
             m_Position = m_InitalPosition;
 
-            CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Grid.instance.GetNode(m_Position).m_NodeHeightOffset, 0);
+            CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid + Grid.instance.GetNode(m_Position).m_NodeHeightOffset, 0);
 
             Grid.instance.GetNode(m_Position).m_CreatureOnGridPoint = m_Creature;
             gameObject.transform.position = Grid.instance.GetNode(m_Position).transform.position + CreatureOffset;

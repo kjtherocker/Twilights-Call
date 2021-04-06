@@ -121,11 +121,11 @@ public class DomainWrapper : MonoBehaviour
 
         if (m_DomainWrapperType == DomainWrapperType.Domain)
         {
-            GameManager.Instance.mMTacticsCameraController.m_CombatInputLayer.SetDomainPhase(aPower);
+            GameManager.Instance.m_TacticsCameraController.m_CombatInputLayer.SetDomainPhase(aPower);
         }
         else if (m_DomainWrapperType == DomainWrapperType.Devour)
         {
-            GameManager.Instance.mMTacticsCameraController.m_CombatInputLayer.SetDevourPhase(aPower);
+            GameManager.Instance.m_TacticsCameraController.m_CombatInputLayer.SetDevourPhase(aPower);
         }
 
         m_CardRange.text = "Lv. " + aPower;

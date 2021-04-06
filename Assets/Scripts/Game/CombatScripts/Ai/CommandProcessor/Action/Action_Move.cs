@@ -17,7 +17,7 @@ public class Action_Move : Action
         m_ActionCommandNode = aActionCommandNode;
         m_PreviousActionCommandNode = m_ActionCreature.m_CreatureAi.Node_ObjectIsOn; 
         
-        CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
         
         Debug.Log(m_ActionCreature.Name + " Moved into " + m_ActionCommandNode.m_PositionInGrid);
     }
@@ -35,7 +35,7 @@ public class Action_Move : Action
          //m_ActionCommandNode.m_NodeIsCovered = true;
          
         CreatureOffset = 
-            new Vector3(0, Constants.Constants.m_HeightOffTheGrid + Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).m_NodeHeightOffset, 0);
+            new Vector3(0, Constants.Helpers.m_HeightOffTheGrid + Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).m_NodeHeightOffset, 0);
         
         Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).m_CreatureOnGridPoint = m_ActionCreature;
         m_ActionCreature.m_CreatureAi.transform.position = Grid.instance.GetNode(m_ActionCommandNode.m_PositionInGrid).transform.position + CreatureOffset;

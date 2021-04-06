@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EnemysInGrid: []
   m_RelicsInGrid: []
   m_StartDialogueTrigger: {fileID: 0}
+  m_WallMaterial: {fileID: 0}
+  m_TopMaterial: {fileID: 0}
 --- !u!1 &6932941092595413544
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7982795680636747467
 Transform:
   m_ObjectHideFlags: 0
@@ -210,6 +212,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -234,6 +237,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7982795680636747461
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -244,9 +248,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8827504366171103213
 GameObject:

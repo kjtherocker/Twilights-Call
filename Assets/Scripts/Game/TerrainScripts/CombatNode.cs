@@ -294,7 +294,7 @@ public class CombatNode : Cell
         m_PropOnNodeTemp = m_PropOnNode;
         m_Prop = Instantiate<GameObject>(LevelCreator.Instance.m_PropList.ReturnPropData(m_PropOnNode));
         m_Prop.transform.parent = transform;
-        Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        Vector3 CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
         m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
 
         Creatures CreatureTemp = m_Prop.GetComponent<Creatures>();
@@ -343,7 +343,7 @@ public class CombatNode : Cell
 
         m_EnemyOnNodeTemp = m_EnemyOnNode;
         
-        Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        Vector3 CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
         
 
         GameObject Enemy = PrefabUtility.
@@ -378,7 +378,7 @@ public class CombatNode : Cell
         {
             m_NodeReplacementTemp = m_NodeReplacementOnNode;
             m_NodeReplacement = Instantiate(GameManager.Instance.m_PropList.NodeReplacementData(m_NodeReplacementOnNode), this.gameObject.transform);
-            Vector3 CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+            Vector3 CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
             m_NodeReplacement.gameObject.transform.position =  gameObject.transform.position + m_NodeReplacement.m_NodeSpawnOffSet + CreatureOffset;
             m_NodeHeightOffset = m_NodeReplacement.m_NodeHeightOffset;
             m_CurrentWalkablePlaneBeingUsed = m_NodeReplacement.m_Walkable;
@@ -421,7 +421,7 @@ public class CombatNode : Cell
         m_MemoriaOnTop = TacticsManager.Instance.ReturnMemoria();
         
         m_MemoriaOnTop.transform.position =
-            new Vector3( transform.position.x , transform.position.y  + Constants.Constants.m_HeightOffTheGrid , transform.position.z);
+            new Vector3( transform.position.x , transform.position.y  + Constants.Helpers.m_HeightOffTheGrid , transform.position.z);
 
         m_MemoriaOnTop.AttachSkills(a_Skills);
 
@@ -610,7 +610,7 @@ public class CombatNode : Cell
         
         Vector3 NodeTransform = gameObject.transform.position;
 #if UNITY_EDITOR
-        LevelCreator.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Constants.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
+        LevelCreator.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Helpers.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
 #endif
     }
 }

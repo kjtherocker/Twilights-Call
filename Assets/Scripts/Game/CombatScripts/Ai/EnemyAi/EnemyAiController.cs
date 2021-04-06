@@ -72,7 +72,7 @@ public class EnemyAiController : AiController
         m_MovementHasStarted = true; 
         
         m_CreaturesAnimator.SetBool("b_IsWalking", true);
-        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.PlayerMovement;
+        GameManager.Instance.m_TacticsCameraController.m_cameraState = TacticsCameraController.CameraState.PlayerMovement;
         Node_ObjectIsOn.m_CreatureOnGridPoint = null;
         Node_ObjectIsOn.m_IsCovered = false;
         for (int i = 0; i < aListOfNodes.Count;)
@@ -92,13 +92,13 @@ public class EnemyAiController : AiController
 
                 m_Position = Node_MovingTo.m_PositionInGrid;
 
-                GameManager.Instance.mMTacticsCameraController.m_CameraPositionInGrid = m_Position;
+                GameManager.Instance.m_TacticsCameraController.m_CameraPositionInGrid = m_Position;
 
 
                 m_AiModel.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
                 CreatureOffset = new Vector3(0,
-                    Constants.Constants.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
+                    Constants.Helpers.m_HeightOffTheGrid + Node_MovingTo.m_NodeHeightOffset, 0);
                 i++;
                 yield return new WaitUntil(() => Node_MovingTo == Node_ObjectIsOn);
             }
@@ -107,7 +107,7 @@ public class EnemyAiController : AiController
         }
         
         //Camera no longer following the player;
-        GameManager.Instance.mMTacticsCameraController.m_cameraState = TacticsCameraController.CameraState.Normal;
+        GameManager.Instance.m_TacticsCameraController.m_cameraState = TacticsCameraController.CameraState.Normal;
 
         //Setting the Walk Animation
         m_CreaturesAnimator.SetBool("b_IsWalking", false);

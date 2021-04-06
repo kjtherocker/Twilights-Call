@@ -62,7 +62,7 @@ public class TacticsManager : Singleton<TacticsManager>
 
     void Start()
     {
-        CreatureOffset = new Vector3(0, Constants.Constants.m_HeightOffTheGrid, 0);
+        CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
         
         PartyManager = PartyManager.Instance;
     }

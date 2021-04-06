@@ -27,13 +27,9 @@ public class TacticsCameraController : MonoBehaviour
     public enum CameraRotations
     {
         Up,
-        UpRight,
         Right,
-        RightDown,
         Down,
-        DownLeft,
         Left,
-        LeftUp
     }
     
     public enum CameraMovementDirections
@@ -60,23 +56,41 @@ public class TacticsCameraController : MonoBehaviour
 
     public CameraRotations m_CurrentRotation;
     public Dictionary<CameraRotations, CameraStates> m_CameraRotations;
+
+    private float m_CameraSpeed;
+    
     
     public void InitalizeCamera()
     {
-        GameManager.Instance.mMTacticsCameraController = this;
-        
-        InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
+        //Initializing Variables
         m_CameraPositionInGrid = new Vector2Int(5, 5);
-        GameManager.Instance.mMTacticsCameraController = this;
-
+        m_CameraSpeed = Constants.Helpers.m_CameraSpeed;
+        
+        
+        //Setting input
+        InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => DPadGridControls(movement.ReadValue<Vector2>());
+        
+        //Setting Depedencys 
+        GameManager.Instance.m_TacticsCameraController = this;
         m_Grid = Grid.Instance;
 
         
+        
         //Setting The Cameras Rotation
+        Vector3 cameraDistance = Constants.Helpers.m_CameraDistance;
+        Vector3 cameraAngle = Constants.Helpers.m_CameraAngle;
+        
         m_CurrentRotation = CameraRotations.Up;
         m_CameraRotations = new Dictionary<CameraRotations, CameraStates>();
-        AddToCameraRotations(CameraRotations.Up, new Vector3(18.6f, 26.4f, 21.6f), new Vector3(18.6f, 26.4f, 21.6f));
+
+       
         
+        AddToCameraRotations(CameraRotations.Down, new Vector3(cameraDistance.x, cameraDistance.y, cameraDistance.z), new Vector3(cameraAngle.x, -cameraAngle.y, cameraAngle.z));
+        AddToCameraRotations(CameraRotations.Left, new Vector3(-cameraDistance.x, cameraDistance.y, cameraDistance.z), new Vector3(cameraAngle.x, cameraAngle.y, cameraAngle.z));
+        AddToCameraRotations(CameraRotations.Up, new Vector3(-cameraDistance.x, cameraDistance.y, -cameraDistance.z), new Vector3(cameraAngle.x, cameraAngle.y, -cameraAngle.z));
+        
+        
+        //Final Setup
         if (m_NodeTheCameraIsOn != null)
         {
             m_NodeTheCameraIsOn = Grid.Instance.GetNode(m_CameraPositionInGrid.x, m_CameraPositionInGrid.y);
@@ -89,6 +103,7 @@ public class TacticsCameraController : MonoBehaviour
        
         m_CameraUiLayer.Initalize(m_NodeTheCameraIsOn,m_CombatInputLayer);
         m_CombatInputLayer.Initialize(m_CameraUiLayer,this);
+        
     }
 
 
@@ -117,9 +132,6 @@ public class TacticsCameraController : MonoBehaviour
 
     public void CameraMovement()
     {
-
-
-
         switch (m_cameraState)
         {
             case CameraState.Nothing:
@@ -135,7 +147,10 @@ public class TacticsCameraController : MonoBehaviour
                     transform.position = Vector3.Lerp(transform.position, new Vector3(
                         m_NodeTheCameraIsOn.transform.position.x + m_CameraRotations[m_CurrentRotation].m_CameraPostion.x,
                         m_NodeTheCameraIsOn.transform.position.y + m_CameraRotations[m_CurrentRotation].m_CameraPostion.y,
-                        m_NodeTheCameraIsOn.transform.position.z - m_CameraRotations[m_CurrentRotation].m_CameraPostion.z), Time.deltaTime * 2);
+                        m_NodeTheCameraIsOn.transform.position.z - m_CameraRotations[m_CurrentRotation].m_CameraPostion.z), Time.deltaTime * m_CameraSpeed);
+                    
+                    Quaternion targetRotation = Quaternion.Euler(m_CameraRotations[m_CurrentRotation].m_CameraRotation);
+                    transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * m_CameraSpeed);
                 }
                 //InputManager.Instance.m_MovementControls.Enable();
                 
@@ -155,7 +170,9 @@ public class TacticsCameraController : MonoBehaviour
                    transform.position = Vector3.Lerp(transform.position, new Vector3(
                            m_NodeTheCameraIsOn.gameObject.transform.position.x + m_CameraRotations[m_CurrentRotation].m_CameraPostion.x,
                            m_NodeTheCameraIsOn.gameObject.transform.position.y + m_CameraRotations[m_CurrentRotation].m_CameraPostion.y,
-                           m_NodeTheCameraIsOn.gameObject.transform.position.z - m_CameraRotations[m_CurrentRotation].m_CameraPostion.z), Time.deltaTime * 2);
+                           m_NodeTheCameraIsOn.gameObject.transform.position.z - m_CameraRotations[m_CurrentRotation].m_CameraPostion.z), Time.deltaTime * m_CameraSpeed);
+                   
+
                }
 
 
@@ -169,7 +186,9 @@ public class TacticsCameraController : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, new Vector3(
                         m_NodeTheCameraIsOn.transform.position.x + m_CameraRotations[m_CurrentRotation].m_CameraPostion.x,
                         m_NodeTheCameraIsOn.transform.position.y + m_CameraRotations[m_CurrentRotation].m_CameraPostion.y,
-                        m_NodeTheCameraIsOn.transform.position.z - m_CameraRotations[m_CurrentRotation].m_CameraPostion.z), Time.deltaTime * 2);
+                        m_NodeTheCameraIsOn.transform.position.z - m_CameraRotations[m_CurrentRotation].m_CameraPostion.z), Time.deltaTime * m_CameraSpeed);
+               
+               
 
                
 
@@ -190,12 +209,6 @@ public class TacticsCameraController : MonoBehaviour
 
                 break;
         }
-
-
-
-
-
-       
     }
 
     public void DPadGridControls(Vector2 aMovement)

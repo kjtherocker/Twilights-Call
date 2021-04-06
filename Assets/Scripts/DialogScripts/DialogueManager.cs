@@ -83,7 +83,7 @@ public class DialogueManager : Singleton<DialogueManager>
     public void StartDialogue(TextAsset aTextAsset, DialogueType aDialogueType)
     {
 
-        if (Constants.Constants.TurnDialogueOff == false)
+        if (Constants.Helpers.TurnDialogueOff == false)
         {
             gameObject.SetActive(true);
 

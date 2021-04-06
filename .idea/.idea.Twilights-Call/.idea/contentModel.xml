@@ -53,10 +53,6 @@
                 </e>
               </e>
             </e>
-            <e p="UiBuilderTest" t="Include">
-              <e p="NewUI.uss" t="Include" />
-              <e p="NewUI.uxml" t="Include" />
-            </e>
             <e p="WorldSpaceDissolve" t="Include">
               <e p="Scripts" t="Include">
                 <e p="ShaderPosition.cs" t="Include" />
@@ -290,7 +286,7 @@
             </e>
           </e>
           <e p="Global" t="Include">
-            <e p="Constants.cs" t="Include" />
+            <e p="Helpers.cs" t="Include" />
           </e>
           <e p="Input" t="Include">
             <e p="BaseInput.cs" t="Include" />
