@@ -63,8 +63,8 @@ public class TacticsCameraController : MonoBehaviour
     public void InitalizeCamera()
     {
         //Initializing Variables
-        m_CameraPositionInGrid = new Vector2Int(5, 5);
-        m_CameraSpeed = Constants.Helpers.m_CameraSpeed;
+        m_CameraPositionInGrid = new Vector2Int(9, 9);
+        m_CameraSpeed = Constants.Helpers.m_TacticsCameraSpeed;
         
         
         //Setting input
@@ -87,7 +87,7 @@ public class TacticsCameraController : MonoBehaviour
         
         AddToCameraRotations(CameraRotations.Down, new Vector3(cameraDistance.x, cameraDistance.y, cameraDistance.z), new Vector3(cameraAngle.x, -cameraAngle.y, cameraAngle.z));
         AddToCameraRotations(CameraRotations.Left, new Vector3(-cameraDistance.x, cameraDistance.y, cameraDistance.z), new Vector3(cameraAngle.x, cameraAngle.y, cameraAngle.z));
-        AddToCameraRotations(CameraRotations.Up, new Vector3(-cameraDistance.x, cameraDistance.y, -cameraDistance.z), new Vector3(cameraAngle.x, cameraAngle.y, -cameraAngle.z));
+        AddToCameraRotations(CameraRotations.Up, new Vector3(cameraDistance.x, cameraDistance.y, cameraDistance.z), new Vector3(-cameraAngle.x, cameraAngle.y, cameraAngle.z));
         
         
         //Final Setup

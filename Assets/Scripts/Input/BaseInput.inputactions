@@ -6,7 +6,7 @@
             "id": "74ededcd-31c7-4f5e-b062-44f033073eb8",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "LeftStick",
                     "type": "Button",
                     "id": "154e9f5e-e7bb-459a-b8c8-3a6bb96a160e",
                     "expectedControlType": "",
@@ -44,6 +44,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "RightStick",
+                    "type": "Button",
+                    "id": "6088c2d6-98c0-4535-a37c-8b88993ed8e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -54,7 +62,7 @@
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -65,7 +73,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -76,7 +84,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,7 +95,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -98,7 +106,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -109,7 +117,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -120,7 +128,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -131,7 +139,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -142,7 +150,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -153,7 +161,7 @@
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -164,7 +172,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -175,7 +183,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -186,7 +194,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -197,7 +205,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Movement",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -288,6 +296,61 @@
                     "action": "CircleButton",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "wasd",
+                    "id": "41ee229f-e283-4033-8b37-d6445770330c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "RightStick",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1eff696c-6b0c-4bb5-a627-f2da8e0b75a4",
+                    "path": "<Keyboard>/numpad8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "RightStick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "55240c98-8736-436e-8cd7-82d4a96ddba6",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "RightStick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "6f9c9452-6bfa-45dd-a9cb-620355422c10",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "RightStick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "ea4f25bf-76f0-44d6-921f-218b1a076dce",
+                    "path": "<Keyboard>/numpad6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "RightStick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

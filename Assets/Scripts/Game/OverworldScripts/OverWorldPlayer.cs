@@ -27,13 +27,14 @@ public class OverWorldPlayer : MonoBehaviour {
 
     public Vector2 MoveDirection;
     
-    void Start ()
+    public void SetupOverWorldPlayer()
     {
 
         m_PlayerAnimatior = GetComponentInChildren<Animator>();
         
-       InputManager.Instance.m_BaseMovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
-       InputManager.Instance.m_BaseMovementControls.Player.Movement.canceled += movement => PlayerMovement(movement.ReadValue<Vector2>());
+       InputManager.Instance.m_BaseMovementControls.Player.LeftStick.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
+       InputManager.Instance.m_BaseMovementControls.Player.LeftStick.canceled += movement => PlayerMovement(movement.ReadValue<Vector2>());
+       InputManager.Instance.m_BaseMovementControls.Enable();
    //    InputManager.Instance.m_MovementControls.Player.Movement.performed += movement => PlayerMovement(movement.ReadValue<Vector2>());
 
     }

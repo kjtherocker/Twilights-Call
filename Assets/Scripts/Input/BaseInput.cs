@@ -19,7 +19,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
             ""id"": ""74ededcd-31c7-4f5e-b062-44f033073eb8"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
+                    ""name"": ""LeftStick"",
                     ""type"": ""Button"",
                     ""id"": ""154e9f5e-e7bb-459a-b8c8-3a6bb96a160e"",
                     ""expectedControlType"": """",
@@ -57,6 +57,14 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""RightStick"",
+                    ""type"": ""Button"",
+                    ""id"": ""6088c2d6-98c0-4535-a37c-8b88993ed8e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -67,7 +75,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -78,7 +86,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -89,7 +97,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -100,7 +108,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -111,7 +119,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -122,7 +130,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -133,7 +141,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -144,7 +152,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -155,7 +163,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -166,7 +174,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -177,7 +185,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -188,7 +196,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -199,7 +207,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -210,7 +218,7 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -301,6 +309,61 @@ public class @BaseInput : IInputActionCollection, IDisposable
                     ""action"": ""CircleButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""wasd"",
+                    ""id"": ""41ee229f-e283-4033-8b37-d6445770330c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1eff696c-6b0c-4bb5-a627-f2da8e0b75a4"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""55240c98-8736-436e-8cd7-82d4a96ddba6"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6f9c9452-6bfa-45dd-a9cb-620355422c10"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ea4f25bf-76f0-44d6-921f-218b1a076dce"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -337,11 +400,12 @@ public class @BaseInput : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_LeftStick = m_Player.FindAction("LeftStick", throwIfNotFound: true);
         m_Player_XButton = m_Player.FindAction("XButton", throwIfNotFound: true);
         m_Player_SquareButton = m_Player.FindAction("SquareButton", throwIfNotFound: true);
         m_Player_TriangleButton = m_Player.FindAction("TriangleButton", throwIfNotFound: true);
         m_Player_CircleButton = m_Player.FindAction("CircleButton", throwIfNotFound: true);
+        m_Player_RightStick = m_Player.FindAction("RightStick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -391,20 +455,22 @@ public class @BaseInput : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_LeftStick;
     private readonly InputAction m_Player_XButton;
     private readonly InputAction m_Player_SquareButton;
     private readonly InputAction m_Player_TriangleButton;
     private readonly InputAction m_Player_CircleButton;
+    private readonly InputAction m_Player_RightStick;
     public struct PlayerActions
     {
         private @BaseInput m_Wrapper;
         public PlayerActions(@BaseInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @LeftStick => m_Wrapper.m_Player_LeftStick;
         public InputAction @XButton => m_Wrapper.m_Player_XButton;
         public InputAction @SquareButton => m_Wrapper.m_Player_SquareButton;
         public InputAction @TriangleButton => m_Wrapper.m_Player_TriangleButton;
         public InputAction @CircleButton => m_Wrapper.m_Player_CircleButton;
+        public InputAction @RightStick => m_Wrapper.m_Player_RightStick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,9 +480,9 @@ public class @BaseInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @LeftStick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftStick;
+                @LeftStick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftStick;
+                @LeftStick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftStick;
                 @XButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
                 @XButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
                 @XButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnXButton;
@@ -429,13 +495,16 @@ public class @BaseInput : IInputActionCollection, IDisposable
                 @CircleButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
                 @CircleButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
                 @CircleButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCircleButton;
+                @RightStick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightStick;
+                @RightStick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightStick;
+                @RightStick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightStick;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
+                @LeftStick.started += instance.OnLeftStick;
+                @LeftStick.performed += instance.OnLeftStick;
+                @LeftStick.canceled += instance.OnLeftStick;
                 @XButton.started += instance.OnXButton;
                 @XButton.performed += instance.OnXButton;
                 @XButton.canceled += instance.OnXButton;
@@ -448,6 +517,9 @@ public class @BaseInput : IInputActionCollection, IDisposable
                 @CircleButton.started += instance.OnCircleButton;
                 @CircleButton.performed += instance.OnCircleButton;
                 @CircleButton.canceled += instance.OnCircleButton;
+                @RightStick.started += instance.OnRightStick;
+                @RightStick.performed += instance.OnRightStick;
+                @RightStick.canceled += instance.OnRightStick;
             }
         }
     }
@@ -472,10 +544,11 @@ public class @BaseInput : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnMovement(InputAction.CallbackContext context);
+        void OnLeftStick(InputAction.CallbackContext context);
         void OnXButton(InputAction.CallbackContext context);
         void OnSquareButton(InputAction.CallbackContext context);
         void OnTriangleButton(InputAction.CallbackContext context);
         void OnCircleButton(InputAction.CallbackContext context);
+        void OnRightStick(InputAction.CallbackContext context);
     }
 }
