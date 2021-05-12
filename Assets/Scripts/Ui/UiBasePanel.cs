@@ -63,6 +63,8 @@ public class UiBasePanel : UiScreen
 
         PartyManager.instance.RemoveReservePartyMember(m_CursorYCurrent);
         
+        TacticsManager.instance.m_TacticsCamera.m_CameraUiLayer.CameraStateChanged( TacticsManager.instance.m_TacticsCamera.m_NodeTheCameraIsOn);
+        
         UiManager.instance.PopScreen();
     }
 

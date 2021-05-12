@@ -40,6 +40,8 @@ public class TacticsManager : Singleton<TacticsManager>
     public List<Memoria> m_MemoriaPool;
 
     private GameObject m_MemoriaPrefab;
+
+    public TacticsCameraController m_TacticsCamera;
     
     
     public Dictionary<Creatures, Creatures> m_CreaturesWhosDomainHaveClashed;

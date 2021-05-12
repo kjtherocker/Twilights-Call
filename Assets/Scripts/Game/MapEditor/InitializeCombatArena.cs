@@ -37,7 +37,8 @@ public class InitializeCombatArena : MonoBehaviour
         Debug.Log("Preload Is Initialized");
     
         TacticsManager.Instance.CombatStart(m_CurrentLevel);
-        m_BattleCamera.InitalizeCamera(); 
+        m_BattleCamera.InitalizeCamera();
+        TacticsManager.Instance.m_TacticsCamera = m_BattleCamera;
     }
 
 }
