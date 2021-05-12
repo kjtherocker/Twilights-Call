@@ -17,7 +17,7 @@ public class Cavia : Ally
         BaseEvasion = 20;
         BaseDefence = 20;
         BaseResistance = 20;
-        Name = "Cavia";
+        m_Name = "Cavia";
 
         AmountOfTurns = 1;
 
@@ -28,7 +28,7 @@ public class Cavia : Ally
                 
         m_Domain = new PatchWorkChimera();
         m_Domain.Start();
-        m_Domain.DomainUser = Name;
+        m_Domain.DomainUser = m_Name;
         
         m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
 
@@ -40,7 +40,7 @@ public class Cavia : Ally
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Cavia/Prefab/Pref_Cavia", typeof(GameObject));
 
-        m_Texture = (Material)Resources.Load("Materials/Portrait/Material_Knight", typeof(Material));
+        m_PortaitMaterial = (Material)Resources.Load("Objects/Overworld/Textures/Portraits/Material_Portrait_Cavia", typeof(Material));
 
         charactertype = Charactertype.Ally;
         elementalStrength = ElementalStrength.Light;

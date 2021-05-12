@@ -86,17 +86,8 @@ public class TacticsManager : Singleton<TacticsManager>
          {
              AddHealthbar(aEnemys);
          }
-         
-         
-        AddCreatureToCombat(PartyManager.m_CurrentParty[0], new Vector2Int(9, 3), TurnOrderAlly);
-        
-        AddCreatureToCombat(PartyManager.m_CurrentParty[1], new Vector2Int(9, 4), TurnOrderAlly);
-        
-        AddCreatureToCombat(PartyManager.m_CurrentParty[2], new Vector2Int(11, 3), TurnOrderAlly);
-                                                                            
-        AddCreatureToCombat(PartyManager.m_CurrentParty[3], new Vector2Int(11, 4), TurnOrderAlly);
-         
-        m_Gridformation.InitializeEnemys();
+
+         m_Gridformation.InitializeEnemys();
         CombatHasStarted = true;
 
         m_BattleStates = CombatStates.AllyTurn;

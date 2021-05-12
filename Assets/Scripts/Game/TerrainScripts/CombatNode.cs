@@ -90,13 +90,13 @@ public class CombatNode : Cell
     public RelicTower m_RelicTower;
     
     public PropList.Props m_PropOnNode;
-    PropList.Props m_PropOnNodeTemp;
+    public PropList.Props m_PropOnNodeTemp;
     
     public EnemyList.EnemyTypes m_EnemyOnNode;
-    EnemyList.EnemyTypes m_EnemyOnNodeTemp;
+    public EnemyList.EnemyTypes m_EnemyOnNodeTemp;
 
     public PropList.NodeReplacements m_NodeReplacementOnNode;
-    PropList.NodeReplacements m_NodeReplacementTemp;
+    public PropList.NodeReplacements m_NodeReplacementTemp;
 
     public GridFormations NodesGridFormation;
 
@@ -132,8 +132,7 @@ public class CombatNode : Cell
         m_PropOnNodeTemp = m_PropOnNode;
 
         m_NodesInitalVector3Coordinates = gameObject.transform.position;
-        SetPropState();
-        
+
 
     }
 
@@ -143,253 +142,7 @@ public class CombatNode : Cell
     }
     
     
-    //Regioned the function since it was long and ugly
-    
-    #region PropState
 
-
-    public void SetPropState()
-    {
-        if (m_CombatsNodeType == CombatNodeTypes.Empty)
-        {
-            m_Cube.gameObject.SetActive(false);
-        }
-
-        if (m_CombatsNodeType != CombatNodeTypes.Empty)
-        {
-            m_Cube.gameObject.SetActive(true);
-        }
-
-        if (m_CreatureOnGridPoint == null || m_Prop == null)
-        {
-            //SpawnProp();
-        }
-
-        if (m_PropOnNodeTemp != m_PropOnNode)
-        {
-            DestroyProp();
-            SpawnProp();
-        }
-
-
-        if (m_PropOnNode == PropList.Props.None)
-        {
-            if (m_Prop != null)
-            {
-                DestroyProp();
-            }
-        }
-
-        if (m_NodeReplacementTemp != m_NodeReplacementOnNode)
-        {
-            if (m_NodeReplacement != null)
-            {
-                DestroyNodeReplacement();
-            }
-            SpawnNodeReplacement();
-        }
-
-
-        if (m_NodeReplacementOnNode == PropList.NodeReplacements.None)
-        {
-            if (m_NodeReplacement != null)
-            {
-                DestroyNodeReplacement();
-            }
-        }
-
-        if (m_NodeRotation <= 0)
-        {
-            m_NodeRotation = 4;
-        }
-        if (m_NodeRotation > 4)
-        {
-            m_NodeRotation = 1;
-        }
-
-
-        if (m_Prop != null)
-        {
-            if (m_NodeRotation == 1)
-            {
-                m_Prop.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-            }
-            if (m_NodeRotation == 2)
-            {
-                m_Prop.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            }
-            if (m_NodeRotation == 3)
-            {
-                m_Prop.transform.rotation = Quaternion.Euler(new Vector3(0, 270, 0));
-            }
-            if (m_NodeRotation == 4)
-            {
-                m_Prop.transform.rotation = Quaternion.Euler(new Vector3(0, 360, 0));
-            }
-        }
-
-
-        if (m_NodeReplacement != null)
-        {
-            if (m_NodeRotation == 1)
-            {
-                m_NodeReplacement.transform.rotation = Quaternion.Euler(new Vector3(m_NodeReplacement.transform.rotation.x, 90, m_NodeReplacement.transform.rotation.y));
-            }
-            if (m_NodeRotation == 2)
-            {
-                m_NodeReplacement.transform.rotation = Quaternion.Euler(new Vector3(m_NodeReplacement.transform.rotation.x, 180, m_NodeReplacement.transform.rotation.y));
-            }
-            if (m_NodeRotation == 3)
-            {
-                m_NodeReplacement.transform.rotation = Quaternion.Euler(new Vector3(m_NodeReplacement.transform.rotation.x, 270, m_NodeReplacement.transform.rotation.y));
-            }
-            if (m_NodeRotation == 4)
-            {
-                m_NodeReplacement.transform.rotation = Quaternion.Euler(new Vector3(m_NodeReplacement.transform.rotation.x, 360, m_NodeReplacement.transform.rotation.y));
-            }
-        }
-
-        if (m_NodeHeight == 0)
-        {
-          //  gameObject.transform.position = m_NodesInitalVector3Coordinates;
-        }
-
-        if (m_NodeHeight == 1)
-        {
-            // gameObject.transform.position = gameObject.transform.position + new Vector3(0, 2, 0);
-        }
-    }
-#endregion 
-
-    public void DestroyNodeReplacement()
-    {
-       // DestroyImmediate(m_NodeReplacement.gameObject);
-       // m_CurrentWalkablePlaneBeingUsed = m_WalkablePlane;
-    }
-
-    public void SetCombatNode(CombatNode aCombatnode)
-    {
-        m_CombatsNodeType = aCombatnode.m_CombatsNodeType;
-   
-        m_PropOnNode = aCombatnode.m_PropOnNode;
-        m_PropOnNodeTemp = m_PropOnNode;
-   
-        m_NodeReplacementOnNode = aCombatnode.m_NodeReplacementOnNode;
-        m_NodeReplacementTemp = m_NodeReplacementOnNode;
-        SetPropState();
-    }
-
-    public void DestroyProp()
-    {
-
-        DestroyImmediate(m_Prop);
-        m_CombatsNodeType = CombatNodeTypes.Normal;
-
-      //  GridFormations.RespawnCube(m_PositionInGrid);
-
-    }
-
-    public void SpawnProp()
-    {
-        m_PropOnNodeTemp = m_PropOnNode;
-        m_Prop = Instantiate<GameObject>(LevelCreator.Instance.m_PropList.ReturnPropData(m_PropOnNode));
-        m_Prop.transform.parent = transform;
-        Vector3 CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
-        m_Prop.gameObject.transform.position = gameObject.transform.position + CreatureOffset;
-
-        Creatures CreatureTemp = m_Prop.GetComponent<Creatures>();
-        if (CreatureTemp != null)
-        {
-            m_CreatureOnGridPoint = CreatureTemp;
-        }
-        m_CombatsNodeType = CombatNodeTypes.Wall;
-
-    }
-
-    public void DestroyEnemy()
-    {
-        if (m_CreatureOnGridPoint == null)
-        {
-            return;
-        }
-
-        DestroyImmediate(m_CreatureOnGridPoint.gameObject);
-        m_CreatureOnGridPoint = null;
-        m_IsCovered = false;
-        NodesGridFormation.RemoveEnemyFromList();
-
-    }
-    public void SpawnEnemy()
-    {
-        
-        if (m_EnemyOnNodeTemp == m_EnemyOnNode)
-        {
-            return;
-        }
-        else
-        {
-            DestroyEnemy();
-        }
-        
-        if (m_EnemyOnNode == EnemyList.EnemyTypes.None)
-        {
-            return;
-        }
-
-        if (LevelCreator.instance.m_EnemyList == null)
-        {
-            LevelCreator.instance.StartEditor();
-        }
-
-        m_EnemyOnNodeTemp = m_EnemyOnNode;
-        
-        Vector3 CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
-        
-
-        GameObject Enemy = PrefabUtility.
-            InstantiatePrefab(LevelCreator.Instance.m_EnemyList.ReturnEnemyData(m_EnemyOnNode)) as GameObject;
-
-
-        Creatures m_EnemysCreature = Enemy.GetComponent<Creatures>();
-       
-        m_CreatureOnGridPoint = m_EnemysCreature;
-        NodesGridFormation.m_EnemysInGrid.Add(m_EnemysCreature);
-        
-        Enemy.transform.parent = NodesGridFormation.Enemy.transform;
-        Enemy.transform.position = gameObject.transform.position + CreatureOffset;
-        Enemy.transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
-
-        EnemyAiController m_CreatureAi = (EnemyAiController)m_EnemysCreature.m_CreatureAi;
-
-        m_CreatureAi.Node_ObjectIsOn = this;
-        m_CreatureAi.Node_MovingTo = this;
-        m_CreatureAi.m_Position = m_PositionInGrid;
-        m_CreatureAi.m_Grid = m_Grid;
-            
-        
-        m_IsCovered = true;
-
-    }
-
-    public void SpawnNodeReplacement()
-    {
-        
-        if (m_NodeReplacementOnNode != PropList.NodeReplacements.None)
-        {
-            m_NodeReplacementTemp = m_NodeReplacementOnNode;
-            m_NodeReplacement = Instantiate(GameManager.Instance.m_PropList.NodeReplacementData(m_NodeReplacementOnNode), this.gameObject.transform);
-            Vector3 CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
-            m_NodeReplacement.gameObject.transform.position =  gameObject.transform.position + m_NodeReplacement.m_NodeSpawnOffSet + CreatureOffset;
-            m_NodeHeightOffset = m_NodeReplacement.m_NodeHeightOffset;
-            m_CurrentWalkablePlaneBeingUsed = m_NodeReplacement.m_Walkable;
-
-            if (m_NodeReplacement.m_NodeReplacementType == NodeReplacement.NodeReplacementType.RemoveInitalNode)
-            {
-                m_InitalNode.gameObject.SetActive(false);
-            }
-
-        }
-    }
 
     public void DomainClashing()
     {
@@ -551,7 +304,7 @@ public class CombatNode : Cell
    {
        
        Vector3 originalScale = new Vector3(0.05f, 0.05f, 0.05f);
-       Vector3 destinationScale = new Vector3(0.199f, 0.199f, 0.199f);
+       Vector3 destinationScale = new Vector3(0.218f, 0.218f, 0.218f);
          
        float currentTime = 0.0f;
 
@@ -605,14 +358,7 @@ public class CombatNode : Cell
         return neighbours;
     }
     
-    public void EditorSelector()
-    {
-        
-        Vector3 NodeTransform = gameObject.transform.position;
-#if UNITY_EDITOR
-        LevelCreator.Instance.m_Selector.gameObject.transform.position = new Vector3(NodeTransform.x,NodeTransform.y + Constants.Helpers.m_HeightOffTheGrid + 0.4f,NodeTransform.z );
-#endif
-    }
+
 }
 
 

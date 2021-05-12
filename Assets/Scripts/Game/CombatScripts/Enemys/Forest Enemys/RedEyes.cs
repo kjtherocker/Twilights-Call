@@ -16,7 +16,7 @@ public class RedEyes : Enemy
         BaseEvasion = 20;
         BaseDefence = 20;
         BaseResistance = 20;
-        Name = "Red Eyes";
+        m_Name = "Red Eyes";
 
         AmountOfTurns = 2;
 
@@ -30,7 +30,7 @@ public class RedEyes : Enemy
 
         Model = (GameObject)Resources.Load("Prefabs/Battle/Enemy/Forest/Bosses/Prefab_RedEyes", typeof(GameObject));
 
-        m_Texture = (Material)Resources.Load("Materials/Portrait/Material_RedEyes", typeof(Material));
+        m_PortaitMaterial = (Material)Resources.Load("Materials/Portrait/Material_RedEyes", typeof(Material));
 
         m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
 

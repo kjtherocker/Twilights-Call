@@ -32,10 +32,10 @@ public class MapEditor : Editor
  {
      DrawDefaultInspector();
 
-     LevelCreator myScript = (LevelCreator)target;
+     LevelCreator levelCreator = (LevelCreator)target;
      if (GUILayout.Button("StartEditor"))
      {
-         myScript.StartEditor();
+         levelCreator.StartEditor();
      }
 
 
@@ -134,7 +134,10 @@ public class MapEditor : Editor
          Debug.Log(aCombatnode + " we changed this into " + (CombatNode.CombatNodeTypes)m_NodeType.enumValueIndex);
 
          aCombatnode.m_CombatsNodeType = (CombatNode.CombatNodeTypes)m_NodeType.enumValueIndex;
-         aCombatnode.SetPropState();
+
+         LevelCreator levelCreator = (LevelCreator)target;
+         levelCreator.SetPropState(aCombatnode);
+         
          Debug.Log(aCombatnode.m_CombatsNodeType);
          serializedObject.Update();
          serializedObject.ApplyModifiedProperties();
@@ -147,7 +150,8 @@ public class MapEditor : Editor
              return;
          }
          serializedObject.Update();
-         aCombatnode.EditorSelector();
+         LevelCreator levelCreator = (LevelCreator)target;
+         levelCreator.EditorSelector(aCombatnode.transform.position);
 
          m_CurrentNode = aCombatnode;
      }
@@ -162,8 +166,10 @@ public class MapEditor : Editor
          serializedObject.Update();
          
          m_Prop = serializedObject.FindProperty("m_PropIndex");
-         aCombatnode.m_PropOnNode = (PropList.Props)m_Prop.enumValueIndex;
-         aCombatnode.SetPropState();
+         aCombatnode.m_PropOnNode = (PropList.Props)m_Prop.enumValueIndex;  
+         
+         LevelCreator levelCreator = (LevelCreator)target;
+         levelCreator.SetPropState(aCombatnode);
          
          serializedObject.Update();
          serializedObject.ApplyModifiedProperties();
@@ -181,7 +187,10 @@ public class MapEditor : Editor
         
         m_EnemyTypes = serializedObject.FindProperty("m_EnemyTypes");
         aCombatnode.m_EnemyOnNode = (EnemyList.EnemyTypes)m_EnemyTypes.enumValueIndex;
-        aCombatnode.SpawnEnemy();
+        
+        LevelCreator levelCreator = (LevelCreator)target;
+        levelCreator.SpawnEnemy(aCombatnode);
+
 
         serializedObject.Update();
         serializedObject.ApplyModifiedProperties();

@@ -19,7 +19,7 @@ public class Alpha : Ally
         BaseEvasion = 20;
         BaseDefence = 20;
         BaseResistance = 20;
-        Name = "Alpha";
+        m_Name = "Alpha";
 
         AmountOfTurns = 1;
 
@@ -40,7 +40,7 @@ public class Alpha : Ally
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Dolls/Alpha/Pref_Alpha", typeof(GameObject));
         
-        m_Texture = (Material)Resources.Load("Objects/Portrait/Material_Knight", typeof(Material));
+        m_PortaitMaterial = (Material)Resources.Load("Objects/Portrait/Material_Knight", typeof(Material));
 
 
 

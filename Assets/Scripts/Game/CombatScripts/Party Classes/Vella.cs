@@ -18,7 +18,7 @@ public class Vella : Ally
         BaseEvasion = 20;
         BaseDefence = 20;
         BaseResistance = 20;
-        Name = "Vella";
+        m_Name = "Vella";
 
         AmountOfTurns = 1;
 
@@ -34,14 +34,14 @@ public class Vella : Ally
         
         m_Domain = new PatchWorkChimera();
         m_Domain.Start();
-        m_Domain.DomainUser = Name;
+        m_Domain.DomainUser = m_Name;
         
         m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
 
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Vella/Prefab/Pref_Vella", typeof(GameObject));
 
-        m_Texture = (Material)Resources.Load("Materials/Portrait/Material_Knight", typeof(Material));
+        m_PortaitMaterial = (Material)Resources.Load("Objects/Overworld/Textures/Portraits/Material_Portrait_Vella", typeof(Material));
 
         charactertype = Charactertype.Ally;
         elementalStrength = ElementalStrength.Wind;

@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material_Grass
-  m_Shader: {fileID: 4800000, guid: 3d22238e6174f7c4e819af57c74c46e5, type: 3}
-  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_Name: Material_ChimeraFloor
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,11 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BurnRamp:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: de0ea6482ade3144a9460ca53ff9ffb5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1228d75a4d98c214993c6fee8985d229, type: 3}
+        m_Texture: {fileID: 2800000, guid: a98e48dae8b31474f8e224d9f8a8d0cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -56,39 +52,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SecTex:
-        m_Texture: {fileID: 2800000, guid: bf01fcfd9636f6546ae1084b54116ee0, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SliceGuide:
-        m_Texture: {fileID: 2800000, guid: 9f0b1fbd4340ddd47be1b66f93a125e1, type: 3}
+        m_Texture: {fileID: 2800000, guid: de0ea6482ade3144a9460ca53ff9ffb5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpScale: 1
-    - _BurnSize: 0.15
+    - _BumpScale: -0.45
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionAmount: 2
     - _GlossMapScale: 1
     - _Glossiness: 0
-    - _GlossyReflections: 0
-    - _Metallic: 0
+    - _GlossyReflections: 1
+    - _Metallic: 1
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SliceAmount: 0
+    - _Parallax: 0.005
     - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 0
+    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BurnColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7821289, g: 0.9811321, b: 0.7980491, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SecColor: {r: 0.7169812, g: 0.6121396, b: 0.6121396, a: 1}
+  m_BuildTextureStacks: []

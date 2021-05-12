@@ -16,7 +16,7 @@ public class RelicTower : Relic
         CurrentHealth = 700;
         MaxHealth = 700;
 
-        Name = "RelicTower";
+        m_Name = "RelicTower";
 
         AmountOfTurns = 0;
 
@@ -43,7 +43,7 @@ public class RelicTower : Relic
 
         m_Domain = aDomain;
         m_Domain.Start();
-        m_Domain.DomainUser = Name;
+        m_Domain.DomainUser = m_Name;
         DomainRecession();
         
         m_TowerTakenOver = true;

@@ -19,6 +19,8 @@ public class InitializeCombatArena : MonoBehaviour
             SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
         }
 #endif
+
+        m_CurrentLevel = GetComponent<GridFormations>();
         
         StartCoroutine(Initialize());
     }

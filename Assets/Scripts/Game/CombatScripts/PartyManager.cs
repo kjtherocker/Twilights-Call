@@ -11,13 +11,13 @@ public class PartyManager : Singleton<PartyManager>
     // Use this for initialization
     public void Initialize()
     {
-        m_CurrentParty.Add(gameObject.AddComponent<Sigma>());
-        m_CurrentParty.Add(gameObject.AddComponent<Fide>());
-        m_CurrentParty.Add(gameObject.AddComponent<Cavia>());
-        m_CurrentParty.Add(gameObject.AddComponent<Vella>());
+        m_ReservePartymembers.Add(gameObject.AddComponent<Sigma>());
+        m_ReservePartymembers.Add(gameObject.AddComponent<Fide>());
+        m_ReservePartymembers.Add(gameObject.AddComponent<Cavia>());
+        m_ReservePartymembers.Add(gameObject.AddComponent<Vella>());
 
 
-        foreach (Creatures ACreatures in m_CurrentParty)
+        foreach (Creatures ACreatures in m_ReservePartymembers)
         {
             ACreatures.Initialize();
         }
@@ -26,10 +26,15 @@ public class PartyManager : Singleton<PartyManager>
 
     public void CombatEnd()
     {
-        for (int i = 0; i < m_CurrentParty.Count; i++)
+        for (int i = 0; i < m_ReservePartymembers.Count; i++)
         {
-            m_CurrentParty[i].CurrentHealth = m_CurrentParty[i].MaxHealth;
+            m_ReservePartymembers[i].CurrentHealth = m_ReservePartymembers[i].MaxHealth;
         }
+    }
+
+    public void RemoveReservePartyMember(int aCreatureIndex)
+    {
+        m_ReservePartymembers.RemoveAt(aCreatureIndex);
     }
 
     public void ReserveToParty(int CurrentPartyPosition, int CurrentReservePosition)

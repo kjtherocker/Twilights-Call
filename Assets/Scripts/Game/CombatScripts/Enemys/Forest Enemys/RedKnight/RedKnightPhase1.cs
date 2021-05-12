@@ -17,10 +17,10 @@ public class RedKnightPhase1 : Enemy
         BaseDefence = 20;
         BaseResistance = 20;
 
-        if (Name == "No Name")
+        if (m_Name == "No Name")
         {
-            Name = GameManager.Instance.m_NameGenerator.GetName();
-            transform.name = Name;
+            m_Name = GameManager.Instance.m_NameGenerator.GetName();
+            transform.name = m_Name;
         }
 
         SetCreature();
@@ -41,7 +41,7 @@ public class RedKnightPhase1 : Enemy
         
         Model = (GameObject)Resources.Load("Objects/Battle/Enemy/Forest/RedKnights/Pref_RedKnight_Phase1", typeof(GameObject));
 
-        m_Texture = (Material)Resources.Load("Materials/Portrait/Material_GreenSlime", typeof(Material));
+        m_PortaitMaterial = (Material)Resources.Load("Materials/Portrait/Material_GreenSlime", typeof(Material));
 
         charactertype = Charactertype.Enemy;
         elementalStrength = ElementalStrength.Water;

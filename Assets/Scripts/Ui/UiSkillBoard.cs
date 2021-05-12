@@ -29,7 +29,6 @@ public class UiSkillBoard : UiScreen
 
         m_MenuControls.Player.Movement.performed += movement => MoveMenuCursorPosition(movement.ReadValue<Vector2>());
         m_MenuControls.Player.XButton.performed += XButton => SetSkill();
-        m_MenuControls.Player.XButton.performed += XButton => SetSkill();
         m_MenuControls.Player.CircleButton.performed += SquareButton => ReturnToLastScreen();
         m_MenuControls.Disable();
     }

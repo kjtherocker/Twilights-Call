@@ -19,7 +19,7 @@ public class Action_Move : Action
         
         CreatureOffset = new Vector3(0, Constants.Helpers.m_HeightOffTheGrid, 0);
         
-        Debug.Log(m_ActionCreature.Name + " Moved into " + m_ActionCommandNode.m_PositionInGrid);
+        Debug.Log(m_ActionCreature.m_Name + " Moved into " + m_ActionCommandNode.m_PositionInGrid);
     }
     public override void Undo()
     {

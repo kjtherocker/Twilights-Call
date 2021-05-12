@@ -13,13 +13,13 @@ public class Sigma : Ally {
 	    MaxHealth = 200;
         CurrentHealth = MaxHealth;
         
-        BaseStrength = 75;
-        BaseMagic = 40;
+        BaseStrength = 34;
+        BaseMagic = 76;
         BaseHit = 20;
         BaseEvasion = 20;
         BaseDefence = 20;
         BaseResistance = 20;
-        Name = "Sigma";
+        m_Name = "Sigma";
 
         AmountOfTurns = 1;
 
@@ -34,7 +34,7 @@ public class Sigma : Ally {
         
         m_Domain = new PatchWorkChimera();
         m_Domain.Start();
-        m_Domain.DomainUser = Name;
+        m_Domain.DomainUser = m_Name;
         m_Domain.m_Creature = this;
 
         m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
@@ -46,7 +46,7 @@ public class Sigma : Ally {
 
         Model = (GameObject)Resources.Load("Objects/Battle/PartyModels/Sigma/Prefab/Pref_Sigma", typeof(GameObject));
         
-        m_Texture = (Material)Resources.Load("Objects/Portrait/Material_Knight", typeof(Material));
+        m_PortaitMaterial = (Material)Resources.Load("Objects/Overworld/Textures/Portraits/Material_Portrait_Sigma", typeof(Material));
 
 
 

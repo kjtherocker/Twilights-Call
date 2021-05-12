@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Constants;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -52,7 +53,7 @@ public class UiStatus : UiTabScreen
         
         if (Text_Name != null)
         {
-            Text_Name.text = Creature.Name;
+            Text_Name.text = Creature.m_Name;
         }
 
         m_CurrentHealth = Creature.CurrentHealth;
@@ -60,7 +61,7 @@ public class UiStatus : UiTabScreen
 
         m_HealthbarSlider.value = m_CurrentHealth / m_MaxHealth;
 
- 
+        Image_Portrait.texture = Creature.m_PortaitMaterial.mainTexture;
         
         UpdateHealthbar();
         foreach (UiStatusDomainPointWrapper aSlider in m_DomainPointWrappers)

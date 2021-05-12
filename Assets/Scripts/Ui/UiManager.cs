@@ -13,6 +13,7 @@ public class UiManager : Singleton<UiManager>
         DomainClash,
         Memoria,
         MainMenu,
+        BasePanel,
         PartyMenu,
         TurnIndicator,
         EndCombatMenu,
@@ -62,6 +63,7 @@ public class UiManager : Singleton<UiManager>
         m_UiScreens[(short) Screen.DomainClash] = GetComponentInChildren<UiDomainClash>(true);
         m_UiScreens[(short) Screen.Memoria] = GetComponentInChildren<UiMemoria>(true);
         m_UiScreens[(short) Screen.MainMenu] = GetComponentInChildren<MainMenu>(true);
+        m_UiScreens[(short) Screen.BasePanel] = GetComponentInChildren<UiBasePanel>(true);
         
 
         for (int i = 0; i < m_UiScreens.Length - 1; i++)

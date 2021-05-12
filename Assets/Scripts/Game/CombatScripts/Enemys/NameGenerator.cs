@@ -22,7 +22,7 @@ public class NameGenerator
         m_Names.Add("Jesse");
         m_Names.Add("Chris");
         m_Names.Add("James");
-        m_Names.Add("Jaimie");
+
 
         //Actual Names
 

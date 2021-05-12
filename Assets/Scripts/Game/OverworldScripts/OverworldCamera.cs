@@ -29,7 +29,7 @@ public class OverworldCamera : MonoBehaviour
             SceneManager.LoadScene("PreloadScene", LoadSceneMode.Additive);
         }
 #endif
-        StartCoroutine(Testo());
+        StartCoroutine(OverWorldInitialization());
     }
 
     public void LateUpdate()
@@ -40,19 +40,15 @@ public class OverworldCamera : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, m_OverWorldPlayer.transform.position, m_CameraFollowPlayerSpeed * Time.deltaTime);
         }
-
-
+        
         if (m_CameraRotation)
         {
             transform.Translate(m_CameraRotationDirection * m_CameraSpeed * Time.deltaTime);
         }
     }
-
-
-
+    
     public void CameraMovement(Vector2 aDirection)
     {
-        transform.Translate(aDirection * 20 * Time.deltaTime);
         m_CameraRotation = true;
         m_CameraRotationDirection = aDirection;
     }
@@ -63,7 +59,7 @@ public class OverworldCamera : MonoBehaviour
         m_CameraRotation = false;
     }
 
-    public IEnumerator Testo()
+    public IEnumerator OverWorldInitialization()
     {
         
         yield return new WaitForEndOfFrame();

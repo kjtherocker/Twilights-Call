@@ -21,14 +21,32 @@ MonoBehaviour:
     m_Address: PatchWorkChimera
     m_ReadOnly: 0
     m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: a6ac1e91bec242b4a91de09553396ef2
     m_Address: Memoria
     m_ReadOnly: 0
     m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: adf7efe36ddf1ba43a50458acece3b81
     m_Address: CrystalFool
     m_ReadOnly: 0
     m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d6aee607e025b714486b99580769b8f5
+    m_Address: Capture
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ad0008eb10bbff2438d12045dc670a11
+    m_Address: ChimeraFloor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3b6138e8f56cf4f4291a78443f117ac6, type: 2}
   m_SchemaSet:

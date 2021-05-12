@@ -269,6 +269,7 @@
               <e p="OverWorldPlayer.cs" t="Include" />
             </e>
             <e p="Props" t="Include">
+              <e p="BasePanel.cs" t="Include" />
               <e p="NodeReplacement.cs" t="Include" />
               <e p="Prop.cs" t="Include" />
             </e>
@@ -314,6 +315,7 @@
             </e>
             <e p="test.cs" t="Include" />
             <e p="UiArenaList.cs" t="Include" />
+            <e p="UiBasePanel.cs" t="Include" />
             <e p="UiDomainBoard.cs" t="Include" />
             <e p="UiDomainClash.cs" t="Include" />
             <e p="UiDomainStatus.cs" t="Include" />

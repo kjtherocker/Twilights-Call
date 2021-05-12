@@ -114,9 +114,9 @@ public class Creatures : MonoBehaviour
     
 
     public string DomainAffectingCreature;
-    public string Name = "No Name";
+    public string m_Name = "No Name";
 
-    public Material m_Texture;
+    public Material m_PortaitMaterial;
 
     public GameObject Model;
     public GameObject ModelInGame;

@@ -8,7 +8,7 @@ public class CrystalFool : Domain
    
     public override void Start()
     {
-        m_ElementalType = Skills.ElementalType.Null;
+        m_ElementalType = ElementalType.Null;
         m_SkillType = SkillType.Domain;
 
 
@@ -19,7 +19,7 @@ public class CrystalFool : Domain
         Domaintype = DomainType.OneTime;
 
 
-        Addressables.LoadAssetAsync<Material>("CrystalFool").Completed += OnLoadDomainMaterial;
+        Addressables.LoadAssetAsync<Material>("ChimeraFloor").Completed += OnLoadDomainMaterial;
         
     }
 

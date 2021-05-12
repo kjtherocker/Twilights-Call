@@ -31,6 +31,7 @@ public class UiScreen : MonoBehaviour
 
     public virtual void OnPush()
     {
+        InputManager.instance.m_MovementControls.Disable();
         m_MenuControls.Enable();
         gameObject.SetActive(true);
     }

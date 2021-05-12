@@ -77,10 +77,10 @@ public class TacticsCameraController : MonoBehaviour
         
         
         //Setting The Cameras Rotation
-        Vector3 cameraDistance = Constants.Helpers.m_CameraDistance;
+        Vector3 cameraDistance = Constants.Helpers.m_CameraCloseDistance;
         Vector3 cameraAngle = Constants.Helpers.m_CameraAngle;
         
-        m_CurrentRotation = CameraRotations.Up;
+        m_CurrentRotation = CameraRotations.Down;
         m_CameraRotations = new Dictionary<CameraRotations, CameraStates>();
 
        

@@ -230,7 +230,7 @@ public class EnemyAiController : AiController
         }
         else
         {
-            Debug.Log(m_EnemyCreature.Name + " waited");
+            Debug.Log(m_EnemyCreature.m_Name + " waited");
         }
 
         TacticsManager.instance.EnemyMovement();

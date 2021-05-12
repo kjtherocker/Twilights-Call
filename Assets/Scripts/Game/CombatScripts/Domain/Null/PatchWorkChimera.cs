@@ -20,7 +20,7 @@ public class PatchWorkChimera : Domain
         Domaintype = DomainType.OneTime;
 
         m_CreaturesToCopy = new List<Creatures>();
-        Addressables.LoadAssetAsync<Material>("PatchWorkChimera").Completed += OnLoadDomainMaterial;
+        Addressables.LoadAssetAsync<Material>("ChimeraFloor").Completed += OnLoadDomainMaterial;
         
     }
 
