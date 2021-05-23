@@ -41,15 +41,15 @@ public class PartyMenu : UiScreen
         {
             m_Healthbars.Add(Instantiate<HealthBar>(m_HealthbarReference, gameObject.transform));
             m_Healthbars[i].gameObject.transform.localPosition = new Vector3(-200, -80 + i * 80, 0);
-            m_Healthbars[i].Partymember = m_PartyManager.m_CurrentParty[i];
+            m_Healthbars[i].Partymember = m_PartyManager.m_InCombatParty[i];
         }
 
-        m_Healthbars[0].SetCharacter(m_PartyManager.m_CurrentParty[0]);
-        m_Healthbars[1].SetCharacter(m_PartyManager.m_CurrentParty[1]);
-        m_Healthbars[2].SetCharacter(m_PartyManager.m_CurrentParty[2]);
-        m_Healthbars[3].SetCharacter(m_PartyManager.m_CurrentParty[3]);
+        m_Healthbars[0].SetCharacter(m_PartyManager.m_InCombatParty[0]);
+        m_Healthbars[1].SetCharacter(m_PartyManager.m_InCombatParty[1]);
+        m_Healthbars[2].SetCharacter(m_PartyManager.m_InCombatParty[2]);
+        m_Healthbars[3].SetCharacter(m_PartyManager.m_InCombatParty[3]);
 
-        m_SkillStatus.m_Skill = m_PartyManager.m_CurrentParty[0].m_Skills[skill];
+        m_SkillStatus.m_Skill = m_PartyManager.m_InCombatParty[0].m_Skills[skill];
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class PartyMenu : UiScreen
         }
         if (m_MenuState == MenuState.SelectingParty)
         {
-            m_CurrentParty = NumberMinandMaxSetUp(m_CurrentParty, m_PartyManager.m_CurrentParty.Count);
+            m_CurrentParty = NumberMinandMaxSetUp(m_CurrentParty, m_PartyManager.m_InCombatParty.Count);
 
             LoopingHealthbarIsSelected(m_Healthbars, m_CurrentParty, 80, 100);
 
@@ -87,7 +87,7 @@ public class PartyMenu : UiScreen
                 SwapReserveToParty();
                 m_Healthbars[m_CurrentParty].gameObject.transform.position = new Vector3(100, m_Healthbars[m_CurrentParty].gameObject.transform.position.y, m_Healthbars[m_CurrentParty].gameObject.transform.position.z);
 
-                for (int i = 0; i < m_PartyManager.m_CurrentParty.Count; i++)
+                for (int i = 0; i < m_PartyManager.m_InCombatParty.Count; i++)
                 {
                     m_Healthbars[i].SetIsSelected(false);
                 }

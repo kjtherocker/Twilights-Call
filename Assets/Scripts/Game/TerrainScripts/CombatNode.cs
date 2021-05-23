@@ -22,16 +22,7 @@ public class CombatNode : Cell
         Domainable,
         Devourable
     }
-
-    public enum WalkOntopTriggerTypes
-    {
-        None,
-        RelicTower,
-        DialoguePrompt,
-        Items,
-        Memoria
-        
-    }
+    
     
     public enum DomainCombatNode
     {
@@ -56,8 +47,11 @@ public class CombatNode : Cell
     public bool m_IsWalkable;
     public bool m_IsCovered;
     public DomainCombatNode m_DomainCombatNode;
-    public WalkOntopTriggerTypes m_WalkOnTopTriggerTypes;
     public Domain DomainOnNode;
+
+    public delegate void WalkedOnTopDel(Creatures aCreatures);
+
+    private WalkedOnTopDel m_WalkedOnTopCallBack;
     
     public NodeReplacement m_NodeReplacement;
     
@@ -72,10 +66,6 @@ public class CombatNode : Cell
     public GameObject m_Cube;
     public GameObject m_Prop;
     
-
-    public Renderer m_Renderer;
-
-    public Material m_WhiteNode;
 
     public GameObject m_InitalNode;
 
@@ -133,7 +123,7 @@ public class CombatNode : Cell
 
         m_NodesInitalVector3Coordinates = gameObject.transform.position;
 
-
+        m_WalkedOnTopCallBack = null;
     }
 
     private void OnEnable()
@@ -180,7 +170,10 @@ public class CombatNode : Cell
 
         m_MemoriaOnTop.m_NodePosition = m_PositionInGrid;
 
-        m_WalkOnTopTriggerTypes = WalkOntopTriggerTypes.Memoria;
+
+
+        m_WalkedOnTopCallBack = m_MemoriaOnTop.ActivateMemoria;
+
 
     }
 
@@ -240,41 +233,22 @@ public class CombatNode : Cell
        ActivateWalkOnTopTrigger();
 
    }
-
+   
+   public void SetWalkedOnTopCallBack(WalkedOnTopDel walkedOnTopDel)
+   {
+       m_WalkedOnTopCallBack = walkedOnTopDel;
+   }
 
    public void ActivateWalkOnTopTrigger()
    {
-       switch (m_WalkOnTopTriggerTypes)
+       // m_RelicTower.ActivateRelicTower(m_CreatureOnGridPoint.m_Domain);
+
+       if (m_WalkedOnTopCallBack != null)
        {
-           case WalkOntopTriggerTypes.None:
-
-               break;
-           case WalkOntopTriggerTypes.RelicTower:
-               m_RelicTower.ActivateRelicTower(m_CreatureOnGridPoint.m_Domain);
-               break ;
-           case WalkOntopTriggerTypes.Items:
-               
-               break ;
-           case WalkOntopTriggerTypes.DialoguePrompt:
-               
-               break ;
-           case  WalkOntopTriggerTypes.Memoria:
-               
-               UiManager.Instance.PushScreen(UiManager.Screen.Memoria);
-               
-               UiMemoria ScreenTemp =
-                   UiManager.Instance.GetScreen(UiManager.Screen.Memoria) as UiMemoria;
-
-               ScreenTemp.SetMemoriaScreen(m_CreatureOnGridPoint,m_MemoriaOnTop);
-               
-               break;
-               
+           m_WalkedOnTopCallBack(m_CreatureOnGridPoint);
        }
    }
    
-   
-   
-
    public void CreateWalkableArea(CombatNodeAreaType aAreaType)
     {
 

@@ -141,6 +141,9 @@ public class UiMemoria : UiScreen
         m_BoardAnimator.SetTrigger("t_Push");
     }
 
+
+
+
     public void SetMemoriaScreen(Creatures aCreature, Memoria aMemoria)
     {
         m_MemoriaCreature = aCreature;

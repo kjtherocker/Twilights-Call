@@ -19,11 +19,23 @@ public class Memoria : MonoBehaviour
         InUse = true;
         m_Skills = aSkills;
     }
+    
+    public void ActivateMemoria(Creatures aCreatures)
+    {
+
+        UiManager.Instance.PushScreen(UiManager.Screen.Memoria);
+
+        UiMemoria ScreenTemp =
+            UiManager.Instance.GetScreen(UiManager.Screen.Memoria) as UiMemoria;
+
+        ScreenTemp.SetMemoriaScreen(aCreatures, this);
+    }
+    
 
     public void DestroyMemoria()
     {
 
-        Grid.Instance.GetNode(m_NodePosition).m_WalkOnTopTriggerTypes = CombatNode.WalkOntopTriggerTypes.None;
+        Grid.Instance.GetNode(m_NodePosition).SetWalkedOnTopCallBack(null);
         gameObject.SetActive(false);
     }
 

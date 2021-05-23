@@ -137,7 +137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V
+  m_text: C
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: abe5e9333ece32046b0fd3b663d3b4bc, type: 2}
   m_sharedMaterial: {fileID: 3974483940000291877, guid: abe5e9333ece32046b0fd3b663d3b4bc,
@@ -2616,6 +2616,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &444889475490289017
 MonoBehaviour:
   m_ObjectHideFlags: 0

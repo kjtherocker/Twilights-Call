@@ -1,12 +1,19 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ using UnityEngine.Assertions;
 
-public class PartyManager : Singleton<PartyManager>
+ public class PartyManager : Singleton<PartyManager>
 {
-    public List<Creatures> m_CurrentParty;
+    public List<Creatures> m_InCombatParty;
     public List<Creatures> m_ReservePartymembers;
-    
+
+    public enum PartyTransfer
+    {
+        ReserveToInGame,
+        InGameToReserve
+    }
+
 
     // Use this for initialization
     public void Initialize()
@@ -37,10 +44,52 @@ public class PartyManager : Singleton<PartyManager>
         m_ReservePartymembers.RemoveAt(aCreatureIndex);
     }
 
+    public void AddReserveToGame(Creatures aCreature, PartyTransfer aPartyTransfer)
+    {
+        Creatures TransferCreature = null;
+
+        List<Creatures> RemoveList = null;
+        List<Creatures> AddList = null;
+        
+        
+        switch (aPartyTransfer)
+        {
+            case PartyTransfer.InGameToReserve:
+                RemoveList = m_InCombatParty;
+                AddList = m_ReservePartymembers;
+
+                break;
+            
+            case PartyTransfer.ReserveToInGame:
+                RemoveList = m_ReservePartymembers;
+                AddList = m_InCombatParty;
+                break;
+            
+        }
+        
+        foreach (var creatures in RemoveList)
+        {
+            if (creatures == aCreature)
+            {
+                TransferCreature = creatures;
+                break;
+            }
+        }
+        
+        if (TransferCreature == null)
+        {
+            Debug.Assert(false ,"TransferedCreature is null");
+        }
+        else
+        {
+            AddList.Add(TransferCreature);    
+        }
+    }
+
     public void ReserveToParty(int CurrentPartyPosition, int CurrentReservePosition)
     {
-        Creatures TransferBuffer = m_CurrentParty[CurrentPartyPosition];
-        m_CurrentParty[CurrentPartyPosition] = m_ReservePartymembers[CurrentReservePosition];
+        Creatures TransferBuffer = m_InCombatParty[CurrentPartyPosition];
+        m_InCombatParty[CurrentPartyPosition] = m_ReservePartymembers[CurrentReservePosition];
         m_ReservePartymembers[CurrentReservePosition] = TransferBuffer;
 
     }
