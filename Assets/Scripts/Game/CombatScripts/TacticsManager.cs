@@ -161,6 +161,8 @@ public class TacticsManager : Singleton<TacticsManager>
         m_Grid.GetNode(aPosition.x, aPosition.y).m_CreatureOnGridPoint = aList[TopElement];
         m_Grid.GetNode(aPosition.x, aPosition.y).m_IsCovered = true;
         
+        
+        PartyManager.instance.AddReserveToGame(aCreature, PartyManager.PartyTransfer.ReserveToInGame);
     }
 
 

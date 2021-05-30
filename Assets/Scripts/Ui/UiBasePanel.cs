@@ -61,6 +61,9 @@ public class UiBasePanel : UiScreen
         TacticsManager.instance.AddCreatureToCombat(m_PartyMembers[m_CursorYCurrent], new Vector2Int(9, 2),
             PartyMembersInField);
 
+        
+        
+        
         PartyManager.instance.RemoveReservePartyMember(m_CursorYCurrent);
         
         TacticsManager.instance.m_TacticsCamera.m_CameraUiLayer.CameraStateChanged( TacticsManager.instance.m_TacticsCamera.m_NodeTheCameraIsOn);

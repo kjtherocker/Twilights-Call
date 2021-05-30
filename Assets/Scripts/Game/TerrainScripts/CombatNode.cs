@@ -51,7 +51,7 @@ public class CombatNode : Cell
 
     public delegate void WalkedOnTopDel(Creatures aCreatures);
 
-    private WalkedOnTopDel m_WalkedOnTopCallBack;
+    private WalkedOnTopDel m_WalkedOnTopCallBack = null;
     
     public NodeReplacement m_NodeReplacement;
     
@@ -108,7 +108,7 @@ public class CombatNode : Cell
             m_CurrentWalkablePlaneBeingUsed = m_WalkablePlane;
         }
 
-        m_DomainCombatNode = CombatNode.DomainCombatNode.None;
+        m_DomainCombatNode = DomainCombatNode.None;
 
         m_CurrentWalkablePlaneBeingUsed.gameObject.SetActive(false);
         m_AttackingPlane.gameObject.SetActive(false);
@@ -122,8 +122,6 @@ public class CombatNode : Cell
         m_PropOnNodeTemp = m_PropOnNode;
 
         m_NodesInitalVector3Coordinates = gameObject.transform.position;
-
-        m_WalkedOnTopCallBack = null;
     }
 
     private void OnEnable()

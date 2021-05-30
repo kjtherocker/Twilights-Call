@@ -46,43 +46,49 @@ using UnityEngine;
 
     public void AddReserveToGame(Creatures aCreature, PartyTransfer aPartyTransfer)
     {
-        Creatures TransferCreature = null;
-
-        List<Creatures> RemoveList = null;
-        List<Creatures> AddList = null;
         
         
         switch (aPartyTransfer)
         {
             case PartyTransfer.InGameToReserve:
-                RemoveList = m_InCombatParty;
-                AddList = m_ReservePartymembers;
 
+                SwapCreatureLists(aCreature, ref m_InCombatParty,  ref m_ReservePartymembers);
                 break;
             
             case PartyTransfer.ReserveToInGame:
-                RemoveList = m_ReservePartymembers;
-                AddList = m_InCombatParty;
+                
+                SwapCreatureLists(aCreature, ref m_ReservePartymembers,  ref m_InCombatParty);
                 break;
             
         }
+
         
-        foreach (var creatures in RemoveList)
+    }
+
+    public void SwapCreatureLists(Creatures aCreature, ref List<Creatures> aRemoveList , ref List<Creatures> aAddList)
+    {
+        Creatures TransferCreature = null;
+
+        
+        for(int i = 0 ; i < aRemoveList.Count ; i++)
         {
-            if (creatures == aCreature)
+            if (aRemoveList[i] == aCreature)
             {
-                TransferCreature = creatures;
+                TransferCreature = aRemoveList[i];
+                
+                aRemoveList.RemoveAt(i); 
+                
                 break;
             }
         }
-        
+
         if (TransferCreature == null)
         {
             Debug.Assert(false ,"TransferedCreature is null");
         }
         else
         {
-            AddList.Add(TransferCreature);    
+            aAddList.Add(TransferCreature);    
         }
     }
 

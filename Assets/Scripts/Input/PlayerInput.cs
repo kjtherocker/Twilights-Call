@@ -116,61 +116,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""775d29f2-3de9-4750-bc19-88d720ca86da"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""8f34d4cd-e13d-4290-8c38-8859073e3479"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""528ba142-9c6c-40c0-914f-e19856bd43e0"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""38cf2f7e-efd1-4921-8d5e-20ade770b58f"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""8ab39af7-df95-47a7-bd25-49b61abc3ef3"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""Switch"",
                     ""id"": ""07ce969e-2a9e-43c8-8fe7-864fb73a597e"",
                     ""path"": ""2DVector"",
@@ -281,10 +226,10 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Gamepad"",
-                    ""id"": ""ffaddb50-27be-48a4-8aa0-0f8bfe7d331b"",
+                    ""name"": ""WASD"",
+                    ""id"": ""088731c1-7df5-44cc-96d5-e6913e6a5b28"",
                     ""path"": ""2DVector"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
@@ -293,8 +238,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""c91700da-f4df-4e98-a5cd-0ff437dee745"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""id"": ""e8a001d9-3103-436e-8239-7653874de0c2"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -304,8 +249,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""53c60fa3-c99f-4217-8250-e3d8e4bde92a"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""id"": ""410c42be-c546-4bf0-8ed9-5f1601730ffd"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -315,8 +260,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""11109522-e981-4582-a423-ff0b63906a23"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""id"": ""c02d8f19-b99b-49fa-9885-fb0ce88db535"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -326,8 +271,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""c905a5a6-1c7c-4a41-9d6b-3dc86580944e"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""id"": ""1f3e7584-0217-41c6-9456-841cf710e9b7"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -359,28 +304,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b9fc90f1-ec4b-4155-be28-efc52523a389"",
-                    ""path"": ""<SwitchProControllerHID>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""XButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5e32dda9-d71a-4078-b2a9-bba882b40f93"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""XButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8448f950-3292-4e6e-a026-3f1594b7045d"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
@@ -397,28 +320,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""SquareButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9014ad3e-dbd2-4206-a61c-f7c8096e3b16"",
-                    ""path"": ""<SwitchProControllerHID>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""SquareButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4a4c323e-b9af-4dc6-a62b-c25aeea49852"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
                     ""action"": ""SquareButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -447,28 +348,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7ea026b5-fa4a-4e36-bbb6-1dfb24145767"",
-                    ""path"": ""<SwitchProControllerHID>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""TriangleButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4cc5316d-cf01-42c2-854c-1d1188a6709b"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TriangleButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""79554eea-8498-41bd-b643-e70432073555"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
@@ -485,28 +364,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""CircleButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1fe1735b-bcb3-49bb-b810-56ba8fafd108"",
-                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""CircleButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""816c6e9b-b17b-43a0-a71b-34d399b8400c"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
                     ""action"": ""CircleButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

@@ -1,0 +1,1271 @@
+Using pre-set license
+Built from '2020.2/staging' branch; Version is '2020.2.6f1 (8a2143876886) revision 9052483'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19042.985; Version 2009; 64bit' Language: 'en' Physical Memory: 32717 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.2.6f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+F:/PersonalProjects/Twilights-Call
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+60865
+Successfully changed project path to: F:/PersonalProjects/Twilights-Call
+F:/PersonalProjects/Twilights-Call
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 76.36 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.6f1 (8a2143876886)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path F:/PersonalProjects/Twilights-Call/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1660 Ti (ID=0x2182)
+    Vendor:   
+    VRAM:     5991 MB
+    Driver:   27.21.14.5671
+Shader 'Custom/ZoneShader': fallback shader 'Unlit' not found
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56460
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002102 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 86.16 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.188 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.002609 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 82.59 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.917 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Custom/ZoneShader': fallback shader 'Unlit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.01 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3987 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 178.5 MB.
+System memory in use after: 178.7 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 4464.
+Total: 3.113100 ms (FindLiveObjects: 0.531900 ms CreateObjectMapping: 0.106200 ms MarkObjects: 2.370800 ms  DeleteObjects: 0.103100 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Resources/Objects/Overworld/Textures/Portraits/Portrait_Sigma2.png
+  artifactKey: Guid(f176635cfe6faf143ac05adcf1d044ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Portraits/Portrait_Sigma2.png using Guid(f176635cfe6faf143ac05adcf1d044ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ef827c8497078476f7730b1828050de') in 0.116740 seconds
+  Import took 0.155876 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000321 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Portraits/Portrait_Sigma.png
+  artifactKey: Guid(2f0ac16305bebf340bb436be643f45ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Portraits/Portrait_Sigma.png using Guid(2f0ac16305bebf340bb436be643f45ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '700fb2386b4e11f2cadbba5acc0964a5') in 0.057555 seconds
+  Import took 0.075589 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000269 seconds.
+  path: Assets/Resources/Objects/Portrait/Sigma.gif
+  artifactKey: Guid(8e2f42f71dee1dd4eb3b7f0bce4eaf99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Portrait/Sigma.gif using Guid(8e2f42f71dee1dd4eb3b7f0bce4eaf99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44df9b537424edf75d49ac0049ebf819') in 0.049968 seconds
+  Import took 0.067809 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/SigmaTestEyes.png
+  artifactKey: Guid(229ec2d7f7d3b644385505ba14193c76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/SigmaTestEyes.png using Guid(229ec2d7f7d3b644385505ba14193c76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68088168529b01c861b40b68ed6f72b9') in 0.018867 seconds
+  Import took 0.060272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001747 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/SigmaTestEyes.png
+  artifactKey: Guid(229ec2d7f7d3b644385505ba14193c76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/SigmaTestEyes.png using Guid(229ec2d7f7d3b644385505ba14193c76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68088168529b01c861b40b68ed6f72b9') in 0.004376 seconds
+  Import took 0.036776 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 33.610090 seconds.
+  path: Assets/Scenes/Scene_OverWorld/ReflectionProbe-0.exr
+  artifactKey: Guid(e5a1a6a48db109d44bf5a28502cdc448) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Scene_OverWorld/ReflectionProbe-0.exr using Guid(e5a1a6a48db109d44bf5a28502cdc448) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'abbb2f7f38e76498a35fc08c37dda45b') in 0.181850 seconds
+  Import took 0.207115 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock1.jpg
+  artifactKey: Guid(4f843ec1d50d7e14b870551ea7c937e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock1.jpg using Guid(4f843ec1d50d7e14b870551ea7c937e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fccf0091ab814b778c6995484ecec42') in 0.072954 seconds
+  Import took 0.092876 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree1.jpg
+  artifactKey: Guid(ad11cfae3dcd01f47877da49f5f0028c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree1.jpg using Guid(ad11cfae3dcd01f47877da49f5f0028c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eba094d343a30c08afdc0f2292a11a3b') in 0.021130 seconds
+  Import took 0.049606 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree3.jpg
+  artifactKey: Guid(da88908038e93e645b452506a9235b5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree3.jpg using Guid(da88908038e93e645b452506a9235b5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a4b17eff4a8e91e907d2892d23a60f8') in 0.025705 seconds
+  Import took 0.069254 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_T_T.png
+  artifactKey: Guid(e9c7b6dd1ecd9804d8a23a0ac758aaa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_T_T.png using Guid(e9c7b6dd1ecd9804d8a23a0ac758aaa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1c105e53dc64f19dbc5554dc2ddcd02') in 0.081697 seconds
+  Import took 0.114212 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000258 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected.png
+  artifactKey: Guid(874c0b74ec9cfbd448c1aaca5607140e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected.png using Guid(874c0b74ec9cfbd448c1aaca5607140e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f78903e99653db34575c57642d28e8c') in 0.065873 seconds
+  Import took 0.106987 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000269 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Rockbed.png
+  artifactKey: Guid(7b461a50d4276a14298e8ad541239b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Rockbed.png using Guid(7b461a50d4276a14298e8ad541239b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b59eda371a9389d125da8ec6b6ec4799') in 0.031455 seconds
+  Import took 0.047806 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Screenshot_90.png
+  artifactKey: Guid(210b79771f7f1f846ab06139ddf10974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Screenshot_90.png using Guid(210b79771f7f1f846ab06139ddf10974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd6ea4ffc076f7b20704e9bfc9be45d1') in 0.026362 seconds
+  Import took 0.032404 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_TreeBark.png
+  artifactKey: Guid(16c3fa664cc39d14f973d2eef0caa74f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_TreeBark.png using Guid(16c3fa664cc39d14f973d2eef0caa74f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7204ba4822b773ca0b9a1db5f452aa3') in 0.068697 seconds
+  Import took 0.099086 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000260 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Mercury.jpg
+  artifactKey: Guid(6d78cfbbdc68cd2439f828abd3af9a42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Mercury.jpg using Guid(6d78cfbbdc68cd2439f828abd3af9a42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42a274fb2c7bc2f995841b798933606c') in 0.037370 seconds
+  Import took 0.066966 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay.png
+  artifactKey: Guid(9e1307f0578bdb044b7a6289cb020e9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay.png using Guid(9e1307f0578bdb044b7a6289cb020e9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9beffd039f364e509af19a0407e50f3b') in 0.075876 seconds
+  Import took 0.110641 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Vella Eyee test2.png
+  artifactKey: Guid(1e5f4e9c7958376428185fc52bedf868) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Vella Eyee test2.png using Guid(1e5f4e9c7958376428185fc52bedf868) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b0bcc7617f64ace60810b72b988e959') in 0.063252 seconds
+  Import took 0.078768 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000285 seconds.
+  path: Assets/NotResources/Project/WorldSpaceDissolve/Textures/TreeTex.png
+  artifactKey: Guid(65eaf2e42aae5764e94657c7a60b1a98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/WorldSpaceDissolve/Textures/TreeTex.png using Guid(65eaf2e42aae5764e94657c7a60b1a98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd788106ab7e94c19d95954235037acd0') in 0.017090 seconds
+  Import took 0.046008 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/Resources/Objects/Menu/SkillCards/Untitled.png
+  artifactKey: Guid(960c33774e697d94b9acc956f9954fd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/SkillCards/Untitled.png using Guid(960c33774e697d94b9acc956f9954fd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '084532692242b1404e8a77b62687ddaf') in 0.080378 seconds
+  Import took 0.100448 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth.png
+  artifactKey: Guid(80f2120cfc427644b87c8c5b3e88a5c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth.png using Guid(80f2120cfc427644b87c8c5b3e88a5c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0aab1d565546ce441fb389b6bb41141') in 0.073626 seconds
+  Import took 0.091220 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_TownSquare.png
+  artifactKey: Guid(c259b2372741ec8429fff0d4e70df1b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_TownSquare.png using Guid(c259b2372741ec8429fff0d4e70df1b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '173a26bc90d6408c15c51ab6d1f01bc3') in 0.046141 seconds
+  Import took 0.092617 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/NotResources/Project/FallenKnightParticleEffects/ParticleEffect_WaterBall/Texture_Core.png
+  artifactKey: Guid(7de74c3ae74e9c841822e0747ab3a140) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/FallenKnightParticleEffects/ParticleEffect_WaterBall/Texture_Core.png using Guid(7de74c3ae74e9c841822e0747ab3a140) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5934f4334e79deeeaf361a7fb79fa292') in 0.005969 seconds
+  Import took 0.044966 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Fide/Model/Weapon/texture_fide_sword_coat.png
+  artifactKey: Guid(b0933d4347fe89c4f838a06ad11f1228) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Fide/Model/Weapon/texture_fide_sword_coat.png using Guid(b0933d4347fe89c4f838a06ad11f1228) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '310ec7a5aad9ad73ebc3fb0d940d1f17') in 0.068179 seconds
+  Import took 0.097749 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/NotResources/Project/FallenKnightParticleEffects/Texture_Cloud.png
+  artifactKey: Guid(376bb136c098f774886d371661ad5d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/FallenKnightParticleEffects/Texture_Cloud.png using Guid(376bb136c098f774886d371661ad5d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab9cea557f1d086d03a0f368a470ee32') in 0.052402 seconds
+  Import took 0.058450 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Node.png
+  artifactKey: Guid(db6874598b2b4a04abf6494b37f6dbc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Node.png using Guid(db6874598b2b4a04abf6494b37f6dbc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dbb8edd9bd1eda80099c5649156ffbd') in 0.030930 seconds
+  Import took 0.072613 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Fide/Weapon/texture_fide_sword_coat.png
+  artifactKey: Guid(a7f21ad06408dd240abf0fea35851a07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Fide/Weapon/texture_fide_sword_coat.png using Guid(a7f21ad06408dd240abf0fea35851a07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb443440cb173ca92fa7d5470cedf014') in 0.004723 seconds
+  Import took 0.035617 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Bush.png
+  artifactKey: Guid(a8a313b1a7ac2884c81969e1681c888e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Bush.png using Guid(a8a313b1a7ac2884c81969e1681c888e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9af99619480b3176d99300359374924') in 0.059299 seconds
+  Import took 0.074756 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Ground_Overlay.png
+  artifactKey: Guid(3da981e7ca60c3447ae59e60b9347d05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Ground_Overlay.png using Guid(3da981e7ca60c3447ae59e60b9347d05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '242214163407a2ea10b08e1a5678092d') in 0.006713 seconds
+  Import took 0.040562 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock2_NRM.jpg
+  artifactKey: Guid(fd9473a6b489b9d42af6b5b83b936df9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock2_NRM.jpg using Guid(fd9473a6b489b9d42af6b5b83b936df9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a00b9641b2ac352f717f459e49657e68') in 0.060041 seconds
+  Import took 0.078711 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Resources/Objects/Battle/Enemy/Forest/RedKnights/Red Knight Materials/Textures/Smoke.png
+  artifactKey: Guid(d31df69c4011e6e419ad4dc70c8ed933) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Enemy/Forest/RedKnights/Red Knight Materials/Textures/Smoke.png using Guid(d31df69c4011e6e419ad4dc70c8ed933) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc240d4190e2ae8998808e100b8b9348') in 0.021084 seconds
+  Import took 0.065649 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Town Textures/Texture_2StoryHouse.png
+  artifactKey: Guid(88b314bf392a42e48abbc692f1fbfbb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Town Textures/Texture_2StoryHouse.png using Guid(88b314bf392a42e48abbc692f1fbfbb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ef5c0409cb17a9461f3cc92b56ecdd6') in 0.029128 seconds
+  Import took 0.044694 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock1_NRM.jpg
+  artifactKey: Guid(76bc310e378e20e4ca7451a08d7c4573) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock1_NRM.jpg using Guid(76bc310e378e20e4ca7451a08d7c4573) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca14394ca2762fb0e0ffc84d97cce4ee') in 0.117201 seconds
+  Import took 0.134898 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/Resources/Objects/Portrait/Screenshot_317.png
+  artifactKey: Guid(20af09be32aff5c4e8b5887e4c8f888e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Portrait/Screenshot_317.png using Guid(20af09be32aff5c4e8b5887e4c8f888e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b284a9918910984270a54f93494018') in 0.041954 seconds
+  Import took 0.047798 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares_1.png
+  artifactKey: Guid(2325261e0a4805345ba37e04d0b5cf3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares_1.png using Guid(2325261e0a4805345ba37e04d0b5cf3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dee337a07f93195d6f4d91bf0524808') in 0.024077 seconds
+  Import took 0.042358 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000257 seconds.
+  path: Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree_Bark.png
+  artifactKey: Guid(8c00f332a1c6b2e4bb433c47c0b2e6ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree_Bark.png using Guid(8c00f332a1c6b2e4bb433c47c0b2e6ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6da24bf5197442680f2add53dcae25bf') in 0.005377 seconds
+  Import took 0.039586 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Turn Faces.png
+  artifactKey: Guid(31625350f29d8f9409a97a04239e33f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Turn Faces.png using Guid(31625350f29d8f9409a97a04239e33f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8dd99c18016d8b989e46c5f74719675') in 0.024098 seconds
+  Import took 0.043844 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_CurvedPath.png
+  artifactKey: Guid(e738c0da11c15f44cb413fc252bfcbaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_CurvedPath.png using Guid(e738c0da11c15f44cb413fc252bfcbaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01496f734693eae5876bb3691552bff9') in 0.033824 seconds
+  Import took 0.057192 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000241 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Forest/Texture_Grass.png
+  artifactKey: Guid(8ed38eaaed6640f4ab7052025c52087c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Forest/Texture_Grass.png using Guid(8ed38eaaed6640f4ab7052025c52087c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d696ac1b27162e227de8d29b7f3d0f4') in 0.038481 seconds
+  Import took 0.044255 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Road.png
+  artifactKey: Guid(ae020233fa5806f4c802244be69630a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Road.png using Guid(ae020233fa5806f4c802244be69630a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4659b8ac7ac14bdbca525dbcb47a2d6f') in 0.014632 seconds
+  Import took 0.032250 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree2.jpg
+  artifactKey: Guid(1af5c22168ce5d1449376ddf0cb0d8ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Tree2.jpg using Guid(1af5c22168ce5d1449376ddf0cb0d8ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ea6187953fcf74ea38f936c429e6b78') in 0.017660 seconds
+  Import took 0.037437 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaRock.png
+  artifactKey: Guid(5fbb9c867795c764cae210a2783ea588) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaRock.png using Guid(5fbb9c867795c764cae210a2783ea588) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef58759b6c3dd881ff7df1c9ffda0dea') in 0.034867 seconds
+  Import took 0.050128 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000267 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected4.png
+  artifactKey: Guid(f37c16c73981e3142a37c9409b353eda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected4.png using Guid(f37c16c73981e3142a37c9409b353eda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3184c373469a43666c155b1ed78be0a') in 0.057409 seconds
+  Import took 0.082742 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Untitled-1.png
+  artifactKey: Guid(5239220d2745712449ef77591d45d622) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Untitled-1.png using Guid(5239220d2745712449ef77591d45d622) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '762324c277e2b7f1f3a8d6e1bad3828b') in 0.047905 seconds
+  Import took 0.065756 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/Resources/Objects/Battle/Enemy/Forest/RedKnights/Red Knight Materials/Textures/Texture_Crystal.png
+  artifactKey: Guid(07111cf72a21fda4996e9bcd2a8cd137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Enemy/Forest/RedKnights/Red Knight Materials/Textures/Texture_Crystal.png using Guid(07111cf72a21fda4996e9bcd2a8cd137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf820864ec4dd09eac02cc59d1664b85') in 0.019620 seconds
+  Import took 0.050232 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/NotResources/Project/Shared/Textures/UVTexture.jpg
+  artifactKey: Guid(54d6331eed5bc4cc88c12205511ee709) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/Shared/Textures/UVTexture.jpg using Guid(54d6331eed5bc4cc88c12205511ee709) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3235b0717d40a707f249fbc7730cc09c') in 0.020003 seconds
+  Import took 0.056156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/Resources_moved/Objects/Battle/Arena/Base/Arena.fbm/Tree Diffuse.psd
+  artifactKey: Guid(3d3fcdd744745d24796b44df199a68e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources_moved/Objects/Battle/Arena/Base/Arena.fbm/Tree Diffuse.psd using Guid(3d3fcdd744745d24796b44df199a68e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c17c036e830915a53fe7f0ecd7419d2') in 0.046454 seconds
+  Import took 0.067616 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/Vella Eyee test.png
+  artifactKey: Guid(58c669e8cfc3ea14d9678fadc8078e2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/Vella Eyee test.png using Guid(58c669e8cfc3ea14d9678fadc8078e2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dab72e683a49bd6b331b0bbdc249c108') in 0.019137 seconds
+  Import took 0.055480 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000198 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Texture_NodeWhite.png
+  artifactKey: Guid(aafde49592084f84ba80284d80c54e4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Texture_NodeWhite.png using Guid(aafde49592084f84ba80284d80c54e4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4cc96c0ec162a4af651fdb4b96b0940') in 0.032168 seconds
+  Import took 0.071959 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000270 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares.png
+  artifactKey: Guid(66d544a56349eb24eb1283a286cddbdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares.png using Guid(66d544a56349eb24eb1283a286cddbdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfd73ad5f09c4ff774f875e32d90bbb3') in 0.036749 seconds
+  Import took 0.074127 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/supertesto.png
+  artifactKey: Guid(f1bb3abc2751f544db758618df35c833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/supertesto.png using Guid(f1bb3abc2751f544db758618df35c833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3ab1d7d14cae7828f19288001c46585') in 0.005865 seconds
+  Import took 0.027327 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaGrass.png
+  artifactKey: Guid(ffc311e228e53eb48a9df59d2f3462da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaGrass.png using Guid(ffc311e228e53eb48a9df59d2f3462da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28574bb217a582395b29a33bc913c20c') in 0.030719 seconds
+  Import took 0.048375 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth 2.png
+  artifactKey: Guid(c9173c4e3af3e5f4f828d5834aba2194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth 2.png using Guid(c9173c4e3af3e5f4f828d5834aba2194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b6181b4083de1379a1744b1a1de41c6') in 0.050707 seconds
+  Import took 0.080192 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000274 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Vella Gun Textures/Texture_Gun_Grip.png
+  artifactKey: Guid(5e7737a926136d04dae75f1510cab7b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Vella Gun Textures/Texture_Gun_Grip.png using Guid(5e7737a926136d04dae75f1510cab7b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44620e678c9eeb1caa352a563a2da0e3') in 0.061181 seconds
+  Import took 0.075545 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/tteessto.png
+  artifactKey: Guid(31cb68c46fd370342bfd90f8a28028ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/tteessto.png using Guid(31cb68c46fd370342bfd90f8a28028ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '182a746caa087dfe6a8b2a6331466856') in 0.063269 seconds
+  Import took 0.076941 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000250 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/undershirt.png
+  artifactKey: Guid(56cef5d8c46bd6f4fa83fed32965352c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/undershirt.png using Guid(56cef5d8c46bd6f4fa83fed32965352c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19a90bac4039bfc72c2319929cbb7d7f') in 0.021700 seconds
+  Import took 0.055897 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000314 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Town Textures/Texture_Tower.png
+  artifactKey: Guid(db7b33f2ff78c0b4983b96fda7d56edf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Town Textures/Texture_Tower.png using Guid(db7b33f2ff78c0b4983b96fda7d56edf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ea55590c2eec8bd411797fb894d033f') in 0.043610 seconds
+  Import took 0.073050 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_invT.png
+  artifactKey: Guid(224fed8231b75d941a341699a1459e95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_invT.png using Guid(224fed8231b75d941a341699a1459e95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '433816be8de20df837f867cf67539bd5') in 0.070424 seconds
+  Import took 0.083913 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000281 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_BushNormal.png
+  artifactKey: Guid(6912d7ad46e155f42861a751be2989f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_BushNormal.png using Guid(6912d7ad46e155f42861a751be2989f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '359dbf41dba728b55eec4c84503d340b') in 0.036360 seconds
+  Import took 0.068609 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Leaves.png
+  artifactKey: Guid(7ebf4e953ebc49c42a42b92a97ce80f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Leaves.png using Guid(7ebf4e953ebc49c42a42b92a97ce80f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a3f34ba19cff8b3606daa43ee1e9549') in 0.079326 seconds
+  Import took 0.102162 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000263 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_T_invT.png
+  artifactKey: Guid(f58a8e7387899be4b8fd648c8614bd30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_T_invT.png using Guid(f58a8e7387899be4b8fd648c8614bd30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9ad67aed217b9b172d214aee73e4893') in 0.036390 seconds
+  Import took 0.043121 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000285 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Fide/Weapon/texture_fide_sword_hilt.png
+  artifactKey: Guid(d4889ac9800e731459cf737ff4c26790) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Fide/Weapon/texture_fide_sword_hilt.png using Guid(d4889ac9800e731459cf737ff4c26790) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '831551873aff587178ca25c364dfeb7a') in 0.152961 seconds
+  Import took 0.171085 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000256 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaBush.png
+  artifactKey: Guid(62ee4d098ffc7ab45a67152d2785f553) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaBush.png using Guid(62ee4d098ffc7ab45a67152d2785f553) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae449b300c3a3907d66758bee4954af4') in 0.031325 seconds
+  Import took 0.059181 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000257 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Forest/texture_rock.png
+  artifactKey: Guid(8da54d68303781540aabf20362b8b4fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Forest/texture_rock.png using Guid(8da54d68303781540aabf20362b8b4fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2326f41bc8f74e7fb5306c62e03ea0e') in 0.016871 seconds
+  Import took 0.050247 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000342 seconds.
+  path: Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock2.jpg
+  artifactKey: Guid(4118432eda2eeae46af2189dd62d3885) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Rocks/Materials/Texture_Rock2.jpg using Guid(4118432eda2eeae46af2189dd62d3885) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b9721dcef34a7af5e82abfd8cbebc6a') in 0.038746 seconds
+  Import took 0.065410 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/Resources/Objects/Battle/Enemy/Forest/RedKnights/Models/swag.fbm/Texture_Crystal.psd
+  artifactKey: Guid(d3135df34e8f73346bd9794d18a7caec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Enemy/Forest/RedKnights/Models/swag.fbm/Texture_Crystal.psd using Guid(d3135df34e8f73346bd9794d18a7caec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '761f632dda4863bb54252dad0504af11') in 0.054338 seconds
+  Import took 0.060130 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000265 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_T.png
+  artifactKey: Guid(8c97d2a6f90989649a1a6e9f9d24294b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Materials/Texture_Ground_Overlay_T.png using Guid(8c97d2a6f90989649a1a6e9f9d24294b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4757884a3b8d6a8397f65b2ae11ae5f3') in 0.036140 seconds
+  Import took 0.058407 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000262 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/models/twinblade3_uvw.png
+  artifactKey: Guid(59b55b72d7eab2746a1d194ea4dfea41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/models/twinblade3_uvw.png using Guid(59b55b72d7eab2746a1d194ea4dfea41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0403404902159a0c926d9cc9543f0e58') in 0.004343 seconds
+  Import took 0.010186 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/NotResources/Project/FallenKnightParticleEffects/Texture_Ripple.png
+  artifactKey: Guid(3a9f1f9a6aa23aa4cbca0947270eaa45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/FallenKnightParticleEffects/Texture_Ripple.png using Guid(3a9f1f9a6aa23aa4cbca0947270eaa45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '590c86f4a03d42786574029e83e4956f') in 0.050334 seconds
+  Import took 0.068768 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/NotResources/Project/WorldSpaceDissolve/Textures/SkullTex.png
+  artifactKey: Guid(42f3d6c71d57faf45bfde1258017dd78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/WorldSpaceDissolve/Textures/SkullTex.png using Guid(42f3d6c71d57faf45bfde1258017dd78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd341dc439359c371bb20eb98a4a53f65') in 0.034768 seconds
+  Import took 0.054117 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares_2.png
+  artifactKey: Guid(5987bf1fc676e8f4ebed8030a0d66dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares_2.png using Guid(5987bf1fc676e8f4ebed8030a0d66dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d0d7da8960fcccbb945a105b60bfe4c') in 0.020130 seconds
+  Import took 0.035994 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/Resources/Title/Texture_Title_Theme.png
+  artifactKey: Guid(6966d14c70b84fd488907b0d793c004f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Title/Texture_Title_Theme.png using Guid(6966d14c70b84fd488907b0d793c004f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77c33455b75c5dbf2386e012a15c14f7') in 0.042738 seconds
+  Import took 0.058262 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/Tile.png
+  artifactKey: Guid(ad7a44f2987c39c43a6a3f8e53733603) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/Tile.png using Guid(ad7a44f2987c39c43a6a3f8e53733603) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b33f497b9f19b7ee689787333c6310a') in 0.142000 seconds
+  Import took 0.148749 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000200 seconds.
+  path: Assets/Resources/Objects/Battle/Indicators/Textures/SPEED_UP_Indicator.png
+  artifactKey: Guid(204158bbd3c74c742b75999ec50b08ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Indicators/Textures/SPEED_UP_Indicator.png using Guid(204158bbd3c74c742b75999ec50b08ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '097c9269325ee4b8097bf2defadd5fc7') in 0.037658 seconds
+  Import took 0.059273 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Fide/Model/Weapon/texture_fide_sword_hilt.png
+  artifactKey: Guid(0056cce5cc3040c46b98334d10266498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Fide/Model/Weapon/texture_fide_sword_hilt.png using Guid(0056cce5cc3040c46b98334d10266498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86376bb355371cc93647b090612af308') in 0.006452 seconds
+  Import took 0.016511 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000274 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaTree.png
+  artifactKey: Guid(0dfd7d1a0942606498f8a85d9df4070e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ArenaTree.png using Guid(0dfd7d1a0942606498f8a85d9df4070e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b315b0202dae860c430c274d3d7a952') in 0.027219 seconds
+  Import took 0.049146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected2.png
+  artifactKey: Guid(525534ba69e073b40aac248463f41c96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected2.png using Guid(525534ba69e073b40aac248463f41c96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbc9b58fd78e0992bc41574731640fb2') in 0.062832 seconds
+  Import took 0.083156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000273 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ForestMap.png
+  artifactKey: Guid(0864b610fc1326b45b152ca3a14b342c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_ForestMap.png using Guid(0864b610fc1326b45b152ca3a14b342c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81a89d8ed26b2ceaa13269d59f17c736') in 0.030945 seconds
+  Import took 0.062778 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000300 seconds.
+  path: Assets/Resources/Objects/Menu/Icons/Textures/shadow_element.png
+  artifactKey: Guid(50e5908b39a0fcb4d975ef87a39575ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Icons/Textures/shadow_element.png using Guid(50e5908b39a0fcb4d975ef87a39575ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e5c75679e933c4f0aa33de8a0323216') in 0.020513 seconds
+  Import took 0.035887 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000281 seconds.
+  path: Assets/NotResources/Project/FallenKnightParticleEffects/ParticleEffect_Projectile/Texture_Beam.png
+  artifactKey: Guid(9bba5236c1af75c4c97974b570c612b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/FallenKnightParticleEffects/ParticleEffect_Projectile/Texture_Beam.png using Guid(9bba5236c1af75c4c97974b570c612b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67770136716abf64dc3472ddab6e5769') in 0.024254 seconds
+  Import took 0.059150 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Ground_Final Pass.png
+  artifactKey: Guid(6bb9db1012dbfc54a9d7181860144a66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_Ground_Final Pass.png using Guid(6bb9db1012dbfc54a9d7181860144a66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55f90414f7f99ff47fd8ba8af276b652') in 0.046821 seconds
+  Import took 0.079025 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/Resources_moved/Objects/Battle/Arena/Base/Arena.fbm/Rock Diffuse.psd
+  artifactKey: Guid(e5c6aac77aa3877408f1a1c37f2fb2bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources_moved/Objects/Battle/Arena/Base/Arena.fbm/Rock Diffuse.psd using Guid(e5c6aac77aa3877408f1a1c37f2fb2bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f49bf07ce706472d3ef158fb2e71745') in 0.034260 seconds
+  Import took 0.052908 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000266 seconds.
+  path: Assets/Resources/Objects/ParticleEffects/MoondRedEyes_Eye/SkyBoxTemplate.png
+  artifactKey: Guid(068c84f15d581534baf9b31a1f35c28e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/ParticleEffects/MoondRedEyes_Eye/SkyBoxTemplate.png using Guid(068c84f15d581534baf9b31a1f35c28e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c99a262aa91e256daf421e8f13df340') in 0.250772 seconds
+  Import took 0.286895 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000245 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Hair2.png
+  artifactKey: Guid(0dab484906dbea940916661ea993cbc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Hair2.png using Guid(0dab484906dbea940916661ea993cbc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '366304e125149c53286c45815eaf68fc') in 0.041765 seconds
+  Import took 0.070308 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Town Textures/Texture_1StoryHouse.png
+  artifactKey: Guid(fc1bcf0edd2c1944597c6660956d8e90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Town Textures/Texture_1StoryHouse.png using Guid(fc1bcf0edd2c1944597c6660956d8e90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd9947f9af763374799e82a4fa04088c') in 0.033194 seconds
+  Import took 0.054064 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000291 seconds.
+  path: Assets/Resources/Title/Twilights_Call_Logo_1.png
+  artifactKey: Guid(7fecee948afd97f42bc8c5c2f90f2702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Title/Twilights_Call_Logo_1.png using Guid(7fecee948afd97f42bc8c5c2f90f2702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '030292cd515a6cf2bb8d03331fc1ab5b') in 0.015676 seconds
+  Import took 0.032143 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Mercury.png
+  artifactKey: Guid(9ab96da3ff7063b4683d6e5388992f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Mercury.png using Guid(9ab96da3ff7063b4683d6e5388992f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfd52630ae6f01459300a74e01684864') in 0.035616 seconds
+  Import took 0.051423 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000242 seconds.
+  path: Assets/Resources/Objects/Menu/Textures/Name Textures/Skills.png
+  artifactKey: Guid(d377948d0d6631742945356c7965f460) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Textures/Name Textures/Skills.png using Guid(d377948d0d6631742945356c7965f460) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05eacb7de1089fbc721903d146ebdc05') in 0.030314 seconds
+  Import took 0.057827 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/Resources/Objects/ParticleEffects/Projectile/Texture_Beam.png
+  artifactKey: Guid(5231e1454f9f91241896bf46dc0714dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/ParticleEffects/Projectile/Texture_Beam.png using Guid(5231e1454f9f91241896bf46dc0714dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8cfd45cd47e7de7a78df520f57bc1471') in 0.004035 seconds
+  Import took 0.015345 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Rock1_NRM.jpg
+  artifactKey: Guid(dfca43629e589424cb7ca1d3265a060e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Tree/TreeMaterials/Texture_Rock1_NRM.jpg using Guid(dfca43629e589424cb7ca1d3265a060e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c344d298e6c83385b0e3973fbfb6afa9') in 0.054028 seconds
+  Import took 0.087814 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Crystals.jpg
+  artifactKey: Guid(bf01fcfd9636f6546ae1084b54116ee0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Crystals.jpg using Guid(bf01fcfd9636f6546ae1084b54116ee0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68ebd3a0afd0b8b94f18d4e382addfbb') in 0.020585 seconds
+  Import took 0.045887 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000256 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Mercury_1.jpg
+  artifactKey: Guid(5ceedfa853ed09d47a1b1d15764758e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Domain/Texture_Mercury_1.jpg using Guid(5ceedfa853ed09d47a1b1d15764758e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5b90f2faa76d14afbdeecc4c61eef01') in 0.008673 seconds
+  Import took 0.031881 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000249 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/tteessto 1.png
+  artifactKey: Guid(1347c523dd2958949bde1a2d7a7ccf3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/tteessto 1.png using Guid(1347c523dd2958949bde1a2d7a7ccf3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8cc7d62a26d3a25b8146d26771e9126a') in 0.068668 seconds
+  Import took 0.076245 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000241 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Texture_NodeRed.JPG
+  artifactKey: Guid(3060d9f40ed019244917618f70c56ffa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Texture_NodeRed.JPG using Guid(3060d9f40ed019244917618f70c56ffa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3d2e468f94703b0487272b50238fb9f') in 0.016870 seconds
+  Import took 0.039070 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/models/twinblade2_uvw.png
+  artifactKey: Guid(23ab8df6e50d1c244bc8ec65c31d0a2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/models/twinblade2_uvw.png using Guid(23ab8df6e50d1c244bc8ec65c31d0a2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dba9a1fd50e0f364304caf3397a434a5') in 0.046650 seconds
+  Import took 0.053596 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/3D_Doll_Textured_First_Pass.fbm/scarf.psd
+  artifactKey: Guid(3ad59048b0afb8f459042341404d8fa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/3D_Doll_Textured_First_Pass.fbm/scarf.psd using Guid(3ad59048b0afb8f459042341404d8fa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4f5a469ad9fc7f826e0c8d48d80fb01') in 0.046019 seconds
+  Import took 0.089323 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000316 seconds.
+  path: Assets/Resources/Objects/Menu/Icons/shadow_element.png
+  artifactKey: Guid(767f489cf4057bb45837a07b4ec82c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Icons/shadow_element.png using Guid(767f489cf4057bb45837a07b4ec82c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd78acc567938ca302320a1b05bdcc01') in 0.042027 seconds
+  Import took 0.064966 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Vella Gun Textures/Texture_Gun_Barrel_Wood.png
+  artifactKey: Guid(ab71eee178431234ba881b54472642e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Vella Gun Textures/Texture_Gun_Barrel_Wood.png using Guid(ab71eee178431234ba881b54472642e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1b15a9cabac5582f76e7f70ed8d225e') in 0.084156 seconds
+  Import took 0.117405 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000267 seconds.
+  path: Assets/NotResources/Project/FallenKnightParticleEffects/ParticleEffect_WaterBall/Texture_WaterOrb.png
+  artifactKey: Guid(267c1725c3bcf8241b12265b1359fdd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/FallenKnightParticleEffects/ParticleEffect_WaterBall/Texture_WaterOrb.png using Guid(267c1725c3bcf8241b12265b1359fdd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66a54cd4ca2e92df7bbf7fe99a7c2e33') in 0.036419 seconds
+  Import took 0.070554 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares_3.png
+  artifactKey: Guid(6d51c52e0ed32404b97dfd9a29888153) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/squares_3.png using Guid(6d51c52e0ed32404b97dfd9a29888153) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '865809b9b6615458af8911a75e1ad3d1') in 0.047721 seconds
+  Import took 0.089640 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Resources/Title/Twilights_Call_Logo.png
+  artifactKey: Guid(fd86413256657034ba9ef8e79917c1b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Title/Twilights_Call_Logo.png using Guid(fd86413256657034ba9ef8e79917c1b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c86de224d88a04f4dece9626144865e') in 0.018605 seconds
+  Import took 0.032913 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/Resources/Objects/Portrait/Screenshot_318.png
+  artifactKey: Guid(e0ee867e00e9c334ca122e8651d9de31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Portrait/Screenshot_318.png using Guid(e0ee867e00e9c334ca122e8651d9de31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b582ac226d2a3e0e33f68c307093693') in 0.059146 seconds
+  Import took 0.086745 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000229 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth2.png
+  artifactKey: Guid(faae11885fe478549a6200138b9f0edc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth2.png using Guid(faae11885fe478549a6200138b9f0edc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5bab5f3ecbd26b2dffb0562fe8bdf40') in 0.032892 seconds
+  Import took 0.038478 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected3.png
+  artifactKey: Guid(b05efd23c3285a442b7eaeb929a32a31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Overworld/CombatNodeMaterials/TileSelected3.png using Guid(b05efd23c3285a442b7eaeb929a32a31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a414fd3e7d2b16a2a231c6bd189c4b4') in 0.067436 seconds
+  Import took 0.113154 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Resources/Objects/Battle/Node/3D_Ground_Cube.fbm/Texture_Ground_Overlay.psd
+  artifactKey: Guid(eca32806b4776c246b9b7850c2b32ebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/3D_Ground_Cube.fbm/Texture_Ground_Overlay.psd using Guid(eca32806b4776c246b9b7850c2b32ebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76e9c0794d758b6f99535c198a84c45e') in 0.077881 seconds
+  Import took 0.105469 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Forest/Texture_Grass (2).png
+  artifactKey: Guid(1228d75a4d98c214993c6fee8985d229) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Forest/Texture_Grass (2).png using Guid(1228d75a4d98c214993c6fee8985d229) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87d8a9758b29bd328a9b534bb35ca4ed') in 0.033838 seconds
+  Import took 0.065787 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_DeadEnd.png
+  artifactKey: Guid(bd6d3126bcc62b642abc1851e96ab4a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_DeadEnd.png using Guid(bd6d3126bcc62b642abc1851e96ab4a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71b1d8b84bb96e740373e9194234715f') in 0.050880 seconds
+  Import took 0.070654 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Coat.png
+  artifactKey: Guid(e8d65f42144360c4f87d631c0d2ca576) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Coat.png using Guid(e8d65f42144360c4f87d631c0d2ca576) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f46329be984a83f2df9614bb62c605b2') in 0.046024 seconds
+  Import took 0.078670 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/Resources/Objects/Portrait/Screenshot_7.png
+  artifactKey: Guid(f1a9f98e0f461e04ebea3792c7f07946) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Portrait/Screenshot_7.png using Guid(f1a9f98e0f461e04ebea3792c7f07946) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e0fbe105de69362f15143ec32fe28af') in 0.023793 seconds
+  Import took 0.040733 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_StraightPath.png
+  artifactKey: Guid(b0146d9e9e30baa478c0767dd9f362a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Textures_Overworld/Texture_StraightPath.png using Guid(b0146d9e9e30baa478c0767dd9f362a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a339d292e51604300fd156dd3585079') in 0.037455 seconds
+  Import took 0.061657 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Forest/texture_grass (1).png
+  artifactKey: Guid(18b38f6a97322f64191d2e47a3ed04dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Forest/texture_grass (1).png using Guid(18b38f6a97322f64191d2e47a3ed04dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '372bc8e32d5a8db917a4e6f04326f995') in 0.005023 seconds
+  Import took 0.038108 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Texture_NodeEnemy.jpg
+  artifactKey: Guid(3957e175cb672504497f91114eae63bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Texture_NodeEnemy.jpg using Guid(3957e175cb672504497f91114eae63bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5b303509d5308a7acd7cd69e5b718ed') in 0.033707 seconds
+  Import took 0.041504 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/UITextures/Turn_Face_Enemy.png
+  artifactKey: Guid(c03ed5016f47a624d90f0a33d2580672) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/UITextures/Turn_Face_Enemy.png using Guid(c03ed5016f47a624d90f0a33d2580672) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09011a4caa8a08ae2e22ca2ae0af257a') in 0.024379 seconds
+  Import took 0.045377 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000184 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/Turn Faces Sword.png
+  artifactKey: Guid(84c6c08165249604bb43c8d57ecd043c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/Turn Faces Sword.png using Guid(84c6c08165249604bb43c8d57ecd043c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d8f44c3ee1b095ac020599ad6de429d') in 0.025014 seconds
+  Import took 0.037180 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/NotResources/Project/Textures/Title/Texture_Title_Theme.png
+  artifactKey: Guid(ed25ac49edbebec41948882c1619b51d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/Textures/Title/Texture_Title_Theme.png using Guid(ed25ac49edbebec41948882c1619b51d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52ef228c3534d8a85e7909fcc93ad75d') in 0.077871 seconds
+  Import took 0.152193 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000252 seconds.
+  path: Assets/Resources/Objects/Icon/TwilightsCall.png
+  artifactKey: Guid(b6d0ed2676ae8d648b6fe884aa6d507e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Icon/TwilightsCall.png using Guid(b6d0ed2676ae8d648b6fe884aa6d507e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29db6b889e3cd83e9b9c02c8429f7a58') in 0.033069 seconds
+  Import took 0.072515 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth 1.png
+  artifactKey: Guid(5f92aba58b56d634aaff3e1ef51e63b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth 1.png using Guid(5f92aba58b56d634aaff3e1ef51e63b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbcab99fee1b4b8e26f982ae4fcbe0db') in 0.094281 seconds
+  Import took 0.122352 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/WorldOfTheChimera/Texture_FleshFloor.PNG
+  artifactKey: Guid(6449314566e517840b2911a7b0631e3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/WorldOfTheChimera/Texture_FleshFloor.PNG using Guid(6449314566e517840b2911a7b0631e3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb470746cec7d27dbbcb2a62afab73fb') in 0.034918 seconds
+  Import took 0.057457 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/NotResources/Project/Textures/Slices/Texture_Projectile_Parry_Vert.png
+  artifactKey: Guid(a62fac54956d81d429e51102b23c9d57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/Textures/Slices/Texture_Projectile_Parry_Vert.png using Guid(a62fac54956d81d429e51102b23c9d57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '702272957531fd5df888a5a7341b5862') in 0.054970 seconds
+  Import took 0.060609 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/models/twinblade_uvw.png
+  artifactKey: Guid(ab89757c60621b743a6e836ab67e3e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/models/twinblade_uvw.png using Guid(ab89757c60621b743a6e836ab67e3e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98fa8f36c97599927665e6c382531dc9') in 0.023410 seconds
+  Import took 0.037896 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth2 1.png
+  artifactKey: Guid(15da93f386db98b4eb399ca722a1ba00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Cavia/Material/Textures/shark teeth2 1.png using Guid(15da93f386db98b4eb399ca722a1ba00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9542b1c5bbdf1ddc68e4869c9681b57e') in 0.030107 seconds
+  Import took 0.048767 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Resources/Objects/Battle/Indicators/Textures/STRONG Indicator.png
+  artifactKey: Guid(1880a1fce5298654e8ecdcfa704218f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Indicators/Textures/STRONG Indicator.png using Guid(1880a1fce5298654e8ecdcfa704218f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f71a55450f91d9f491b5545200cb09f') in 0.028926 seconds
+  Import took 0.049410 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000262 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Goggles.png
+  artifactKey: Guid(6d4d22f519265824ebffcb116bc81462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Goggles.png using Guid(6d4d22f519265824ebffcb116bc81462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed0de03b0ac755256d7e0b8dc90aad13') in 0.056783 seconds
+  Import took 0.074676 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/NotResources/Project/WorldSpaceDissolve/Textures/TreeTex 1.png
+  artifactKey: Guid(a4f857db7e1ca7d4bb79d2600cc03cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/WorldSpaceDissolve/Textures/TreeTex 1.png using Guid(a4f857db7e1ca7d4bb79d2600cc03cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41b711c5e9802ab9161035fc30c6c60b') in 0.024013 seconds
+  Import took 0.056293 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000245 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/scarf.png
+  artifactKey: Guid(b054aba041f89224c9a0572d59e711a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/Materials/Textures/scarf.png using Guid(b054aba041f89224c9a0572d59e711a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72d7a1358f3febaa850839b2fac4a4f0') in 0.024450 seconds
+  Import took 0.047133 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Sigma/3D_Doll_Textured_First_Pass.fbm/undershirt.psd
+  artifactKey: Guid(bf77bf5f502a56e44af468c23f44dba5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Sigma/3D_Doll_Textured_First_Pass.fbm/undershirt.psd using Guid(bf77bf5f502a56e44af468c23f44dba5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'babc9786a1b12a03979d403de5da63f5') in 0.037022 seconds
+  Import took 0.067733 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Hair.png
+  artifactKey: Guid(997d76ad8810f0f4d87199330eabd654) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Texture_Vella_Hair.png using Guid(997d76ad8810f0f4d87199330eabd654) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '513a9f442a31cf776f8e9f3bbb57d1bf') in 0.059644 seconds
+  Import took 0.072093 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Resources/Objects/Overworld/Textures/UITextures/Turn_Face_Ally.png
+  artifactKey: Guid(dc1b0591130c28b41bee96398c59f5d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Overworld/Textures/UITextures/Turn_Face_Ally.png using Guid(dc1b0591130c28b41bee96398c59f5d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '050a603845b8b2d0014252555804ae07') in 0.020942 seconds
+  Import took 0.039288 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Vella Eyee test.png
+  artifactKey: Guid(ab9081e20b4e87c43a8b3337e75b48e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/Vella Eyee test.png using Guid(ab9081e20b4e87c43a8b3337e75b48e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62e407ccb276ce7e9af6b0f175e91570') in 0.006338 seconds
+  Import took 0.037176 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/Resources/Objects/ParticleEffects/BuffParticleEffect/Texture_Beam.png
+  artifactKey: Guid(dda69cb6799fa494a981f49e64acd470) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/ParticleEffects/BuffParticleEffect/Texture_Beam.png using Guid(dda69cb6799fa494a981f49e64acd470) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a5602d661b3845f358a18713f0bf03f') in 0.003829 seconds
+  Import took 0.021965 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Vella Gun Textures/Texture_Gun_Small_Barrel.png
+  artifactKey: Guid(36935b49f5390b1469c3165ed9f8cdc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Vella Gun Textures/Texture_Gun_Small_Barrel.png using Guid(36935b49f5390b1469c3165ed9f8cdc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5937308ef9c357d91877aba0c3abf234') in 0.043812 seconds
+  Import took 0.049044 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.512923 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/vella_eye.png
+  artifactKey: Guid(de3711366528c0b489c1fe59351b3c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/vella_eye.png using Guid(de3711366528c0b489c1fe59351b3c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76ffd3da2d1b208cdafa8c150878ac1c') in 0.147204 seconds
+  Import took 0.153460 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Resources/Objects/Skybox/FloorBox/Void2.jpg
+  artifactKey: Guid(c119a8fb7cafcae409a7dedf850c35b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Skybox/FloorBox/Void2.jpg using Guid(c119a8fb7cafcae409a7dedf850c35b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80bea7d720480147d176446a25fb32cf') in 0.080725 seconds
+  Import took 0.114773 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/white.jpg
+  artifactKey: Guid(a2064da624a9c5948b939468949a22fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/white.jpg using Guid(a2064da624a9c5948b939468949a22fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71abaf5ddfab7f915df390a69b567eb3') in 0.104150 seconds
+  Import took 0.110017 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/Resources/Objects/Skybox/FloorBox/Void2.jpg
+  artifactKey: Guid(c119a8fb7cafcae409a7dedf850c35b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Skybox/FloorBox/Void2.jpg using Guid(c119a8fb7cafcae409a7dedf850c35b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80bea7d720480147d176446a25fb32cf') in 0.005534 seconds
+  Import took 0.011235 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/Resources/Shaders/Water/Textures/WaterDistortion.png
+  artifactKey: Guid(c53bb6b8c40b02141be3fdec5cc582e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Shaders/Water/Textures/WaterDistortion.png using Guid(c53bb6b8c40b02141be3fdec5cc582e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a12c548e60c914642c80d4d879c8e7d') in 0.093746 seconds
+  Import took 0.116388 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000207 seconds.
+  path: Assets/Resources/Objects/ParticleEffects/Waves/Wave 2.png
+  artifactKey: Guid(1311510d2feeefa4cbfcbe4df49ed36e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/ParticleEffects/Waves/Wave 2.png using Guid(1311510d2feeefa4cbfcbe4df49ed36e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd456474a8aba46742864bae24f7ec418') in 0.033847 seconds
+  Import took 0.059018 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/Resources/Objects/Props/Crate/CrateMaterials/wood_dark.png
+  artifactKey: Guid(413686bddf6369c4cba6ed67362118da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Crate/CrateMaterials/wood_dark.png using Guid(413686bddf6369c4cba6ed67362118da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6236b8f9a236db049df0c9496c3de67') in 0.070346 seconds
+  Import took 0.106740 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/Resources/Objects/Battle/Indicators/Textures/WEAK Indicator.png
+  artifactKey: Guid(2b18d568c1b9389468888c105c6c2a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Indicators/Textures/WEAK Indicator.png using Guid(2b18d568c1b9389468888c105c6c2a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f11aa587f8c15f56adbbbe9a8d119fb') in 0.089876 seconds
+  Import took 0.135892 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/NotResources/Project/WorldSpaceDissolve/Textures/Wood.png
+  artifactKey: Guid(60fcd519df22db847a40e442a46e85c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NotResources/Project/WorldSpaceDissolve/Textures/Wood.png using Guid(60fcd519df22db847a40e442a46e85c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d807a412041d8624baa03e31f7baea4') in 0.079203 seconds
+  Import took 0.084752 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/Resources/Shaders/Wind.png
+  artifactKey: Guid(f28bba76fb944bc48be841e3ab6c411f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Shaders/Wind.png using Guid(f28bba76fb944bc48be841e3ab6c411f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c6e93fd21ec41cc8e5d3e88757e09bf') in 0.072828 seconds
+  Import took 0.118316 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000242 seconds.
+  path: Assets/Resources/Objects/Menu/Icons/wind_element.png
+  artifactKey: Guid(f6288e3218ee7204fa386d9dd3c2e8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Icons/wind_element.png using Guid(f6288e3218ee7204fa386d9dd3c2e8ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0fab42294a45ab53f06f5fe5515f42a') in 0.110034 seconds
+  Import took 0.145782 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000275 seconds.
+  path: Assets/Resources/Objects/Menu/Textures/Name Textures/Wait.png
+  artifactKey: Guid(14adf8e6878a46c40b22febeaba5b1c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Textures/Name Textures/Wait.png using Guid(14adf8e6878a46c40b22febeaba5b1c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c36bae6d2990eb78d3f8ce050a8ed67') in 0.068030 seconds
+  Import took 0.087462 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Resources/Objects/Battle/Node/Texture/Forest/WallText.png
+  artifactKey: Guid(f77ddb77be6cd3c4881483cc3945a0d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/Node/Texture/Forest/WallText.png using Guid(f77ddb77be6cd3c4881483cc3945a0d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '175554e2bd0a685b781dcae14e1dd15c') in 0.030872 seconds
+  Import took 0.036758 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/Resources/Objects/Menu/Textures/Name Textures/Wait.png
+  artifactKey: Guid(14adf8e6878a46c40b22febeaba5b1c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Textures/Name Textures/Wait.png using Guid(14adf8e6878a46c40b22febeaba5b1c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c36bae6d2990eb78d3f8ce050a8ed67') in 0.004896 seconds
+  Import took 0.010685 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/vella_eye.png
+  artifactKey: Guid(de3711366528c0b489c1fe59351b3c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Battle/PartyModels/Vella/Materials/Textures/vella_eye.png using Guid(de3711366528c0b489c1fe59351b3c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76ffd3da2d1b208cdafa8c150878ac1c') in 0.006877 seconds
+  Import took 0.012877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/Resources/Objects/Menu/Textures/yellow_button.png
+  artifactKey: Guid(364ac9d28639c14499cf20971fb42e18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Textures/yellow_button.png using Guid(364ac9d28639c14499cf20971fb42e18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a71c04c241132443388bd6da18c82dd') in 0.019544 seconds
+  Import took 0.067353 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Assets/Resources/Objects/Props/Crate/CrateMaterials/wood_light.png
+  artifactKey: Guid(ad8b9746ee7dcc5458a21a3fa1b34ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Props/Crate/CrateMaterials/wood_light.png using Guid(ad8b9746ee7dcc5458a21a3fa1b34ea9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8a15f29126ae288a3deebaa64bfb54f') in 0.065759 seconds
+  Import took 0.150756 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000207 seconds.
+  path: Assets/Resources/Objects/Menu/Icons/Textures/wind_element.png
+  artifactKey: Guid(98a7a916866440d4da7c073369984d09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/Icons/Textures/wind_element.png using Guid(98a7a916866440d4da7c073369984d09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1a54fdfb5fd232833981848c2598dd4') in 0.015189 seconds
+  Import took 0.021450 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Resources/Objects/Menu/SkillCards/WhiteCard.png
+  artifactKey: Guid(58c13f0b31703ab48945312e832d2947) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Objects/Menu/SkillCards/WhiteCard.png using Guid(58c13f0b31703ab48945312e832d2947) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38a3508dae3917eb6c5daf911bab4292') in 0.017552 seconds
+  Import took 0.032345 seconds .
+
